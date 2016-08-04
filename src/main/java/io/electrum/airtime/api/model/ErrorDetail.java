@@ -2,8 +2,6 @@ package io.electrum.airtime.api.model;
 
 import java.util.Objects;
 
-import javax.validation.constraints.Pattern;
-
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,37 +10,28 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * The ErrorDetail provides information about the error encountered. In the case of timeouts or system malfunctions the
- * ErrorDetail may not be present.
+ * The ErrorDetail provides information about the error encountered if a provision request could not be successfully
+ * processed. In the case of timeouts or system malfunctions the ErrorDetail may not be present.
  **/
 
-@ApiModel(description = "The ErrorDetail provides information about the error encountered. In the case of timeouts or system malfunctions the ErrorDetail may not be present.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-07-26T12:50:43.313Z")
+@ApiModel(description = "The ErrorDetail provides information about the error encountered if a provision request could not be successfully processed. In the case of timeouts or system malfunctions the ErrorDetail may not be present.")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-01T07:39:12.071Z")
 public class ErrorDetail {
 
-   /**
-    * The type of error that occured.
-    */
    public enum ErrorTypeEnum {
       DUPLICATE_RECORD("DUPLICATE_RECORD"),
-
       FORMAT_ERROR("FORMAT_ERROR"),
-
       FUNCTION_NOT_SUPPORTED("FUNCTION_NOT_SUPPORTED"),
-
       GENERAL_ERROR("GENERAL_ERROR"),
-
       INVALID_AMOUNT("INVALID_AMOUNT"),
-
       INVALID_PRODUCT("INVALID_PRODUCT"),
-
       ROUTING_ERROR("ROUTING_ERROR"),
-
       TRANSACTION_NOT_SUPPORTED("TRANSACTION_NOT_SUPPORTED"),
-
       UNABLE_TO_LOCATE_RECORD("UNABLE_TO_LOCATE_RECORD"),
+      UPSTREAM_UNAVAILABLE("UPSTREAM_UNAVAILABLE"),
+      VOUCHER_ALREADY_CONFIRMED("VOUCHER_ALREADY_CONFIRMED"),
+      VOUCHER_ALREADY_VOIDED("VOUCHER_ALREADY_VOIDED");
 
-      UPSTREAM_UNAVAILABLE("UPSTREAM_UNAVAILABLE");
       private String value;
 
       ErrorTypeEnum(String value) {
@@ -52,7 +41,7 @@ public class ErrorDetail {
       @Override
       @JsonValue
       public String toString() {
-         return String.valueOf(value);
+         return value;
       }
    }
 
@@ -105,8 +94,7 @@ public class ErrorDetail {
          return false;
       }
       ErrorDetail errorDetail = (ErrorDetail) o;
-      return Objects.equals(errorType, errorDetail.errorType)
-            && Objects.equals(errorMessage, errorDetail.errorMessage);
+      return Objects.equals(errorType, errorDetail.errorType) && Objects.equals(errorMessage, errorDetail.errorMessage);
    }
 
    @Override

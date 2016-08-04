@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.electrum</groupId>
   <artifactId>airtime-service-interface</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <packaging>jar</packaging>
   <name>Airtime Service Interface</name>
   <description>Airtime Service Interface</description>
@@ -157,7 +157,7 @@
               <locations>io.electrum.airtime.api</locations>
               <schemes>https</schemes>
               <host>sandbox.electrum.io</host>
-              <basePath>/billpay/v1</basePath>
+              <basePath>/airtime/v1</basePath>
               <info>
                 <title>Airtime Service Interface</title>
                 <version>${project.version}</version>
