@@ -26,10 +26,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.Authorization;
 import io.swagger.annotations.ResponseHeader;
 
-@Path("/vouchers")
+@Path("/airtime/v1/vouchers")
 @Api(description = "the payments API")//, authorizations = { @Authorization("httpBasic") })
 public abstract class VouchersResource {
 

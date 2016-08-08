@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -29,6 +30,7 @@ public class ErrorDetail {
       TRANSACTION_NOT_SUPPORTED("TRANSACTION_NOT_SUPPORTED"),
       UNABLE_TO_LOCATE_RECORD("UNABLE_TO_LOCATE_RECORD"),
       UPSTREAM_UNAVAILABLE("UPSTREAM_UNAVAILABLE"),
+      VOUCHER_ALREADY_REVERSED("VOUCHER_ALREADY_REVERSED"),
       VOUCHER_ALREADY_CONFIRMED("VOUCHER_ALREADY_CONFIRMED"),
       VOUCHER_ALREADY_VOIDED("VOUCHER_ALREADY_VOIDED");
 
@@ -47,6 +49,7 @@ public class ErrorDetail {
 
    private ErrorTypeEnum errorType = null;
    private String errorMessage = null;
+   private Object detailMessage = null;
 
    /**
     * The type of error that occured.
@@ -85,6 +88,24 @@ public class ErrorDetail {
       this.errorMessage = errorMessage;
    }
 
+   /**
+    * A free form detailed description of a particular failure condition may optionally be supplied.
+    **/
+   public ErrorDetail detailMessage(Object detailMessage) {
+      this.detailMessage = detailMessage;
+      return this;
+   }
+
+   @ApiModelProperty(value = "A free form detailed description of a particular failure condition may optionally be supplied.")
+   @JsonProperty("detailMessage")
+   public Object getDetailMessage() {
+      return detailMessage;
+   }
+
+   public void setDetailMessage(Object detailMessage) {
+      this.detailMessage = detailMessage;
+   }
+
    @Override
    public boolean equals(Object o) {
       if (this == o) {
@@ -94,12 +115,13 @@ public class ErrorDetail {
          return false;
       }
       ErrorDetail errorDetail = (ErrorDetail) o;
-      return Objects.equals(errorType, errorDetail.errorType) && Objects.equals(errorMessage, errorDetail.errorMessage);
+      return Objects.equals(errorType, errorDetail.errorType) && Objects.equals(errorMessage, errorDetail.errorMessage)
+            && Objects.equals(detailMessage, errorDetail.detailMessage);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(errorType, errorMessage);
+      return Objects.hash(errorType, errorMessage, detailMessage);
    }
 
    @Override
@@ -109,6 +131,7 @@ public class ErrorDetail {
 
       sb.append("    errorType: ").append(toIndentedString(errorType)).append("\n");
       sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
+      sb.append("    detailMessage: ").append(toIndentedString(detailMessage)).append("\n");
       sb.append("}");
       return sb.toString();
    }

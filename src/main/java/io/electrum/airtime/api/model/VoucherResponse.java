@@ -20,7 +20,6 @@ public class VoucherResponse {
    private Voucher voucher = null;
    private String requestTime = null;
    private Merchant merchant = null;
-   private Institution sender = null;
    private Institution processor = null;
    private Institution vendor = null;
    private SlipData slipData = null;
@@ -118,24 +117,6 @@ public class VoucherResponse {
    }
 
    /**
-    * Copied from the voucher request.
-    **/
-   public VoucherResponse sender(Institution sender) {
-      this.sender = sender;
-      return this;
-   }
-
-   @ApiModelProperty(required = true, value = "Copied from the voucher request.")
-   @JsonProperty("sender")
-   public Institution getSender() {
-      return sender;
-   }
-
-   public void setSender(Institution sender) {
-      this.sender = sender;
-   }
-
-   /**
     * Information about the processor with whom the merchant must settle. This must be populated if the merchant settles with an entity other than the vendor and the request reached the processor.
     **/
    public VoucherResponse processor(Institution processor) {
@@ -203,14 +184,14 @@ public class VoucherResponse {
             && Objects.equals(responseProduct, voucherResponse.responseProduct)
             && Objects.equals(voucher, voucherResponse.voucher)
             && Objects.equals(requestTime, voucherResponse.requestTime)
-            && Objects.equals(merchant, voucherResponse.merchant) && Objects.equals(sender, voucherResponse.sender)
+            && Objects.equals(merchant, voucherResponse.merchant) 
             && Objects.equals(processor, voucherResponse.processor) && Objects.equals(vendor, voucherResponse.vendor)
             && Objects.equals(slipData, voucherResponse.slipData);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(voucherId, responseProduct, voucher, requestTime, merchant, sender, processor, vendor, slipData);
+      return Objects.hash(voucherId, responseProduct, voucher, requestTime, merchant, processor, vendor, slipData);
    }
 
    @Override
@@ -223,7 +204,6 @@ public class VoucherResponse {
       sb.append("    voucher: ").append(toIndentedString(voucher)).append("\n");
       sb.append("    requestTime: ").append(toIndentedString(requestTime)).append("\n");
       sb.append("    merchant: ").append(toIndentedString(merchant)).append("\n");
-      sb.append("    sender: ").append(toIndentedString(sender)).append("\n");
       sb.append("    processor: ").append(toIndentedString(processor)).append("\n");
       sb.append("    vendor: ").append(toIndentedString(vendor)).append("\n");
       sb.append("    slipData: ").append(toIndentedString(slipData)).append("\n");

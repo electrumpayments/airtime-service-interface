@@ -2,6 +2,7 @@ package io.electrum.airtime.api.model;
 
 import java.util.Objects;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
@@ -112,7 +113,6 @@ public class Merchant {
 
    @ApiModelProperty(value = "The ID that uniquely identifies each device or system in a merchant institution capable of sending requests. Required for transactions initiated from physical card entry or point-of-sale devices.")
    @JsonProperty("institution")
-   @Pattern(regexp = "[a-zA-Z0-9]{8}")
    public Institution getInstitution() {
       return institution;
    }
