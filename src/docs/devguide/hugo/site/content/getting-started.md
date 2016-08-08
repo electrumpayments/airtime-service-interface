@@ -5,9 +5,9 @@ menu:
     weight: 0
 ---
 
-The Airtime Service Interface is a RESTful HTTP based messaging protocol, used to connect retailers to airtime voucher vendors, as well as to connect airtime voucher processors to Electrum. Electrum enables merchants to offer a wide range of airtime products to consumers via the Airtime Service Interface. At the same time, the Airtime Service Interface is made available to allow airtime voucher vendors a quick route towards integrating into the Electrum network and accessing participating acquirers.
+The Airtime Service Interface is an apache licensed RESTful HTTP based messaging protocol, intended to enable interoperability between airtime voucher vendors and retailers.
 
-When starting out a development project using this interface, it is thus important to view this documentation either from the perspective of an acquirer developing a client application to submit requests the Electrum Airtime Service, or of a airtime voucher vendor developing a server application with the view of receiving airtime requests from Electrum.
+Using the Airtime Service Interface enables retailers to access an established and growing group of airtime voucher vendors who support the interface. At the same time, the Airtime Service Interface is made available to allow airtime voucher vendors a quick, well defined route towards integrating into retailers.
 
 Throughout the Airtime Service Interface documentation and API the term 'airtime voucher' and 'airtime voucher vendor' may be abbreviated to simply 'voucher' and 'voucher vendor' respectively.
 
