@@ -2,7 +2,9 @@ package io.electrum.airtime.api;
 
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
@@ -20,38 +22,33 @@ public interface IVouchersResource {
          UUID confirmationId,
          VoucherConfirmation body,
          SecurityContext securityContext,
-         AsyncResponse asyncResponse,
          HttpHeaders httpHeaders,
-         UriInfo uriInfo);
+         UriInfo uriInfo,
+         HttpServletRequest httpServletRequest);
 
    public Response provisionVoucherImpl(
          UUID voucherId,
          VoucherRequest body,
          SecurityContext securityContext,
-         AsyncResponse asyncResponse,
          HttpHeaders httpHeaders,
-         UriInfo uriInfo);
+         UriInfo uriInfo,
+         HttpServletRequest httpServletRequest);
 
    public Response reverseVoucherImpl(
          UUID voucherId,
          UUID reversalId,
          VoucherReversal body,
          SecurityContext securityContext,
-         AsyncResponse asyncResponse,
          HttpHeaders httpHeaders,
-         UriInfo uriInfo);
-
-   public Response teapotImpl(SecurityContext securityContext,
-         AsyncResponse asyncResponse,
-         HttpHeaders httpHeaders,
-         UriInfo uriInfo);
+         UriInfo uriInfo,
+         HttpServletRequest httpServletRequest);
 
    public Response voidVoucherImpl(
          UUID voucherId,
          UUID voidId,
          VoucherVoid body,
          SecurityContext securityContext,
-         AsyncResponse asyncResponse,
          HttpHeaders httpHeaders,
-         UriInfo uriInfo);
+         UriInfo uriInfo,
+         HttpServletRequest httpServletRequest);
 }

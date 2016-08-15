@@ -2,6 +2,8 @@ package io.electrum.airtime.api.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
@@ -35,6 +37,7 @@ public class VoucherConfirmation {
 
    @ApiModelProperty(required = true, value = "The randomly generated UUID identifying this voucher confirmation, as defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122). This must be the same as the confirmationId path parameter.")
    @JsonProperty("confirmationId")
+   @NotNull
    public String getConfirmationId() {
       return confirmationId;
    }
@@ -53,6 +56,7 @@ public class VoucherConfirmation {
 
    @ApiModelProperty(required = true, value = "Copied from the voucher request.")
    @JsonProperty("merchant")
+   @NotNull
    public Merchant getMerchant() {
       return merchant;
    }
@@ -71,6 +75,7 @@ public class VoucherConfirmation {
 
    @ApiModelProperty(required = true, value = "Copied from the voucher request.")
    @JsonProperty("sender")
+   @NotNull
    public Institution getSender() {
       return sender;
    }
@@ -89,6 +94,7 @@ public class VoucherConfirmation {
 
    @ApiModelProperty(required = true, value = "Information about the processor with whom the merchant must settle.")
    @JsonProperty("processor")
+   @NotNull
    public Institution getProcessor() {
       return processor;
    }
@@ -107,6 +113,7 @@ public class VoucherConfirmation {
 
    @ApiModelProperty(required = true, value = "Information about the vendor who ultimately processed the voucher request.")
    @JsonProperty("vendor")
+   @NotNull
    public Institution getVendor() {
       return vendor;
    }
@@ -127,6 +134,7 @@ public class VoucherConfirmation {
 
    @ApiModelProperty(required = true, value = "The date and time of the confirmation as recorded by the sender. The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). It is recommended that the optional time-secfrac be included up to millisecond precision.")
    @JsonProperty("confirmDate")
+   @NotNull
    public String getConfirmDate() {
       return confirmDate;
    }
@@ -147,6 +155,7 @@ public class VoucherConfirmation {
 
    @ApiModelProperty(required = true, value = "Information about the specific voucher being confirmed. This should at a minimum be the voucher serial number returned in the VoucherResponse so that the vendor can look up the voucher to be confirmed within the vendor's system.")
    @JsonProperty("voucher")
+   @NotNull
    public Voucher getVoucher() {
       return voucher;
    }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -56,6 +57,7 @@ public class Voucher {
    @ApiModelProperty(required = true, value = "The voucher's serial number. This can be used to identify the voucher in the vendor's system but cannot be used to redeem the voucher.")
    @JsonProperty("serialNumber")
    @Pattern(regexp = "[0-9]{1,20}")
+   @NotNull
    public String getSerialNumber() {
       return serialNumber;
    }

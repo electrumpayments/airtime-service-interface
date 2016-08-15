@@ -2,6 +2,7 @@ package io.electrum.airtime.api.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
@@ -33,6 +34,7 @@ public class Institution {
    @ApiModelProperty(required = true, value = "The institution's ID as assigned by Electrum.")
    @JsonProperty("id")
    @Pattern(regexp = "[0-9]{1,11}")
+   @NotNull
    public String getId() {
       return id;
    }
@@ -52,6 +54,7 @@ public class Institution {
    @ApiModelProperty(required = true, value = "The institutions's name.")
    @JsonProperty("name")
    @Length(min = 1, max = 40)
+   @NotNull
    public String getName() {
       return name;
    }

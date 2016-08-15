@@ -2,6 +2,7 @@ package io.electrum.airtime.api.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -31,6 +32,7 @@ public class Product {
    @ApiModelProperty(required = true, value = "A vendor determined code identifying the product the voucher should pertain to.")
    @JsonProperty("productId")
    @Pattern(regexp = "[0-9A-Za-z]{1,20}")
+   @NotNull
    public String getProductId() {
       return productId;
    }

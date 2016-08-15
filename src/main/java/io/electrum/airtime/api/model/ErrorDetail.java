@@ -2,6 +2,8 @@ package io.electrum.airtime.api.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(description = "The ErrorDetail provides information about the error encountered if a provision request could not be successfully processed. In the case of timeouts or system malfunctions the ErrorDetail may not be present.")
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-01T07:39:12.071Z")
-public class ErrorDetail {
+public class ErrorDetail implements Cloneable {
 
    public enum ErrorTypeEnum {
       DUPLICATE_RECORD("DUPLICATE_RECORD"),
@@ -61,6 +63,7 @@ public class ErrorDetail {
 
    @ApiModelProperty(required = true, value = "The type of error that occured.")
    @JsonProperty("errorType")
+   @NotNull
    public ErrorTypeEnum getErrorType() {
       return errorType;
    }
@@ -89,14 +92,16 @@ public class ErrorDetail {
    }
 
    /**
-    * A free form detailed description of a particular failure condition may optionally be supplied.
+    * A free form detailed description of a particular failure condition may optionally be supplied. The detailMessage
+    * field is not intended to be processed programmatically but can optionally be used to better describe the error
+    * encountered by the server.
     **/
    public ErrorDetail detailMessage(Object detailMessage) {
       this.detailMessage = detailMessage;
       return this;
    }
 
-   @ApiModelProperty(value = "A free form detailed description of a particular failure condition may optionally be supplied.")
+   @ApiModelProperty(value = "A free form detailed description of a particular failure condition may optionally be supplied. The detailMessage field is not intended to be processed programmatically but can optionally be used to better describe the error encountered by the server.")
    @JsonProperty("detailMessage")
    public Object getDetailMessage() {
       return detailMessage;

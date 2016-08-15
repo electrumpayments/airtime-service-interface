@@ -2,6 +2,7 @@ package io.electrum.airtime.api.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,6 +31,7 @@ public class Amount {
    @ApiModelProperty(required = true, value = "Amount in minor denomination, e.g. R799.95 is encoded as 79995.")
    @JsonProperty("amount")
    @Pattern(regexp = "[0-9]{3}")
+   @NotNull
    public Long getAmount() {
       return amount;
    }
@@ -48,6 +50,7 @@ public class Amount {
 
    @ApiModelProperty(required = true, value = "Three digit currency number from ISO 4217, e.g. South African Rand is encoded as 710.")
    @JsonProperty("currency")
+   @NotNull
    public String getCurrency() {
       return currency;
    }

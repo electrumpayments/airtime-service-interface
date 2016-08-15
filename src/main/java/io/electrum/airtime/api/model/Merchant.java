@@ -3,6 +3,7 @@ package io.electrum.airtime.api.model;
 import java.util.Objects;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
@@ -37,6 +38,7 @@ public class Merchant {
    @ApiModelProperty(required = true, value = "The assigned four digit merchant category code.")
    @JsonProperty("merchantType")
    @Pattern(regexp = "[0-9]{4}")
+   @NotNull
    public String getMerchantType() {
       return merchantType;
    }
@@ -56,6 +58,7 @@ public class Merchant {
    @ApiModelProperty(required = true, value = "The assigned merchant identifier. Also known as card acceptor ID.")
    @JsonProperty("merchantId")
    @Length(min = 15, max = 15)
+   @NotNull
    public String getMerchantId() {
       return merchantId;
    }
@@ -74,6 +77,7 @@ public class Merchant {
 
    @ApiModelProperty(required = true, value = "The name of a merchant.")
    @JsonProperty("merchantName")
+   @NotNull
    public String getMerchantName() {
       return merchantName;
    }
@@ -91,9 +95,10 @@ public class Merchant {
       return this;
    }
 
-   @ApiModelProperty(value = "The ID that uniquely identifies each device or system in a merchant institution capable of sending requests. Required for transactions initiated from physical card entry or point-of-sale devices.")
+   @ApiModelProperty(required = true, value = "The ID that uniquely identifies each device or system in a merchant institution capable of sending requests. Required for transactions initiated from physical card entry or point-of-sale devices.")
    @JsonProperty("terminalId")
    @Pattern(regexp = "[a-zA-Z0-9]{8}")
+   @NotNull
    public String getTerminalId() {
       return terminalId;
    }
@@ -111,8 +116,9 @@ public class Merchant {
       return this;
    }
 
-   @ApiModelProperty(value = "The ID that uniquely identifies each device or system in a merchant institution capable of sending requests. Required for transactions initiated from physical card entry or point-of-sale devices.")
+   @ApiModelProperty(required = true, value = "The ID that uniquely identifies each device or system in a merchant institution capable of sending requests. Required for transactions initiated from physical card entry or point-of-sale devices.")
    @JsonProperty("institution")
+   @NotNull
    public Institution getInstitution() {
       return institution;
    }

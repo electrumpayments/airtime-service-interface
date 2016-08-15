@@ -2,6 +2,7 @@ package io.electrum.airtime.api;
 
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -9,9 +10,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
@@ -50,17 +51,18 @@ public abstract class VouchersResource {
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
-   public final Response confirmVoucher(
+   public final void confirmVoucher(
          @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam("voucherId") UUID voucherId,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("confirmationId") UUID confirmationId,
          @ApiParam(value = "A voucher provision confirmation.", required = true) VoucherConfirmation body,
          @Context SecurityContext securityContext,
-         @Context AsyncResponse asyncResponse,
+         @Suspended AsyncResponse asyncResponse,
          @Context HttpHeaders httpHeaders,
-         @Context UriInfo uriInfo){
+         @Context UriInfo uriInfo,
+         @Context HttpServletRequest httpServletRequest){
 
-      return getResourceImplementation()
-            .confirmVoucherImpl(confirmationId, voucherId, body, securityContext, asyncResponse, httpHeaders, uriInfo);
+      asyncResponse.resume(getResourceImplementation()
+            .confirmVoucherImpl(voucherId, confirmationId, body, securityContext, httpHeaders, uriInfo, httpServletRequest));
    }
 
    @POST
@@ -75,16 +77,17 @@ public abstract class VouchersResource {
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
-   public final Response provisionVoucher(
+   public final void provisionVoucher(
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("voucherId") UUID voucherId,
          @ApiParam(value = "A voucher request.", required = true) VoucherRequest body,
          @Context SecurityContext securityContext,
-         @Context AsyncResponse asyncResponse,
+         @Suspended AsyncResponse asyncResponse,
          @Context HttpHeaders httpHeaders,
-         @Context UriInfo uriInfo){
+         @Context UriInfo uriInfo,
+         @Context HttpServletRequest httpServletRequest){
 
-      return getResourceImplementation()
-            .provisionVoucherImpl(voucherId, body, securityContext, asyncResponse, httpHeaders, uriInfo);
+      asyncResponse.resume(getResourceImplementation()
+            .provisionVoucherImpl(voucherId, body, securityContext, httpHeaders, uriInfo, httpServletRequest));
    }
 
    @POST
@@ -103,30 +106,18 @@ public abstract class VouchersResource {
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
-   public final Response reverseVoucher(
+   public final void reverseVoucher(
          @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam("voucherId") UUID voucherId,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("reversalId") UUID reversalId,
          @ApiParam(value = "A voucher provision reversal.", required = true) VoucherReversal body,
          @Context SecurityContext securityContext,
-         @Context AsyncResponse asyncResponse,
+         @Suspended AsyncResponse asyncResponse,
          @Context HttpHeaders httpHeaders,
-         @Context UriInfo uriInfo){
+         @Context UriInfo uriInfo,
+         @Context HttpServletRequest httpServletRequest){
 
-      return getResourceImplementation()
-            .reverseVoucherImpl(reversalId, voucherId, body, securityContext, asyncResponse, httpHeaders, uriInfo);
-   }
-
-   @GET
-   @Path("/kitchen")
-   @ApiOperation(value = "Test if the server is reachable and listening.")
-   @ApiResponses(value = { @ApiResponse(code = 418, message = "Im a teapot") })
-   public final Response teapot(
-         @Context SecurityContext securityContext,
-         @Context AsyncResponse asyncResponse,
-         @Context HttpHeaders httpHeaders,
-         @Context UriInfo uriInfo){
-      return getResourceImplementation()
-            .teapotImpl(securityContext, asyncResponse, httpHeaders, uriInfo);
+      asyncResponse.resume(getResourceImplementation()
+            .reverseVoucherImpl(voucherId, reversalId, body, securityContext, httpHeaders, uriInfo, httpServletRequest));
    }
 
    @POST
@@ -144,16 +135,17 @@ public abstract class VouchersResource {
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
-   public final Response voidVoucher(
+   public final void voidVoucher(
          @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam("voucherId") UUID voucherId,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("voidId") UUID voidId,
          @ApiParam(value = "A voucher provision void.", required = true) VoucherVoid body,
          @Context SecurityContext securityContext,
-         @Context AsyncResponse asyncResponse,
+         @Suspended AsyncResponse asyncResponse,
          @Context HttpHeaders httpHeaders,
-         @Context UriInfo uriInfo) {
+         @Context UriInfo uriInfo,
+         @Context HttpServletRequest httpServletRequest) {
 
-      return getResourceImplementation()
-            .voidVoucherImpl(voidId, voucherId, body, securityContext, asyncResponse, httpHeaders, uriInfo);
+      asyncResponse.resume(getResourceImplementation()
+            .voidVoucherImpl(voucherId, voidId, body, securityContext, httpHeaders, uriInfo, httpServletRequest));
    }
 }

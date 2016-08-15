@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -54,6 +55,7 @@ public class SlipData {
    @ApiModelProperty(required = true, value = "An identifier that uniquely references the request associated with the slip. This is printed on the customer slip and uniquely identifies the voucher purchase on the vendor's system. This value is used by the customer to identify a voucher purchase with the vendor. It is thus important that this number can be used to locate a specific voucher purchase at some time after the voucher has been provisioned.")
    @JsonProperty("vendorReference")
    @Pattern(regexp = "[0-9A-Z]{1,20}")
+   @NotNull
    public String getVendorReference() {
       return vendorReference;
    }

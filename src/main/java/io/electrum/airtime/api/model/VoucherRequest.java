@@ -2,6 +2,8 @@ package io.electrum.airtime.api.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
@@ -34,6 +36,7 @@ public class VoucherRequest {
 
    @ApiModelProperty(required = true, value = "The randomly generated UUID identifying this voucher request, as defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122). This must be the same as the voucherId path parameter.")
    @JsonProperty("voucherId")
+   @NotNull
    public String getVoucherId() {
       return voucherId;
    }
@@ -52,6 +55,7 @@ public class VoucherRequest {
 
    @ApiModelProperty(required = true, value = "The product for which the voucher should be provisioned.")
    @JsonProperty("product")
+   @NotNull
    public Product getProduct() {
       return product;
    }
@@ -72,6 +76,7 @@ public class VoucherRequest {
 
    @ApiModelProperty(required = true, value = "The date and time of the request as recorded by the sender. The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). It is recommended that the optional time-secfrac be included up to millisecond precision.")
    @JsonProperty("requestTime")
+   @NotNull
    public String getRequestTime() {
       return requestTime;
    }
@@ -90,6 +95,7 @@ public class VoucherRequest {
 
    @ApiModelProperty(required = true, value = "Information about the merchant who originated this request.")
    @JsonProperty("merchant")
+   @NotNull
    public Merchant getMerchant() {
       return merchant;
    }
@@ -108,6 +114,7 @@ public class VoucherRequest {
 
    @ApiModelProperty(required = true, value = "Information about the sender of this request.")
    @JsonProperty("sender")
+   @NotNull
    public Institution getSender() {
       return sender;
    }
@@ -144,6 +151,7 @@ public class VoucherRequest {
 
    @ApiModelProperty(required = true, value = "Information about the vendor who should process this request.")
    @JsonProperty("vendor")
+   @NotNull
    public Institution getVendor() {
       return vendor;
    }

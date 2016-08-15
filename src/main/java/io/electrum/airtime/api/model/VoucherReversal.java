@@ -2,6 +2,8 @@ package io.electrum.airtime.api.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
@@ -13,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(description = "Information about the voucher provision being reversed.")
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-01T07:39:12.071Z")
-public class VoucherReversal {
+public class VoucherReversal{
 
    private String reversalId = null;
    private Merchant merchant = null;
@@ -34,6 +36,7 @@ public class VoucherReversal {
 
    @ApiModelProperty(required = true, value = "The randomly generated UUID identifying this voucher reversal, as defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122). This must be the same as the reversalId path parameter.")
    @JsonProperty("reversalId")
+   @NotNull
    public String getReversalId() {
       return reversalId;
    }
@@ -52,6 +55,7 @@ public class VoucherReversal {
 
    @ApiModelProperty(required = true, value = "Information about the merchant who originated the request.")
    @JsonProperty("merchant")
+   @NotNull
    public Merchant getMerchant() {
       return merchant;
    }
@@ -70,6 +74,7 @@ public class VoucherReversal {
 
    @ApiModelProperty(required = true, value = "Information about the sender of this reversal.")
    @JsonProperty("sender")
+   @NotNull
    public Institution getSender() {
       return sender;
    }
@@ -106,6 +111,7 @@ public class VoucherReversal {
 
    @ApiModelProperty(required = true, value = "Information about the vendor who should process this request. This must be populated if present in the VoucherResponse.")
    @JsonProperty("vendor")
+   @NotNull
    public Institution getVendor() {
       return vendor;
    }
@@ -126,6 +132,7 @@ public class VoucherReversal {
 
    @ApiModelProperty(required = true, value = "The date and time of the reversal as recorded by the sender. The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). It is recommended that the optional time-secfrac be included up to millisecond precision.")
    @JsonProperty("reversalTime")
+   @NotNull
    public String getReversalTime() {
       return reversalTime;
    }
@@ -141,8 +148,9 @@ public class VoucherReversal {
       return this;
    }
 
-   @ApiModelProperty(required = true, value = "")
+   @ApiModelProperty(required = true, value = "The original Voucher Request being reversed.")
    @JsonProperty("voucherRequest")
+   @NotNull
    public VoucherRequest getVoucherRequest() {
       return voucherRequest;
    }
