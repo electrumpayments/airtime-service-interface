@@ -7,6 +7,8 @@ import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import io.electrum.vas.Utils;
+import io.electrum.vas.model.LedgerAmount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -19,7 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class Product {
 
    private String productId = null;
-   private Amount amount = null;
+   private LedgerAmount amount = null;
 
    /**
     * A vendor determined code identifying the product the voucher should pertain to.
@@ -45,18 +47,18 @@ public class Product {
     * If the product identified by the product code is not a fixed price product then the amount field indicates the
     * value of the product referred to.
     **/
-   public Product amount(Amount amount) {
+   public Product amount(LedgerAmount amount) {
       this.amount = amount;
       return this;
    }
 
    @ApiModelProperty(value = "If the product identified by the product code is not a fixed price product then the amount field indicates the value of the product referred to.")
    @JsonProperty("amount")
-   public Amount getAmount() {
+   public LedgerAmount getAmount() {
       return amount;
    }
 
-   public void setAmount(Amount amount) {
+   public void setAmount(LedgerAmount amount) {
       this.amount = amount;
    }
 
@@ -82,19 +84,9 @@ public class Product {
       StringBuilder sb = new StringBuilder();
       sb.append("class Product {\n");
 
-      sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
-      sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+      sb.append("    productId: ").append(Utils.toIndentedString(productId)).append("\n");
+      sb.append("    amount: ").append(Utils.toIndentedString(amount)).append("\n");
       sb.append("}");
       return sb.toString();
-   }
-
-   /**
-    * Convert the given object to string with each line indented by 4 spaces (except the first line).
-    */
-   private String toIndentedString(Object o) {
-      if (o == null) {
-         return "null";
-      }
-      return o.toString().replace("\n", "\n    ");
    }
 }

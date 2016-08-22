@@ -21,12 +21,6 @@ Server's typically host an application and, in the context of the RESTful Airtim
 
 The various request and response messages defined in the Airtime Service Interface are always initiated from the downstream entities and sent to upstream entities for processing. This means that clients are therefore downstream of servers and that servers are upstream of clients. Consider an entity which receives a request from a downstream entity and forwards it to an upstream entity; this entity receives the request in the capacity as a server and passes it on in the capacity of a client.
 
-### Sender vs Receiver
-
-The Airtime Service Interface uses both client/server and sender/receiver terminology interchangeably. Whilst client/server terminology describes entity roles at a network level, sender/receiver terminology is a more general description hence this is used in the definition of Airtime Service Interface messages. A sender sends messages and receives responses. Receivers receive messages and send responses.
-
-Clients are free to populate the Sender field of a request message with whatever data they deem appropriate within the requirements of this specification. Likewise, servers are free to populate the Receiver field of a response message as they choose within the requirements of this specification. These fields need not be forwarded unaltered but may be updated by each entity processing the message. However, it is important to note that the Merchant and Vendor sub-fields should describe the ultimate sender (merchant) and receiver (vendor) of the request respectively.
-
 ## Security
 
 All communication shall be secured by establishing an SSL encrypted transport. SSL provides a manner for client and server systems to identify themselves to each other as well as to establish an encrypted channel over which they may securely communicate.

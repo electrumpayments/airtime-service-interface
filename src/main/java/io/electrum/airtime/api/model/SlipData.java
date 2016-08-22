@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class SlipData {
 
    private List<String> messageLines = new ArrayList<String>();
-   private String vendorReference = null;
+   private String receiverReference = null;
 
    /**
     * An array of free text lines to be printed on the customer slip.
@@ -47,21 +47,21 @@ public class SlipData {
     * identify a voucher purchase with the vendor. It is thus important that this number can be used to locate a
     * specific voucher purchase at some time after the voucher has been provisioned.
     **/
-   public SlipData vendorReference(String vendorReference) {
-      this.vendorReference = vendorReference;
+   public SlipData receiverReference(String receiverReference) {
+      this.receiverReference = receiverReference;
       return this;
    }
 
    @ApiModelProperty(required = true, value = "An identifier that uniquely references the request associated with the slip. This is printed on the customer slip and uniquely identifies the voucher purchase on the vendor's system. This value is used by the customer to identify a voucher purchase with the vendor. It is thus important that this number can be used to locate a specific voucher purchase at some time after the voucher has been provisioned.")
-   @JsonProperty("vendorReference")
+   @JsonProperty("receiverReference")
    @Pattern(regexp = "[0-9A-Z]{1,20}")
    @NotNull
-   public String getVendorReference() {
-      return vendorReference;
+   public String getReceiverReference() {
+      return receiverReference;
    }
 
-   public void setVendorReference(String vendorReference) {
-      this.vendorReference = vendorReference;
+   public void setReceiverReference(String receiverReference) {
+      this.receiverReference = receiverReference;
    }
 
    @Override
@@ -74,12 +74,12 @@ public class SlipData {
       }
       SlipData slipData = (SlipData) o;
       return Objects.equals(messageLines, slipData.messageLines)
-            && Objects.equals(vendorReference, slipData.vendorReference);
+            && Objects.equals(receiverReference, slipData.receiverReference);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(messageLines, vendorReference);
+      return Objects.hash(messageLines, receiverReference);
    }
 
    @Override
@@ -88,7 +88,7 @@ public class SlipData {
       sb.append("class SlipData {\n");
 
       sb.append("    messageLines: ").append(toIndentedString(messageLines)).append("\n");
-      sb.append("    vendorReference: ").append(toIndentedString(vendorReference)).append("\n");
+      sb.append("    receiverReference: ").append(toIndentedString(receiverReference)).append("\n");
       sb.append("}");
       return sb.toString();
    }

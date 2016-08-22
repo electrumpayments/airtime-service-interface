@@ -4,7 +4,6 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -16,21 +15,22 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
-import io.electrum.airtime.api.model.ErrorDetail;
 import io.electrum.airtime.api.model.VoucherConfirmation;
 import io.electrum.airtime.api.model.VoucherRequest;
 import io.electrum.airtime.api.model.VoucherResponse;
 import io.electrum.airtime.api.model.VoucherReversal;
 import io.electrum.airtime.api.model.VoucherVoid;
+import io.electrum.vas.model.ErrorDetail;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
 import io.swagger.annotations.ResponseHeader;
 
-@Path("/airtime/v1/vouchers")
-@Api(description = "the payments API")//, authorizations = { @Authorization("httpBasic") })
+@Path("/airtime/v2/vouchers")
+@Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
 public abstract class VouchersResource {
 
    protected abstract IVouchersResource getResourceImplementation();

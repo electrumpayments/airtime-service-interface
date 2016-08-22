@@ -11,9 +11,9 @@ When developing a client implementation of the Airtime Service Interface, Electr
 
 ## Request vs Advice Messages
 
-There are two basic message types defined in the Airtime Service Interface: request and advice type messages. Request messages require a response from an upstream entity before processing can continue. If no response is received then the sender cannot determine whether the receiver successfully received the request and also cannot assume an approved response was sent by the upstream entity. Therefore the sender is responsible for ensuring that the request is reversed to ensure that both parties agree on the status of the request.
+There are two basic message types defined in the Airtime Service Interface: request and advice type messages. Request messages require a response from an upstream entity before processing can continue. If no response is received then the client cannot determine whether the server successfully received the request and also cannot assume an approved response was sent by the upstream entity. Therefore the client is responsible for ensuring that the request is reversed to ensure that both parties agree on the status of the request.
 
-Reversals are an example of an advice type message. Advice type messages inform the receiver of an action or instruction but do not require the sender to wait for a response from the receiver. Advice type messages are sent at suitable intervals until a definite response is received from the upstream entity.
+Reversals are an example of an advice type message. Advice type messages inform the server of an action or instruction but do not require the client to wait for a response from the server. Advice type messages are sent at suitable intervals until a definite response is received from the upstream entity.
 
 In order to maintain system consistency, it is important that all advice messages are queued in persistent storage on the airtime service client implementation and repeated until an acknowledgement of receipt is received from the Airtime Service server implementation. This process is commonly referred to as store-and-forward.
 
@@ -35,7 +35,7 @@ The sequence diagram below shows a [voucherReversal](/specification/operations/#
 
 ![An Uncertain Response And A Reversal](/images/provision_reversal.png "An Uncertain Response And A Reversal")
 
-Note that specifically for reversal response messages an HTTP status type of 404 is considered a successful response. The reversal request references the voucher record which was intended to be created when the sender submitted the provision request. However, it is possible that the upstream entity never received the original provision request (leading to the timeout which subsequently necessitated this reversal). Thus the receiver will not be able to locate the voucher (which was never provisioned). The receiver therefore need not take any action to invalidate the voucher but may return an HTTP status type of 404 implying that the original voucher record could not be located. The Airtime Service Interface considers this to represent a successful reversal operation.
+Note that specifically for reversal response messages an HTTP status type of 404 is considered a successful response. The reversal request references the voucher record which was intended to be created when the client submitted the provision request. However, it is possible that the upstream entity never received the original provision request (leading to the timeout which subsequently necessitated this reversal). Thus the server will not be able to locate the voucher (which was never provisioned). The server therefore need not take any action to invalidate the voucher but may return an HTTP status type of 404 implying that the original voucher record could not be located. The Airtime Service Interface considers this to represent a successful reversal operation.
 
 ## Voucher Confirmation
 

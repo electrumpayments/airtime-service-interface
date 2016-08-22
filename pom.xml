@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.electrum</groupId>
   <artifactId>airtime-service-interface</artifactId>
-  <version>1.2.0</version>
+  <version>${major-version}.${minor-version}.${patch-version}</version>
   <packaging>jar</packaging>
   <name>Airtime Service Interface</name>
   <description>Airtime Service Interface</description>
@@ -32,6 +32,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <service-interface-base-version>2.0.4</service-interface-base-version>
     <joda-time-version>2.9.4</joda-time-version>
     <swagger-version>1.5.9</swagger-version>
     <jetty-version>9.2.14.v20151106</jetty-version>
@@ -41,9 +42,17 @@
     <swagger-maven-plugin-version>3.1.3</swagger-maven-plugin-version>
     <slf4j-version>1.7.5</slf4j-version>
     <logback-version>1.0.13</logback-version>
+    <major-version>2</major-version>
+    <minor-version>0</minor-version>
+    <patch-version>0</patch-version>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>io.electrum</groupId>
+      <artifactId>service-interface-base</artifactId>
+      <version>${service-interface-base-version}</version>
+    </dependency>
     <dependency>
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
@@ -157,7 +166,7 @@
               <locations>io.electrum.airtime.api</locations>
               <schemes>https</schemes>
               <host>sandbox.electrum.io</host>
-              <basePath>/airtime/v1</basePath>
+              <basePath>/airtime/v${major-version}</basePath>
               <info>
                 <title>Airtime Service Interface</title>
                 <version>${project.version}</version>
