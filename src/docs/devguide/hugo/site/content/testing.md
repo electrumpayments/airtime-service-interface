@@ -5,9 +5,9 @@ menu:
     weight: 0
 ---
 
-When developing a server or client implementation of the Airtime Service Interface it is important to verify that the implementation conforms to the Airtime Service Interface specification. To help in this regard a test pack is made available which can be used to test either a client or server implementation. The test pack can be downloaded from [here](https://github.com/electrumpayments/airtime-service-interface-test-pack).
+When developing a server or client implementation of the Airtime Service Interface it is important to verify that the implementation conforms to the Airtime Service Interface specification. To test client implementations a test server is available at https://airtime-service-test-pack.herokuapp.com. To test server implementations a test pack containing Postman scripts is available [here](https://github.com/electrumpayments/airtime-service-test-pack/tree/master/test/postman).
 
-Note that the test pack is made available simply as a tool to help test and investigate common implementation issues. However the test pack is not intended to imply certification of the tested implementation's conformance to the Airtime Service Interface.
+Note that the test pack is made available simply as a tool to help test and investigate common implementation issues. However, the test pack is not intended to imply certification of the tested implementation's conformance to the Airtime Service Interface.
 
 ## Important Security Considerations
 
@@ -30,13 +30,11 @@ The test client makes use of Postman's test checks to validate responses from th
 
 ## Test server
 
-The test server is not currently available for use. The information in this section is provided for illustrative purposes only.
-
-The test server is provided as a web service constantly listening on https://www.example.com:7070.
+The test server is provided as a web service constantly listening on https://airtime-service-test-pack.herokuapp.com.
 
 ### Operation
 
-The test server listens on https://www.example.com:7070 for Airtime Service Interface messages. When a message is received it is cached and an appropriate response is returned. Normally, if the client implementation has sent a valid Airtime Service Interface message, the test server will respond with a successful response. If the test server could not process the client's message due to a client error (e.g. a formatting error) then the test server will respond with an [errorDetail](/specification/operations/#errorDetail) object describing the error encountered. If some other error prevents the test server from processing the message (e.g. two successive provision requests with the same UUID) the test server will also attempt to describe such errors in the response to the client.
+The test server listens on https://airtime-service-test-pack.herokuapp.com for Airtime Service Interface messages. When a message is received it is cached and an appropriate response is returned. Normally, if the client implementation has sent a valid Airtime Service Interface message, the test server will respond with a successful response. If the test server could not process the client's message due to a client error (e.g. a formatting error) then the test server will respond with an [errorDetail](/specification/operations/#errorDetail) object describing the error encountered. If some other error prevents the test server from processing the message (e.g. two successive provision requests with the same UUID) the test server will also attempt to describe such errors in the response to the client.
 
 ### Validation
 

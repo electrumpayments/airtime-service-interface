@@ -20,8 +20,3 @@ The Electrum implementation of the Airtime Service Interface is written in Java.
 ### Other languages
 
 The Airtime Service Interface is described as a [swagger (OpenApi) document](/specification/swagger). It is highly recommended that widely available swagger tooling is used to generate a project in your preferred language as a starting point to a new integration project.
-
-
-## Testing
-
-**TODO:** A test pack will be available soon for testing new server integrations.
