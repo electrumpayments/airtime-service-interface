@@ -7,6 +7,8 @@ import java.util.Objects;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import org.joda.time.DateTime;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
@@ -21,6 +23,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class Voucher {
 
    private String pin = null;
+   protected DateTime expiryDate = null;
    private String serialNumber = null;
    private String batchNumber = null;
    private List<String> redeemInstructions = new ArrayList<String>();
@@ -46,6 +49,25 @@ public class Voucher {
    }
 
    /**
+    * The date and time at which the voucher expires in UTC. The format shall be as defined for date-time
+    * in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
+    **/
+   public Voucher time(DateTime expiryDate) {
+      this.expiryDate = expiryDate;
+      return this;
+   }
+
+   @ApiModelProperty(value = "The date and time at which the voucher expires in UTC. The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).")
+   @JsonProperty("expiryDate")
+   public DateTime getExpiryDate() {
+      return expiryDate;
+   }
+
+   public void setExpiryDate(DateTime expiryDate) {
+      this.expiryDate = expiryDate;
+   }
+
+   /**
     * The voucher's serial number. This can be used to identify the voucher in the vendor's system but cannot be used to
     * redeem the voucher.
     **/
@@ -56,7 +78,7 @@ public class Voucher {
 
    @ApiModelProperty(required = true, value = "The voucher's serial number. This can be used to identify the voucher in the vendor's system but cannot be used to redeem the voucher.")
    @JsonProperty("serialNumber")
-   @Pattern(regexp = "[0-9]{1,20}")
+   @Pattern(regexp = "[0-9a-zA-Z]{1,20}")
    @NotNull
    public String getSerialNumber() {
       return serialNumber;
@@ -77,7 +99,7 @@ public class Voucher {
 
    @ApiModelProperty(value = "The voucher's batch number. This can be used to help identify the voucher in the vendor's system but cannot be used to redeem the voucher.")
    @JsonProperty("batchNumber")
-   @Pattern(regexp = "[0-9]{1,20}")
+   @Pattern(regexp = "[0-9a-zA-Z]{1,20}")
    public String getBatchNumber() {
       return batchNumber;
    }
