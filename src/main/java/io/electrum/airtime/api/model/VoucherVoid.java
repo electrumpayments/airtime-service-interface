@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.electrum.vas.Utils;
-import io.electrum.vas.model.BasicAdvice;
+import io.electrum.vas.model.BasicReversal;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(description = "Information about the voucher provision being voided. This object refers to a specific voucher which was previously successfully provisioned.")
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-01T07:39:12.071Z")
-public class VoucherVoid extends BasicAdvice {
+public class VoucherVoid extends BasicReversal {
    
    private Voucher voucher = null;
 
@@ -50,6 +50,7 @@ public class VoucherVoid extends BasicAdvice {
       sb.append("    requestId: ").append(Utils.toIndentedString(requestId)).append("\n");
       sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
+      sb.append("    reversalReason: ").append(Utils.toIndentedString(reversalReason)).append("\n");
       sb.append("    voucher: ").append(Utils.toIndentedString(voucher)).append("\n");
       sb.append("}");
       return sb.toString();
