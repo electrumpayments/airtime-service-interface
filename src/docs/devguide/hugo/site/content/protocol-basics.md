@@ -17,7 +17,7 @@ Upstream and downstream impart a convention for the direction for a request and 
 
 ### Server vs Client
 
-Server's typically host an application and, in the context of the RESTful Airtime Service Interface, a server would host the airtime service application responsible for servicing requests received from downstream entities and providing a response. A server is the entity which receives requests and returns responses. A client therefore is the entity responsible for sending requests to a server and expects responses from the server.
+Servers typically host an application and, in the context of the RESTful Airtime Service Interface, a server would host the airtime service application responsible for servicing requests received from downstream entities and providing a response. A server is the entity which receives requests and returns responses. A client therefore is the entity responsible for sending requests to a server and expects responses from the server.
 
 The various request and response messages defined in the Airtime Service Interface are always initiated from the downstream entities and sent to upstream entities for processing. This means that clients are therefore downstream of servers and that servers are upstream of clients. Consider an entity which receives a request from a downstream entity and forwards it to an upstream entity; this entity receives the request in the capacity as a server and passes it on in the capacity of a client.
 

@@ -52,7 +52,6 @@ public class VoucherConfirmation extends TenderAdvice {
       sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
       sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
       sb.append("    voucher: ").append(Utils.toIndentedString(voucher)).append("\n");
-      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
       sb.append("}");
       return sb.toString();
    }
