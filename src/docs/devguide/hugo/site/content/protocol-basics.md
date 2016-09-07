@@ -19,30 +19,28 @@ Upstream and downstream impart a convention for the direction for a request and 
 
 Servers typically host an application and, in the context of the RESTful Airtime Service Interface, a server would host the airtime service application responsible for servicing requests received from downstream entities and providing a response. A server is the entity which receives requests and returns responses. A client therefore is the entity responsible for sending requests to a server and expects responses from the server.
 
-The various request and response messages defined in the Airtime Service Interface are always initiated from the downstream entities and sent to upstream entities for processing. This means that clients are therefore downstream of servers and that servers are upstream of clients. Consider an entity which receives a request from a downstream entity and forwards it to an upstream entity; this entity receives the request in the capacity as a server and passes it on in the capacity of a client.
+The various request and response messages defined in the Airtime Service Interface are always initiated from the downstream entities and sent to upstream entities for processing. This means that clients are therefore downstream of servers and that servers are upstream of clients. Consider an entity which receives a request from a downstream entity and forwards it to an upstream entity; this entity receives the request in the capacity of a server and passes it on in the capacity of a client.
 
 ## Security
 
-All communication shall be secured by establishing an SSL encrypted transport. SSL provides a manner for client and server systems to identify themselves to each other as well as to establish an encrypted channel over which they may securely communicate.
+All communication shall be secured by establishing an SSL encrypted transport. SSL provides a manner for client and server systems to identify themselves to each other as well as to establish an encrypted channel over which they may securely communicate. SSL provides security at a network level and identifies entities who communicate to each other.
 
-SSL provides security at a network level and identifies entities who communicate directly to each other. However processors and other intermediaries are often present between the acquirer of a voucher transaction and the voucher vendor (or any two entities). Therefore an upstream entity may not have clarity on exactly which downstream entity is responsible for the request.
-
-To clearly identify the sender of a request to the receiver of a request HTTP Basic Authentication headers are used. Thus a message sender may be identified at the application level without the necessity of inspecting a lower level protocol.
+Since the Airtime Service Interface is a RESTful service, server implementations are typically hosted on web servers. Using the HTTP Basic Authentication headers over and above SSL allows the sender of a message to be identified at an application level and any appropriate processing to take place on a per-sender basis.
 
 
 ## Failures
 
-The failure outcome of a request shall be determined in the first instance by examining the HTTP status code of the response. The HTTP status types and their associated meanings convey information about the possible reasons for a failure response. Where possible, a failure response will also contain further information about the nature of the failure in an [ErrorDetail](specification/definitions/#errordetail) object.
+The failure outcome of a request shall be determined in the first instance by examining the HTTP status code of the response. The HTTP status types and their associated meanings convey information about the possible reasons for a failure response. Where possible, a failure response will also contain further information about the nature of the failure in an [ErrorDetail](/specification/definitions/#errordetail) object.
 
 ### Status type
 
 Three basic types of outcomes are possible for transactions, namely: _successful_, _unknown_, and _failed_. HTTP status types are mapped to one of the possible outcomes as indicated below.
 
-HTTP Status Codes              | Status type
--------------------------------|---------------------------------------------------------------------------------------------
-200, 201, 202, 404             | successful
-500, 504, timeout              | unknown
-400, 404, 501, 503, all others | failed
+HTTP Status Codes               | Status type
+--------------------------------|---------------------------------------------------------------------------------------------
+200, 201, 202, 404*             | successful
+500, 504, timeout               | unknown
+400, 404*, 501, 503, all others | failed
 
 A timeout occurs when the client has not received a response to a request after an agreed upon interval. Unless otherwise agreed, this interval shall be 60 seconds. Any response received after the timeout should be logged but ignored.
 

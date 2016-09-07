@@ -20,7 +20,7 @@ import io.electrum.airtime.api.model.VoucherRequest;
 import io.electrum.airtime.api.model.VoucherResponse;
 import io.electrum.airtime.api.model.VoucherReversal;
 import io.electrum.airtime.api.model.VoucherVoid;
-import io.electrum.vas.model.ErrorDetail;
+import io.electrum.vas.example.model.ErrorDetail;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
