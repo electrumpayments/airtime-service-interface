@@ -17,10 +17,10 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "Product related data.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-01T07:39:12.071Z")
 public class Product {
 
    private String productId = null;
+   @Deprecated
    private LedgerAmount amount = null;
 
    /**
@@ -44,20 +44,31 @@ public class Product {
    }
 
    /**
-    * If the product identified by the product code is not a fixed price product then the amount field indicates the
-    * value of the product referred to.
+    * <p>
+    * Deprecated: This field is deprecated. If supplied it shall be accepted but the Amounts 
+    * model should be used in preference to this field. If both this field and Amounts are used 
+    * then Amounts shall take preference. This field may be removed in a future version of the 
+    * interface without notice.
+    * </p>
+    * <p>
+    * If the product identified by the product code is not a 
+    * fixed price product then the amount field indicates the value of the product referred to.
+    * <p>
     **/
+   @Deprecated
    public Product amount(LedgerAmount amount) {
       this.amount = amount;
       return this;
    }
 
-   @ApiModelProperty(value = "If the product identified by the product code is not a fixed price product then the amount field indicates the value of the product referred to.")
+   @ApiModelProperty(value = "<p>Deprecated: This field is deprecated. If supplied it shall be accepted but the Amounts model should be used in preference to this field. If both this field and Amounts are used then Amounts shall take preference. This field may be removed in a future version of the interface without notice.</p><p>If the product identified by the product code is not a fixed price product then the amount field indicates the value of the product referred to.<p>")
    @JsonProperty("amount")
+   @Deprecated
    public LedgerAmount getAmount() {
       return amount;
    }
 
+   @Deprecated
    public void setAmount(LedgerAmount amount) {
       this.amount = amount;
    }

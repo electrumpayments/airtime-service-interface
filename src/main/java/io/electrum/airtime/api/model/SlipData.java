@@ -17,7 +17,6 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "Data that may be printed on the customer slip for information purposes.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-01T07:39:12.071Z")
 public class SlipData {
 
    private List<String> messageLines = new ArrayList<String>();

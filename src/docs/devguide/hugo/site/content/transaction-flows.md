@@ -27,7 +27,7 @@ The sequence diagram below shows a successful [voucherProvision](/specification/
 
 ## Reversal Advices
 
-If a downstream entity does not receive a definite response to a voucher provision request (either successful or unsuccessful) then the downstream entity must initiate a voucher reversal message to the upstream entity. This ensures that the voucher vendor is notified that a voucher confirmation or voucher void request will never be received for the provisioned voucher. The voucher vendor can then take appropriate steps to handle the reversed voucher.
+If a downstream entity does not receive a definite response to a voucher provision request (either successful or unsuccessful) then the downstream entity must initiate a voucher reversal message to the upstream entity. This ensures that the voucher vendor is notified that a voucher provisioned will not be redeemed and its provisioning should be reversed. The voucher vendor can then take appropriate steps to handle the reversed voucher.
 
 By the nature of reversals a downstream entity will not possess the voucher to be reversed. Therefore the voucher will not form part of the reversal message. Instead, the original provision request ID and the original request are both passed in the reversal message. The upstream entity can then use these to determine whether the original request was received and which voucher should be reversed if it was indeed provisioned.
 
@@ -35,7 +35,7 @@ The sequence diagram below shows a [voucherReversal](/specification/operations/#
 
 ![An Uncertain Response And A Reversal](/images/provision_reversal.png "An Uncertain Response And A Reversal")
 
-Note that specifically for reversal response messages an HTTP status type of 404 is considered a successful response. The reversal request references the voucher record which was intended to be created when the client submitted the provision request. However, it is possible that the upstream entity never received the original provision request (leading to the timeout which subsequently necessitated this reversal). Thus the server will not be able to locate the voucher (which was never provisioned). The server therefore need not take any action to invalidate the voucher but may return an HTTP status type of 404 implying that the original voucher record could not be located. The Airtime Service Interface considers this to represent a successful reversal operation.
+Note that specifically for reversal response messages an HTTP status type of 404 is considered a successful response. The reversal request references the voucher record which was intended to be created when the client submitted the provision request. However, it is possible that the upstream entity never received the original provision request (leading to the timeout which subsequently necessitated the reversal). Thus the server will not be able to locate the voucher (which was never provisioned). The server therefore need not take any action to invalidate the voucher but may return an HTTP status type of 404 implying that the original voucher record could not be located. The Airtime Service Interface considers this to represent a successful reversal operation.
 
 ## Voucher Confirmation
 
@@ -48,15 +48,3 @@ The sequence diagram below shows a [voucherConfirmation](/specification/operatio
 ![A Confirmation Flow](/images/provision_confirmation.png "A Confirmation Flow")
 
 For voucher confirmations, an HTTP status type of 404 would be considered a failed response as it implies that the voucher could not be located to be confirmed.
-
-## Voucher Voiding
-
-A voucher void message performs the inverse operation of a confirmation. It is used to indicate to the voucher vendor that a voucher was received by the downstream entity but not passed to the consumer. The voucher vendor can therefore expect that the voucher will never be redeemed at some point in the future. Note that once a voucher has been voided it cannot be confirmed or redeemed.
-
-Since a voucher can only be voided if it was indeed received in the provision response, the voucher void message will contain the voucher being voided. This allows the voucher vendor to directly locate the voucher within its system.
-
-The sequence diagram below shows a [voucherVoid](/specification/operations/#voucherVoid) operation. The void message sent upstream contains the voucher being voided. The response simply acknowledges the receipt of the void message.
-
-![A Void Flow](/images/provision_void.png "A Void Flow")
-
-For voucher voids, an HTTP status type of 404 would be considered a failed response as it implies that the voucher could not be located to be voided.

@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.Institution;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
@@ -15,11 +16,31 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "Information about the voucher provision request.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-01T07:39:12.071Z")
 public class VoucherRequest extends Transaction {
 
+   private Amounts amounts = null;
    private Product product = null;
-   
+
+   /**
+    * If the product identified by the product field is not a 
+    * fixed price product then the amounts field indicates 
+    * the value of the product referred to.
+    **/
+   public VoucherRequest amounts(Amounts amounts) {
+      this.amounts = amounts;
+      return this;
+   }
+
+   @ApiModelProperty(required = false, value = "If the product identified by the product field is not a fixed price product then the amounts field indicates the value of the product referred to.")
+   @JsonProperty("amounts")
+   public Amounts getAmountss() {
+      return amounts;
+   }
+
+   public void setAmountss(Amounts amounts) {
+      this.amounts = amounts;
+   }
+
    /**
     * The product for which the voucher should be provisioned.
     **/
@@ -38,7 +59,7 @@ public class VoucherRequest extends Transaction {
    public void setProduct(Product product) {
       this.product = product;
    }
-   
+
    @Override
    @ApiModelProperty(required = true, value = "Data relating to the sender of the VoucherRequest.")
    @JsonProperty("client")

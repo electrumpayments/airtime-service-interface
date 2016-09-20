@@ -19,7 +19,6 @@ import io.electrum.airtime.api.model.VoucherConfirmation;
 import io.electrum.airtime.api.model.VoucherRequest;
 import io.electrum.airtime.api.model.VoucherResponse;
 import io.electrum.airtime.api.model.VoucherReversal;
-import io.electrum.airtime.api.model.VoucherVoid;
 import io.electrum.vas.example.model.ErrorDetail;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -59,10 +58,17 @@ public abstract class VouchersResource {
          @Suspended AsyncResponse asyncResponse,
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo,
-         @Context HttpServletRequest httpServletRequest){
+         @Context HttpServletRequest httpServletRequest) {
 
-      asyncResponse.resume(getResourceImplementation()
-            .confirmVoucherImpl(voucherId, confirmationId, body, securityContext, httpHeaders, uriInfo, httpServletRequest));
+      asyncResponse.resume(
+            getResourceImplementation().confirmVoucherImpl(
+                  voucherId,
+                  confirmationId,
+                  body,
+                  securityContext,
+                  httpHeaders,
+                  uriInfo,
+                  httpServletRequest));
    }
 
    @POST
@@ -84,10 +90,11 @@ public abstract class VouchersResource {
          @Suspended AsyncResponse asyncResponse,
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo,
-         @Context HttpServletRequest httpServletRequest){
+         @Context HttpServletRequest httpServletRequest) {
 
-      asyncResponse.resume(getResourceImplementation()
-            .provisionVoucherImpl(voucherId, body, securityContext, httpHeaders, uriInfo, httpServletRequest));
+      asyncResponse.resume(
+            getResourceImplementation()
+                  .provisionVoucherImpl(voucherId, body, securityContext, httpHeaders, uriInfo, httpServletRequest));
    }
 
    @POST
@@ -114,38 +121,16 @@ public abstract class VouchersResource {
          @Suspended AsyncResponse asyncResponse,
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo,
-         @Context HttpServletRequest httpServletRequest){
-
-      asyncResponse.resume(getResourceImplementation()
-            .reverseVoucherImpl(voucherId, reversalId, body, securityContext, httpHeaders, uriInfo, httpServletRequest));
-   }
-
-   @POST
-   @Path("/{voucherId}/voids/{voidId}")
-   @Consumes({ "application/json" })
-   @Produces({ "application/json" })
-   @ApiOperation(value = "Void a voucher provision request that completed successfully.", notes = ""
-         + "If a consumer does not receive a provisioned voucher the merchant must notify the vendor "
-         + "that the voucher will never be redeemed. voidVoucher must be repeated until a final HTTP "
-         + "status code is received (i.e. not 500 or 504). voidVoucher may be called repeatedly on "
-         + "the same voucher resource without negative effect.")
-   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted"),
-         @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
-         @ApiResponse(code = 404, message = "Not Found", response = ErrorDetail.class),
-         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
-         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
-         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
-   public final void voidVoucher(
-         @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam("voucherId") UUID voucherId,
-         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("voidId") UUID voidId,
-         @ApiParam(value = "A voucher provision void.", required = true) VoucherVoid body,
-         @Context SecurityContext securityContext,
-         @Suspended AsyncResponse asyncResponse,
-         @Context HttpHeaders httpHeaders,
-         @Context UriInfo uriInfo,
          @Context HttpServletRequest httpServletRequest) {
 
-      asyncResponse.resume(getResourceImplementation()
-            .voidVoucherImpl(voucherId, voidId, body, securityContext, httpHeaders, uriInfo, httpServletRequest));
+      asyncResponse.resume(
+            getResourceImplementation().reverseVoucherImpl(
+                  voucherId,
+                  reversalId,
+                  body,
+                  securityContext,
+                  httpHeaders,
+                  uriInfo,
+                  httpServletRequest));
    }
 }

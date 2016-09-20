@@ -30,17 +30,13 @@ This collection of ThirdPartyIdentifiers is intended to be used by entities to m
 
 ### Vouchers
 
-Matching of messages using vouchers specifically pertains to instances where a voucher has been provisioned and returned to the originator. In such situations a confirmation or voiding of a voucher will directly indicate the voucher to be confirmed or voided. This is possible since a voucher cannot be confirmed or voided unless the originator is aware of the voucher to be confirmed or voided. It is important to note that the use of vouchers for matching does not preclude the use of UUIDs or ThirdPartyIdentifiers for matching of messages.
+Matching of messages using vouchers specifically pertains to [voucher confirmations](/specification/operations/#voucherConfirmation). In such situations a confirmation of a voucher will directly indicate the voucher to be confirmed. This is possible since a voucher cannot be confirmed unless the originator is aware of the voucher to be confirmed. It is important to note that the use of vouchers for matching does not preclude the use of UUIDs or ThirdPartyIdentifiers for matching of messages.
 
-## Reversals vs Voids vs Refunds
+## Reversals vs Refunds
 
-Reversal and void messages are two distinct messages which both serve to undo the provisioning of a voucher so that it may not be redeemed. Thus these concepts may be easily confused and one should always be careful to distinguish between these two concepts in discussions and when implementing the Airtime Service Interface.
+Reversal messages pertain specifically to voucher provision requests for which the client did not receive a final response or was not able to complete the processing of the response. Thus the client has direct knowledge of the voucher provision request to be reversed but not of the possible voucher which may have been provisioned. The client must include the original request in the reversal message. A reversal takes place immediately after a failed provision.
 
-Reversal messages pertain specifically to voucher provision requests for which the client did not receive a final response or was not able to complete the processing of the response. Thus the client has direct knowledge of the voucher provision request to be reversed but not of the possible voucher which may have been provisioned. The client must include the original request in the reversal message.
-
-Void messages are used specifically to void a voucher which the client knows for certain has been provisioned. Thus a void will always refer to a specific voucher to be voided.
-
-Refunds are beyond the scope of the Airtime Service Interface.
+Refunds may take place at any time after a voucher has been provisioned and confirmed. At the time of a refund the originator may not have knowledge of the original identifiers used in the voucher provision or confirmation operations. Refunds are beyond the scope of the Airtime Service Interface.
 
 
 ## Store-and-forward
@@ -51,4 +47,3 @@ The above applies to the following operations:
 
 * confirmation
 * reversal
-* void

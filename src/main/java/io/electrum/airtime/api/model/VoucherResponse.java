@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.Institution;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
@@ -15,15 +16,36 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "Information about the voucher provisioned.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-01T07:39:12.071Z")
 public class VoucherResponse extends Transaction {
 
+   private Amounts amounts = null;
    private Product responseProduct = null;
    private Voucher voucher = null;
    private SlipData slipData = null;
 
    /**
-    * The product for which the voucher was provisioned. This is assumed to be the product requested if this is absent.
+    * If the product identified by the product field is not a 
+    * fixed price product then the amounts field indicates 
+    * the value of the product in the response.
+    **/
+   public VoucherResponse amounts(Amounts amounts) {
+      this.amounts = amounts;
+      return this;
+   }
+
+   @ApiModelProperty(required = false, value = "If the product identified by the product field is not a fixed price product then the amounts field indicates the value of the product in the response.")
+   @JsonProperty("amounts")
+   public Amounts getAmountss() {
+      return amounts;
+   }
+
+   public void setAmountss(Amounts amounts) {
+      this.amounts = amounts;
+   }
+
+   /**
+    * The product for which the voucher was provisioned.
+    * This is assumed to be the product requested if this is absent.
     **/
    public VoucherResponse responseProduct(Product responseProduct) {
       this.responseProduct = responseProduct;

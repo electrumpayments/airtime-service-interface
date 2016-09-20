@@ -1,7 +1,5 @@
 package io.electrum.airtime.api.model;
 
-import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.electrum.vas.Utils;
@@ -14,24 +12,35 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "Information about the voucher provision being reversed.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-01T07:39:12.071Z")
 public class VoucherReversal extends BasicReversal {
+   
+   @Deprecated
    private VoucherRequest voucherRequest = null;
 
-   /**
-   **/
+   @Deprecated
    public VoucherReversal voucherRequest(VoucherRequest voucherRequest) {
       this.voucherRequest = voucherRequest;
       return this;
    }
 
-   @ApiModelProperty(required = true, value = "The original Voucher Request being reversed.")
+   /**
+    * <p>
+    * Deprecated: This field is redundant and has been deprecated. It has been 
+    * preserved for backwards compatibility but should not be used. If present it 
+    * will be ignored.
+    * </p>
+    * <p>
+    * The original Voucher Request being reversed.
+    * </p>
+   **/
+   @ApiModelProperty(value = "<p>Deprecated: This field is redundant and has been deprecated. It has been preserved for backwards compatibility but should not be used. If present it will be ignored.</p><p>The original Voucher Request being reversed.</p>")
    @JsonProperty("voucherRequest")
-   @NotNull
+   @Deprecated
    public VoucherRequest getVoucherRequest() {
       return voucherRequest;
    }
 
+   @Deprecated
    public void setVoucherRequest(VoucherRequest voucherRequest) {
       this.voucherRequest = voucherRequest;
    }

@@ -19,7 +19,6 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "Specifically describes the voucher provisioned by the vendor.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-01T07:39:12.071Z")
 public class Voucher {
 
    private String pin = null;
