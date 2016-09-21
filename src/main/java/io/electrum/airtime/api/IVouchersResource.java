@@ -10,7 +10,7 @@ import javax.ws.rs.core.UriInfo;
 
 import io.electrum.airtime.api.model.VoucherConfirmation;
 import io.electrum.airtime.api.model.VoucherRequest;
-import io.electrum.airtime.api.model.VoucherReversal;
+import io.electrum.vas.model.BasicReversal;
 
 public interface IVouchersResource {
 
@@ -34,7 +34,7 @@ public interface IVouchersResource {
    public Response reverseVoucherImpl(
          UUID voucherId,
          UUID reversalId,
-         VoucherReversal body,
+         BasicReversal body,
          SecurityContext securityContext,
          HttpHeaders httpHeaders,
          UriInfo uriInfo,
