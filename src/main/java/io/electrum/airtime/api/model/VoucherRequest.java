@@ -33,7 +33,7 @@ public class VoucherRequest extends Transaction {
 
    @ApiModelProperty(required = false, value = "If the product identified by the product field is not a fixed price product then the amounts field indicates the value of the product referred to.")
    @JsonProperty("amounts")
-   public Amounts getAmountss() {
+   public Amounts getAmounts() {
       return amounts;
    }
 
