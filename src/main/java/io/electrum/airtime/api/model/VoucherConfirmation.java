@@ -15,7 +15,6 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "Information about the voucher provision being confirmed. This object refers to a specific voucher which was previously successfully provisioned.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-01T07:39:12.071Z")
 public class VoucherConfirmation extends TenderAdvice {
 
    private Voucher voucher = null;

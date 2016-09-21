@@ -22,7 +22,7 @@ In order to test server implementations the tester requires only the Postman fil
 
 ### Operation
 
-Requests are built dynamically with cross-referenced values (e.g. the voucherId of an original request within a reversal advice) kept in Postman environment variables. A provision request script will generate the necessary values and store them, as well as the necessary response fields, which are then used in the next advice message. The tester should ensure that the correct provision request script is run before an advice script otherwise unintended field values may be submitted.
+Requests are built dynamically with cross-referenced values (e.g. the voucherId of an original request within a reversal advice) kept in Postman environment variables. For example, a provision request script will generate the necessary values and store them, as well as the necessary response fields, which are then used in the next advice message. The tester should ensure that the correct provision request script is run before an advice script otherwise unintended field values may be submitted.
 
 ### Validation
 

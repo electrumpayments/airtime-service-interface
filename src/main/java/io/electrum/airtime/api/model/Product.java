@@ -6,9 +6,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.electrum.vas.Utils;
-import io.electrum.vas.model.LedgerAmount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -17,11 +17,33 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "Product related data.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-01T07:39:12.071Z")
 public class Product {
+   
+   public enum ProductType
+   {
+      AIRTIME_FIXED("AIRTIME_FIXED"),
+      AIRTIME_VARIABLE("AIRTIME_VARIABLE"),
+      SMS_BUNDLE("SMS_BUNDLE"),
+      DATA("DATA"),
+      APP_RELATED("APP_RELATED"),
+      COMBO("COMBO");
+      private String value;
+
+      ProductType(String value) {
+         this.value = value;
+      }
+
+      @Override
+      @JsonValue
+      public String toString() {
+         return String.valueOf(value);
+      }
+   }
 
    private String productId = null;
-   private LedgerAmount amount = null;
+   private String barcode = null;
+   private String name = null;
+   private ProductType type = null;
 
    /**
     * A vendor determined code identifying the product the voucher should pertain to.
@@ -43,27 +65,72 @@ public class Product {
       this.productId = productId;
    }
 
-   /**
-    * If the product identified by the product code is not a fixed price product then the amount field indicates the
-    * value of the product referred to.
-    **/
-   public Product amount(LedgerAmount amount) {
-      this.amount = amount;
+   public Product barcode(String barcode) {
+      this.barcode = barcode;
       return this;
    }
 
-   @ApiModelProperty(value = "If the product identified by the product code is not a fixed price product then the amount field indicates the value of the product referred to.")
-   @JsonProperty("amount")
-   public LedgerAmount getAmount() {
-      return amount;
+   /**
+    * A barcode code identifying the product.
+    * This is an alternative identifier for
+    * the product but does not supersede the productId.
+    * 
+    * @return barcode
+    **/
+   @ApiModelProperty(value = "A barcode code identifying the product. This is an alternative identifier for the product but does not supersede the productId.")
+   @JsonProperty("barcode")
+   @Pattern(regexp = "[0-9A-Za-z]{1,13}")
+   public String getBarcode() {
+      return barcode;
    }
 
-   public void setAmount(LedgerAmount amount) {
-      this.amount = amount;
+   public void setBarcode(String barcode) {
+      this.barcode = barcode;
+   }
+
+   public Product name(String name) {
+      this.name = name;
+      return this;
+   }
+
+   /**
+    * The name of the product.
+    * 
+    * @return name
+    **/
+   @ApiModelProperty(value = "The name of the product.")
+   @JsonProperty("name")
+   @Pattern(regexp = "[0-9A-Za-z]{1,20}")
+   public String getName() {
+      return name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public Product type(ProductType type) {
+      this.type = type;
+      return this;
+   }
+
+   /**
+    * An indication of the type of product (.
+    * 
+    * @return type
+    **/
+   @ApiModelProperty(value = "An indication of the type of the product.")
+   @JsonProperty("type")
+   public ProductType getType() {
+      return type;
+   }
+
+   public void setType(ProductType type) {
+      this.type = type;
    }
 
    @Override
-   public boolean equals(Object o) {
+   public boolean equals(java.lang.Object o) {
       if (this == o) {
          return true;
       }
@@ -71,12 +138,13 @@ public class Product {
          return false;
       }
       Product product = (Product) o;
-      return Objects.equals(productId, product.productId) && Objects.equals(amount, product.amount);
+      return Objects.equals(this.productId, product.productId) && Objects.equals(this.barcode, product.barcode)
+            && Objects.equals(this.name, product.name) && Objects.equals(this.type, product.type);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(productId, amount);
+      return Objects.hash(productId, barcode, name, type);
    }
 
    @Override
@@ -85,7 +153,9 @@ public class Product {
       sb.append("class Product {\n");
 
       sb.append("    productId: ").append(Utils.toIndentedString(productId)).append("\n");
-      sb.append("    amount: ").append(Utils.toIndentedString(amount)).append("\n");
+      sb.append("    barcode: ").append(Utils.toIndentedString(barcode)).append("\n");
+      sb.append("    name: ").append(Utils.toIndentedString(name)).append("\n");
+      sb.append("    type: ").append(Utils.toIndentedString(type)).append("\n");
       sb.append("}");
       return sb.toString();
    }
