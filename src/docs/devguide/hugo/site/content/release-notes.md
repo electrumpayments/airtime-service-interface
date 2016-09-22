@@ -1,4 +1,4 @@
-This page describes changes to the Giftcard Service Interface implemented across different releases of the interface.
+This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
 ## v4.0.0
 
