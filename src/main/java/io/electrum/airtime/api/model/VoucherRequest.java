@@ -1,15 +1,15 @@
 package io.electrum.airtime.api.model;
 
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.Institution;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Information about the voucher provision request.
@@ -22,22 +22,22 @@ public class VoucherRequest extends Transaction {
    private Product product = null;
 
    /**
-    * If the product identified by the product field is not a 
-    * fixed price product then the amounts field indicates 
-    * the value of the product referred to.
+    * If the product identified by the product field is not a fixed price product then the amounts field indicates the
+    * value of the product referred to.
     **/
    public VoucherRequest amounts(Amounts amounts) {
       this.amounts = amounts;
       return this;
    }
 
-   @ApiModelProperty(required = false, value = "If the product identified by the product field is not a fixed price product then the amounts field indicates the value of the product referred to.")
+   @ApiModelProperty(required = false, value = "If the product identified by the product field is not a fixed price "
+         + "product then the amounts field indicates the value of the product referred to.")
    @JsonProperty("amounts")
    public Amounts getAmounts() {
       return amounts;
    }
 
-   public void setAmountss(Amounts amounts) {
+   public void setAmounts(Amounts amounts) {
       this.amounts = amounts;
    }
 
