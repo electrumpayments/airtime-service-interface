@@ -1,15 +1,15 @@
 package io.electrum.airtime.api.model;
 
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.Institution;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Information about the voucher provisioned.
@@ -24,35 +24,35 @@ public class VoucherResponse extends Transaction {
    private SlipData slipData = null;
 
    /**
-    * If the product identified by the product field is not a 
-    * fixed price product then the amounts field indicates 
-    * the value of the product in the response.
+    * If the product identified by the product field is not a fixed price product then the amounts field indicates the
+    * value of the product in the response.
     **/
    public VoucherResponse amounts(Amounts amounts) {
       this.amounts = amounts;
       return this;
    }
 
-   @ApiModelProperty(required = false, value = "If the product identified by the product field is not a fixed price product then the amounts field indicates the value of the product in the response.")
+   @ApiModelProperty(required = false, value = "If the product identified by the product field is not a fixed price "
+         + "product then the amounts field indicates the value of the product in the response.")
    @JsonProperty("amounts")
-   public Amounts getAmountss() {
+   public Amounts getAmounts() {
       return amounts;
    }
 
-   public void setAmountss(Amounts amounts) {
+   public void setAmounts(Amounts amounts) {
       this.amounts = amounts;
    }
 
    /**
-    * The product for which the voucher was provisioned.
-    * This is assumed to be the product requested if this is absent.
+    * The product for which the voucher was provisioned. This is assumed to be the product requested if this is absent.
     **/
    public VoucherResponse responseProduct(Product responseProduct) {
       this.responseProduct = responseProduct;
       return this;
    }
 
-   @ApiModelProperty(value = "The product for which the voucher was provisioned. This is assumed to be the product requested if this is absent.")
+   @ApiModelProperty(value = "The product for which the voucher was provisioned. This is assumed to be the product "
+         + "requested if this is absent.")
    @JsonProperty("responseProduct")
    public Product getResponseProduct() {
       return responseProduct;
@@ -70,7 +70,8 @@ public class VoucherResponse extends Transaction {
       return this;
    }
 
-   @ApiModelProperty(required = true, value = "The voucher provisioned if the vendor processed the request successfully.")
+   @ApiModelProperty(required = true, value = "The voucher provisioned if the vendor processed the request "
+         + "successfully.")
    @JsonProperty("voucher")
    @NotNull
    public Voucher getVoucher() {
@@ -98,7 +99,7 @@ public class VoucherResponse extends Transaction {
    public void setSlipData(SlipData slipData) {
       this.slipData = slipData;
    }
-   
+
    @Override
    @ApiModelProperty(required = true, value = "Data relating to the sender of the VoucherRequest.")
    @JsonProperty("client")

@@ -1,15 +1,17 @@
 package io.electrum.airtime.api.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-
 import io.electrum.vas.Utils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.Length;
+
+import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
-import java.util.Objects;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * Represents the outcome of a completed transaction
@@ -46,9 +48,95 @@ public class ErrorDetail {
       }
    }
 
+   /**
+    * The following request types are recognised
+    */
+   public enum RequestType {
+      VOUCHER_REQUEST("VOUCHER_REQUEST"),
+      VOUCHER_REVERSAL("VOUCHER_REVERSAL"),
+      VOUCHER_CONFIRMATION("PAYMENT_CONFIRMATION"),
+      VOUCHER_VOID("VOUCHER_VOID");
+
+      private String value;
+
+      RequestType(String value) {
+         this.value = value;
+      }
+
+      @Override
+      @JsonValue
+      public String toString() {
+         return String.valueOf(value);
+      }
+   }
+
+   private String id;
+   private String originalId;
    private ErrorType errorType = null;
    private String errorMessage = null;
+   private RequestType requestType = null;
    private Object detailMessage = null;
+
+   /**
+    * The randomly generated UUID identifying this errorDetail, as defined for a variant 4 UUID in [RFC
+    * 4122](https://tools.ietf.org/html/rfc4122)
+    */
+   public ErrorDetail id(String id) {
+      this.id = id;
+      return this;
+   }
+
+   @ApiModelProperty(required = true, value = "The randomly generated UUID identifying this errorDetail, as defined for"
+         + " a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)")
+   @JsonProperty("id")
+   @NotNull
+   @Length(max = 20)
+   public String getId() {
+      return id;
+   }
+
+   public void setId(String id) {
+      this.id = id;
+   }
+
+   /**
+    * The UUID of the original request message in the case of an error occurring for an advice message
+    */
+   public ErrorDetail originalId(String originalId) {
+      this.originalId = originalId;
+      return this;
+   }
+
+   @ApiModelProperty(required = true, value = "The UUID of the original request message in the case of an error occurring for an advice message")
+   @JsonProperty("id")
+   @NotNull
+   @Length(max = 20)
+   public String getOriginalId() {
+      return originalId;
+   }
+
+   public void setOriginalId(String originalId) {
+      this.originalId = originalId;
+   }
+
+   /**
+    * The type of error that occurred
+    **/
+   public ErrorDetail requestType(RequestType requestType) {
+      this.requestType = requestType;
+      return this;
+   }
+
+   @ApiModelProperty(required = true, value = "The type of request that preceeded the error")
+   @JsonProperty("requestType")
+   @NotNull
+   public RequestType getRequestType() {
+      return requestType;
+   }
+
+   public void setRequestType(RequestType requestType) {
+      this.requestType = requestType;
+   }
 
    /**
     * The type of error that occurred
@@ -122,7 +210,7 @@ public class ErrorDetail {
 
    @Override
    public int hashCode() {
-      return Objects.hash(errorType, errorMessage, detailMessage);
+      return Objects.hash(id, originalId, errorType, errorMessage, requestType, detailMessage);
    }
 
    @Override
@@ -130,8 +218,11 @@ public class ErrorDetail {
       StringBuilder sb = new StringBuilder();
       sb.append("class ErrorDetail {\n");
 
+      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
+      sb.append("    originalId: ").append(Utils.toIndentedString(originalId)).append("\n");
       sb.append("    errorType: ").append(Utils.toIndentedString(errorType)).append("\n");
       sb.append("    responseMessage: ").append(Utils.toIndentedString(errorMessage)).append("\n");
+      sb.append("    requestType: ").append(Utils.toIndentedString(requestType)).append("\n");
       sb.append("    detailMessage: ").append(Utils.toIndentedString(detailMessage)).append("\n");
       sb.append("}");
       return sb.toString();
