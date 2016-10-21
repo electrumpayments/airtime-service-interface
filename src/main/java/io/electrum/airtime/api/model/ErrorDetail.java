@@ -54,7 +54,7 @@ public class ErrorDetail {
    public enum RequestType {
       VOUCHER_REQUEST("VOUCHER_REQUEST"),
       VOUCHER_REVERSAL("VOUCHER_REVERSAL"),
-      VOUCHER_CONFIRMATION("PAYMENT_CONFIRMATION"),
+      VOUCHER_CONFIRMATION("VOUCHER_CONFIRMATION"),
       VOUCHER_VOID("VOUCHER_VOID");
 
       private String value;
@@ -107,10 +107,8 @@ public class ErrorDetail {
       return this;
    }
 
-   @ApiModelProperty(required = true, value = "The UUID of the original request message in the case of an error occurring for an advice message")
-   @JsonProperty("id")
-   @NotNull
-   @Length(max = 20)
+   @ApiModelProperty(value = "The UUID of the original request message in the case of an error occurring for an advice message")
+   @JsonProperty("originalId")
    public String getOriginalId() {
       return originalId;
    }
