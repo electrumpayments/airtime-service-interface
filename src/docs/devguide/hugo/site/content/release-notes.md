@@ -1,5 +1,24 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v4.0.2
+
+Released 21 October 2016
+
+- Aligned Airtime Service Interface with base service interface (v2.0.11).
+- Fixed some more typos in Amounts accessor
+- ErrorDetail model changes:
+  - Added id field.
+  - Added optional originalId field.
+  - Added RequestType enum field.
+- Altered all UUID object references to be Strings instead to align with base service interface spec.
+
+## v4.0.1
+
+Released 19 October 2016
+
+- Aligned Airtime Service Interface with base service interface (v2.0.10).
+- Fixed some typos in Amounts accessor
+
 ## v4.0.0
 
 Released 21 September 2016
