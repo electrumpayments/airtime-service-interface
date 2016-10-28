@@ -1,8 +1,17 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
-## v5.0.0
+## v5.0.1
 
-Released 21 October 2016
+Released 28 October 2016
+
+- Corrected the ErrorDetail response to be the correct type in VouchersResource.
+- Fixed confirmation and reversal resources so that they return BasicAdviceResponse.
+- Fixed Voucher model's toString, equals and hashCode method.
+- Renamed Voucher model's time() builder method to be expiryDate() as expected.
+
+## v5.0.0 (Deprecated)
+
+Released 21 October 2016 - Use v5.0.1 instead, this version contains broken resources.
 
 - Aligned Airtime Service Interface with base service interface (v2.0.11).
 - Fixed some more typos in Amounts accessor

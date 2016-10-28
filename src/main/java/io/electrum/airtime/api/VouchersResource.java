@@ -1,9 +1,10 @@
 package io.electrum.airtime.api;
 
+import io.electrum.airtime.api.model.ErrorDetail;
 import io.electrum.airtime.api.model.VoucherConfirmation;
 import io.electrum.airtime.api.model.VoucherRequest;
 import io.electrum.airtime.api.model.VoucherResponse;
-import io.electrum.vas.example.model.ErrorDetail;
+import io.electrum.vas.model.BasicAdviceResponse;
 import io.electrum.vas.model.BasicReversal;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -42,7 +43,7 @@ public abstract class VouchersResource {
          + "future as per the voucher vendor's instructions. confirmVoucher must be repeated until "
          + "a final HTTP status code is received (i.e. not 500 or 504). confirmVoucher may be called "
          + "repeatedly on the same voucher resource without negative effect.")
-   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted"),
+   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = BasicAdviceResponse.class),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not Found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
@@ -105,7 +106,7 @@ public abstract class VouchersResource {
          + "to never expect further messages pertaining to the voucher. reverseVoucher must be repeated "
          + "until a final HTTP status code is received (i.e. not 500 or 504). reverseVoucher may be "
          + "called repeatedly on the same voucher resource without negative effect.")
-   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted"),
+   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = BasicAdviceResponse.class),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not Found"),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
