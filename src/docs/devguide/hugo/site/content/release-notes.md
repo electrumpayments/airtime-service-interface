@@ -1,5 +1,11 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.0.2
+
+Released 02 November 2016
+
+- Added optional tender list to VoucherRequest.
+
 ## v5.0.1
 
 Released 28 October 2016
