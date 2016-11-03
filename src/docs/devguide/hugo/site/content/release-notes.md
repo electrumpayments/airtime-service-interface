@@ -2,9 +2,11 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ## v5.0.2
 
-Released 02 November 2016
+Released 03 November 2016
 
 - Added optional tender list to VoucherRequest.
+- Aligned with new base service interface version (v3.1.0).
+  - `GIFT_CARD` and `LOYALTY_CARD` tender types added.
 
 ## v5.0.1
 
