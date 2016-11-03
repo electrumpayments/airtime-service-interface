@@ -2,10 +2,12 @@ package io.electrum.airtime.api.model;
 
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Amounts;
-import io.electrum.vas.model.Institution;
+import io.electrum.vas.model.Tender;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -20,6 +22,7 @@ public class VoucherRequest extends Transaction {
 
    private Amounts amounts = null;
    private Product product = null;
+   private List<Tender> tenders = null;
 
    /**
     * If the product identified by the product field is not a fixed price product then the amounts field indicates the
@@ -60,12 +63,22 @@ public class VoucherRequest extends Transaction {
       this.product = product;
    }
 
-   @Override
-   @ApiModelProperty(required = true, value = "Data relating to the sender of the VoucherRequest.")
-   @JsonProperty("client")
-   @NotNull
-   public Institution getClient() {
-      return client;
+   /**
+    * An array of tenders used to pay for the transaction
+    **/
+   public VoucherRequest tenders(List<Tender> tenders) {
+      this.tenders = tenders;
+      return this;
+   }
+
+   @ApiModelProperty(required = false, value = "An array of tenders used to pay for the transaction")
+   @JsonProperty("tenders")
+   public List<Tender> getTenders() {
+      return tenders;
+   }
+
+   public void setTenders(List<Tender> tenders) {
+      this.tenders = tenders;
    }
 
    @Override
@@ -81,6 +94,7 @@ public class VoucherRequest extends Transaction {
       sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
       sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
+      sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
       sb.append("}");
       return sb.toString();
    }
