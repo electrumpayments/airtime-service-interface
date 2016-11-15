@@ -1,16 +1,22 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
-## v5.0.2
+## v5.0.3
 
-Released 03 November 2016
+Released 15 November 2016
 
-- Added optional tender list to VoucherRequest.
-- Aligned with new base service interface version (v3.1.0).
-  - `GIFT_CARD` and `LOYALTY_CARD` tender types added.
+- Prior releases of the Airtime Service Interface (v5.0.0 and upwards) contained the incorrect version ('v4') in the resources URLs. This has been corrected to 'v5'.
 
-## v5.0.1
+## v5.0.2 (Deprecated)
 
-Released 28 October 2016
+  Released 03 November 2016 - Use v5.0.3 instead, this version contains broken resources.
+
+  - Added optional tender list to VoucherRequest.
+  - Aligned with new base service interface version (v3.1.0).
+    - `GIFT_CARD` and `LOYALTY_CARD` tender types added.
+
+## v5.0.1 (Deprecated)
+
+Released 28 October 2016 - Use v5.0.3 instead, this version contains broken resources.
 
 - Corrected the ErrorDetail response to be the correct type in VouchersResource.
 - Fixed confirmation and reversal resources so that they return BasicAdviceResponse.
@@ -19,7 +25,7 @@ Released 28 October 2016
 
 ## v5.0.0 (Deprecated)
 
-Released 21 October 2016 - Use v5.0.1 instead, this version contains broken resources.
+Released 21 October 2016 - Use v5.0.3 instead, this version contains broken resources.
 
 - Aligned Airtime Service Interface with base service interface (v2.0.11).
 - Fixed some more typos in Amounts accessor
