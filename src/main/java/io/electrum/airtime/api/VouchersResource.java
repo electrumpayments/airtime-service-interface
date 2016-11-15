@@ -27,7 +27,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
-@Path("/airtime/v4/vouchers")
+@Path("/airtime/v5/vouchers")
 @Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
 public abstract class VouchersResource {
 
