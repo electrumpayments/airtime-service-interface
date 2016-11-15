@@ -1,5 +1,9 @@
 package io.electrum.airtime.api.model;
 
+import io.electrum.vas.Utils;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,9 +14,6 @@ import javax.validation.constraints.Pattern;
 import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Specifically describes the voucher provisioned by the vendor.
@@ -48,10 +49,10 @@ public class Voucher {
    }
 
    /**
-    * The date and time at which the voucher expires in UTC. The format shall be as defined for date-time
-    * in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
+    * The date and time at which the voucher expires in UTC. The format shall be as defined for date-time in [RFC 3339
+    * section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
     **/
-   public Voucher time(DateTime expiryDate) {
+   public Voucher expiryDate(DateTime expiryDate) {
       this.expiryDate = expiryDate;
       return this;
    }
@@ -135,14 +136,14 @@ public class Voucher {
          return false;
       }
       Voucher voucher = (Voucher) o;
-      return Objects.equals(pin, voucher.pin) && Objects.equals(serialNumber, voucher.serialNumber)
-            && Objects.equals(batchNumber, voucher.batchNumber)
+      return Objects.equals(pin, voucher.pin) && Objects.equals(expiryDate, voucher.expiryDate)
+            && Objects.equals(serialNumber, voucher.serialNumber) && Objects.equals(batchNumber, voucher.batchNumber)
             && Objects.equals(redeemInstructions, voucher.redeemInstructions);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(pin, serialNumber, batchNumber, redeemInstructions);
+      return Objects.hash(pin, expiryDate, serialNumber, batchNumber, redeemInstructions);
    }
 
    @Override
@@ -150,21 +151,12 @@ public class Voucher {
       StringBuilder sb = new StringBuilder();
       sb.append("class Voucher {\n");
 
-      sb.append("    pin: ").append(toIndentedString(pin)).append("\n");
-      sb.append("    serialNumber: ").append(toIndentedString(serialNumber)).append("\n");
-      sb.append("    batchNumber: ").append(toIndentedString(batchNumber)).append("\n");
-      sb.append("    redeemInstructions: ").append(toIndentedString(redeemInstructions)).append("\n");
+      sb.append("    pin: ").append(Utils.toIndentedString(pin)).append("\n");
+      sb.append("    expiryDate: ").append(Utils.toIndentedString(expiryDate)).append("\n");
+      sb.append("    serialNumber: ").append(Utils.toIndentedString(serialNumber)).append("\n");
+      sb.append("    batchNumber: ").append(Utils.toIndentedString(batchNumber)).append("\n");
+      sb.append("    redeemInstructions: ").append(Utils.toIndentedString(redeemInstructions)).append("\n");
       sb.append("}");
       return sb.toString();
-   }
-
-   /**
-    * Convert the given object to string with each line indented by 4 spaces (except the first line).
-    */
-   private String toIndentedString(Object o) {
-      if (o == null) {
-         return "null";
-      }
-      return o.toString().replace("\n", "\n    ");
    }
 }

@@ -1,4 +1,40 @@
-This page describes changes to the Giftcard Service Interface implemented across different releases of the interface.
+This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
+
+## v5.0.2
+
+Released 03 November 2016
+
+- Added optional tender list to VoucherRequest.
+- Aligned with new base service interface version (v3.1.0).
+  - `GIFT_CARD` and `LOYALTY_CARD` tender types added.
+
+## v5.0.1
+
+Released 28 October 2016
+
+- Corrected the ErrorDetail response to be the correct type in VouchersResource.
+- Fixed confirmation and reversal resources so that they return BasicAdviceResponse.
+- Fixed Voucher model's toString, equals and hashCode method.
+- Renamed Voucher model's time() builder method to be expiryDate() as expected.
+
+## v5.0.0 (Deprecated)
+
+Released 21 October 2016 - Use v5.0.1 instead, this version contains broken resources.
+
+- Aligned Airtime Service Interface with base service interface (v2.0.11).
+- Fixed some more typos in Amounts accessor
+- ErrorDetail model changes:
+  - Added id field.
+  - Added optional originalId field.
+  - Added RequestType enum field.
+- Altered all UUID object references to be Strings instead to align with base service interface spec.
+
+## v4.0.1
+
+Released 19 October 2016
+
+- Aligned Airtime Service Interface with base service interface (v2.0.10).
+- Fixed some typos in Amounts accessor
 
 ## v4.0.0
 

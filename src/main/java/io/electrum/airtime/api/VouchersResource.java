@@ -1,6 +1,18 @@
 package io.electrum.airtime.api;
 
-import java.util.UUID;
+import io.electrum.airtime.api.model.ErrorDetail;
+import io.electrum.airtime.api.model.VoucherConfirmation;
+import io.electrum.airtime.api.model.VoucherRequest;
+import io.electrum.airtime.api.model.VoucherResponse;
+import io.electrum.vas.model.BasicAdviceResponse;
+import io.electrum.vas.model.BasicReversal;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
+import io.swagger.annotations.ResponseHeader;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -14,19 +26,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
-
-import io.electrum.airtime.api.model.VoucherConfirmation;
-import io.electrum.airtime.api.model.VoucherRequest;
-import io.electrum.airtime.api.model.VoucherResponse;
-import io.electrum.vas.example.model.ErrorDetail;
-import io.electrum.vas.model.BasicReversal;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.Authorization;
-import io.swagger.annotations.ResponseHeader;
 
 @Path("/airtime/v4/vouchers")
 @Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
@@ -44,15 +43,15 @@ public abstract class VouchersResource {
          + "future as per the voucher vendor's instructions. confirmVoucher must be repeated until "
          + "a final HTTP status code is received (i.e. not 500 or 504). confirmVoucher may be called "
          + "repeatedly on the same voucher resource without negative effect.")
-   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted"),
+   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = BasicAdviceResponse.class),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not Found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void confirmVoucher(
-         @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam("requestId") UUID requestId,
-         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("confirmationId") UUID confirmationId,
+         @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam("requestId") String requestId,
+         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("confirmationId") String confirmationId,
          @ApiParam(value = "A voucher provision confirmation.", required = true) VoucherConfirmation body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
@@ -84,7 +83,7 @@ public abstract class VouchersResource {
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void provisionVoucher(
-         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("requestId") UUID requestId,
+         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("requestId") String requestId,
          @ApiParam(value = "A voucher request.", required = true) VoucherRequest body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
@@ -107,15 +106,15 @@ public abstract class VouchersResource {
          + "to never expect further messages pertaining to the voucher. reverseVoucher must be repeated "
          + "until a final HTTP status code is received (i.e. not 500 or 504). reverseVoucher may be "
          + "called repeatedly on the same voucher resource without negative effect.")
-   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted"),
+   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = BasicAdviceResponse.class),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not Found"),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void reverseVoucher(
-         @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam("requestId") UUID requestId,
-         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("reversalId") UUID reversalId,
+         @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam("requestId") String requestId,
+         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("reversalId") String reversalId,
          @ApiParam(value = "A voucher provision reversal.", required = true) BasicReversal body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
