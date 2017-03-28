@@ -5,7 +5,7 @@ This page describes changes to the Airtime Service Interface implemented across 
 Released xx March 2017
 
 - Remove incorrect calls to AsyncResponse.resume in resources classes.
-- Updated Giftcard Service Interface abstract resource classes. The classes were changed to pass all parameters to the User's custom resource implementation, as opposed to resuming the AsyncResponse from within the resource. The User should now call resume on the AsyncResponse. This allows for more flexibility, proper asynchronicity and allows the user to choose their own threading model.
+- Updated Airtime Service Interface abstract resource classes. The classes were changed to pass all parameters to the User's custom resource implementation, as opposed to resuming the AsyncResponse from within the resource. The User should now call resume on the AsyncResponse. This allows for more flexibility, proper asynchronicity and allows the user to choose their own threading model.
 - Added Jax RS Core Request to the expected parameters from @Context. This is passed through as above with the rest of the parameters.
 
 ## v5.0.3
