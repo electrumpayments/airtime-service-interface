@@ -4,9 +4,16 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 Released xx March 2017
 
-- Remove incorrect calls to AsyncResponse.resume in resources classes.
-- Updated Airtime Service Interface abstract resource classes. The classes were changed to pass all parameters to the User's custom resource implementation, as opposed to resuming the AsyncResponse from within the resource. The User should now call resume on the AsyncResponse. This allows for more flexibility, proper asynchronicity and allows the user to choose their own threading model.
-- Added Jax RS Core Request to the expected parameters from @Context. This is passed through as above with the rest of the parameters.
+- Aligned with new base service interface version (v3.2.0).
+  - Removed restriction on allowed characters from the terminalId property which means it now only has a max and min length restriction of 8.
+  - Added a issuerReference property which adds a unique identifier too the customers slip.
+  - Added a basketRef property which is used to group multiple transactions which would otherwise be considered independent.
+
+- Breaking changes for example implementation.
+  - Remove incorrect calls to AsyncResponse.resume in resources classes.
+  - Updated Airtime Service Interface abstract resource classes. The classes were changed to pass all parameters to the Implementor's custom resource implementation, as opposed to resuming the AsyncResponse from within the resource. The Implementor should now call resume on the AsyncResponse. This allows for more flexibility, proper asynchronicity and allows the user to choose their own threading model.
+  - Added Jax RS Core Request to the expected parameters from @Context. This is passed through as above with the rest of the parameters.
+  - Changed all advice responses to BasicAdvice from BasicAdviceResponse.
 
 ## v5.0.3
 
