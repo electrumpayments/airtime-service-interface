@@ -1,19 +1,5 @@
 package io.electrum.airtime.api;
 
-import io.electrum.airtime.api.model.ErrorDetail;
-import io.electrum.airtime.api.model.VoucherConfirmation;
-import io.electrum.airtime.api.model.VoucherRequest;
-import io.electrum.airtime.api.model.VoucherResponse;
-import io.electrum.vas.model.BasicAdviceResponse;
-import io.electrum.vas.model.BasicReversal;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.Authorization;
-import io.swagger.annotations.ResponseHeader;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -24,8 +10,23 @@ import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
+
+import io.electrum.airtime.api.model.ErrorDetail;
+import io.electrum.airtime.api.model.VoucherConfirmation;
+import io.electrum.airtime.api.model.VoucherRequest;
+import io.electrum.airtime.api.model.VoucherResponse;
+import io.electrum.vas.model.BasicAdvice;
+import io.electrum.vas.model.BasicReversal;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
+import io.swagger.annotations.ResponseHeader;
 
 @Path("/airtime/v5/vouchers")
 @Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
@@ -43,7 +44,7 @@ public abstract class VouchersResource {
          + "future as per the voucher vendor's instructions. confirmVoucher must be repeated until "
          + "a final HTTP status code is received (i.e. not 500 or 504). confirmVoucher may be called "
          + "repeatedly on the same voucher resource without negative effect.")
-   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = BasicAdviceResponse.class),
+   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = BasicAdvice.class),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not Found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
@@ -54,20 +55,21 @@ public abstract class VouchersResource {
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("confirmationId") String confirmationId,
          @ApiParam(value = "A voucher provision confirmation.", required = true) VoucherConfirmation body,
          @Context SecurityContext securityContext,
+         @Context Request request,
          @Suspended AsyncResponse asyncResponse,
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo,
          @Context HttpServletRequest httpServletRequest) {
-
-      asyncResponse.resume(
-            getResourceImplementation().confirmVoucherImpl(
-                  requestId,
-                  confirmationId,
-                  body,
-                  securityContext,
-                  httpHeaders,
-                  uriInfo,
-                  httpServletRequest));
+      getResourceImplementation().confirmVoucherImpl(
+            requestId,
+            confirmationId,
+            body,
+            securityContext,
+            request,
+            httpHeaders,
+            asyncResponse,
+            uriInfo,
+            httpServletRequest);
    }
 
    @POST
@@ -86,14 +88,20 @@ public abstract class VouchersResource {
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("requestId") String requestId,
          @ApiParam(value = "A voucher request.", required = true) VoucherRequest body,
          @Context SecurityContext securityContext,
+         @Context Request request,
          @Suspended AsyncResponse asyncResponse,
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo,
          @Context HttpServletRequest httpServletRequest) {
-
-      asyncResponse.resume(
-            getResourceImplementation()
-                  .provisionVoucherImpl(requestId, body, securityContext, httpHeaders, uriInfo, httpServletRequest));
+      getResourceImplementation().provisionVoucherImpl(
+            requestId,
+            body,
+            securityContext,
+            request,
+            httpHeaders,
+            asyncResponse,
+            uriInfo,
+            httpServletRequest);
    }
 
    @POST
@@ -106,7 +114,7 @@ public abstract class VouchersResource {
          + "to never expect further messages pertaining to the voucher. reverseVoucher must be repeated "
          + "until a final HTTP status code is received (i.e. not 500 or 504). reverseVoucher may be "
          + "called repeatedly on the same voucher resource without negative effect.")
-   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = BasicAdviceResponse.class),
+   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = BasicAdvice.class),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not Found"),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
@@ -117,19 +125,20 @@ public abstract class VouchersResource {
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("reversalId") String reversalId,
          @ApiParam(value = "A voucher provision reversal.", required = true) BasicReversal body,
          @Context SecurityContext securityContext,
+         @Context Request request,
          @Suspended AsyncResponse asyncResponse,
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo,
          @Context HttpServletRequest httpServletRequest) {
-
-      asyncResponse.resume(
-            getResourceImplementation().reverseVoucherImpl(
-                  requestId,
-                  reversalId,
-                  body,
-                  securityContext,
-                  httpHeaders,
-                  uriInfo,
-                  httpServletRequest));
+      getResourceImplementation().reverseVoucherImpl(
+            requestId,
+            reversalId,
+            body,
+            securityContext,
+            request,
+            httpHeaders,
+            asyncResponse,
+            uriInfo,
+            httpServletRequest);
    }
 }

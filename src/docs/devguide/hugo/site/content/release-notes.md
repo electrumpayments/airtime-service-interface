@@ -1,5 +1,20 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.1.0
+
+Released 5 April 2017
+
+- Aligned with new base service interface version (v3.2.0).
+  - Removed restriction on allowed characters from the terminalId property which means it now only has a max and min length restriction of 8.
+  - Added an issuerReference property which adds a unique identifier to the customers slip.
+  - Added a basketRef property which is used to group multiple transactions which would otherwise be considered independent.
+
+- Breaking changes for provided implementation.
+  - Remove incorrect calls to AsyncResponse.resume in resources classes.
+  - Updated Airtime Service Interface abstract resource classes. The classes were changed to pass all parameters to the Implementor's custom resource implementation, as opposed to resuming the AsyncResponse from within the resource. The Implementor should now call resume on the AsyncResponse. This allows for more flexibility, proper asynchronicity and allows the user to choose their own threading model.
+  - Added Jax RS Core Request to the expected parameters from @Context. This is passed through as above with the rest of the parameters.
+  - Changed all advice responses to BasicAdvice from BasicAdviceResponse.
+
 ## v5.0.3
 
 Released 15 November 2016
