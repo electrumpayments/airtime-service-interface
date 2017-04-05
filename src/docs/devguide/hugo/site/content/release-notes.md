@@ -2,7 +2,7 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ## v5.1.0
 
-Released xx April 2017
+Released 5 April 2017
 
 - Aligned with new base service interface version (v3.2.0).
   - Removed restriction on allowed characters from the terminalId property which means it now only has a max and min length restriction of 8.
