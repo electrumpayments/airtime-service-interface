@@ -1,5 +1,11 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.2.0
+
+Released 24 July 2017
+
+- Added INVALID_MERCHANT and OUT_OF_STOCK ErrorTypes.
+
 ## v5.1.0
 
 Released 5 April 2017
