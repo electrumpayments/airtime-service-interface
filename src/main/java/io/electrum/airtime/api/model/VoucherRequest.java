@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,6 +37,7 @@ public class VoucherRequest extends Transaction {
    @ApiModelProperty(required = false, value = "If the product identified by the product field is not a fixed price "
          + "product then the amounts field indicates the value of the product referred to.")
    @JsonProperty("amounts")
+   @Valid
    public Amounts getAmounts() {
       return amounts;
    }
@@ -55,6 +57,7 @@ public class VoucherRequest extends Transaction {
    @ApiModelProperty(required = true, value = "The product for which the voucher should be provisioned.")
    @JsonProperty("product")
    @NotNull
+   @Valid
    public Product getProduct() {
       return product;
    }
