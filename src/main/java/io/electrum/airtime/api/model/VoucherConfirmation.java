@@ -1,5 +1,6 @@
 package io.electrum.airtime.api.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,6 +33,7 @@ public class VoucherConfirmation extends TenderAdvice {
    @ApiModelProperty(required = true, value = "Information about the specific voucher being confirmed. This should at a minimum be the voucher serial number returned in the VoucherResponse so that the vendor can look up the voucher to be confirmed within the vendor's system.")
    @JsonProperty("voucher")
    @NotNull
+   @Valid
    public Voucher getVoucher() {
       return voucher;
    }
