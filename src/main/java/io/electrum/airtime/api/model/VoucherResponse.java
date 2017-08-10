@@ -8,6 +8,7 @@ import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,6 +37,7 @@ public class VoucherResponse extends Transaction {
    @ApiModelProperty(required = false, value = "If the product identified by the product field is not a fixed price "
          + "product then the amounts field indicates the value of the product in the response.")
    @JsonProperty("amounts")
+   @Valid
    public Amounts getAmounts() {
       return amounts;
    }
@@ -55,6 +57,7 @@ public class VoucherResponse extends Transaction {
    @ApiModelProperty(value = "The product for which the voucher was provisioned. This is assumed to be the product "
          + "requested if this is absent.")
    @JsonProperty("responseProduct")
+   @Valid
    public Product getResponseProduct() {
       return responseProduct;
    }
@@ -75,6 +78,7 @@ public class VoucherResponse extends Transaction {
          + "successfully.")
    @JsonProperty("voucher")
    @NotNull
+   @Valid
    public Voucher getVoucher() {
       return voucher;
    }
