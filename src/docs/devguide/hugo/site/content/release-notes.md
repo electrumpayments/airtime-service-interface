@@ -1,5 +1,11 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.3.0
+
+Released 9 August 2017
+
+- Additional annotations for cascading validation.
+
 ## v5.2.0
 
 Released 24 July 2017
