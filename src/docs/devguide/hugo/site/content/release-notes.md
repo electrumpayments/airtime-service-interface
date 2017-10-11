@@ -1,5 +1,12 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.3.1
+
+Released 9 October 2017
+
+- Update Swagger Jersey 2 JAX-RS version to v1.5.16.
+- Remove included SLF4J library.
+
 ## v5.3.0
 
 Released 9 August 2017
