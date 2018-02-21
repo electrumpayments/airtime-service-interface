@@ -1,5 +1,13 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.5.0
+
+Released 21 February 2018
+
+- Update base service interface version to v3.7.0.
+  - Added `PaymentMethod` model with subtypes `An32TokenPayment` and `LoyaltyCardPayment`
+- Add field `paymentMethods` to `VoucherRequest`
+
 ## v5.4.0
 
 Released 8 November 2017

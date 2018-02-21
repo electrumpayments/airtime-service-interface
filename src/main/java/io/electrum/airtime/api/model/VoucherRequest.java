@@ -2,6 +2,7 @@ package io.electrum.airtime.api.model;
 
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Amounts;
+import io.electrum.vas.model.PaymentMethod;
 import io.electrum.vas.model.Tender;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
@@ -24,6 +25,7 @@ public class VoucherRequest extends Transaction {
    private Amounts amounts = null;
    private Product product = null;
    private List<Tender> tenders = null;
+   private List<PaymentMethod> paymentMethods = null;
 
    /**
     * If the product identified by the product field is not a fixed price product then the amounts field indicates the
@@ -82,6 +84,16 @@ public class VoucherRequest extends Transaction {
 
    public void setTenders(List<Tender> tenders) {
       this.tenders = tenders;
+   }
+
+   @ApiModelProperty(required = false, value = "An array of payment methods used to pay for the transaction")
+   @JsonProperty("paymentMethods")
+   public List<PaymentMethod> getPaymentMethods() {
+      return paymentMethods;
+   }
+
+   public void setPaymentMethods(List<PaymentMethod> paymentMethods) {
+      this.paymentMethods = paymentMethods;
    }
 
    @Override
