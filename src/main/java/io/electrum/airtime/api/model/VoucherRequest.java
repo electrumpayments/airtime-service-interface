@@ -76,7 +76,9 @@ public class VoucherRequest extends Transaction {
       return this;
    }
 
-   @ApiModelProperty(required = false, value = "An array of tenders used to pay for the transaction")
+   @ApiModelProperty(required = false, value = "An array of tenders used to pay for the transaction. Tenders are " +
+           "supplied after payment has been effected. No tenders should be listed in this field " +
+           "if payment methods are provided.")
    @JsonProperty("tenders")
    public List<Tender> getTenders() {
       return tenders;
@@ -86,7 +88,9 @@ public class VoucherRequest extends Transaction {
       this.tenders = tenders;
    }
 
-   @ApiModelProperty(required = false, value = "An array of payment methods used to pay for the transaction")
+   @ApiModelProperty(required = false, value = "An array of payment methods used to pay for the transaction. If a " +
+           "request is meant to effect payment, then payment methods should be listed. No payment methods should be " +
+           "listed if tenders are supplied, as tenders are supplied after payment is effected.")
    @JsonProperty("paymentMethods")
    public List<PaymentMethod> getPaymentMethods() {
       return paymentMethods;
