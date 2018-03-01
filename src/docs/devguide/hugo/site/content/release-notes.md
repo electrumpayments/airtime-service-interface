@@ -1,5 +1,13 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.5.1
+
+Released 1 March 2018
+
+- Update base service interface version to v3.8.1.
+  - Changed `PaymentMethodType.TOKEN` to `PaymentMethodType.AN_32_TOKEN` 
+  - Added `amount` field to `PaymentMethod`
+
 ## v5.5.0
 
 Released 21 February 2018

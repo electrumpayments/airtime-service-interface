@@ -76,7 +76,10 @@ public class VoucherRequest extends Transaction {
       return this;
    }
 
-   @ApiModelProperty(required = false, value = "An array of tenders used to pay for the transaction")
+   @ApiModelProperty(required = false, value = "An array of tenders used to pay for the transaction. This is used " +
+           "if payment is tendered at the point of sale. A Tender differs from a PaymentMethod in that the former " +
+           "represents a payment that has already been collected at the point of sale, whereas the latter represents " +
+           "a payment that still needs to be collected from a third party.")
    @JsonProperty("tenders")
    public List<Tender> getTenders() {
       return tenders;
@@ -86,7 +89,11 @@ public class VoucherRequest extends Transaction {
       this.tenders = tenders;
    }
 
-   @ApiModelProperty(required = false, value = "An array of payment methods used to pay for the transaction")
+   @ApiModelProperty(required = false, value = "An array of payment methods to be used as payment for the " +
+           "transaction. This is used if payment is not tendered at the point of sale, but is effected through one " +
+           "or more calls to third party payment providers as part of the request. A PaymentMethod differs from a " +
+           "Tender in that the former represents payment that still needs to be collected from a third party, " +
+           "whereas the latter represents payment that has already been collected at the point of sale.")
    @JsonProperty("paymentMethods")
    public List<PaymentMethod> getPaymentMethods() {
       return paymentMethods;
@@ -110,6 +117,7 @@ public class VoucherRequest extends Transaction {
       sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
       sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
+      sb.append("    paymentMethods: ").append(Utils.toIndentedString(paymentMethods)).append("\n");
       sb.append("}");
       return sb.toString();
    }
