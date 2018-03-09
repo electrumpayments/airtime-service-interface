@@ -1,5 +1,16 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.2.0
+
+Released 9 March 2018
+
+- Added the following new ErrorTypes:
+  - INVALID_AN32_TOKEN
+  - DO_NOT_HONOR
+  - DECLINED_BY_MNO
+  - INVALID_MSISDN
+  - INVALID_LOYALTY_CARD
+
 ## v5.5.1
 
 Released 1 March 2018
