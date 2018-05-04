@@ -70,9 +70,8 @@ public class PurchaseResponse extends Transaction {
       return this;
    }
 
-   @ApiModelProperty(required = true, value = "In the case of a PIN based product, this details the voucher to be redeemed for the requested product.")
+   @ApiModelProperty(value = "In the case of a PIN based product, this details the voucher to be redeemed for the requested product.")
    @JsonProperty("voucher")
-   @NotNull
    @Valid
    public Voucher getVoucher() {
       return voucher;
