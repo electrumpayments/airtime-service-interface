@@ -62,6 +62,7 @@ public abstract class PurchaseResource {
       public class QueryParameters {
          public static final String PROVIDER = "provider";
          public static final String PURCHASE_REF = "purchaseReference";
+         public static final String ORIGINAL_MSG_ID = "originalMsgId";
       }
    }
 
@@ -120,12 +121,12 @@ public abstract class PurchaseResource {
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = ReversePurchase.REVERSE_PURCHASE, value = "Reverse an airtime purchase request that failed or timed out.", notes = ""
-         + "If an purchase operation fails with a 500 or 504 HTTP status code, or no response "
-         + "was received within the timeout period, and the vendor supports the reversal operation, "
-         + "it must be reversed to ensure the vendor knows the airtime purchase did not complete successfully. "
+         + "If a purchase operation fails with a 500 or 504 HTTP status code, or no response "
+         + "was received within the timeout period, and the provider supports the reversal operation, "
+         + "it must be reversed to ensure the provider knows the airtime purchase did not complete successfully. "
          + "purchaseReversal must be repeated until a final HTTP status code is received (i.e. not 500 or 504). "
          + "purchaseReversal may be called repeatedly on the same airtime purchase resource without negative effect. "
-         + "If the airtime vendor does not support the reversal operation, please refer to the purchaseStatus operation.")
+         + "If the airtime provider does not support the reversal operation, please refer to the purchaseStatus operation.")
    @ApiResponses(value = {
          @ApiResponse(code = ReversePurchase.SUCCESS, message = "Accepted", response = PurchaseReversal.class),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
@@ -160,8 +161,9 @@ public abstract class PurchaseResource {
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void getPurchaseStatus(
-         @ApiParam(value = "The provider who processed the original purchase attempt.", required = true) @QueryParam(GetPurchaseStatus.QueryParameters.PROVIDER) @NotNull String provider,
-         @ApiParam(value = "The reference returned in the original purchase attempt.", required = true) @QueryParam(GetPurchaseStatus.QueryParameters.PURCHASE_REF) @NotNull String purchaseReference,
+         @ApiParam(value = "The provider who processed the original purchase attempt. Conditionally required if purchaseRef is supplied.") @QueryParam(GetPurchaseStatus.QueryParameters.PROVIDER) @NotNull String provider,
+         @ApiParam(value = "The reference returned in the original purchase attempt. Conditionally required if the originalMsgId is not supplied.") @QueryParam(GetPurchaseStatus.QueryParameters.PURCHASE_REF) @NotNull String purchaseReference,
+         @ApiParam(value = "The message ID of the original PurchaseRequest which failed. Conditionally required if the purchaseRef is not supplied.") @QueryParam(GetPurchaseStatus.QueryParameters.ORIGINAL_MSG_ID) @NotNull String originalMsgId,
          @Context SecurityContext securityContext,
          @Context Request request,
          @Suspended AsyncResponse asyncResponse,
@@ -171,6 +173,7 @@ public abstract class PurchaseResource {
       getResourceImplementation().getPurchaseStatus(
             provider,
             purchaseReference,
+            originalMsgId,
             securityContext,
             request,
             httpHeaders,

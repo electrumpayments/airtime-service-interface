@@ -1,7 +1,6 @@
 package io.electrum.airtime.api;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Request;
@@ -41,8 +40,9 @@ public interface IPurchaseResource {
          HttpServletRequest httpServletRequest);
 
    void getPurchaseStatus(
-         @NotNull String provider,
-         @NotNull String purchaseReference,
+         String provider,
+         String purchaseReference,
+         String originalMsgId,
          SecurityContext securityContext,
          Request request,
          HttpHeaders httpHeaders,
