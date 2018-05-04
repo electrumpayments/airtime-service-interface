@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.model.LedgerAmount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -18,9 +19,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(description = "Product related data.")
 public class Product {
-   
-   public enum ProductType
-   {
+
+   public enum ProductType {
       AIRTIME_FIXED("AIRTIME_FIXED"),
       AIRTIME_VARIABLE("AIRTIME_VARIABLE"),
       SMS_BUNDLE("SMS_BUNDLE"),
@@ -44,6 +44,7 @@ public class Product {
    private String barcode = null;
    private String name = null;
    private ProductType type = null;
+   private LedgerAmount[] productValues = null;
 
    /**
     * A vendor determined code identifying the product the voucher should pertain to.
@@ -71,9 +72,8 @@ public class Product {
    }
 
    /**
-    * A barcode code identifying the product.
-    * This is an alternative identifier for
-    * the product but does not supersede the productId.
+    * A barcode code identifying the product. This is an alternative identifier for the product but does not supersede
+    * the productId.
     * 
     * @return barcode
     **/
@@ -129,6 +129,27 @@ public class Product {
       this.type = type;
    }
 
+   public Product productValues(LedgerAmount[] productValues) {
+      this.productValues = productValues;
+      return this;
+   }
+
+   /**
+    * The value of the product. Multiple values may be returned in varying currencies in the case of products available
+    * internationally.
+    * 
+    * @return productValues
+    **/
+   @ApiModelProperty(value = "The value of the product. Multiple values may be returned in varying currencies in the case of products available internationally.")
+   @JsonProperty("productValues")
+   public LedgerAmount[] getProductValues() {
+      return productValues;
+   }
+
+   public void setProductValues(LedgerAmount[] productValues) {
+      this.productValues = productValues;
+   }
+
    @Override
    public boolean equals(java.lang.Object o) {
       if (this == o) {
@@ -156,6 +177,7 @@ public class Product {
       sb.append("    barcode: ").append(Utils.toIndentedString(barcode)).append("\n");
       sb.append("    name: ").append(Utils.toIndentedString(name)).append("\n");
       sb.append("    type: ").append(Utils.toIndentedString(type)).append("\n");
+      sb.append("    productValues: ").append(Utils.toIndentedString(productValues)).append("\n");
       sb.append("}");
       return sb.toString();
    }

@@ -118,6 +118,7 @@ public class VoucherRequest extends Transaction {
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
       sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
       sb.append("    paymentMethods: ").append(Utils.toIndentedString(paymentMethods)).append("\n");
+      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append("\n");
       sb.append("}");
       return sb.toString();
    }
