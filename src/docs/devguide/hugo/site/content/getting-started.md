@@ -5,11 +5,9 @@ menu:
     weight: 0
 ---
 
-The Airtime Service Interface is an apache licensed RESTful HTTP based messaging protocol, intended to enable interoperability between airtime voucher vendors and retailers.
+The Airtime Service Interface is an Apache licensed RESTful HTTP based messaging protocol, intended to enable interoperability between airtime providers and retailers.
 
-Using the Airtime Service Interface enables retailers to access an established and growing group of airtime voucher vendors who support the interface. At the same time, the Airtime Service Interface is made available to allow airtime voucher vendors a quick, well defined route towards integrating into retailers.
-
-Throughout the Airtime Service Interface documentation and API the term 'airtime voucher' and 'airtime voucher vendor' may be abbreviated to simply 'voucher' and 'voucher vendor' respectively.
+Using the Airtime Service Interface enables retailers to access an established and growing group of airtime providers who support the interface. At the same time, the Airtime Service Interface is made available to allow airtime providers a quick, well defined route towards integrating into retailers.
 
 ## Supported languages
 
