@@ -15,8 +15,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * A request to purchase an airtime product. This may be for airtime, data or SMS products or a combination. Purchase requests
- * may be for PIN based or PIN-less products.
+ * A request to purchase an airtime product. This may be for airtime, data or SMS products or a combination. Purchase
+ * requests may be for PIN based or PIN-less products.
  **/
 
 @ApiModel(description = "A request for an airtime product. This may be for airtime, data or SMS products or a combination. Airtime requests may be for PIN based or PIN-less products.")
@@ -25,7 +25,8 @@ public class PurchaseRequest extends Transaction {
    private Product product = null;
    private List<Tender> tenders = null;
    private List<PaymentMethod> paymentMethods = null;
-   private MSISDN msisdn = null;
+   private MSISDN recipientMsisdn = null;
+   private MSISDN senderMsisdn = null;
 
    /**
     * A description of the product requested.
@@ -83,22 +84,42 @@ public class PurchaseRequest extends Transaction {
    }
 
    /**
-    * The MSISDN of the customer who will use the product specified.
+    * The MSISDN of the customer who will receive or make use of the product requested.
     **/
-   public PurchaseRequest msisdn(MSISDN msisdn) {
-      this.msisdn = msisdn;
+   public PurchaseRequest recipientMsisdn(MSISDN recipientMsisdn) {
+      this.recipientMsisdn = recipientMsisdn;
       return this;
    }
 
-   @ApiModelProperty(value = "The MSISDN of the customer who will use the product requested.")
-   @JsonProperty("msisdn")
+   @ApiModelProperty(value = "The MSISDN of the customer who will receive or make use of the product requested.")
+   @JsonProperty("recipientMsisdn")
    @Valid
-   public MSISDN getMsisdn() {
-      return msisdn;
+   public MSISDN getRecipientMsisdn() {
+      return recipientMsisdn;
    }
 
-   public void setMsisdn(MSISDN msisdn) {
-      this.msisdn = msisdn;
+   public void setRecipientMsisdn(MSISDN recipientMsisdn) {
+      this.recipientMsisdn = recipientMsisdn;
+   }
+
+   /**
+    * The MSISDN of the customer who purchasing product requested. This field may be mandatory for certain providers
+    * especially in the case of international purchases.
+    **/
+   public PurchaseRequest senderMsisdn(MSISDN senderMsisdn) {
+      this.senderMsisdn = senderMsisdn;
+      return this;
+   }
+
+   @ApiModelProperty(value = "The MSISDN of the customer who purchasing product requested. This field may be mandatory for certain providers especially in the case of international purchases.")
+   @JsonProperty("senderMsisdn")
+   @Valid
+   public MSISDN getSenderMsisdn() {
+      return senderMsisdn;
+   }
+
+   public void setSenderMsisdn(MSISDN senderMsisdn) {
+      this.senderMsisdn = senderMsisdn;
    }
 
    @Override
@@ -116,7 +137,8 @@ public class PurchaseRequest extends Transaction {
       sb.append("    product: ").append(Utils.toIndentedString(product)).append("\n");
       sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
       sb.append("    paymentMethods: ").append(Utils.toIndentedString(paymentMethods)).append("\n");
-      sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append("\n");
+      sb.append("    recipientMsisdn: ").append(Utils.toIndentedString(recipientMsisdn)).append("\n");
+      sb.append("    senderMsisdn: ").append(Utils.toIndentedString(senderMsisdn)).append("\n");
       sb.append("}");
       return sb.toString();
    }

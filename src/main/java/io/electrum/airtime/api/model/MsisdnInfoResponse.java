@@ -1,5 +1,7 @@
 package io.electrum.airtime.api.model;
 
+import java.util.Objects;
+
 import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.Institution;
+import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -20,6 +23,7 @@ public class MsisdnInfoResponse {
    private Institution msisdn;
    private Amounts amounts = null;
    private Product[] availableProducts = null;
+   private Promotion promotion = null;
 
    /**
     * The Mobile Network Operator (MNO) to whom the MSISDN belongs.
@@ -62,7 +66,7 @@ public class MsisdnInfoResponse {
    /**
     * Products which may be available to the customer identified by the MSISDN.
     **/
-   public MsisdnInfoResponse responseProduct(Product[] availableProducts) {
+   public MsisdnInfoResponse availableProducts(Product[] availableProducts) {
       this.availableProducts = availableProducts;
       return this;
    }
@@ -70,12 +74,49 @@ public class MsisdnInfoResponse {
    @ApiModelProperty(value = "Products which may be available to the customer identified by the MSISDN.")
    @JsonProperty("availableProducts")
    @Valid
-   public Product[] getResponseProduct() {
+   public Product[] getAvaialbleProducts() {
       return availableProducts;
    }
 
-   public void setResponseProduct(Product[] availableProducts) {
+   public void setAvaialbleProducts(Product[] availableProducts) {
       this.availableProducts = availableProducts;
+   }
+
+   /**
+    * Promotional information for the customer identified by the MISDN.
+    **/
+   public MsisdnInfoResponse promotion(Promotion promotion) {
+      this.promotion = promotion;
+      return this;
+   }
+
+   @ApiModelProperty(value = "Promotional information for the customer identified by the MISDN.")
+   @JsonProperty("promotion")
+   @Valid
+   public Promotion getPromotion() {
+      return promotion;
+   }
+
+   public void setPromotion(Promotion promotion) {
+      this.promotion = promotion;
+   }
+
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) {
+         return true;
+      }
+      if (o == null || getClass() != o.getClass()) {
+         return false;
+      }
+      MsisdnInfoResponse msisdnInfoRsp = (MsisdnInfoResponse) o;
+      return Objects.equals(msisdn, msisdnInfoRsp.msisdn) && Objects.equals(amounts, msisdnInfoRsp.amounts)
+            && Objects.equals(availableProducts, msisdnInfoRsp.availableProducts) && Objects.equals(promotion, msisdnInfoRsp.promotion);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(msisdn, amounts, availableProducts, promotion);
    }
 
    @Override
@@ -86,6 +127,7 @@ public class MsisdnInfoResponse {
       sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append("\n");
       sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append("\n");
       sb.append("    availableProducts: ").append(Utils.toIndentedString(availableProducts)).append("\n");
+      sb.append("    promotion: ").append(Utils.toIndentedString(promotion)).append("\n");
       sb.append("}");
       return sb.toString();
    }
