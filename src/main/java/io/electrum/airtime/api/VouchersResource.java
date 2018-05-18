@@ -29,6 +29,7 @@ import io.swagger.annotations.Authorization;
 import io.swagger.annotations.ResponseHeader;
 
 @Path(VouchersResource.PATH)
+@Deprecated
 @Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
 public abstract class VouchersResource {
 
@@ -40,7 +41,7 @@ public abstract class VouchersResource {
       public static final String CONFIRM_VOUCHER = "confirmVoucher";
       public static final int SUCCESS = 202;
       public static final String PATH =
-            PurchaseResource.PATH + "/{" + PathParameters.REQUEST_ID + "}/confirmations/{"
+            VouchersResource.PATH + "/{" + PathParameters.REQUEST_ID + "}/confirmations/{"
                   + PathParameters.CONFIRMATION_ID + "}";
 
       public class PathParameters {
@@ -52,7 +53,7 @@ public abstract class VouchersResource {
    public class ProvisionVoucher {
       public static final String PROVISION_VOUCHER = "provisionVoucher";
       public static final int SUCCESS = 201;
-      public static final String PATH = PurchaseResource.PATH + "/{" + PathParameters.REQUEST_ID + "}";
+      public static final String PATH = VouchersResource.PATH + "/{" + PathParameters.REQUEST_ID + "}";
 
       public class PathParameters {
          public static final String REQUEST_ID = "requestId";
@@ -63,7 +64,7 @@ public abstract class VouchersResource {
       public static final String REVERSE_VOUCHER = "reverseVoucher";
       public static final int SUCCESS = 202;
       public static final String PATH =
-            PurchaseResource.PATH + "/{" + PathParameters.REQUEST_ID + "}/reversals/{" + PathParameters.REVERSAL_ID
+            VouchersResource.PATH + "/{" + PathParameters.REQUEST_ID + "}/reversals/{" + PathParameters.REVERSAL_ID
                   + "}";
 
       public class PathParameters {
@@ -89,6 +90,21 @@ public abstract class VouchersResource {
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+   /**
+    * This operation has been deprecated. Use
+    * {@link PurchaseResource#confirmPurchase(PurchaseConfirmation, SecurityContext, Request, AsyncResponse, HttpHeaders, UriInfo, HttpServletRequest)}
+    * instead.
+    * 
+    * @param requestId
+    * @param confirmationId
+    * @param body
+    * @param securityContext
+    * @param request
+    * @param asyncResponse
+    * @param httpHeaders
+    * @param uriInfo
+    * @param httpServletRequest
+    */
    public final void confirmVoucher(
          @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam(ConfirmVoucher.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(ConfirmVoucher.PathParameters.CONFIRMATION_ID) String confirmationId,
@@ -123,6 +139,21 @@ public abstract class VouchersResource {
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+
+   /**
+    * This operation has been deprecated. Use {@link PurchaseResource#purchase(PurchaseRequest, SecurityContext,
+    * Request, AsyncResponse, HttpHeaders, UriInfo, HttpServletRequest)(PurchaseConfirmation, SecurityContext, Request,
+    * AsyncResponse, HttpHeaders, UriInfo, HttpServletRequest)} instead.
+    * 
+    * @param requestId
+    * @param body
+    * @param securityContext
+    * @param request
+    * @param asyncResponse
+    * @param httpHeaders
+    * @param uriInfo
+    * @param httpServletRequest
+    */
    public final void provisionVoucher(
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(ProvisionVoucher.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "A voucher request.", required = true) VoucherRequest body,
@@ -160,6 +191,21 @@ public abstract class VouchersResource {
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+   /**
+    * This operation has been deprecated. Use {@link PurchaseResource#reversePurchase(PurchaseReversal, SecurityContext,
+    * Request, AsyncResponse, HttpHeaders, UriInfo, HttpServletRequest)(PurchaseRequest, SecurityContext, Request,
+    * AsyncResponse, HttpHeaders, UriInfo, HttpServletRequest)(PurchaseConfirmation, SecurityContext, Request,
+    * AsyncResponse, HttpHeaders, UriInfo, HttpServletRequest)} instead.
+    * 
+    * @param requestId
+    * @param body
+    * @param securityContext
+    * @param request
+    * @param asyncResponse
+    * @param httpHeaders
+    * @param uriInfo
+    * @param httpServletRequest
+    */
    public final void reverseVoucher(
          @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam(ReverseVoucher.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(ReverseVoucher.PathParameters.REVERSAL_ID) String reversalId,

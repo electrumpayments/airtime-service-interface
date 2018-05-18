@@ -57,3 +57,15 @@ A timeout occurs when the client has not received a response to a request after 
 ### ErrorDetail
 
 In addition to the HTTP status code, failure response bodies shall contain an [ErrorDetail](/specification/definitions/#errordetail) object if possible to describe the failure in more detail. It should be noted though that responses in some scenarios which are not successful may contain an empty response body and therefore no ErrorDetail object will be present.
+
+## Protocol Changes
+
+This section notes specific aspects of the Airtime Service Interface which should be considered when implementing the project.
+
+### Voucher Resources vs Purchase Resources
+
+Initial versions of the Airtime Service Interface considered only PIN on receipt airtime sales. Such sales specifically assumed that an airtime voucher would be returned to the customer.
+
+The Airtime Service Interface has now been updated to support PIN-less airtime sales i.e. direct top-ups of MSISDN accounts. In such sales a voucher might not be present hence the API's central assumption of the presence of a Voucher is no longer valid. Thus the API has been updated with a more robust Purchase concept wherein a Voucher is optional. Thus the PurchaseResource's operations and models supersede the original VoucherResources and VoucherResources are deprecated in favour of the PurchaseResources.
+
+VoucherResources should remain available in existing implementations for legacy support but it is strongly recommended that future implementations stick to PurchaseResources.
