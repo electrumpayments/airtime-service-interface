@@ -45,19 +45,19 @@ public abstract class PurchaseResource {
    public class Purchase {
       public static final String PURCHASE = "purchase";
       public static final int SUCCESS = 201;
-      public static final String PATH = PurchaseResource.PATH + "/";
+      public static final String PATH = "/";
    }
 
    public class ReversePurchase {
       public static final String REVERSE_PURCHASE = "purchaseReversal";
       public static final int SUCCESS = 202;
-      public static final String PATH = PurchaseResource.PATH + "/reversals";
+      public static final String PATH = "/reversals";
    }
 
    public class GetPurchaseStatus {
       public static final String GET_PURCHASE_STATUS = "purchaseStatus";
       public static final int SUCCESS = 200;
-      public static final String PATH = PurchaseResource.PATH + "/status";
+      public static final String PATH = "/status";
 
       public class QueryParameters {
          public static final String PROVIDER = "provider";

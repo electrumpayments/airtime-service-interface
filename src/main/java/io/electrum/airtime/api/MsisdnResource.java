@@ -34,7 +34,7 @@ public abstract class MsisdnResource {
    public class LookupMsisdn {
       public static final String LOOKUP_MSISDN = "lookupMsisdn";
       public static final int SUCCESS = 200;
-      public static final String PATH = MsisdnResource.PATH + "/";
+      public static final String PATH = "/";
 
       public class QueryParameters {
          public static final String MSISDN = "msisdn";
