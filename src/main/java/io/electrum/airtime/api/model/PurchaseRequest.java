@@ -25,8 +25,8 @@ public class PurchaseRequest extends Transaction {
    private Product product = null;
    private List<Tender> tenders = null;
    private List<PaymentMethod> paymentMethods = null;
-   private MSISDN recipientMsisdn = null;
-   private MSISDN senderMsisdn = null;
+   private Msisdn recipientMsisdn = null;
+   private Msisdn senderMsisdn = null;
 
    /**
     * A description of the product requested.
@@ -84,41 +84,41 @@ public class PurchaseRequest extends Transaction {
    }
 
    /**
-    * The MSISDN of the customer who will receive or make use of the product requested.
+    * The Msisdn of the customer who will receive or make use of the product requested.
     **/
-   public PurchaseRequest recipientMsisdn(MSISDN recipientMsisdn) {
+   public PurchaseRequest recipientMsisdn(Msisdn recipientMsisdn) {
       this.recipientMsisdn = recipientMsisdn;
       return this;
    }
 
-   @ApiModelProperty(value = "The MSISDN of the customer who will receive or make use of the product requested.")
+   @ApiModelProperty(value = "The Msisdn of the customer who will receive or make use of the product requested.")
    @JsonProperty("recipientMsisdn")
    @Valid
-   public MSISDN getRecipientMsisdn() {
+   public Msisdn getRecipientMsisdn() {
       return recipientMsisdn;
    }
 
-   public void setRecipientMsisdn(MSISDN recipientMsisdn) {
+   public void setRecipientMsisdn(Msisdn recipientMsisdn) {
       this.recipientMsisdn = recipientMsisdn;
    }
 
    /**
-    * The MSISDN of the customer who purchasing product requested. This field may be mandatory for certain providers
+    * The Msisdn of the customer who purchasing product requested. This field may be mandatory for certain providers
     * especially in the case of international purchases.
     **/
-   public PurchaseRequest senderMsisdn(MSISDN senderMsisdn) {
+   public PurchaseRequest senderMsisdn(Msisdn senderMsisdn) {
       this.senderMsisdn = senderMsisdn;
       return this;
    }
 
-   @ApiModelProperty(value = "The MSISDN of the customer who purchasing product requested. This field may be mandatory for certain providers especially in the case of international purchases.")
+   @ApiModelProperty(value = "The Msisdn of the customer who purchasing product requested. This field may be mandatory for certain providers especially in the case of international purchases.")
    @JsonProperty("senderMsisdn")
    @Valid
-   public MSISDN getSenderMsisdn() {
+   public Msisdn getSenderMsisdn() {
       return senderMsisdn;
    }
 
-   public void setSenderMsisdn(MSISDN senderMsisdn) {
+   public void setSenderMsisdn(Msisdn senderMsisdn) {
       this.senderMsisdn = senderMsisdn;
    }
 

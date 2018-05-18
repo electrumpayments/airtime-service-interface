@@ -8,51 +8,49 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Amounts;
-import io.electrum.vas.model.Institution;
-import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Information about the MSISDN.
+ * Information about the Msisdn.
  **/
 
-@ApiModel(description = "Information about the MSISDN.")
+@ApiModel(description = "Information about the Msisdn.")
 public class MsisdnInfoResponse {
 
-   private Institution msisdn;
+   private Msisdn msisdn;
    private Amounts amounts = null;
    private Product[] availableProducts = null;
    private Promotion promotion = null;
 
    /**
-    * The Mobile Network Operator (MNO) to whom the MSISDN belongs.
+    * The MSISDN which was looked up updated with relevant information returned.
     **/
-   public MsisdnInfoResponse operator(Institution operator) {
-      this.msisdn = operator;
+   public MsisdnInfoResponse msisdn(Msisdn msisdn) {
+      this.msisdn = msisdn;
       return this;
    }
 
-   @ApiModelProperty(value = "The Mobile Network Operator (MNO) to whom the MSISDN belongs.")
+   @ApiModelProperty(value = "The MSISDN which was looked up updated with relevant information returned.")
    @JsonProperty("msisdn")
    @Valid
-   public Institution getOperator() {
+   public Msisdn getMsisdn() {
       return msisdn;
    }
 
-   public void setOperator(Institution operator) {
-      this.msisdn = operator;
+   public void setMsisdn(Msisdn msisdn) {
+      this.msisdn = msisdn;
    }
 
    /**
-    * Additional amounts which may pertain to transactions against the MSISDN.
+    * Additional amounts which may pertain to transactions against the Msisdn.
     **/
    public MsisdnInfoResponse amounts(Amounts amounts) {
       this.amounts = amounts;
       return this;
    }
 
-   @ApiModelProperty(required = false, value = "Additional amounts which may pertain to transactions against the MSISDN.")
+   @ApiModelProperty(required = false, value = "Additional amounts which may pertain to transactions against the Msisdn.")
    @JsonProperty("amounts")
    @Valid
    public Amounts getAmounts() {
@@ -64,14 +62,14 @@ public class MsisdnInfoResponse {
    }
 
    /**
-    * Products which may be available to the customer identified by the MSISDN.
+    * Products which may be available to the customer identified by the Msisdn.
     **/
    public MsisdnInfoResponse availableProducts(Product[] availableProducts) {
       this.availableProducts = availableProducts;
       return this;
    }
 
-   @ApiModelProperty(value = "Products which may be available to the customer identified by the MSISDN.")
+   @ApiModelProperty(value = "Products which may be available to the customer identified by the Msisdn.")
    @JsonProperty("availableProducts")
    @Valid
    public Product[] getAvaialbleProducts() {
@@ -111,7 +109,8 @@ public class MsisdnInfoResponse {
       }
       MsisdnInfoResponse msisdnInfoRsp = (MsisdnInfoResponse) o;
       return Objects.equals(msisdn, msisdnInfoRsp.msisdn) && Objects.equals(amounts, msisdnInfoRsp.amounts)
-            && Objects.equals(availableProducts, msisdnInfoRsp.availableProducts) && Objects.equals(promotion, msisdnInfoRsp.promotion);
+            && Objects.equals(availableProducts, msisdnInfoRsp.availableProducts)
+            && Objects.equals(promotion, msisdnInfoRsp.promotion);
    }
 
    @Override

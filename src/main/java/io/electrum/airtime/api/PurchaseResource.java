@@ -70,7 +70,7 @@ public abstract class PurchaseResource {
    @Path(ConfirmPurchase.PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
-   @ApiOperation(nickname = ConfirmPurchase.PURCHASE_CONFIRMATION, value = "Confirm that a previous purchasePurchase operation has completed successfully at the POS.", notes = ""
+   @ApiOperation(nickname = ConfirmPurchase.PURCHASE_CONFIRMATION, value = "Confirm that a previous purchase operation has completed successfully at the POS.", notes = ""
          + "Once a consumer has paid for an airtime product the merchant must notify the vendor that the transaction"
          + "completed successfully at the POS. confirmPurchase must be repeated until a final HTTP status code is"
          + "received (i.e. not 500 or 504). confirmPurchase may be called repeatedly without negative effect.")

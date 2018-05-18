@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class PurchaseResponse extends Transaction {
 
    private Product product = null;
-   private MSISDN msisdn = null;
+   private Msisdn msisdn = null;
    private Voucher voucher = null;
    private SlipData slipData = null;
 
@@ -44,21 +44,21 @@ public class PurchaseResponse extends Transaction {
    }
 
    /**
-    * The MSISDN of the customer who will use the product specified.
+    * The Msisdn of the customer who will use the product specified.
     **/
-   public PurchaseResponse msisdn(MSISDN msisdn) {
+   public PurchaseResponse msisdn(Msisdn msisdn) {
       this.msisdn = msisdn;
       return this;
    }
 
-   @ApiModelProperty(value = "The MSISDN of the customer who will use the product requested.")
+   @ApiModelProperty(value = "The Msisdn of the customer who will use the product requested.")
    @JsonProperty("msisdn")
    @Valid
-   public MSISDN getMsisdn() {
+   public Msisdn getMsisdn() {
       return msisdn;
    }
 
-   public void setMsisdn(MSISDN msisdn) {
+   public void setMsisdn(Msisdn msisdn) {
       this.msisdn = msisdn;
    }
 

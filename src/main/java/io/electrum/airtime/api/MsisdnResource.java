@@ -45,8 +45,8 @@ public abstract class MsisdnResource {
    @GET
    @Path(LookupMsisdn.PATH)
    @Produces({ "application/json" })
-   @ApiOperation(nickname = LookupMsisdn.LOOKUP_MSISDN, value = "Looks up information associated with the given MSISDN. "
-         + "This includes such information as available products and promotions, operator information etc..")
+   @ApiOperation(nickname = LookupMsisdn.LOOKUP_MSISDN, value = "Looks up information associated with the given Msisdn. "
+         + "This includes such information as available products and promotions, operator information etc.")
    @ApiResponses(value = {
          @ApiResponse(code = LookupMsisdn.SUCCESS, message = "Accepted", response = PurchaseResponse.class),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
@@ -55,7 +55,7 @@ public abstract class MsisdnResource {
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void lookupMsisdn(
-         @ApiParam(value = "The MSISDN. This must conform to the ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).", required = true) @QueryParam(LookupMsisdn.QueryParameters.MSISDN) @Pattern(regexp = "^\\+?[1-9]\\d{1,14}") String msisdn,
+         @ApiParam(value = "The Msisdn. This must conform to the ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).", required = true) @QueryParam(LookupMsisdn.QueryParameters.MSISDN) @Pattern(regexp = "^\\+?[1-9]\\d{1,14}") String msisdn,
          @ApiParam(value = "The provider who processed the original purchase attempt.") @QueryParam(LookupMsisdn.QueryParameters.OPERATOR) String operator,
          @Context SecurityContext securityContext,
          @Context Request request,

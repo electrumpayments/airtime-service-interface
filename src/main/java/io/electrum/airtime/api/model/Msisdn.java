@@ -16,21 +16,21 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * MSISDN related data.
+ * Msisdn related data.
  **/
 
-@ApiModel(description = "MSISDN related data.")
-public class MSISDN {
+@ApiModel(description = "Msisdn related data.")
+public class Msisdn {
 
    private String msisdn = null;
    private String country = null;
    private Institution operator = null;
 
    /**
-    * The Mobile Subscriber Integrated Services Digital Network-Number (MSISDN). This must conform to the ITU E.164
+    * The Mobile Subscriber Integrated Services Digital Network-Number (Msisdn). This must conform to the ITU E.164
     * numbering plan (https://www.itu.int/rec/T-REC-E.164/en) e.g. 27821234567 for a South African number.
     **/
-   public MSISDN msisdn(String msisdn) {
+   public Msisdn msisdn(String msisdn) {
       this.msisdn = msisdn;
       return this;
    }
@@ -47,17 +47,17 @@ public class MSISDN {
       this.msisdn = msisdn;
    }
 
-   public MSISDN country(String country) {
+   public Msisdn country(String country) {
       this.country = country;
       return this;
    }
 
    /**
-    * The country of the MSISDN expressed as an ISO 3166-1 Alpha-2 country code.
+    * The country of the Msisdn expressed as an ISO 3166-1 Alpha-2 country code.
     * 
     * @return country
     **/
-   @ApiModelProperty(value = "The country of the MSISDN expressed as an ISO 3166-1 Alpha-2 country code.")
+   @ApiModelProperty(value = "The country of the Msisdn expressed as an ISO 3166-1 Alpha-2 country code.")
    @JsonProperty("country")
    @Length(min = 2, max = 2)
    public String getCountry() {
@@ -69,14 +69,14 @@ public class MSISDN {
    }
 
    /**
-    * The Mobile Network Operator (MNO) to whom the MSISDN belongs.
+    * The Mobile Network Operator (MNO) to whom the Msisdn belongs.
     **/
-   public MSISDN operator(Institution operator) {
+   public Msisdn operator(Institution operator) {
       this.operator = operator;
       return this;
    }
 
-   @ApiModelProperty(value = "The Mobile Network Operator (MNO) to whom the MSISDN belongs.")
+   @ApiModelProperty(value = "The Mobile Network Operator (MNO) to whom the Msisdn belongs.")
    @JsonProperty("operator")
    @Valid
    public Institution getOperator() {
@@ -95,7 +95,7 @@ public class MSISDN {
       if (o == null || getClass() != o.getClass()) {
          return false;
       }
-      MSISDN msisdn = (MSISDN) o;
+      Msisdn msisdn = (Msisdn) o;
       return Objects.equals(this.msisdn, msisdn.msisdn) && Objects.equals(this.country, msisdn.country)
             && Objects.equals(this.operator, msisdn.operator);
    }
@@ -108,7 +108,7 @@ public class MSISDN {
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
-      sb.append("class MSISDN {\n");
+      sb.append("class Msisdn {\n");
 
       sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append("\n");
       sb.append("    country: ").append(Utils.toIndentedString(country)).append("\n");
