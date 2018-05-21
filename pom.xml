@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.electrum</groupId>
   <artifactId>airtime-service-interface</artifactId>
-  <version>${major-version}.${minor-version}.${patch-version}-SNAPSHOT</version>
+  <version>${major-version}.${minor-version}.${patch-version}</version>
   <packaging>jar</packaging>
   <name>Airtime Service Interface</name>
   <description>Airtime Service Interface</description>
