@@ -11,7 +11,7 @@ When developing a client implementation of the Airtime Service Interface, Electr
 
 ## Request vs Advice Messages
 
-There are two basic message types defined in the Airtime Service Interface: request and advice type messages. Request messages require a response from an upstream entity before processing can continue. If no response is received then the client cannot determine whether the server successfully received the request and also cannot assume an approved response was sent by the upstream entity. Therefore the client is responsible for ensuring that the request is reversed to ensure that both parties agree on the status of the request.
+There are two basic message types defined in the Airtime Service Interface: request and advice type messages. Request messages require a response from an upstream entity before processing can continue. If no response is received then the client cannot determine whether the server successfully received the request and also cannot assume an approved response was sent by the upstream entity. Therefore the client is responsible for ensuring that the request is reversed to ensure that both parties agree on the status of the request. If reversals are not supported, a status request is used to determine the outcome of the original purchase.
 
 Reversals are an example of an advice type message. Advice type messages inform the server of an action or instruction but do not require the client to wait for a response from the server. Advice type messages are sent at suitable intervals until a definite response is received from the upstream entity.
 
@@ -48,3 +48,17 @@ The sequence diagram below shows a [voucherConfirmation](/specification/operatio
 ![A Confirmation Flow](/images/provision_confirmation.png "A Confirmation Flow")
 
 For voucher confirmations, an HTTP status type of 404 would be considered a failed response as it implies that the voucher could not be located to be confirmed.
+
+## Purchase Status
+
+A purchase status request is used to determine the outcome of a prior purchase request where:
+- the final outcome is not known
+- the server cannot or does not support a reversal mechanism.
+
+In such cases the client may, upon receiving an _unknown_ response or no response at all, submit requests for the transaction status. The client may continue to submit requests until a _successful_ or _failed_ response is received from the server. The server shall respond to each status request with either:
+- a PurchaseResponse constructed (as far as possible) similarly to the original PurchaseResponse which may have been returned at the time of the original transaction or
+- an ErrorDetail indicating the status of the original transaction (still pending or declined).
+
+The sequence diagram below shows a PurhcaseRequest without a confirmed response, subsequent purchaseStatus calls and a final, confirmed response.
+
+![A Purchase Status Flow](/images/purchase_status.png "A Purchase Status Flow")

@@ -1,5 +1,19 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.7.0
+
+Released 21 May 2018
+
+- Added Purchase and MSISDN resources to better describe airtime transactions:
+  - MSISDN naturally describes attributes of an MSISDN
+  - Purchases support PIN on receipt based airtime vouchers (as per the Vouchers resource)
+    - Note: path parameters have been dropped from Purchase resources.
+  - Purchases also support PIN-less airtime purchases based on recipient MSISDN.
+  - Purchases also support status purchase status checks as an alternative to the typical reversal mechanism.
+- Product values can be defined in multiple currencies to facilitate international sales.
+  - Note that the purchase itself only takes place in a single currency.
+- Voucher resources have been deprecated in favour of Purchase resources.
+
 ## v5.6.0
 
 Released 9 March 2018
@@ -16,7 +30,7 @@ Released 9 March 2018
 Released 1 March 2018
 
 - Update base service interface version to v3.8.1.
-  - Changed `PaymentMethodType.TOKEN` to `PaymentMethodType.AN_32_TOKEN` 
+  - Changed `PaymentMethodType.TOKEN` to `PaymentMethodType.AN_32_TOKEN`
   - Added `amount` field to `PaymentMethod`
 
 ## v5.5.0
