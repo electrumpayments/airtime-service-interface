@@ -1,8 +1,8 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
-## v5.x.x
+## v5.7.0
 
-Released TBA
+Released 21 May 2018
 
 - Added Purchase and MSISDN resources to better describe airtime transactions:
   - MSISDN naturally describes attributes of an MSISDN
@@ -12,6 +12,7 @@ Released TBA
   - Purchases also support status purchase status checks as an alternative to the typical reversal mechanism.
 - Product values can be defined in multiple currencies to facilitate international sales.
   - Note that the purchase itself only takes place in a single currency.
+- Voucher resources have been deprecated in favour of Purchase resources.
 
 ## v5.6.0
 
