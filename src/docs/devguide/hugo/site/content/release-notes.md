@@ -3,7 +3,7 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 Released 24 May 2018
 
-- Fix for API of LookupMsisdn, response object set to MsisdnInfoResponse. 
+- Corrected response object in lookupMsisdn operation from PurchaseRequest to MsisdnInfoResponse.
 
 ## v5.7.0
 
