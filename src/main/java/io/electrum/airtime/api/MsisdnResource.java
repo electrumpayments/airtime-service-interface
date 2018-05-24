@@ -15,7 +15,7 @@ import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
 import io.electrum.airtime.api.model.ErrorDetail;
-import io.electrum.airtime.api.model.PurchaseResponse;
+import io.electrum.airtime.api.model.MsisdnInfoResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
