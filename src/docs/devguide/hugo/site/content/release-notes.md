@@ -1,4 +1,9 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
+## 5.7.1
+
+Released 24 May 2018
+
+- Fix for API of LookupMsisdn, response object set to MsisdnInfoResponse. 
 
 ## v5.7.0
 

@@ -48,7 +48,7 @@ public abstract class MsisdnResource {
    @ApiOperation(nickname = LookupMsisdn.LOOKUP_MSISDN, value = "Looks up information associated with the given Msisdn. "
          + "This includes such information as available products and promotions, operator information etc.")
    @ApiResponses(value = {
-         @ApiResponse(code = LookupMsisdn.SUCCESS, message = "Accepted", response = PurchaseResponse.class),
+         @ApiResponse(code = LookupMsisdn.SUCCESS, message = "Accepted", response = MsisdnInfoResponse.class),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not Found"),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
