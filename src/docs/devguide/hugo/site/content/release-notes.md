@@ -7,6 +7,8 @@ Released 24 May 2018
 
 ## v5.7.0
 
+Deprecated, replaced with v5.7.1
+
 Released 21 May 2018
 
 - Added Purchase and MSISDN resources to better describe airtime transactions:
