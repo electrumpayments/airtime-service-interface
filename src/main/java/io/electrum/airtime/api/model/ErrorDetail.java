@@ -1,9 +1,5 @@
 package io.electrum.airtime.api.model;
 
-import io.electrum.vas.Utils;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -12,6 +8,10 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
+
+import io.electrum.vas.Utils;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Represents the outcome of a completed transaction
@@ -62,7 +62,13 @@ public class ErrorDetail {
       VOUCHER_REQUEST("VOUCHER_REQUEST"),
       VOUCHER_REVERSAL("VOUCHER_REVERSAL"),
       VOUCHER_CONFIRMATION("VOUCHER_CONFIRMATION"),
-      VOUCHER_VOID("VOUCHER_VOID");
+      VOUCHER_VOID("VOUCHER_VOID"),
+      LOOKUP_MSISDN_REQUEST("LOOKUP_MSISDN_REQUEST"),
+      PURCHASE_REQUEST("PURCHASE_REQUEST"),
+      PURCHASE_CONFIRMATION("PURCHASE_CONFIRMATION"),
+      PURCHASE_STATUS_REQUEST("PURCHASE_STATUS_REQUEST"),
+      PURCHASE_REVERSAL("PURCHASE_REVERSAL");
+      ;
 
       private String value;
 

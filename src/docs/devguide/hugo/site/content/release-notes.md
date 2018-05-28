@@ -1,4 +1,15 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
+
+##v5.7.2
+
+Released 28 May 2018
+
+- Added the following RequestTypes to ErrorDetail
+    - LOOKUP_MSISDN_REQUEST
+    - PURCHASE_REQUEST
+    - PURCHASE_CONFIRMATION
+    - PURCHASE_STATUS_REQUEST
+    - PURCAHSE_REVERSAL
 ## 5.7.1
 
 Released 24 May 2018
