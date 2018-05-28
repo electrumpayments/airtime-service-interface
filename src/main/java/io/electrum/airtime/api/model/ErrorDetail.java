@@ -89,6 +89,8 @@ public class ErrorDetail {
    private String errorMessage = null;
    private RequestType requestType = null;
    private Object detailMessage = null;
+   private String providerErrorCode	= null;
+   private String providerErrorMsg = null;
 
    /**
     * The randomly generated UUID identifying this errorDetail, as defined for a variant 4 UUID in [RFC

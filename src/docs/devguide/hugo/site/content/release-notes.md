@@ -10,6 +10,9 @@ Released 28 May 2018
     - PURCHASE_CONFIRMATION
     - PURCHASE_STATUS_REQUEST
     - PURCAHSE_REVERSAL
+- Added the following to ErrorDetail
+    - providerErrorMsg
+    - providerErrorCode    
 ## 5.7.1
 
 Released 24 May 2018
