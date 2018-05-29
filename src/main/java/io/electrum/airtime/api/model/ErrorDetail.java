@@ -63,12 +63,11 @@ public class ErrorDetail {
       VOUCHER_REVERSAL("VOUCHER_REVERSAL"),
       VOUCHER_CONFIRMATION("VOUCHER_CONFIRMATION"),
       VOUCHER_VOID("VOUCHER_VOID"),
-      LOOKUP_MSISDN_REQUEST("LOOKUP_MSISDN_REQUEST"),
+      MSISDN_INFO_REQUEST("MSISDN_INFO_REQUEST"),
       PURCHASE_REQUEST("PURCHASE_REQUEST"),
       PURCHASE_CONFIRMATION("PURCHASE_CONFIRMATION"),
       PURCHASE_STATUS_REQUEST("PURCHASE_STATUS_REQUEST"),
       PURCHASE_REVERSAL("PURCHASE_REVERSAL");
-      ;
 
       private String value;
 
@@ -89,7 +88,7 @@ public class ErrorDetail {
    private String errorMessage = null;
    private RequestType requestType = null;
    private Object detailMessage = null;
-   private String providerErrorCode	= null;
+   private String providerErrorCode = null;
    private String providerErrorMsg = null;
 
    /**
