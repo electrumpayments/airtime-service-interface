@@ -2,8 +2,9 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ##v5.7.2
 
-Released 28 May 2018
+Released 30 May 2018
 
+- Removed @NotNull annotation from GetPurchaseStatus queryParameters
 - Added Amounts to PurchaseRequest and PurchaseResponse.
 - Added the following RequestTypes to ErrorDetail:
   - LOOKUP_MSISDN_REQUEST
