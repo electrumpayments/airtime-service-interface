@@ -38,7 +38,7 @@ public abstract class PurchaseResource {
    public class ConfirmPurchase {
       public static final String PURCHASE_CONFIRMATION = "purchaseConfirmation";
       public static final int SUCCESS = 202;
-      public static final String PATH = PurchaseResource.PATH + "/confirmations";
+      public static final String PATH = "/confirmations";
    }
 
    public class Purchase {
