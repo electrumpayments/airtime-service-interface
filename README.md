@@ -21,7 +21,9 @@ To include the service interface into your maven project, include the below depe
 </dependency>
 ```
 
-Alternatively, you can download the airtime-service-interface jar from [Bintray](https://bintray.com/electrumpayments/java-open-source/airtime-service-interface) and the service-interface-base jar from [Bintray](https://bintray.com/electrumpayments/java-open-source/service-interface-base).
+Alternatively, you can download the jars from Bintray:
+- [airtime-service-interface](https://bintray.com/electrumpayments/java-open-source/airtime-service-interface)
+- [service-interface-base](https://bintray.com/electrumpayments/java-open-source/service-interface-base)
 
 ## Other languages
 

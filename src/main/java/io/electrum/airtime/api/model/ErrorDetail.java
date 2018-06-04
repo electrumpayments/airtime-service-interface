@@ -207,6 +207,31 @@ public class ErrorDetail {
       this.detailMessage = detailMessage;
    }
 
+   @JsonProperty("providerErrorCode")
+   @ApiModelProperty(value = "The error code returned by the service provider. Note that this should be used for informational purposes only. Messages displayed on the POS should make use of errorType and errorMessage to ensure a consistent set of responses.")
+   public String getProviderErrorCode() {
+      return providerErrorCode;
+   }
+
+   public void setProviderErrorCode(String providerErrorCode) {
+      this.providerErrorCode = providerErrorCode;
+   }
+
+   public ErrorDetail setProviderErrorMsg(String providerErrorMsg) {
+      this.providerErrorMsg = providerErrorMsg;
+      return this;
+   }
+
+   @JsonProperty("providerErrorMsg")
+   @ApiModelProperty(value = "The error message returned by the service provider. Note that this should be used for informational purposes only. Messages displayed on the POS should make use of errorType and errorMessage to ensure a consistent set of responses.")
+   public String getProviderErrorMsg() {
+      return providerErrorMsg;
+   }
+
+   public void setProviderErrorMessage(String providerErrorMessage) {
+      this.providerErrorMsg = providerErrorMessage;
+   }
+
    @Override
    public boolean equals(Object o) {
       if (this == o) {
@@ -236,6 +261,8 @@ public class ErrorDetail {
       sb.append("    responseMessage: ").append(Utils.toIndentedString(errorMessage)).append("\n");
       sb.append("    requestType: ").append(Utils.toIndentedString(requestType)).append("\n");
       sb.append("    detailMessage: ").append(Utils.toIndentedString(detailMessage)).append("\n");
+      sb.append("    providerErrorCode: ").append(Utils.toIndentedString(providerErrorCode)).append("\n");
+      sb.append("    providerErrorMsg: ").append(Utils.toIndentedString(providerErrorMsg)).append("\n");
       sb.append("}");
       return sb.toString();
    }
