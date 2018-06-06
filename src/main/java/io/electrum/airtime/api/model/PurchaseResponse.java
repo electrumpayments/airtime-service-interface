@@ -134,6 +134,7 @@ public class PurchaseResponse extends Transaction {
       sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
       sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
+      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append("\n");
       sb.append("    product: ").append(Utils.toIndentedString(product)).append("\n");
       sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append("\n");
       sb.append("    voucher: ").append(Utils.toIndentedString(voucher)).append("\n");
