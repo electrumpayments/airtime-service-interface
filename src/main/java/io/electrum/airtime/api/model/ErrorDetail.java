@@ -1,9 +1,5 @@
 package io.electrum.airtime.api.model;
 
-import io.electrum.vas.Utils;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -12,6 +8,10 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
+
+import io.electrum.vas.Utils;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Represents the outcome of a completed transaction
@@ -62,7 +62,12 @@ public class ErrorDetail {
       VOUCHER_REQUEST("VOUCHER_REQUEST"),
       VOUCHER_REVERSAL("VOUCHER_REVERSAL"),
       VOUCHER_CONFIRMATION("VOUCHER_CONFIRMATION"),
-      VOUCHER_VOID("VOUCHER_VOID");
+      VOUCHER_VOID("VOUCHER_VOID"),
+      MSISDN_INFO_REQUEST("MSISDN_INFO_REQUEST"),
+      PURCHASE_REQUEST("PURCHASE_REQUEST"),
+      PURCHASE_CONFIRMATION("PURCHASE_CONFIRMATION"),
+      PURCHASE_STATUS_REQUEST("PURCHASE_STATUS_REQUEST"),
+      PURCHASE_REVERSAL("PURCHASE_REVERSAL");
 
       private String value;
 
@@ -83,6 +88,8 @@ public class ErrorDetail {
    private String errorMessage = null;
    private RequestType requestType = null;
    private Object detailMessage = null;
+   private String providerErrorCode = null;
+   private String providerErrorMsg = null;
 
    /**
     * The randomly generated UUID identifying this errorDetail, as defined for a variant 4 UUID in [RFC
@@ -200,6 +207,31 @@ public class ErrorDetail {
       this.detailMessage = detailMessage;
    }
 
+   @JsonProperty("providerErrorCode")
+   @ApiModelProperty(value = "The error code returned by the service provider. Note that this should be used for informational purposes only. Messages displayed on the POS should make use of errorType and errorMessage to ensure a consistent set of responses.")
+   public String getProviderErrorCode() {
+      return providerErrorCode;
+   }
+
+   public void setProviderErrorCode(String providerErrorCode) {
+      this.providerErrorCode = providerErrorCode;
+   }
+
+   public ErrorDetail setProviderErrorMsg(String providerErrorMsg) {
+      this.providerErrorMsg = providerErrorMsg;
+      return this;
+   }
+
+   @JsonProperty("providerErrorMsg")
+   @ApiModelProperty(value = "The error message returned by the service provider. Note that this should be used for informational purposes only. Messages displayed on the POS should make use of errorType and errorMessage to ensure a consistent set of responses.")
+   public String getProviderErrorMsg() {
+      return providerErrorMsg;
+   }
+
+   public void setProviderErrorMessage(String providerErrorMessage) {
+      this.providerErrorMsg = providerErrorMessage;
+   }
+
    @Override
    public boolean equals(Object o) {
       if (this == o) {
@@ -229,6 +261,8 @@ public class ErrorDetail {
       sb.append("    responseMessage: ").append(Utils.toIndentedString(errorMessage)).append("\n");
       sb.append("    requestType: ").append(Utils.toIndentedString(requestType)).append("\n");
       sb.append("    detailMessage: ").append(Utils.toIndentedString(detailMessage)).append("\n");
+      sb.append("    providerErrorCode: ").append(Utils.toIndentedString(providerErrorCode)).append("\n");
+      sb.append("    providerErrorMsg: ").append(Utils.toIndentedString(providerErrorMsg)).append("\n");
       sb.append("}");
       return sb.toString();
    }

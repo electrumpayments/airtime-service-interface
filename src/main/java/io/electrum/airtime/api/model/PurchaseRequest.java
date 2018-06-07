@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.PaymentMethod;
 import io.electrum.vas.model.Tender;
 import io.electrum.vas.model.Transaction;
@@ -22,11 +23,33 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "A request for an airtime product. This may be for airtime, data or SMS products or a combination. Airtime requests may be for PIN based or PIN-less products.")
 public class PurchaseRequest extends Transaction {
 
+   private Amounts amounts = null;
    private Product product = null;
    private List<Tender> tenders = null;
    private List<PaymentMethod> paymentMethods = null;
    private Msisdn recipientMsisdn = null;
    private Msisdn senderMsisdn = null;
+
+   /**
+    * If the product identified by the product field is not a fixed price product then the amounts field indicates the
+    * value of the product referred to.
+    **/
+   public PurchaseRequest amounts(Amounts amounts) {
+      this.amounts = amounts;
+      return this;
+   }
+
+   @ApiModelProperty(required = false, value = "If the product identified by the product field is not a fixed price "
+         + "product then the amounts field indicates the value of the product referred to.")
+   @JsonProperty("amounts")
+   @Valid
+   public Amounts getAmounts() {
+      return amounts;
+   }
+
+   public void setAmounts(Amounts amounts) {
+      this.amounts = amounts;
+   }
 
    /**
     * A description of the product requested.
@@ -134,6 +157,7 @@ public class PurchaseRequest extends Transaction {
       sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
       sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
+      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append("\n");
       sb.append("    product: ").append(Utils.toIndentedString(product)).append("\n");
       sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
       sb.append("    paymentMethods: ").append(Utils.toIndentedString(paymentMethods)).append("\n");

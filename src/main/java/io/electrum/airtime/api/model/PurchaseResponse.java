@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.SlipData;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
@@ -18,10 +19,32 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "A response to a successful request for an airtime product.")
 public class PurchaseResponse extends Transaction {
 
+   private Amounts amounts = null;
    private Product product = null;
    private Msisdn msisdn = null;
    private Voucher voucher = null;
    private SlipData slipData = null;
+
+   /**
+    * If the product identified by the product field is not a fixed price product then the amounts field indicates the
+    * value of the product referred to.
+    **/
+   public PurchaseResponse amounts(Amounts amounts) {
+      this.amounts = amounts;
+      return this;
+   }
+
+   @ApiModelProperty(required = false, value = "If the product identified by the product field is not a fixed price "
+         + "product then the amounts field indicates the value of the product referred to.")
+   @JsonProperty("amounts")
+   @Valid
+   public Amounts getAmounts() {
+      return amounts;
+   }
+
+   public void setAmounts(Amounts amounts) {
+      this.amounts = amounts;
+   }
 
    /**
     * A description of the product requested.
@@ -111,6 +134,7 @@ public class PurchaseResponse extends Transaction {
       sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
       sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
+      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append("\n");
       sb.append("    product: ").append(Utils.toIndentedString(product)).append("\n");
       sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append("\n");
       sb.append("    voucher: ").append(Utils.toIndentedString(voucher)).append("\n");

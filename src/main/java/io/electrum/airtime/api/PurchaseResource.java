@@ -1,7 +1,6 @@
 package io.electrum.airtime.api;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -39,7 +38,7 @@ public abstract class PurchaseResource {
    public class ConfirmPurchase {
       public static final String PURCHASE_CONFIRMATION = "purchaseConfirmation";
       public static final int SUCCESS = 202;
-      public static final String PATH = PurchaseResource.PATH + "/confirmations";
+      public static final String PATH = "/confirmations";
    }
 
    public class Purchase {
@@ -161,9 +160,9 @@ public abstract class PurchaseResource {
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void getPurchaseStatus(
-         @ApiParam(value = "The provider who processed the original purchase attempt. Conditionally required if purchaseRef is supplied.") @QueryParam(GetPurchaseStatus.QueryParameters.PROVIDER) @NotNull String provider,
-         @ApiParam(value = "The reference returned in the original purchase attempt. Conditionally required if the originalMsgId is not supplied.") @QueryParam(GetPurchaseStatus.QueryParameters.PURCHASE_REF) @NotNull String purchaseReference,
-         @ApiParam(value = "The message ID of the original PurchaseRequest which failed. Conditionally required if the purchaseRef is not supplied.") @QueryParam(GetPurchaseStatus.QueryParameters.ORIGINAL_MSG_ID) @NotNull String originalMsgId,
+         @ApiParam(value = "The provider who processed the original purchase attempt. Conditionally required if purchaseRef is supplied.") @QueryParam(GetPurchaseStatus.QueryParameters.PROVIDER) String provider,
+         @ApiParam(value = "The reference returned in the original purchase attempt. Conditionally required if the originalMsgId is not supplied.") @QueryParam(GetPurchaseStatus.QueryParameters.PURCHASE_REF) String purchaseReference,
+         @ApiParam(value = "The message ID of the original PurchaseRequest which failed. Conditionally required if the purchaseRef is not supplied.") @QueryParam(GetPurchaseStatus.QueryParameters.ORIGINAL_MSG_ID) String originalMsgId,
          @Context SecurityContext securityContext,
          @Context Request request,
          @Suspended AsyncResponse asyncResponse,

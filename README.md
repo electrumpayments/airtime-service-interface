@@ -12,11 +12,18 @@ To include the service interface into your maven project, include the below depe
 <dependency>
     <groupId>io.electrum</groupId>
     <artifactId>airtime-service-interface</artifactId>
-    <version>5.7.1</version>
+    <version>5.7.2</version>
+</dependency>
+<dependency>
+      <groupId>io.electrum</groupId>
+      <artifactId>service-interface-base</artifactId>
+      <version>3.9.1</version>
 </dependency>
 ```
 
-Alternatively, you can download the jar from [Bintray](https://bintray.com/electrumpayments/java-open-source/airtime-service-interface).
+Alternatively, you can download the jars from Bintray:
+- [airtime-service-interface](https://bintray.com/electrumpayments/java-open-source/airtime-service-interface)
+- [service-interface-base](https://bintray.com/electrumpayments/java-open-source/service-interface-base)
 
 ## Other languages
 
