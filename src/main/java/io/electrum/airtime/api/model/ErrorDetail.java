@@ -90,6 +90,7 @@ public class ErrorDetail {
    private Object detailMessage = null;
    private String providerErrorCode = null;
    private String providerErrorMsg = null;
+   private String providerRef = null;
 
    /**
     * The randomly generated UUID identifying this errorDetail, as defined for a variant 4 UUID in [RFC
@@ -207,6 +208,16 @@ public class ErrorDetail {
       this.detailMessage = detailMessage;
    }
 
+   /**
+    * The error code returned by the service provider. Note that this should be used for informational purposes only.
+    * Messages displayed on the POS should make use of errorType and errorMessage to ensure a consistent set of
+    * responses.
+    **/
+   public ErrorDetail providerErrorCode(String providerErrorCode) {
+      this.providerErrorCode = providerErrorCode;
+      return this;
+   }
+
    @JsonProperty("providerErrorCode")
    @ApiModelProperty(value = "The error code returned by the service provider. Note that this should be used for informational purposes only. Messages displayed on the POS should make use of errorType and errorMessage to ensure a consistent set of responses.")
    public String getProviderErrorCode() {
@@ -217,7 +228,12 @@ public class ErrorDetail {
       this.providerErrorCode = providerErrorCode;
    }
 
-   public ErrorDetail setProviderErrorMsg(String providerErrorMsg) {
+   /**
+    * The error message returned by the service provider. Note that this should be used for informational purposes only.
+    * Messages displayed on the POS should make use of errorType and errorMessage to ensure a consistent set of
+    * responses.
+    */
+   public ErrorDetail providerErrorMsg(String providerErrorMsg) {
       this.providerErrorMsg = providerErrorMsg;
       return this;
    }
@@ -228,8 +244,26 @@ public class ErrorDetail {
       return providerErrorMsg;
    }
 
-   public void setProviderErrorMessage(String providerErrorMessage) {
+   public void setProviderErrorMsg(String providerErrorMessage) {
       this.providerErrorMsg = providerErrorMessage;
+   }
+
+   /**
+    * The reference returned by the service provider.
+    */
+   public ErrorDetail providerRef(String providerRef) {
+      this.providerRef = providerRef;
+      return this;
+   }
+
+   @JsonProperty("providerRef")
+   @ApiModelProperty(value = "The reference returned by the service provider.")
+   public String getProviderRef() {
+      return providerRef;
+   }
+
+   public void setProviderRef(String providerRef) {
+      this.providerRef = providerRef;
    }
 
    @Override
@@ -242,12 +276,24 @@ public class ErrorDetail {
       }
       ErrorDetail errorDetail = (ErrorDetail) o;
       return Objects.equals(errorType, errorDetail.errorType) && Objects.equals(errorMessage, errorDetail.errorMessage)
-            && Objects.equals(detailMessage, errorDetail.detailMessage);
+            && Objects.equals(detailMessage, errorDetail.detailMessage)
+            && Objects.equals(providerErrorCode, errorDetail.providerErrorCode)
+            && Objects.equals(providerErrorMsg, errorDetail.providerErrorMsg)
+            && Objects.equals(providerRef, errorDetail.providerRef);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, originalId, errorType, errorMessage, requestType, detailMessage);
+      return Objects.hash(
+            id,
+            originalId,
+            errorType,
+            errorMessage,
+            requestType,
+            detailMessage,
+            providerErrorCode,
+            providerErrorMsg,
+            providerRef);
    }
 
    @Override
@@ -263,6 +309,7 @@ public class ErrorDetail {
       sb.append("    detailMessage: ").append(Utils.toIndentedString(detailMessage)).append("\n");
       sb.append("    providerErrorCode: ").append(Utils.toIndentedString(providerErrorCode)).append("\n");
       sb.append("    providerErrorMsg: ").append(Utils.toIndentedString(providerErrorMsg)).append("\n");
+      sb.append("    providerRef: ").append(Utils.toIndentedString(providerRef)).append("\n");
       sb.append("}");
       return sb.toString();
    }
