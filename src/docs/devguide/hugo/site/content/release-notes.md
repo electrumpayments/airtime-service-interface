@@ -1,5 +1,13 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+##v5.7.3
+
+Released 27 June 2018
+
+- Added the following fields to the Product definition:
+  - wholesalePrice
+  - recipientAmount
+
 ##v5.7.2
 
 Released 08 June 2018
