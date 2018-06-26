@@ -131,6 +131,11 @@ public class Product {
       this.type = type;
    }
 
+   public Product wholesalePrice(LedgerAmount wholesalePrice) {
+      this.wholesalePrice = wholesalePrice;
+      return this;
+   }
+
    /**
     * The wholesale price of the product. The currency is the currency of the merchant's account with the provider.
     * 
@@ -145,6 +150,11 @@ public class Product {
 
    public void setWholesalePrice(LedgerAmount wholesalePrice) {
       this.wholesalePrice = wholesalePrice;
+   }
+
+   public Product recipientAmount(LedgerAmount recipientAmount) {
+      this.recipientAmount = recipientAmount;
+      return this;
    }
 
    /**
