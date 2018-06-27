@@ -1,6 +1,6 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
-##v5.7.3
+##v5.8.0
 
 Released 27 June 2018
 
