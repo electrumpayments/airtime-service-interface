@@ -141,8 +141,8 @@ public class Product {
     * 
     * @return wholesalePrice
     **/
-   @ApiModelProperty(value = "The wholesale price of the product. The currency is in "
-         + "the currency of the merchant's account with the provider.")
+   @ApiModelProperty(value = "The wholesale price of the product. The currency is "
+         + "in the currency of the merchant's account with the provider.")
    @JsonProperty("wholesalePrice")
    public LedgerAmount getWholesalePrice() {
       return wholesalePrice;
