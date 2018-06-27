@@ -44,6 +44,8 @@ public class Product {
    private String barcode = null;
    private String name = null;
    private ProductType type = null;
+   private LedgerAmount wholesalePrice = null;
+   private LedgerAmount recipientAmount = null;
    private LedgerAmount[] productValues = null;
 
    /**
@@ -129,6 +131,48 @@ public class Product {
       this.type = type;
    }
 
+   public Product wholesalePrice(LedgerAmount wholesalePrice) {
+      this.wholesalePrice = wholesalePrice;
+      return this;
+   }
+
+   /**
+    * The wholesale price of the product. The currency is the currency of the merchant's account with the provider.
+    * 
+    * @return wholesalePrice
+    **/
+   @ApiModelProperty(value = "The wholesale price of the product. "
+         + "The currency is in the currency of the merchant's account with the provider.")
+   @JsonProperty("wholesalePrice")
+   public LedgerAmount getWholesalePrice() {
+      return wholesalePrice;
+   }
+
+   public void setWholesalePrice(LedgerAmount wholesalePrice) {
+      this.wholesalePrice = wholesalePrice;
+   }
+
+   public Product recipientAmount(LedgerAmount recipientAmount) {
+      this.recipientAmount = recipientAmount;
+      return this;
+   }
+
+   /**
+    * The amount received by the recipient. The currency is the currency of the destination country.
+    * 
+    * @return recipientAmount
+    **/
+   @ApiModelProperty(value = "The amount received by the recipient. The currency is in the currency"
+         + " of the destination country.")
+   @JsonProperty("recipientAmount")
+   public LedgerAmount getRecipientAmount() {
+      return recipientAmount;
+   }
+
+   public void setRecipientAmount(LedgerAmount recipientAmount) {
+      this.recipientAmount = recipientAmount;
+   }
+
    public Product productValues(LedgerAmount[] productValues) {
       this.productValues = productValues;
       return this;
@@ -160,12 +204,14 @@ public class Product {
       }
       Product product = (Product) o;
       return Objects.equals(this.productId, product.productId) && Objects.equals(this.barcode, product.barcode)
-            && Objects.equals(this.name, product.name) && Objects.equals(this.type, product.type);
+            && Objects.equals(this.name, product.name) && Objects.equals(this.type, product.type)
+            && Objects.equals(this.wholesalePrice, product.wholesalePrice)
+            && Objects.equals(this.recipientAmount, product.recipientAmount);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(productId, barcode, name, type);
+      return Objects.hash(productId, barcode, name, type, wholesalePrice, recipientAmount);
    }
 
    @Override
@@ -177,6 +223,8 @@ public class Product {
       sb.append("    barcode: ").append(Utils.toIndentedString(barcode)).append("\n");
       sb.append("    name: ").append(Utils.toIndentedString(name)).append("\n");
       sb.append("    type: ").append(Utils.toIndentedString(type)).append("\n");
+      sb.append("    wholesalePrice: ").append(Utils.toIndentedString(wholesalePrice)).append("\n");
+      sb.append("    recipientAmount: ").append(Utils.toIndentedString(recipientAmount)).append("\n");
       sb.append("    productValues: ").append(Utils.toIndentedString(productValues)).append("\n");
       sb.append("}");
       return sb.toString();
