@@ -44,7 +44,7 @@ docker run \
   -e "HUGO_THEME=hugo-material-docs" \
   -e "HUGO_BASEURL=https://electrumpayments.github.io/airtime-service-interface-docs/" \
   jojomi/hugo:0.29
-docker cp hugo:/output/. ${BASE_DIR}/target/devguide/hugo
+docker cp hugo:/output/. ${BASE_DIR}/target/devguide/site
 
 docker stop hugo &> /dev/null
 docker rm hugo &> /dev/null
