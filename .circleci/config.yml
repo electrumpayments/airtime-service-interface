@@ -25,7 +25,7 @@ jobs:
           command: /electrum/bin/validateReleaseType.sh
       - run:
           name: Compile, Test, and Release
-          command: /electrum/bin/simpleTestAndReleaseJava.sh "-PpackagePluginRpm"
+          command: /electrum/bin/simpleTestAndReleaseJava.sh
       - run:
           name: Deploy docs to Github Pages
           command: /electrum/bin/deployGithubPages.sh target/devguide/site airtime-service-interface-docs
