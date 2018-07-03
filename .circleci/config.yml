@@ -128,7 +128,7 @@ workflows:
       - schedule:
           # every night at 00:00 SAST (22:00 UTC)
 #          cron: "00 22 * * *"
-          cron: "15 00 * * *"
+          cron: "04 15 * * *"
           filters:
             branches:
               only:
