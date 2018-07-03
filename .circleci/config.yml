@@ -78,7 +78,7 @@ jobs:
           aws_access_key_id: $AWS_ACCESS_KEY_ID
           aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
     steps:
-      - setup_remote_docker
+#      - setup_remote_docker
       - checkout
       - restore_cache:
           # if you ever need to invalidate the cache, simply bump the version number
@@ -93,11 +93,7 @@ jobs:
           command: /electrum/bin/testWithUpdatedDepsJava.sh
       - run:
           name: Notify failure to slack
-          command: |
-            set +e
-            SLACK_MESSAGE="Nightly build of \`$CIRCLE_PROJECT_REPONAME\` has failed after building with the below newer versions of Electrum dependencies.\n\n\`\`\`\n$(diff pom.xml.versionsBackup pom.xml)\n\`\`\`\n\nSee build here: <$CIRCLE_BUILD_URL|$CIRCLE_BUILD_URL>."
-            set -e
-            /electrum/bin/notifySlack.sh "$SLACK_MESSAGE" $SLACK_FAILED_DEP_BUILDS_WEBHOOK_URL
+          command: /electrum/bin/notifySlackDepBuildFailed.sh
           when: on_fail
       - run:
           name: Save test results
@@ -117,21 +113,21 @@ jobs:
 
 workflows:
   version: 2
-  build:
-    jobs:
-      - build-and-release:
-          context: java
-      - code-coverage-report:
-          context: java
+#  build:
+#    jobs:
+#      - build-and-release:
+#          context: java
+#      - code-coverage-report:
+#          context: java
   nightly:
     jobs:
       - build-with-latest-deps:
           context: java
-    triggers:
-      - schedule:
-          # every night at 00:00 SAST (22:00 UTC)
-          cron: "00 22 * * *"
-          filters:
-            branches:
-              only:
-                - master
+#    triggers:
+#      - schedule:
+#          # every night at 00:00 SAST (22:00 UTC)
+#          cron: "00 22 * * *"
+#          filters:
+#            branches:
+#              only:
+#                - master
