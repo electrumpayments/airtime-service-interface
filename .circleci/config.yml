@@ -29,7 +29,7 @@ jobs:
           command: /electrum/bin/simpleTestAndReleaseJava.sh
       - run:
           name: Deploy docs to Github Pages
-          command: /electrum/bin/deployGithubPages.sh target/devguide/site airtime-service-interface-docs
+          command: /electrum/bin/deployGithubPages.sh $CIRCLE_WORKING_DIRECTORY/target/devguide/site
       - run:
           name: Release failed! Revert any release steps that might have been taken
           command: /electrum/bin/revertReleaseJava.sh
