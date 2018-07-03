@@ -93,8 +93,6 @@ jobs:
       - run:
           name: Notify failure to slack
           command: |
-            set +e
-            set -x
             SLACK_MESSAGE="Nightly build of \`$CIRCLE_PROJECT_REPONAME\` has failed after building with the below newer versions of Electrum dependencies.\n\n\`\`\`\n$(diff pom.xml.versionsBackup pom.xml)\n\`\`\`\n\nSee build here: <$CIRCLE_BUILD_URL|$CIRCLE_BUILD_URL>."
             /electrum/bin/notifySlack.sh "$SLACK_MESSAGE" $SLACK_FAILED_DEP_BUILDS_WEBHOOK_URL
           when: on_fail
@@ -129,10 +127,8 @@ workflows:
 #    triggers:
 #      - schedule:
 #          # every night at 00:00 SAST (22:00 UTC)
-##          cron: "00 22 * * *"
-#          cron: "04 15 * * *"
+#          cron: "00 22 * * *"
 #          filters:
 #            branches:
 #              only:
-##                - master
-#                - feature-circle2
+#                - master
