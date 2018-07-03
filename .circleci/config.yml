@@ -59,7 +59,6 @@ jobs:
           aws_access_key_id: $AWS_ACCESS_KEY_ID
           aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
     steps:
-      - setup_remote_docker
       - checkout
       - restore_cache:
           # if you ever need to invalidate the cache, simply bump the version number
@@ -79,6 +78,7 @@ jobs:
           aws_access_key_id: $AWS_ACCESS_KEY_ID
           aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
     steps:
+      - setup_remote_docker
       - checkout
       - restore_cache:
           # if you ever need to invalidate the cache, simply bump the version number
@@ -94,7 +94,9 @@ jobs:
       - run:
           name: Notify failure to slack
           command: |
+            set +e
             SLACK_MESSAGE="Nightly build of \`$CIRCLE_PROJECT_REPONAME\` has failed after building with the below newer versions of Electrum dependencies.\n\n\`\`\`\n$(diff pom.xml.versionsBackup pom.xml)\n\`\`\`\n\nSee build here: <$CIRCLE_BUILD_URL|$CIRCLE_BUILD_URL>."
+            set -e
             /electrum/bin/notifySlack.sh "$SLACK_MESSAGE" $SLACK_FAILED_DEP_BUILDS_WEBHOOK_URL
           when: on_fail
       - run:
