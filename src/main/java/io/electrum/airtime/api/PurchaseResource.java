@@ -1,6 +1,8 @@
 package io.electrum.airtime.api;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -81,7 +83,7 @@ public abstract class PurchaseResource {
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void confirmPurchase(
-         @ApiParam(value = "A purchase confirmation.", required = true) PurchaseConfirmation body,
+         @ApiParam(value = "A purchase confirmation.", required = true) @NotNull @Valid PurchaseConfirmation body,
          @Context SecurityContext securityContext,
          @Context Request request,
          @Suspended AsyncResponse asyncResponse,
@@ -104,7 +106,7 @@ public abstract class PurchaseResource {
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void purchase(
-         @ApiParam(value = "An airtime request.", required = true) PurchaseRequest body,
+         @ApiParam(value = "An airtime request.", required = true) @NotNull @Valid PurchaseRequest body,
          @Context SecurityContext securityContext,
          @Context Request request,
          @Suspended AsyncResponse asyncResponse,
@@ -134,7 +136,7 @@ public abstract class PurchaseResource {
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void reversePurchase(
-         @ApiParam(value = "An airtime purchase reversal.", required = true) PurchaseReversal body,
+         @ApiParam(value = "An airtime purchase reversal.", required = true) @NotNull @Valid PurchaseReversal body,
          @Context SecurityContext securityContext,
          @Context Request request,
          @Suspended AsyncResponse asyncResponse,

@@ -1,6 +1,8 @@
 package io.electrum.airtime.api;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -104,9 +106,9 @@ public abstract class VouchersResource {
     * @param httpServletRequest
     */
    public final void confirmVoucher(
-         @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam(ConfirmVoucher.PathParameters.REQUEST_ID) String requestId,
+         @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @NotNull @PathParam(ConfirmVoucher.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(ConfirmVoucher.PathParameters.CONFIRMATION_ID) String confirmationId,
-         @ApiParam(value = "A voucher provision confirmation.", required = true) VoucherConfirmation body,
+         @ApiParam(value = "A voucher provision confirmation.", required = true) @NotNull @Valid VoucherConfirmation body,
          @Context SecurityContext securityContext,
          @Context Request request,
          @Suspended AsyncResponse asyncResponse,
@@ -153,8 +155,8 @@ public abstract class VouchersResource {
     * @param httpServletRequest
     */
    public final void provisionVoucher(
-         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(ProvisionVoucher.PathParameters.REQUEST_ID) String requestId,
-         @ApiParam(value = "A voucher request.", required = true) VoucherRequest body,
+         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @NotNull @PathParam(ProvisionVoucher.PathParameters.REQUEST_ID) String requestId,
+         @ApiParam(value = "A voucher request.", required = true) @NotNull @Valid VoucherRequest body,
          @Context SecurityContext securityContext,
          @Context Request request,
          @Suspended AsyncResponse asyncResponse,
@@ -207,7 +209,7 @@ public abstract class VouchersResource {
    public final void reverseVoucher(
          @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam(ReverseVoucher.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(ReverseVoucher.PathParameters.REVERSAL_ID) String reversalId,
-         @ApiParam(value = "A voucher provision reversal.", required = true) BasicReversal body,
+         @ApiParam(value = "A voucher provision reversal.", required = true) @NotNull @Valid BasicReversal body,
          @Context SecurityContext securityContext,
          @Context Request request,
          @Suspended AsyncResponse asyncResponse,
