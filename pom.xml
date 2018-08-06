@@ -43,7 +43,7 @@
         <logback-version>1.0.13</logback-version>
         <major-version>5</major-version>
         <minor-version>8</minor-version>
-        <patch-version>1</patch-version>
+        <patch-version>1-RC1</patch-version>
     </properties>
 
     <dependencies>
@@ -230,7 +230,7 @@
             <plugin>
                 <groupId>org.jfrog.buildinfo</groupId>
                 <artifactId>artifactory-maven-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>2.6.1</version>
                 <inherited>false</inherited>
                 <executions>
                     <execution>
