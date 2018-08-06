@@ -1,5 +1,11 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+##v5.8.1
+
+Released 3 August 2018
+
+ - Added `@Valid` annotations to resources and model objects, which allows the object to be recursively validated. 
+
 ##v5.8.0
 
 Released 27 June 2018
