@@ -1,12 +1,18 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
-##v5.8.1
+## v5.9.0
+
+Released 18 September 2018
+- Update base service interface version to v3.15.0.
+  - Added `PaymentMethod` subtype `CardPayment`
+
+## v5.8.1
 
 Released 3 August 2018
 
  - Added `@Valid` annotations to resources and model objects, which allows the object to be recursively validated. 
 
-##v5.8.0
+## v5.8.0
 
 Released 27 June 2018
 
@@ -14,7 +20,7 @@ Released 27 June 2018
   - wholesalePrice
   - recipientAmount
 
-##v5.7.2
+## v5.7.2
 
 Released 08 June 2018
 
@@ -31,7 +37,7 @@ Released 08 June 2018
   - providerErrorCode
   - providerRef
 
-## 5.7.1
+## v5.7.1
 
 Released 24 May 2018
 
