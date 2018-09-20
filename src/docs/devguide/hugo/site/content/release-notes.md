@@ -5,6 +5,14 @@ This page describes changes to the Airtime Service Interface implemented across 
 Released 18 September 2018
 - Update base service interface version to v3.15.0.
   - Added `PaymentMethod` subtype `CardPayment`
+  - Added `PaymentMethod` subtype `An32TokenPayment`
+  - Added `dateOfBirth` and `status` field to `Customer` model
+  - Added utility for Http authentication
+  - Added java8 times
+  - Added `VasMessage` interface such that `Transaction` and `BasicAdvice` implement.
+  - Added utility for serialising and deserialing JSON objects
+  - Added `EncryptedPin` class 
+  - Added `CARD_HOLDER_INQUIRY` and `POINTS_INQUIRY` to `TranType`
 
 ## v5.8.1
 
