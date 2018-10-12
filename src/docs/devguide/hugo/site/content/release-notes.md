@@ -2,7 +2,7 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ## v5.9.0
 
-Released 27 September 2018
+Released 12 October 2018
 - Update base service interface version to v3.15.0.
   - Added `PaymentMethod` subtype `CardPayment`
   - Added `PaymentMethod` subtype `An32TokenPayment`
