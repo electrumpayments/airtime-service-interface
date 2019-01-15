@@ -1,5 +1,10 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.9.1
+
+Released TBA
+- Clean up unused dependencies
+
 ## v5.9.0
 
 Released 12 October 2018
@@ -11,14 +16,14 @@ Released 12 October 2018
   - Added JAVA 8 Times
   - Added `VasMessage` interface such that `Transaction` and `BasicAdvice` implement.
   - Added utility for serialising and deserialing JSON objects
-  - Added `EncryptedPin` class 
+  - Added `EncryptedPin` class
   - Added `CARD_HOLDER_INQUIRY` and `POINTS_INQUIRY` to `TranType`
 
 ## v5.8.1
 
 Released 3 August 2018
 
- - Added `@Valid` annotations to resources and model objects, which allows the object to be recursively validated. 
+ - Added `@Valid` annotations to resources and model objects, which allows the object to be recursively validated.
 
 ## v5.8.0
 
