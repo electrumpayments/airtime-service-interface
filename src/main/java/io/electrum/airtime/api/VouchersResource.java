@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 import io.swagger.annotations.ResponseHeader;
 
-@Path(VouchersResource.PATH)
+@Path("/")
 @Deprecated
 @Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
 public abstract class VouchersResource {

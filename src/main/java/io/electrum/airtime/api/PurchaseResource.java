@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 
-@Path(PurchaseResource.PATH)
+@Path("/")
 @Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
 public abstract class PurchaseResource {
 

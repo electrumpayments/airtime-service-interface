@@ -1,5 +1,17 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.10.0
+
+Released 14 February 2019
+- Added new ErrorTypes:
+  - `INSUFFICIENT_FUNDS`
+  - `INVALID_CARD_NUMBER`
+  - `CARD_EXPIRED`
+  - `INCORRECT_PIN`
+  - `PIN_ATTEMPTS_EXCEEDED`
+- Corrected repetition of API base path.
+  - *Note* This is breaking change to the API but is not treated as such. Previously the API defined paths to operations as `/airtime/v5/airtime/v5/{operation}` when they should have been of the more simple form `/airtime/v5/{operation}`. Changing the API base path in this manner would typically be a breaking change and would be reflected as such by bumping the major version number in the URL from `v5` to `v6`. However, all known projects depending on the Airtime Service Interface are already implemented using the simpler base path of `/airtime/v5/{operation}`. Thus the decision was made to transparently fix the base path repetition bug as a minor version update as this was deemed to be a less disruptive change to all known projects.
+
 ## v5.9.0
 
 Released 12 October 2018
@@ -11,14 +23,14 @@ Released 12 October 2018
   - Added JAVA 8 Times
   - Added `VasMessage` interface such that `Transaction` and `BasicAdvice` implement.
   - Added utility for serialising and deserialing JSON objects
-  - Added `EncryptedPin` class 
+  - Added `EncryptedPin` class
   - Added `CARD_HOLDER_INQUIRY` and `POINTS_INQUIRY` to `TranType`
 
 ## v5.8.1
 
 Released 3 August 2018
 
- - Added `@Valid` annotations to resources and model objects, which allows the object to be recursively validated. 
+ - Added `@Valid` annotations to resources and model objects, which allows the object to be recursively validated.
 
 ## v5.8.0
 
