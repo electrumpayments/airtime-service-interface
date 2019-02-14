@@ -3,14 +3,15 @@ This page describes changes to the Airtime Service Interface implemented across 
 ## v5.10.0
 
 Released 14 February 2019
+- Corrected repetition of API base path.
+  - *Note* This is breaking change to the API but is not treated as such. Previously the API defined paths to operations as `/airtime/v5/airtime/v5/{operation}` when they should have been of the more simple form `/airtime/v5/{operation}`. Changing the API base path in this manner would typically be a breaking change and would be reflected as such by bumping the major version number in the URL from `v5` to `v6`. However, all known projects depending on the Airtime Service Interface are already implemented using the simpler base path of `/airtime/v5/{operation}`. Thus the decision was made to transparently fix the base path repetition bug as a minor version update as this was deemed to be a less disruptive change to all known projects.
 - Added new ErrorTypes:
   - `INSUFFICIENT_FUNDS`
   - `INVALID_CARD_NUMBER`
   - `CARD_EXPIRED`
   - `INCORRECT_PIN`
   - `PIN_ATTEMPTS_EXCEEDED`
-- Corrected repetition of API base path.
-  - *Note* This is breaking change to the API but is not treated as such. Previously the API defined paths to operations as `/airtime/v5/airtime/v5/{operation}` when they should have been of the more simple form `/airtime/v5/{operation}`. Changing the API base path in this manner would typically be a breaking change and would be reflected as such by bumping the major version number in the URL from `v5` to `v6`. However, all known projects depending on the Airtime Service Interface are already implemented using the simpler base path of `/airtime/v5/{operation}`. Thus the decision was made to transparently fix the base path repetition bug as a minor version update as this was deemed to be a less disruptive change to all known projects.
+- Added `RELATIVE_PATH` and `FULL_PATH` variables to the Java implementation of the API.
 
 ## v5.9.0
 

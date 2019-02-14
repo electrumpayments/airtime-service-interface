@@ -44,6 +44,8 @@ public abstract class VouchersResource {
       public static final int SUCCESS = 202;
       public static final String PATH =
             "/{" + PathParameters.REQUEST_ID + "}/confirmations/{" + PathParameters.CONFIRMATION_ID + "}";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
          public static final String CONFIRMATION_ID = "confirmationId";
@@ -55,6 +57,8 @@ public abstract class VouchersResource {
       public static final String PROVISION_VOUCHER = "provisionVoucher";
       public static final int SUCCESS = 201;
       public static final String PATH = "/{" + PathParameters.REQUEST_ID + "}";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
          public static final String REQUEST_ID = "requestId";
@@ -66,6 +70,8 @@ public abstract class VouchersResource {
       public static final int SUCCESS = 202;
       public static final String PATH =
             "/{" + PathParameters.REQUEST_ID + "}/reversals/{" + PathParameters.REVERSAL_ID + "}";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
          public static final String REVERSAL_ID = "reversalId";

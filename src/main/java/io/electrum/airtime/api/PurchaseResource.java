@@ -41,24 +41,32 @@ public abstract class PurchaseResource {
       public static final String PURCHASE_CONFIRMATION = "purchaseConfirmation";
       public static final int SUCCESS = 202;
       public static final String PATH = "/confirmations";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
    }
 
    public class Purchase {
       public static final String PURCHASE = "purchase";
       public static final int SUCCESS = 201;
       public static final String PATH = "/";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
    }
 
    public class ReversePurchase {
       public static final String REVERSE_PURCHASE = "purchaseReversal";
       public static final int SUCCESS = 202;
       public static final String PATH = "/reversals";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
    }
 
    public class GetPurchaseStatus {
       public static final String GET_PURCHASE_STATUS = "purchaseStatus";
       public static final int SUCCESS = 200;
       public static final String PATH = "/status";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class QueryParameters {
          public static final String PROVIDER = "provider";
