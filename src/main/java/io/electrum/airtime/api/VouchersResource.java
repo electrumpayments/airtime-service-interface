@@ -44,7 +44,7 @@ public abstract class VouchersResource {
       public static final int SUCCESS = 202;
       public static final String PATH =
             "/{" + PathParameters.REQUEST_ID + "}/confirmations/{" + PathParameters.CONFIRMATION_ID + "}";
-      public static final String RELATIVE_PATH = PATH;
+      public static final String RELATIVE_PATH = "/vouchers"+PATH;
       public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
@@ -57,7 +57,7 @@ public abstract class VouchersResource {
       public static final String PROVISION_VOUCHER = "provisionVoucher";
       public static final int SUCCESS = 201;
       public static final String PATH = "/{" + PathParameters.REQUEST_ID + "}";
-      public static final String RELATIVE_PATH = PATH;
+      public static final String RELATIVE_PATH = "/vouchers"+PATH;
       public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
@@ -70,7 +70,7 @@ public abstract class VouchersResource {
       public static final int SUCCESS = 202;
       public static final String PATH =
             "/{" + PathParameters.REQUEST_ID + "}/reversals/{" + PathParameters.REVERSAL_ID + "}";
-      public static final String RELATIVE_PATH = PATH;
+      public static final String RELATIVE_PATH = "/vouchers"+PATH;
       public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
@@ -80,7 +80,7 @@ public abstract class VouchersResource {
    }
 
    @POST
-   @Path(ConfirmVoucher.PATH)
+   @Path(ConfirmVoucher.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = ConfirmVoucher.CONFIRM_VOUCHER, value = "Confirm a voucher provision request that completed successfully.", notes = ""
@@ -134,7 +134,7 @@ public abstract class VouchersResource {
    }
 
    @POST
-   @Path(ProvisionVoucher.PATH)
+   @Path(ProvisionVoucher.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = ProvisionVoucher.PROVISION_VOUCHER, value = "Request a voucher be provisioned.", notes = "Requests a voucher from the voucher vendor.")
@@ -181,7 +181,7 @@ public abstract class VouchersResource {
    }
 
    @POST
-   @Path(ReverseVoucher.PATH)
+   @Path(ReverseVoucher.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = ReverseVoucher.REVERSE_VOUCHER, value = "Reverse a voucher provision request that failed or timed out.", notes = ""

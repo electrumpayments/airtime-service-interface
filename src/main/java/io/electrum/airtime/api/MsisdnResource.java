@@ -36,7 +36,7 @@ public abstract class MsisdnResource {
       public static final String LOOKUP_MSISDN = "lookupMsisdn";
       public static final int SUCCESS = 200;
       public static final String PATH = "/";
-      public static final String RELATIVE_PATH = PATH;
+      public static final String RELATIVE_PATH = "/msisdn" + PATH;
       public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class QueryParameters {
@@ -46,7 +46,7 @@ public abstract class MsisdnResource {
    }
 
    @GET
-   @Path(LookupMsisdn.PATH)
+   @Path(LookupMsisdn.RELATIVE_PATH)
    @Produces({ "application/json" })
    @ApiOperation(nickname = LookupMsisdn.LOOKUP_MSISDN, value = "Looks up information associated with the given Msisdn. "
          + "This includes such information as available products and promotions, operator information etc.")
