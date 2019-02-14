@@ -24,19 +24,20 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 
-@Path("/")
+@Path(MsisdnResource.RESOURCE_PATH)
 @Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
 public abstract class MsisdnResource {
 
    protected abstract IMsisdnResource getResourceImplementation();
 
-   public static final String PATH = AirtimeApi.API_BASE_PATH + "/msisdn";
+   public static final String RESOURCE_PATH = "/msisdn";
+   public static final String PATH = AirtimeApi.API_BASE_PATH + RESOURCE_PATH;
 
    public class LookupMsisdn {
       public static final String LOOKUP_MSISDN = "lookupMsisdn";
       public static final int SUCCESS = 200;
       public static final String PATH = "/";
-      public static final String RELATIVE_PATH = "/msisdn" + PATH;
+      public static final String RELATIVE_PATH = PATH;
       public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class QueryParameters {

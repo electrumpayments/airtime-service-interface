@@ -30,21 +30,22 @@ import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 import io.swagger.annotations.ResponseHeader;
 
-@Path("/")
+@Path(VouchersResource.RESOURCE_PATH)
 @Deprecated
 @Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
 public abstract class VouchersResource {
 
    protected abstract IVouchersResource getResourceImplementation();
 
-   public static final String PATH = AirtimeApi.API_BASE_PATH + "/vouchers";
+   public static final String RESOURCE_PATH = "/vouchers";
+   public static final String PATH = AirtimeApi.API_BASE_PATH + RESOURCE_PATH;
 
    public class ConfirmVoucher {
       public static final String CONFIRM_VOUCHER = "confirmVoucher";
       public static final int SUCCESS = 202;
       public static final String PATH =
             "/{" + PathParameters.REQUEST_ID + "}/confirmations/{" + PathParameters.CONFIRMATION_ID + "}";
-      public static final String RELATIVE_PATH = "/vouchers"+PATH;
+      public static final String RELATIVE_PATH = PATH;
       public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
@@ -57,7 +58,7 @@ public abstract class VouchersResource {
       public static final String PROVISION_VOUCHER = "provisionVoucher";
       public static final int SUCCESS = 201;
       public static final String PATH = "/{" + PathParameters.REQUEST_ID + "}";
-      public static final String RELATIVE_PATH = "/vouchers"+PATH;
+      public static final String RELATIVE_PATH = PATH;
       public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
@@ -70,7 +71,7 @@ public abstract class VouchersResource {
       public static final int SUCCESS = 202;
       public static final String PATH =
             "/{" + PathParameters.REQUEST_ID + "}/reversals/{" + PathParameters.REVERSAL_ID + "}";
-      public static final String RELATIVE_PATH = "/vouchers"+PATH;
+      public static final String RELATIVE_PATH = PATH;
       public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
