@@ -30,20 +30,23 @@ import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 import io.swagger.annotations.ResponseHeader;
 
-@Path(VouchersResource.PATH)
+@Path(VouchersResource.RESOURCE_PATH)
 @Deprecated
 @Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
 public abstract class VouchersResource {
 
    protected abstract IVouchersResource getResourceImplementation();
 
-   public static final String PATH = AirtimeApi.API_BASE_PATH + "/vouchers";
+   public static final String RESOURCE_PATH = "/vouchers";
+   public static final String PATH = AirtimeApi.API_BASE_PATH + RESOURCE_PATH;
 
    public class ConfirmVoucher {
       public static final String CONFIRM_VOUCHER = "confirmVoucher";
       public static final int SUCCESS = 202;
       public static final String PATH =
             "/{" + PathParameters.REQUEST_ID + "}/confirmations/{" + PathParameters.CONFIRMATION_ID + "}";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
          public static final String CONFIRMATION_ID = "confirmationId";
@@ -55,6 +58,8 @@ public abstract class VouchersResource {
       public static final String PROVISION_VOUCHER = "provisionVoucher";
       public static final int SUCCESS = 201;
       public static final String PATH = "/{" + PathParameters.REQUEST_ID + "}";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
          public static final String REQUEST_ID = "requestId";
@@ -66,6 +71,8 @@ public abstract class VouchersResource {
       public static final int SUCCESS = 202;
       public static final String PATH =
             "/{" + PathParameters.REQUEST_ID + "}/reversals/{" + PathParameters.REVERSAL_ID + "}";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = MsisdnResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
          public static final String REVERSAL_ID = "reversalId";
@@ -74,7 +81,7 @@ public abstract class VouchersResource {
    }
 
    @POST
-   @Path(ConfirmVoucher.PATH)
+   @Path(ConfirmVoucher.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = ConfirmVoucher.CONFIRM_VOUCHER, value = "Confirm a voucher provision request that completed successfully.", notes = ""
@@ -128,7 +135,7 @@ public abstract class VouchersResource {
    }
 
    @POST
-   @Path(ProvisionVoucher.PATH)
+   @Path(ProvisionVoucher.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = ProvisionVoucher.PROVISION_VOUCHER, value = "Request a voucher be provisioned.", notes = "Requests a voucher from the voucher vendor.")
@@ -175,7 +182,7 @@ public abstract class VouchersResource {
    }
 
    @POST
-   @Path(ReverseVoucher.PATH)
+   @Path(ReverseVoucher.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = ReverseVoucher.REVERSE_VOUCHER, value = "Reverse a voucher provision request that failed or timed out.", notes = ""

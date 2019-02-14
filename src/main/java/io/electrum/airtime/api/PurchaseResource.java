@@ -29,36 +29,45 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 
-@Path(PurchaseResource.PATH)
+@Path(PurchaseResource.RESOURCE_PATH)
 @Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
 public abstract class PurchaseResource {
 
    protected abstract IPurchaseResource getResourceImplementation();
 
-   public static final String PATH = AirtimeApi.API_BASE_PATH + "/purchases";
+   public static final String RESOURCE_PATH = "/purchases";
+   public static final String PATH = AirtimeApi.API_BASE_PATH + RESOURCE_PATH;
 
    public class ConfirmPurchase {
       public static final String PURCHASE_CONFIRMATION = "purchaseConfirmation";
       public static final int SUCCESS = 202;
       public static final String PATH = "/confirmations";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
    }
 
    public class Purchase {
       public static final String PURCHASE = "purchase";
       public static final int SUCCESS = 201;
       public static final String PATH = "/";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
    }
 
    public class ReversePurchase {
       public static final String REVERSE_PURCHASE = "purchaseReversal";
       public static final int SUCCESS = 202;
       public static final String PATH = "/reversals";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
    }
 
    public class GetPurchaseStatus {
       public static final String GET_PURCHASE_STATUS = "purchaseStatus";
       public static final int SUCCESS = 200;
       public static final String PATH = "/status";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
 
       public class QueryParameters {
          public static final String PROVIDER = "provider";
@@ -68,7 +77,7 @@ public abstract class PurchaseResource {
    }
 
    @POST
-   @Path(ConfirmPurchase.PATH)
+   @Path(ConfirmPurchase.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = ConfirmPurchase.PURCHASE_CONFIRMATION, value = "Confirm that a previous purchase operation has completed successfully at the POS.", notes = ""
@@ -95,7 +104,7 @@ public abstract class PurchaseResource {
    }
 
    @POST
-   @Path(Purchase.PATH)
+   @Path(Purchase.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = Purchase.PURCHASE, value = "Purchase an airtime product.", notes = "Requests an airtime product from the provider.")
@@ -118,7 +127,7 @@ public abstract class PurchaseResource {
    }
 
    @POST
-   @Path(ReversePurchase.PATH)
+   @Path(ReversePurchase.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = ReversePurchase.REVERSE_PURCHASE, value = "Reverse an airtime purchase request that failed or timed out.", notes = ""
@@ -148,7 +157,7 @@ public abstract class PurchaseResource {
    }
 
    @GET
-   @Path(GetPurchaseStatus.PATH)
+   @Path(GetPurchaseStatus.RELATIVE_PATH)
    @Produces({ "application/json" })
    @ApiOperation(nickname = GetPurchaseStatus.GET_PURCHASE_STATUS, value = "Looks up the status of a prior airtime purchase at the specified provider. "
          + "If the airtime provider does not support the reversal operation then the purchaseStatus operation should be used to "
