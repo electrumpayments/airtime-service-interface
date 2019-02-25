@@ -102,7 +102,6 @@ public class Product {
     **/
    @ApiModelProperty(value = "The name of the product.")
    @JsonProperty("name")
-   @Pattern(regexp = "[0-9A-Za-z]{1,20}")
    public String getName() {
       return name;
    }

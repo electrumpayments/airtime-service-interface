@@ -1,5 +1,10 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.11.0
+
+Released TBC February 2019
+- The `Product.name` field is now an unrestricted string.
+
 ## v5.10.0
 
 Released 14 February 2019
