@@ -5,6 +5,8 @@ import java.util.Objects;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -102,6 +104,7 @@ public class Product {
     **/
    @ApiModelProperty(value = "The name of the product.")
    @JsonProperty("name")
+   @Length(min = 1, max = 40)
    public String getName() {
       return name;
    }
