@@ -2,8 +2,8 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ## v5.11.0
 
-Released TBC February 2019
-- The `Product.name` field is now an unrestricted string.
+Released 25 February 2019
+- The `Product.name` field now allows all characters with only a length limitation. The maximum length limitation has been increased to 40.
 
 ## v5.10.0
 
