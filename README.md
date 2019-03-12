@@ -12,12 +12,12 @@ To include the service interface into your maven project, include the below depe
 <dependency>
     <groupId>io.electrum</groupId>
     <artifactId>airtime-service-interface</artifactId>
-    <version>5.9.0</version>
+    <version>5.12.0</version>
 </dependency>
 <dependency>
       <groupId>io.electrum</groupId>
       <artifactId>service-interface-base</artifactId>
-      <version>3.15.0</version>
+      <version>3.19.0</version>
 </dependency>
 ```
 
