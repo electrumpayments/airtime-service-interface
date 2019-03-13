@@ -1,13 +1,26 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.12.0
+
+Released 13 March 2019
+
+- Update base service interface version to v3.19.0.
+  - Added new models:
+      - `Pin` a base PIN model
+      - `PinClear` for PINs in the clear
+      - `PinEncrypted` for encrypted PIN blocks with the PIN block format, accountNumber and the key index
+    - `Pin` was added to `CardPayment`, taking precedence over the existing `encryptedPin` field
+
 ## v5.11.0
 
 Released 25 February 2019
+
 - The `Product.name` field now allows all characters with only a length limitation. The maximum length limitation has been increased to 40.
 
 ## v5.10.0
 
 Released 14 February 2019
+
 - Corrected repetition of API base path.
   - *Note* This is breaking change to the API but is not treated as such. Previously the API defined paths to operations as `/airtime/v5/airtime/v5/{operation}` when they should have been of the more simple form `/airtime/v5/{operation}`. Changing the API base path in this manner would typically be a breaking change and would be reflected as such by bumping the major version number in the URL from `v5` to `v6`. However, all known projects depending on the Airtime Service Interface are already implemented using the simpler base path of `/airtime/v5/{operation}`. Thus the decision was made to transparently fix the base path repetition bug as a minor version update as this was deemed to be a less disruptive change to all known projects.
 - Added new ErrorTypes:
@@ -21,6 +34,7 @@ Released 14 February 2019
 ## v5.9.0
 
 Released 12 October 2018
+
 - Update base service interface version to v3.15.0.
   - Added `PaymentMethod` subtype `CardPayment`
   - Added `PaymentMethod` subtype `An32TokenPayment`
