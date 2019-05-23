@@ -1,5 +1,14 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## 5.13.0
+Released xx
+
+* Added `TRANSACTION_DECLINED` error type
+* Added `CREDIT_CARD_SCHEME_NOT_SUPPORTED` error type
+
+- Update base service interface version to v3.20.0.
+  - Added new `Account.AccountType` value `CASH_PICKUP` for cash pickup scenarios.
+
 ## v5.12.0
 
 Released 13 March 2019
