@@ -43,6 +43,7 @@ public abstract class MsisdnResource {
       public class QueryParameters {
          public static final String MSISDN = "msisdn";
          public static final String OPERATOR = "operator";
+         public static final String PRODUCT_TYPE = "productType";
       }
    }
 
