@@ -53,7 +53,6 @@ public class Product {
    private LedgerAmount recipientAmount = null;
    private LedgerAmount[] productValues = null;
 
-
    /**
     * Describes whether or not the product directly recharges the recipients account (true),
     * or a voucher number is required (false) to redeem the product.
@@ -63,6 +62,12 @@ public class Product {
       return this;
    }
 
+   /**
+    * Describes whether or not the product directly recharges the recipients account (true),
+    * or a voucher number is required (false) to redeem the product.
+    *
+    * @return isDirectTopup
+    **/
    @ApiModelProperty(value = "Describes whether or not the product directly recharges the recipients account (true), or a voucher number is required (false) to redeem the product.")
    @JsonProperty("isDirectTopup")
    public Boolean getIsDirectTopup() {
