@@ -27,6 +27,8 @@ public class Product {
       AIRTIME_VARIABLE("AIRTIME_VARIABLE"),
       SMS_BUNDLE("SMS_BUNDLE"),
       DATA("DATA"),
+      DATA_FIXED("DATA_FIXED"),
+      DATA_VARIABLE("DATA_VARIABLE"),
       APP_RELATED("APP_RELATED"),
       COMBO("COMBO");
       private String value;
@@ -42,6 +44,7 @@ public class Product {
       }
    }
 
+   private Boolean isDirectTopup;
    private String productId = null;
    private String barcode = null;
    private String name = null;
@@ -49,6 +52,26 @@ public class Product {
    private LedgerAmount wholesalePrice = null;
    private LedgerAmount recipientAmount = null;
    private LedgerAmount[] productValues = null;
+
+
+   /**
+    * Describes whether or not the product directly recharges the recipients account (true),
+    * or a voucher number is required (false) to redeem the product.
+    **/
+   public Product isDirectTopup(Boolean isDirectTopup) {
+      this.isDirectTopup = isDirectTopup;
+      return this;
+   }
+
+   @ApiModelProperty(value = "Describes whether or not the product directly recharges the recipients account (true), or a voucher number is required (false) to redeem the product.")
+   @JsonProperty("isDirectTopup")
+   public Boolean getIsDirectTopup() {
+      return isDirectTopup;
+   }
+
+   public void setIsDirectTopup(Boolean isDirectTopup) {
+      this.isDirectTopup = isDirectTopup;
+   }
 
    /**
     * A vendor determined code identifying the product the voucher should pertain to.
