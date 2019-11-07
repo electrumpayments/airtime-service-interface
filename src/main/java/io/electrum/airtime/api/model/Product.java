@@ -31,6 +31,7 @@ public class Product {
       DATA_VARIABLE("DATA_VARIABLE"),
       APP_RELATED("APP_RELATED"),
       COMBO("COMBO");
+
       private String value;
 
       ProductType(String value) {
@@ -54,8 +55,8 @@ public class Product {
    private LedgerAmount[] productValues = null;
 
    /**
-    * Describes whether or not the product directly recharges the recipients account (true),
-    * or a voucher number is required (false) to redeem the product.
+    * Describes whether or not the product directly recharges the recipients account (true), or a voucher number is
+    * required (false) to redeem the product.
     **/
    public Product isDirectTopup(Boolean isDirectTopup) {
       this.isDirectTopup = isDirectTopup;
@@ -63,8 +64,8 @@ public class Product {
    }
 
    /**
-    * Describes whether or not the product directly recharges the recipients account (true),
-    * or a voucher number is required (false) to redeem the product.
+    * Describes whether or not the product directly recharges the recipients account (true), or a voucher number is
+    * required (false) to redeem the product.
     *
     * @return isDirectTopup
     **/
@@ -234,10 +235,8 @@ public class Product {
       }
       Product product = (Product) o;
       return Objects.equals(this.isDirectTopup, product.isDirectTopup)
-            && Objects.equals(this.productId, product.productId)
-            && Objects.equals(this.barcode, product.barcode)
-            && Objects.equals(this.name, product.name)
-            && Objects.equals(this.type, product.type)
+            && Objects.equals(this.productId, product.productId) && Objects.equals(this.barcode, product.barcode)
+            && Objects.equals(this.name, product.name) && Objects.equals(this.type, product.type)
             && Objects.equals(this.wholesalePrice, product.wholesalePrice)
             && Objects.equals(this.recipientAmount, product.recipientAmount);
    }
