@@ -62,6 +62,7 @@ public abstract class MsisdnResource {
    public final void lookupMsisdn(
          @ApiParam(value = "The Msisdn. This must conform to the ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).", required = true) @QueryParam(LookupMsisdn.QueryParameters.MSISDN) @Pattern(regexp = "^\\+?[1-9]\\d{1,14}") @NotNull String msisdn,
          @ApiParam(value = "The provider who processed the original purchase attempt.") @QueryParam(LookupMsisdn.QueryParameters.OPERATOR) String operator,
+         @ApiParam(value = "Used to filter the products to lookup for a given msisdn") @QueryParam(LookupMsisdn.QueryParameters.PRODUCT_TYPE) String productType,
          @Context SecurityContext securityContext,
          @Context Request request,
          @Suspended AsyncResponse asyncResponse,

@@ -44,7 +44,7 @@ public class Product {
       }
    }
 
-   private Boolean isDirectTopup;
+   private Boolean isDirectTopup = null;
    private String productId = null;
    private String barcode = null;
    private String name = null;
@@ -233,15 +233,18 @@ public class Product {
          return false;
       }
       Product product = (Product) o;
-      return Objects.equals(this.productId, product.productId) && Objects.equals(this.barcode, product.barcode)
-            && Objects.equals(this.name, product.name) && Objects.equals(this.type, product.type)
+      return Objects.equals(this.isDirectTopup, product.isDirectTopup)
+            && Objects.equals(this.productId, product.productId)
+            && Objects.equals(this.barcode, product.barcode)
+            && Objects.equals(this.name, product.name)
+            && Objects.equals(this.type, product.type)
             && Objects.equals(this.wholesalePrice, product.wholesalePrice)
             && Objects.equals(this.recipientAmount, product.recipientAmount);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(productId, barcode, name, type, wholesalePrice, recipientAmount);
+      return Objects.hash(isDirectTopup, productId, barcode, name, type, wholesalePrice, recipientAmount);
    }
 
    @Override
@@ -249,6 +252,7 @@ public class Product {
       StringBuilder sb = new StringBuilder();
       sb.append("class Product {\n");
 
+      sb.append("    isDirectTopup: ").append(Utils.toIndentedString(isDirectTopup)).append("\n");
       sb.append("    productId: ").append(Utils.toIndentedString(productId)).append("\n");
       sb.append("    barcode: ").append(Utils.toIndentedString(barcode)).append("\n");
       sb.append("    name: ").append(Utils.toIndentedString(name)).append("\n");
