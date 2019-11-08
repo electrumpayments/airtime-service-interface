@@ -1,14 +1,15 @@
 version: 2
 jobs:
   build-and-release:
-  docker:
-    - image: electrum-docker.jfrog.io/circleci-openjdk
-      auth:
-        username: circleci-reader
-        password: $ARTIFACTORY_READER_PASSWORD
+    docker:
+      - image: electrum-docker.jfrog.io/circleci-openjdk
+        auth:
+          username: circleci-reader
+          password: $ARTIFACTORY_READER_PASSWORD
     steps:
-      - setup_remote_docker
-      - checkout
+      - run:
+          name: Sonar Checkout
+          command: /electrum/bin/sonarCheckout.sh
       - restore_cache:
           # if you ever need to invalidate the cache, simply bump the version number
           keys:
@@ -26,10 +27,7 @@ jobs:
           command: /electrum/bin/validateReleaseType.sh
       - run:
           name: Compile, Test, and Release
-          command: /electrum/bin/simpleTestAndReleaseJava.sh
-      - run:
-          name: Deploy docs to Github Pages
-          command: /electrum/bin/deployGithubPages.sh ~/project/target/devguide/site
+          command: /electrum/bin/simpleTestAndReleaseJava.sh "-PpackagePluginRpm"
       - run:
           name: Release failed! Revert any release steps that might have been taken
           command: /electrum/bin/revertReleaseJava.sh
@@ -46,6 +44,9 @@ jobs:
       - store_artifacts:
           path: ~/tests
           destination: tests
+      - store_artifacts:
+          path: log
+          destination: log
       - store_artifacts:
           path: logs
           destination: logs
@@ -83,7 +84,6 @@ jobs:
           username: circleci-reader
           password: $ARTIFACTORY_READER_PASSWORD
     steps:
-      - setup_remote_docker
       - checkout
       - restore_cache:
           # if you ever need to invalidate the cache, simply bump the version number
@@ -96,6 +96,10 @@ jobs:
       - run:
           name: Test, but only if any Electrum dependencies changed
           command: /electrum/bin/testWithUpdatedDepsJava.sh
+      - run:
+          name: Notify success to slack
+          command: /electrum/bin/notifySlackDepBuildSucceeded.sh
+          when: on_success
       - run:
           name: Notify failure to slack
           command: /electrum/bin/notifySlackDepBuildFailed.sh
@@ -113,17 +117,22 @@ jobs:
           path: ~/tests
           destination: tests
       - store_artifacts:
+          path: log
+          destination: log
+      - store_artifacts:
           path: logs
           destination: logs
 
 workflows:
   version: 2
-  build:
+  commit:
     jobs:
       - build-and-release:
           context: java
       - code-coverage-report:
           context: java
+          requires:
+            - build-and-release
   nightly:
     jobs:
       - build-with-latest-deps:
