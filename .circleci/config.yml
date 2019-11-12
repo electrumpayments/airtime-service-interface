@@ -61,6 +61,7 @@ jobs:
           username: circleci-reader
           password: $ARTIFACTORY_READER_PASSWORD
     steps:
+      - setup_remote_docker
       - run:
           name: Sonar Checkout
           command: /electrum/bin/sonarCheckout.sh
