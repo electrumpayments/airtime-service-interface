@@ -6,6 +6,7 @@
   <artifactId>airtime-service-interface</artifactId>
   <version>${major-version}.${minor-version}.${patch-version}</version>
   <packaging>jar</packaging>
+
   <name>Airtime Service Interface</name>
   <description>Airtime Service Interface</description>
   <url>https://electrumpayments.github.io/airtime-service-interface-docs</url>
@@ -16,6 +17,7 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+
   <developers>
     <developer>
       <name>Electrum Payments</name>
@@ -47,7 +49,6 @@
   </properties>
 
   <dependencies>
-
     <dependency>
       <groupId>io.electrum</groupId>
       <artifactId>service-interface-base</artifactId>
