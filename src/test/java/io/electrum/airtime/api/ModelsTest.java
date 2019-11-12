@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import io.electrum.airtime.api.model.ErrorDetail;
 import io.electrum.airtime.api.model.Msisdn;
+import io.electrum.airtime.api.model.Product;
 import io.electrum.airtime.api.model.Promotion;
 import io.electrum.airtime.api.utils.AirtimeTestUtils;
 import io.electrum.gateway.GatewayTestListener;
@@ -52,5 +53,22 @@ public class ModelsTest {
 
       Assert.assertEquals(promotion1, promotion2);
       Assert.assertEquals(JsonUtil.serialize(promotion1), JsonUtil.serialize(promotion2));
+   }
+
+   @Test
+   public void productTest() throws Exception {
+      Product productDirect1 =
+            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PRODUCT_DIRECT, Product.class);
+      Product productDirect2 = JsonUtil.deserialize(JsonUtil.serialize(productDirect1), Product.class);
+
+      Assert.assertEquals(productDirect1, productDirect2);
+      Assert.assertEquals(JsonUtil.serialize(productDirect1), JsonUtil.serialize(productDirect2));
+
+      Product productNotDirect1 =
+            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PRODUCT_NOT_DIRECT, Product.class);
+      Product productNotDirect2 = JsonUtil.deserialize(JsonUtil.serialize(productNotDirect1), Product.class);
+
+      Assert.assertEquals(productNotDirect1, productNotDirect2);
+      Assert.assertEquals(JsonUtil.serialize(productNotDirect1), JsonUtil.serialize(productNotDirect2));
    }
 }
