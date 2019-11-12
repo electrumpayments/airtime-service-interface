@@ -15,6 +15,10 @@ import io.electrum.airtime.api.model.PurchaseConfirmation;
 import io.electrum.airtime.api.model.PurchaseRequest;
 import io.electrum.airtime.api.model.PurchaseResponse;
 import io.electrum.airtime.api.model.PurchaseReversal;
+import io.electrum.airtime.api.model.Voucher;
+import io.electrum.airtime.api.model.VoucherConfirmation;
+import io.electrum.airtime.api.model.VoucherRequest;
+import io.electrum.airtime.api.model.VoucherResponse;
 import io.electrum.airtime.api.utils.AirtimeTestUtils;
 import io.electrum.gateway.GatewayTestListener;
 import io.electrum.vas.JsonUtil;
@@ -132,6 +136,48 @@ public class ModelsTest {
 
       Assert.assertEquals(purchaseReversal1, purchaseReversal2);
       Assert.assertEquals(JsonUtil.serialize(purchaseReversal1), JsonUtil.serialize(purchaseReversal2));
+   }
+
+   @Test
+   public void voucherTest() throws Exception {
+      Voucher voucher1 = AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.VOUCHER, Voucher.class);
+      Voucher voucher2 = JsonUtil.deserialize(JsonUtil.serialize(voucher1), Voucher.class);
+
+      Assert.assertEquals(voucher1, voucher2);
+      Assert.assertEquals(JsonUtil.serialize(voucher1), JsonUtil.serialize(voucher2));
+   }
+
+   @Test
+   public void voucherRequestTest() throws Exception {
+      VoucherRequest voucherRequest1 =
+            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.VOUCHER_REQ, VoucherRequest.class);
+      VoucherRequest voucherRequest2 = JsonUtil.deserialize(JsonUtil.serialize(voucherRequest1), VoucherRequest.class);
+
+      Assert.assertEquals(voucherRequest1, voucherRequest2);
+      Assert.assertEquals(JsonUtil.serialize(voucherRequest1), JsonUtil.serialize(voucherRequest2));
+   }
+
+   @Test
+   public void voucherResponseTest() throws Exception {
+      VoucherResponse voucherResponse1 =
+            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.VOUCHER_RSP, VoucherResponse.class);
+      VoucherResponse voucherResponse2 =
+            JsonUtil.deserialize(JsonUtil.serialize(voucherResponse1), VoucherResponse.class);
+
+      Assert.assertEquals(voucherResponse1, voucherResponse2);
+      Assert.assertEquals(JsonUtil.serialize(voucherResponse1), JsonUtil.serialize(voucherResponse2));
+   }
+
+   @Test
+   public void voucherConfirmationTest() throws Exception {
+      VoucherConfirmation voucherConfirmation1 =
+            AirtimeTestUtils
+                  .deserialiseJsonObjectFromFile(PayloadFileLocations.VOUCHER_CONF, VoucherConfirmation.class);
+      VoucherConfirmation voucherConfirmation2 =
+            JsonUtil.deserialize(JsonUtil.serialize(voucherConfirmation1), VoucherConfirmation.class);
+
+      Assert.assertEquals(voucherConfirmation1, voucherConfirmation2);
+      Assert.assertEquals(JsonUtil.serialize(voucherConfirmation1), JsonUtil.serialize(voucherConfirmation2));
    }
 
 }
