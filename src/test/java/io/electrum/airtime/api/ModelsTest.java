@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import io.electrum.airtime.api.model.ErrorDetail;
 import io.electrum.airtime.api.model.Msisdn;
+import io.electrum.airtime.api.model.MsisdnInfoResponse;
 import io.electrum.airtime.api.model.Product;
 import io.electrum.airtime.api.model.Promotion;
 import io.electrum.airtime.api.utils.AirtimeTestUtils;
@@ -46,13 +47,15 @@ public class ModelsTest {
    }
 
    @Test
-   public void promotionTest() throws Exception {
-      Promotion promotion1 =
-            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PROMOTION, Promotion.class);
-      Promotion promotion2 = JsonUtil.deserialize(JsonUtil.serialize(promotion1), Promotion.class);
+   public void msisdnInfoResponseTest() throws Exception {
+      MsisdnInfoResponse msisdnInfoResponse1 =
+            AirtimeTestUtils
+                  .deserialiseJsonObjectFromFile(PayloadFileLocations.MSISDN_INFO_RSP, MsisdnInfoResponse.class);
+      MsisdnInfoResponse msisdnInfoResponse2 =
+            JsonUtil.deserialize(JsonUtil.serialize(msisdnInfoResponse1), MsisdnInfoResponse.class);
 
-      Assert.assertEquals(promotion1, promotion2);
-      Assert.assertEquals(JsonUtil.serialize(promotion1), JsonUtil.serialize(promotion2));
+      Assert.assertEquals(msisdnInfoResponse1, msisdnInfoResponse2);
+      Assert.assertEquals(JsonUtil.serialize(msisdnInfoResponse1), JsonUtil.serialize(msisdnInfoResponse2));
    }
 
    @Test
@@ -71,4 +74,15 @@ public class ModelsTest {
       Assert.assertEquals(productNotDirect1, productNotDirect2);
       Assert.assertEquals(JsonUtil.serialize(productNotDirect1), JsonUtil.serialize(productNotDirect2));
    }
+
+   @Test
+   public void promotionTest() throws Exception {
+      Promotion promotion1 =
+            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PROMOTION, Promotion.class);
+      Promotion promotion2 = JsonUtil.deserialize(JsonUtil.serialize(promotion1), Promotion.class);
+
+      Assert.assertEquals(promotion1, promotion2);
+      Assert.assertEquals(JsonUtil.serialize(promotion1), JsonUtil.serialize(promotion2));
+   }
+
 }

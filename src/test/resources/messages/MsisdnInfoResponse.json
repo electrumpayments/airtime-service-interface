@@ -22,15 +22,71 @@
   "availableProducts": [
     {
       "productId": "hb10",
-      "barcode": null,
+      "barcode": "123456789012",
       "name": "HollyTopUp hb10 ",
-      "type": "APP_RELATED"
+      "type": "AIRTIME_FIXED",
+      "isDirectTopup": false,
+      "wholesalePrice": {
+        "amount": 999,
+        "currency": "ZAR",
+        "ledgerIndicator": null
+      },
+      "recipientAmount": {
+        "amount": 1000,
+        "currency": "ZAR",
+        "ledgerIndicator": null
+      },
+      "productValues": [
+        {
+          "amount": 1000,
+          "currency": "ZAR",
+          "ledgerIndicator": null
+        },
+        {
+          "amount": 5,
+          "currency": "USD",
+          "ledgerIndicator": null
+        },
+        {
+          "amount": 6,
+          "currency": "JPY",
+          "ledgerIndicator": null
+        }
+      ]
     },
     {
       "productId": "hb20",
-      "barcode": null,
+      "barcode": "223456789012",
       "name": "HollyTopUp hb20 ",
-      "type": "APP_RELATED"
+      "type": "AIRTIME_FIXED",
+      "isDirectTopup": false,
+      "wholesalePrice": {
+        "amount": 1999,
+        "currency": "ZAR",
+        "ledgerIndicator": null
+      },
+      "recipientAmount": {
+        "amount": 2000,
+        "currency": "ZAR",
+        "ledgerIndicator": null
+      },
+      "productValues": [
+        {
+          "amount": 2000,
+          "currency": "ZAR",
+          "ledgerIndicator": null
+        },
+        {
+          "amount": 10,
+          "currency": "USD",
+          "ledgerIndicator": null
+        },
+        {
+          "amount": 12,
+          "currency": "JPY",
+          "ledgerIndicator": null
+        }
+      ]
     }
   ],
   "promotion": {

@@ -1,5 +1,6 @@
 package io.electrum.airtime.api.model;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import javax.validation.Valid;
@@ -109,7 +110,7 @@ public class MsisdnInfoResponse {
       }
       MsisdnInfoResponse msisdnInfoRsp = (MsisdnInfoResponse) o;
       return Objects.equals(msisdn, msisdnInfoRsp.msisdn) && Objects.equals(amounts, msisdnInfoRsp.amounts)
-            && Objects.equals(availableProducts, msisdnInfoRsp.availableProducts)
+            && Arrays.equals(availableProducts, msisdnInfoRsp.availableProducts)
             && Objects.equals(promotion, msisdnInfoRsp.promotion);
    }
 
