@@ -11,6 +11,10 @@ import io.electrum.airtime.api.model.Msisdn;
 import io.electrum.airtime.api.model.MsisdnInfoResponse;
 import io.electrum.airtime.api.model.Product;
 import io.electrum.airtime.api.model.Promotion;
+import io.electrum.airtime.api.model.PurchaseConfirmation;
+import io.electrum.airtime.api.model.PurchaseRequest;
+import io.electrum.airtime.api.model.PurchaseResponse;
+import io.electrum.airtime.api.model.PurchaseReversal;
 import io.electrum.airtime.api.utils.AirtimeTestUtils;
 import io.electrum.gateway.GatewayTestListener;
 import io.electrum.vas.JsonUtil;
@@ -83,6 +87,51 @@ public class ModelsTest {
 
       Assert.assertEquals(promotion1, promotion2);
       Assert.assertEquals(JsonUtil.serialize(promotion1), JsonUtil.serialize(promotion2));
+   }
+
+   @Test
+   public void purchaseRequestTest() throws Exception {
+      PurchaseRequest purchaseRequest1 =
+            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PURCHASE_REQ, PurchaseRequest.class);
+      PurchaseRequest purchaseRequest2 =
+            JsonUtil.deserialize(JsonUtil.serialize(purchaseRequest1), PurchaseRequest.class);
+
+      Assert.assertEquals(purchaseRequest1, purchaseRequest2);
+      Assert.assertEquals(JsonUtil.serialize(purchaseRequest1), JsonUtil.serialize(purchaseRequest2));
+   }
+
+   @Test
+   public void purchaseResponseTest() throws Exception {
+      PurchaseResponse purchaseResponse1 =
+            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PURCHASE_RSP, PurchaseResponse.class);
+      PurchaseResponse purchaseResponse2 =
+            JsonUtil.deserialize(JsonUtil.serialize(purchaseResponse1), PurchaseResponse.class);
+
+      Assert.assertEquals(purchaseResponse1, purchaseResponse2);
+      Assert.assertEquals(JsonUtil.serialize(purchaseResponse1), JsonUtil.serialize(purchaseResponse2));
+   }
+
+   @Test
+   public void purchaseConfirmationTest() throws Exception {
+      PurchaseConfirmation purchaseConfirmation1 =
+            AirtimeTestUtils
+                  .deserialiseJsonObjectFromFile(PayloadFileLocations.PURCHASE_CONF, PurchaseConfirmation.class);
+      PurchaseConfirmation purchaseConfirmation2 =
+            JsonUtil.deserialize(JsonUtil.serialize(purchaseConfirmation1), PurchaseConfirmation.class);
+
+      Assert.assertEquals(purchaseConfirmation1, purchaseConfirmation2);
+      Assert.assertEquals(JsonUtil.serialize(purchaseConfirmation1), JsonUtil.serialize(purchaseConfirmation2));
+   }
+
+   @Test
+   public void purchaseReversalTest() throws Exception {
+      PurchaseReversal purchaseReversal1 =
+            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PURCHASE_REV, PurchaseReversal.class);
+      PurchaseReversal purchaseReversal2 =
+            JsonUtil.deserialize(JsonUtil.serialize(purchaseReversal1), PurchaseReversal.class);
+
+      Assert.assertEquals(purchaseReversal1, purchaseReversal2);
+      Assert.assertEquals(JsonUtil.serialize(purchaseReversal1), JsonUtil.serialize(purchaseReversal2));
    }
 
 }

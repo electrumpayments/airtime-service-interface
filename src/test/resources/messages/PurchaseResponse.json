@@ -78,5 +78,13 @@
       "or visit www.hollywoodbets.mobi",
       "Helpline Number 087 353 7634"
     ]
+  },
+  "msisdn": {
+    "msisdn": "27821234567",
+    "country": "ZA",
+    "operator": {
+      "id": "000000",
+      "name": "MTN OPERATOR NAME"
+    }
   }
 }

@@ -2,7 +2,7 @@
   "productId": "hb10",
   "barcode": "123456789012",
   "name": "HollyTopUp hb10 ",
-  "type": "AIRTIME_FIXED",
+  "type": "DATA_VARIABLE",
   "isDirectTopup": true,
   "wholesalePrice": {
     "amount": 999,

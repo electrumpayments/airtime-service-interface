@@ -42,5 +42,21 @@
     "productId": "7701000050822",
     "type": "AIRTIME_FIXED",
     "barcode": "6009709300668"
+  },
+  "recipientMsisdn": {
+    "msisdn": "01821234567",
+    "country": "US",
+    "operator": {
+      "id": "000001",
+      "name": "US OPERATOR NAME"
+    }
+  },
+  "senderMsisdn": {
+    "msisdn": "27821234567",
+    "country": "ZA",
+    "operator": {
+      "id": "000000",
+      "name": "MTN OPERATOR NAME"
+    }
   }
 }
