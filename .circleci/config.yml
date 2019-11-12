@@ -2,10 +2,10 @@ version: 2
 jobs:
   build-and-release:
     docker:
-      - image: electrum-docker.jfrog.io/circleci-openjdk
-        auth:
-          username: circleci-reader
-          password: $ARTIFACTORY_READER_PASSWORD
+      - image: 813968012009.dkr.ecr.us-east-1.amazonaws.com/circleci-openjdk8-8u162
+        aws_auth:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
     steps:
       - run:
           name: Sonar Checkout
@@ -55,14 +55,12 @@ jobs:
           destination: release
   code-coverage-report:
     docker:
-      - image: electrum-docker.jfrog.io/circleci-openjdk
-        auth:
-          username: circleci-reader
-          password: $ARTIFACTORY_READER_PASSWORD
+      - image: 813968012009.dkr.ecr.us-east-1.amazonaws.com/circleci-openjdk8-8u162
+        aws_auth:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
     steps:
-      - run:
-          name: Sonar Checkout
-          command: /electrum/bin/sonarCheckout.sh
+      - checkout
       - restore_cache:
           # if you ever need to invalidate the cache, simply bump the version number
           keys:
@@ -70,19 +68,19 @@ jobs:
             - v1-maven-{{ .Branch }}
       - run:
           name: Generate code coverage report
-          command: /electrum/bin/codeCoverageJacoco.sh
+          command: mvn cobertura:cobertura -B -Dstyle.color=always -Dcobertura.report.format=xml
       - run:
           name: Push to SonarQube
           command: /electrum/bin/runSonar.sh
       - store_artifacts:
-          path: target/site
+          path: target/site/cobertura
           destination: coverage
   build-with-latest-deps:
     docker:
-      - image: electrum-docker.jfrog.io/circleci-openjdk
-        auth:
-          username: circleci-reader
-          password: $ARTIFACTORY_READER_PASSWORD
+      - image: 813968012009.dkr.ecr.us-east-1.amazonaws.com/circleci-openjdk8-8u162
+        aws_auth:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
     steps:
       - checkout
       - restore_cache:
