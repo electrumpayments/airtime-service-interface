@@ -7,6 +7,7 @@ jobs:
           aws_access_key_id: $AWS_ACCESS_KEY_ID
           aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
     steps:
+      - setup_remote_docker
       - run:
           name: Sonar Checkout
           command: /electrum/bin/sonarCheckout.sh
@@ -27,7 +28,7 @@ jobs:
           command: /electrum/bin/validateReleaseType.sh
       - run:
           name: Compile, Test, and Release
-          command: /electrum/bin/simpleTestAndReleaseJava.sh "-PpackagePluginRpm"
+          command: /electrum/bin/simpleTestAndReleaseJava.sh
       - run:
           name: Release failed! Revert any release steps that might have been taken
           command: /electrum/bin/revertReleaseJava.sh
@@ -123,12 +124,14 @@ jobs:
 
 workflows:
   version: 2
-  build:
+  commit:
     jobs:
       - build-and-release:
           context: java
       - code-coverage-report:
           context: java
+          requires:
+            - build-and-release
   nightly:
     jobs:
       - build-with-latest-deps:
