@@ -123,14 +123,12 @@ jobs:
 
 workflows:
   version: 2
-  commit:
+  build:
     jobs:
       - build-and-release:
           context: java
       - code-coverage-report:
           context: java
-          requires:
-            - build-and-release
   nightly:
     jobs:
       - build-with-latest-deps:
