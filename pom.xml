@@ -46,6 +46,9 @@
     <major-version>5</major-version>
     <minor-version>13</minor-version>
     <patch-version>0</patch-version>
+    <electrum-gateway-version>1.47.0</electrum-gateway-version>
+    <electrum-testutils-version>1.2.0</electrum-testutils-version>
+    <jackson.version>2.10.0</jackson.version>
   </properties>
 
   <dependencies>
@@ -134,6 +137,48 @@
       <groupId>javax.activation</groupId>
       <artifactId>activation</artifactId>
       <version>1.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>io.electrum</groupId>
+      <artifactId>electrum-testutils</artifactId>
+      <version>${electrum-testutils-version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.electrum</groupId>
+      <artifactId>electrum-gateway</artifactId>
+      <version>${electrum-gateway-version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.electrum</groupId>
+      <artifactId>electrum-gateway</artifactId>
+      <version>${electrum-gateway-version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson.version}</version>
     </dependency>
   </dependencies>
 

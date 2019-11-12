@@ -1,0 +1,46 @@
+{
+  "id": "8d56acbe-70ee-44c9-b6d3-383637ba2e47",
+  "time": "2019-09-25T09:50:33.000Z",
+  "originator": {
+    "institution": {
+      "id": "63294111",
+      "name": "Shoprite Money Market"
+    },
+    "terminalId": "92762011",
+    "merchant": {
+      "merchantType": "5411",
+      "merchantId": "226001007092764",
+      "merchantName": {
+        "name": "Shoprite Brackenfell",
+        "city": "Cape Town",
+        "region": "WC",
+        "country": "ZA"
+      }
+    }
+  },
+  "client": {
+    "id": "6329411",
+    "name": "Shoprite"
+  },
+  "thirdPartyIdentifiers": [
+    {
+      "institutionId": "6329411",
+      "transactionIdentifier": "SR76453453"
+    }
+  ],
+  "basketRef": "7360",
+  "tranType": "GOODS_AND_SERVICES",
+  "srcAccType": "DEFAULT",
+  "destAccType": "DEFAULT",
+  "amounts": {
+    "requestAmount": {
+      "amount": 2000,
+      "currency": "710"
+    }
+  },
+  "product": {
+    "productId": "7701000050822",
+    "type": "AIRTIME_FIXED",
+    "barcode": "6009709300668"
+  }
+}
