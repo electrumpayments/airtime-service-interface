@@ -5,7 +5,7 @@ public class PayloadFileLocations {
    public static final String ERROR_DETAIL = "ErrorDetail.json";
 
    public static final String MSISDN = "Msisdn.json";
-   public static final String MSISDN_INFO_REQ = "MsisdnInfoRequest.json";
+   public static final String MSISDN_INFO_RSP = "MsisdnInfoResponse.json";
 
    public static final String PRODUCT = "Product.json";
    public static final String PROMOTION = "Promotion.json";

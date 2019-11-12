@@ -1,0 +1,41 @@
+{
+  "msisdn": {
+    "msisdn": "27821234567",
+    "country": "ZA",
+    "operator": {
+      "id": "000000",
+      "name": "MTN OPERATOR NAME"
+    }
+  },
+  "amounts": {
+    "requestAmount": {
+      "amount": 2000,
+      "currency": "ZAR",
+      "ledgerIndicator": null
+    },
+    "approvedAmount": {
+      "amount": 2000,
+      "currency": "ZAR",
+      "ledgerIndicator": null
+    }
+  },
+  "availableProducts": [
+    {
+      "productId": "hb10",
+      "barcode": null,
+      "name": "HollyTopUp hb10 ",
+      "type": "APP_RELATED"
+    },
+    {
+      "productId": "hb20",
+      "barcode": null,
+      "name": "HollyTopUp hb20 ",
+      "type": "APP_RELATED"
+    }
+  ],
+  "promotion": {
+    "promotion": "Promo XYZ",
+    "startDate": "2019-09-25T09:50:33.000Z",
+    "endDate": "2019-10-25T09:50:33.000Z"
+  }
+}
