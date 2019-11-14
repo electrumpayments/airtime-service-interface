@@ -3,7 +3,6 @@ package io.electrum.airtime.api;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import io.electrum.airtime.api.model.ErrorDetail;
@@ -20,10 +19,8 @@ import io.electrum.airtime.api.model.VoucherConfirmation;
 import io.electrum.airtime.api.model.VoucherRequest;
 import io.electrum.airtime.api.model.VoucherResponse;
 import io.electrum.airtime.api.utils.AirtimeTestUtils;
-import io.electrum.gateway.GatewayTestListener;
 import io.electrum.vas.JsonUtil;
 
-@Listeners(GatewayTestListener.class)
 public class ModelsTest {
 
    @BeforeClass

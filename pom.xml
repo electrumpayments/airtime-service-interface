@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.electrum</groupId>
   <artifactId>airtime-service-interface</artifactId>
-  <version>${major-version}.${minor-version}.${patch-version}-RC1</version>
+  <version>${major-version}.${minor-version}.${patch-version}-RC2</version>
   <packaging>jar</packaging>
 
   <name>Airtime Service Interface</name>
@@ -139,46 +139,15 @@
       <version>1.1.1</version>
     </dependency>
     <dependency>
-      <groupId>io.electrum</groupId>
-      <artifactId>electrum-testutils</artifactId>
-      <version>${electrum-testutils-version}</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>ch.qos.logback</groupId>
-          <artifactId>logback-classic</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>io.electrum</groupId>
-      <artifactId>electrum-gateway</artifactId>
-      <version>${electrum-gateway-version}</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>ch.qos.logback</groupId>
-          <artifactId>logback-classic</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>io.electrum</groupId>
-      <artifactId>electrum-gateway</artifactId>
-      <version>${electrum-gateway-version}</version>
-      <type>test-jar</type>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>ch.qos.logback</groupId>
-          <artifactId>logback-classic</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
       <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.0.0</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
