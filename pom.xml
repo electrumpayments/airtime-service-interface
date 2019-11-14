@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.electrum</groupId>
   <artifactId>airtime-service-interface</artifactId>
-  <version>${major-version}.${minor-version}.${patch-version}-RC2</version>
+  <version>${major-version}.${minor-version}.${patch-version}</version>
   <packaging>jar</packaging>
 
   <name>Airtime Service Interface</name>
@@ -45,7 +45,7 @@
     <logback-version>1.0.13</logback-version>
     <major-version>5</major-version>
     <minor-version>13</minor-version>
-    <patch-version>0</patch-version>
+    <patch-version>0-RC2gi</patch-version>
     <electrum-gateway-version>1.47.0</electrum-gateway-version>
     <electrum-testutils-version>1.2.0</electrum-testutils-version>
     <jackson.version>2.10.0</jackson.version>
