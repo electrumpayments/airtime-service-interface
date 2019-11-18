@@ -30,6 +30,9 @@ jobs:
           name: Compile, Test, and Release
           command: /electrum/bin/simpleTestAndReleaseJava.sh
       - run:
+          name: Deploy docs to Github Pages
+          command: /electrum/bin/deployGithubPages.sh ~/project/target/devguide/site
+      - run:
           name: Release failed! Revert any release steps that might have been taken
           command: /electrum/bin/revertReleaseJava.sh
           when: on_fail

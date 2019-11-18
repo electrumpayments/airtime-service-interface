@@ -47,6 +47,10 @@
     <minor-version>13</minor-version>
     <patch-version>0-RC3</patch-version>
     <jackson.version>2.10.0</jackson.version>
+    <jacoco.skip>true</jacoco.skip> <!-- skip code coverage unless maven is run with -Djacoco.skip=false -->
+    <sonar.coverage.jacoco.xmlReportPaths>
+      ${project.reporting.outputDirectory}/jacoco-merged-test-coverage-report/jacoco.xml
+    </sonar.coverage.jacoco.xmlReportPaths>
   </properties>
 
   <dependencies>
