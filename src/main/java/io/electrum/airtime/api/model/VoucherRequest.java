@@ -1,5 +1,12 @@
 package io.electrum.airtime.api.model;
 
+import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.PaymentMethod;
@@ -7,13 +14,6 @@ import io.electrum.vas.model.Tender;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import java.util.List;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Information about the voucher provision request.
@@ -76,10 +76,10 @@ public class VoucherRequest extends Transaction {
       return this;
    }
 
-   @ApiModelProperty(required = false, value = "An array of tenders used to pay for the transaction. This is used " +
-           "if payment is tendered at the point of sale. A Tender differs from a PaymentMethod in that the former " +
-           "represents a payment that has already been collected at the point of sale, whereas the latter represents " +
-           "a payment that still needs to be collected from a third party.")
+   @ApiModelProperty(required = false, value = "An array of tenders used to pay for the transaction. This is used "
+         + "if payment is tendered at the point of sale. A Tender differs from a PaymentMethod in that the former "
+         + "represents a payment that has already been collected at the point of sale, whereas the latter represents "
+         + "a payment that still needs to be collected from a third party.")
    @JsonProperty("tenders")
    public List<Tender> getTenders() {
       return tenders;
@@ -89,11 +89,11 @@ public class VoucherRequest extends Transaction {
       this.tenders = tenders;
    }
 
-   @ApiModelProperty(required = false, value = "An array of payment methods to be used as payment for the " +
-           "transaction. This is used if payment is not tendered at the point of sale, but is effected through one " +
-           "or more calls to third party payment providers as part of the request. A PaymentMethod differs from a " +
-           "Tender in that the former represents payment that still needs to be collected from a third party, " +
-           "whereas the latter represents payment that has already been collected at the point of sale.")
+   @ApiModelProperty(required = false, value = "An array of payment methods to be used as payment for the "
+         + "transaction. This is used if payment is not tendered at the point of sale, but is effected through one "
+         + "or more calls to third party payment providers as part of the request. A PaymentMethod differs from a "
+         + "Tender in that the former represents payment that still needs to be collected from a third party, "
+         + "whereas the latter represents payment that has already been collected at the point of sale.")
    @JsonProperty("paymentMethods")
    public List<PaymentMethod> getPaymentMethods() {
       return paymentMethods;
@@ -108,18 +108,18 @@ public class VoucherRequest extends Transaction {
       StringBuilder sb = new StringBuilder();
       sb.append("class VoucherRequest {\n");
 
-      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
-      sb.append("    product: ").append(Utils.toIndentedString(product)).append("\n");
-      sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
-      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append("\n");
-      sb.append("    client: ").append(Utils.toIndentedString(client)).append("\n");
-      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
-      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
-      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
-      sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
-      sb.append("    paymentMethods: ").append(Utils.toIndentedString(paymentMethods)).append("\n");
-      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append("\n");
-      sb.append("}");
+      sb.append("    id: ").append(Utils.toIndentedString(id)).append('\n');
+      sb.append("    product: ").append(Utils.toIndentedString(product)).append('\n');
+      sb.append("    time: ").append(Utils.toIndentedString(time)).append('\n');
+      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append('\n');
+      sb.append("    client: ").append(Utils.toIndentedString(client)).append('\n');
+      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append('\n');
+      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append('\n');
+      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append('\n');
+      sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append('\n');
+      sb.append("    paymentMethods: ").append(Utils.toIndentedString(paymentMethods)).append('\n');
+      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

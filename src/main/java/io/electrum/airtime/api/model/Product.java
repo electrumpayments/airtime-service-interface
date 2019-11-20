@@ -1,5 +1,6 @@
 package io.electrum.airtime.api.model;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -251,15 +252,15 @@ public class Product {
       StringBuilder sb = new StringBuilder();
       sb.append("class Product {\n");
 
-      sb.append("    isDirectTopup: ").append(Utils.toIndentedString(isDirectTopup)).append("\n");
-      sb.append("    productId: ").append(Utils.toIndentedString(productId)).append("\n");
-      sb.append("    barcode: ").append(Utils.toIndentedString(barcode)).append("\n");
-      sb.append("    name: ").append(Utils.toIndentedString(name)).append("\n");
-      sb.append("    type: ").append(Utils.toIndentedString(type)).append("\n");
-      sb.append("    wholesalePrice: ").append(Utils.toIndentedString(wholesalePrice)).append("\n");
-      sb.append("    recipientAmount: ").append(Utils.toIndentedString(recipientAmount)).append("\n");
-      sb.append("    productValues: ").append(Utils.toIndentedString(productValues)).append("\n");
-      sb.append("}");
+      sb.append("    isDirectTopup: ").append(Utils.toIndentedString(isDirectTopup)).append('\n');
+      sb.append("    productId: ").append(Utils.toIndentedString(productId)).append('\n');
+      sb.append("    barcode: ").append(Utils.toIndentedString(barcode)).append('\n');
+      sb.append("    name: ").append(Utils.toIndentedString(name)).append('\n');
+      sb.append("    type: ").append(Utils.toIndentedString(type)).append('\n');
+      sb.append("    wholesalePrice: ").append(Utils.toIndentedString(wholesalePrice)).append('\n');
+      sb.append("    recipientAmount: ").append(Utils.toIndentedString(recipientAmount)).append('\n');
+      sb.append("    productValues: ").append(Utils.toIndentedString(Arrays.toString(productValues))).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

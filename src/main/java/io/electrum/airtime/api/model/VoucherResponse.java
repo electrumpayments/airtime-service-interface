@@ -1,5 +1,10 @@
 package io.electrum.airtime.api.model;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.Institution;
@@ -7,11 +12,6 @@ import io.electrum.vas.model.SlipData;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Information about the voucher provisioned.
@@ -118,17 +118,17 @@ public class VoucherResponse extends Transaction {
       StringBuilder sb = new StringBuilder();
       sb.append("class VoucherResponse {\n");
 
-      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
-      sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
-      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append("\n");
-      sb.append("    client: ").append(Utils.toIndentedString(client)).append("\n");
-      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
-      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
-      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
-      sb.append("    responseProduct: ").append(Utils.toIndentedString(responseProduct)).append("\n");
-      sb.append("    voucher: ").append(Utils.toIndentedString(voucher)).append("\n");
-      sb.append("    slipData: ").append(Utils.toIndentedString(slipData)).append("\n");
-      sb.append("}");
+      sb.append("    id: ").append(Utils.toIndentedString(id)).append('\n');
+      sb.append("    time: ").append(Utils.toIndentedString(time)).append('\n');
+      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append('\n');
+      sb.append("    client: ").append(Utils.toIndentedString(client)).append('\n');
+      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append('\n');
+      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append('\n');
+      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append('\n');
+      sb.append("    responseProduct: ").append(Utils.toIndentedString(responseProduct)).append('\n');
+      sb.append("    voucher: ").append(Utils.toIndentedString(voucher)).append('\n');
+      sb.append("    slipData: ").append(Utils.toIndentedString(slipData)).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

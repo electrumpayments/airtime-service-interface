@@ -109,6 +109,7 @@ public class MsisdnInfoResponse {
          return false;
       }
       MsisdnInfoResponse msisdnInfoRsp = (MsisdnInfoResponse) o;
+
       return Objects.equals(msisdn, msisdnInfoRsp.msisdn) && Objects.equals(amounts, msisdnInfoRsp.amounts)
             && Arrays.equals(availableProducts, msisdnInfoRsp.availableProducts)
             && Objects.equals(promotion, msisdnInfoRsp.promotion);
@@ -116,7 +117,7 @@ public class MsisdnInfoResponse {
 
    @Override
    public int hashCode() {
-      return Objects.hash(msisdn, amounts, availableProducts, promotion);
+      return Objects.hash(msisdn, amounts, Arrays.hashCode(availableProducts), promotion);
    }
 
    @Override
@@ -124,11 +125,11 @@ public class MsisdnInfoResponse {
       StringBuilder sb = new StringBuilder();
       sb.append("class MsisdnInfoResponse {\n");
 
-      sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append("\n");
-      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append("\n");
-      sb.append("    availableProducts: ").append(Utils.toIndentedString(availableProducts)).append("\n");
-      sb.append("    promotion: ").append(Utils.toIndentedString(promotion)).append("\n");
-      sb.append("}");
+      sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append('\n');
+      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append('\n');
+      sb.append("    availableProducts: ").append(Arrays.toString(availableProducts)).append('\n');
+      sb.append("    promotion: ").append(Utils.toIndentedString(promotion)).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

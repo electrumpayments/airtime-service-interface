@@ -1,5 +1,7 @@
 package io.electrum.airtime.api.model;
 
+import java.util.Objects;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -123,23 +125,44 @@ public class PurchaseResponse extends Transaction {
    }
 
    @Override
+   public boolean equals(java.lang.Object o) {
+      if (this == o) {
+         return true;
+      }
+      if (o == null || getClass() != o.getClass()) {
+         return false;
+      }
+      PurchaseResponse purchaseResponse = (PurchaseResponse) o;
+      return super.equals(o) && Objects.equals(this.amounts, purchaseResponse.amounts)
+            && Objects.equals(this.product, purchaseResponse.product)
+            && Objects.equals(this.msisdn, purchaseResponse.msisdn)
+            && Objects.equals(this.voucher, purchaseResponse.voucher)
+            && Objects.equals(this.slipData, purchaseResponse.slipData);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(super.hashCode(), amounts, product, msisdn, voucher, slipData);
+   }
+
+   @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class PurchaseResponse {\n");
 
-      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
-      sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
-      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append("\n");
-      sb.append("    client: ").append(Utils.toIndentedString(client)).append("\n");
-      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
-      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
-      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
-      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append("\n");
-      sb.append("    product: ").append(Utils.toIndentedString(product)).append("\n");
-      sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append("\n");
-      sb.append("    voucher: ").append(Utils.toIndentedString(voucher)).append("\n");
-      sb.append("    slipData: ").append(Utils.toIndentedString(slipData)).append("\n");
-      sb.append("}");
+      sb.append("    id: ").append(Utils.toIndentedString(id)).append('\n');
+      sb.append("    time: ").append(Utils.toIndentedString(time)).append('\n');
+      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append('\n');
+      sb.append("    client: ").append(Utils.toIndentedString(client)).append('\n');
+      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append('\n');
+      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append('\n');
+      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append('\n');
+      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append('\n');
+      sb.append("    product: ").append(Utils.toIndentedString(product)).append('\n');
+      sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append('\n');
+      sb.append("    voucher: ").append(Utils.toIndentedString(voucher)).append('\n');
+      sb.append("    slipData: ").append(Utils.toIndentedString(slipData)).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

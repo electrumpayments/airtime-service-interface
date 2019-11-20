@@ -306,16 +306,16 @@ public class ErrorDetail {
       StringBuilder sb = new StringBuilder();
       sb.append("class ErrorDetail {\n");
 
-      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
-      sb.append("    originalId: ").append(Utils.toIndentedString(originalId)).append("\n");
-      sb.append("    errorType: ").append(Utils.toIndentedString(errorType)).append("\n");
-      sb.append("    responseMessage: ").append(Utils.toIndentedString(errorMessage)).append("\n");
-      sb.append("    requestType: ").append(Utils.toIndentedString(requestType)).append("\n");
-      sb.append("    detailMessage: ").append(Utils.toIndentedString(detailMessage)).append("\n");
-      sb.append("    providerErrorCode: ").append(Utils.toIndentedString(providerErrorCode)).append("\n");
-      sb.append("    providerErrorMsg: ").append(Utils.toIndentedString(providerErrorMsg)).append("\n");
-      sb.append("    providerRef: ").append(Utils.toIndentedString(providerRef)).append("\n");
-      sb.append("}");
+      sb.append("    id: ").append(Utils.toIndentedString(id)).append('\n');
+      sb.append("    originalId: ").append(Utils.toIndentedString(originalId)).append('\n');
+      sb.append("    errorType: ").append(Utils.toIndentedString(errorType)).append('\n');
+      sb.append("    responseMessage: ").append(Utils.toIndentedString(errorMessage)).append('\n');
+      sb.append("    requestType: ").append(Utils.toIndentedString(requestType)).append('\n');
+      sb.append("    detailMessage: ").append(Utils.toIndentedString(detailMessage)).append('\n');
+      sb.append("    providerErrorCode: ").append(Utils.toIndentedString(providerErrorCode)).append('\n');
+      sb.append("    providerErrorMsg: ").append(Utils.toIndentedString(providerErrorMsg)).append('\n');
+      sb.append("    providerRef: ").append(Utils.toIndentedString(providerRef)).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

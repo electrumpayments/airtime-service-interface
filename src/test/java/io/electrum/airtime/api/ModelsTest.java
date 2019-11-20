@@ -38,7 +38,11 @@ public class ModelsTest {
       ErrorDetail errorDetail2 = JsonUtil.deserialize(JsonUtil.serialize(errorDetail1), ErrorDetail.class);
 
       // check that the payload did not change
+      Assert.assertEquals(errorDetail1, errorDetail1);
       Assert.assertEquals(errorDetail1, errorDetail2);
+      Assert.assertEquals(errorDetail1.hashCode(), errorDetail2.hashCode());
+      Assert.assertEquals(errorDetail1.toString(), errorDetail2.toString());
+      Assert.assertNotEquals(errorDetail1, new Object());
       Assert.assertEquals(JsonUtil.serialize(errorDetail1), JsonUtil.serialize(errorDetail2));
    }
 
@@ -48,6 +52,7 @@ public class ModelsTest {
       Msisdn msisdn2 = JsonUtil.deserialize(JsonUtil.serialize(msisdn1), Msisdn.class);
 
       Assert.assertEquals(msisdn1, msisdn2);
+      Assert.assertNotEquals(msisdn1, new Object());
       Assert.assertEquals(JsonUtil.serialize(msisdn1), JsonUtil.serialize(msisdn2));
    }
 
@@ -59,8 +64,27 @@ public class ModelsTest {
       MsisdnInfoResponse msisdnInfoResponse2 =
             JsonUtil.deserialize(JsonUtil.serialize(msisdnInfoResponse1), MsisdnInfoResponse.class);
 
+      Assert.assertEquals(msisdnInfoResponse1, msisdnInfoResponse1);
       Assert.assertEquals(msisdnInfoResponse1, msisdnInfoResponse2);
+      Assert.assertEquals(msisdnInfoResponse1.hashCode(), msisdnInfoResponse2.hashCode());
+      Assert.assertNotEquals(msisdnInfoResponse1, new Object());
+      Assert.assertEquals(msisdnInfoResponse1.toString(), msisdnInfoResponse2.toString());
       Assert.assertEquals(JsonUtil.serialize(msisdnInfoResponse1), JsonUtil.serialize(msisdnInfoResponse2));
+
+      // Check that changing inner array changes MsisdnInfoResponse
+      msisdnInfoResponse2.availableProducts(null);
+
+      Assert.assertNotEquals(msisdnInfoResponse1, msisdnInfoResponse2);
+
+   }
+
+   @Test
+   public void msisdnInfoResponseTestDifferentAvailProducts() throws Exception {
+      MsisdnInfoResponse msisdnInfoResponse1 =
+            AirtimeTestUtils
+                  .deserialiseJsonObjectFromFile(PayloadFileLocations.MSISDN_INFO_RSP, MsisdnInfoResponse.class);
+      MsisdnInfoResponse msisdnInfoResponse2 =
+            JsonUtil.deserialize(JsonUtil.serialize(msisdnInfoResponse1), MsisdnInfoResponse.class);
    }
 
    @Test
@@ -77,7 +101,10 @@ public class ModelsTest {
       Product productNotDirect2 = JsonUtil.deserialize(JsonUtil.serialize(productNotDirect1), Product.class);
 
       Assert.assertEquals(productNotDirect1, productNotDirect2);
+      Assert.assertNotEquals(productNotDirect1, new Object());
       Assert.assertEquals(JsonUtil.serialize(productNotDirect1), JsonUtil.serialize(productNotDirect2));
+      Assert.assertEquals(productNotDirect1.hashCode(), productNotDirect2.hashCode());
+      Assert.assertEquals(productNotDirect1.toString(), productNotDirect2.toString());
    }
 
    @Test
@@ -87,6 +114,8 @@ public class ModelsTest {
       Promotion promotion2 = JsonUtil.deserialize(JsonUtil.serialize(promotion1), Promotion.class);
 
       Assert.assertEquals(promotion1, promotion2);
+      Assert.assertNotEquals(promotion1, new Object());
+      Assert.assertEquals(promotion1.toString(), promotion2.toString());
       Assert.assertEquals(JsonUtil.serialize(promotion1), JsonUtil.serialize(promotion2));
    }
 
@@ -98,6 +127,7 @@ public class ModelsTest {
             JsonUtil.deserialize(JsonUtil.serialize(purchaseRequest1), PurchaseRequest.class);
 
       Assert.assertEquals(purchaseRequest1, purchaseRequest2);
+      Assert.assertEquals(purchaseRequest1.toString(), purchaseRequest2.toString());
       Assert.assertEquals(JsonUtil.serialize(purchaseRequest1), JsonUtil.serialize(purchaseRequest2));
    }
 
@@ -108,7 +138,11 @@ public class ModelsTest {
       PurchaseResponse purchaseResponse2 =
             JsonUtil.deserialize(JsonUtil.serialize(purchaseResponse1), PurchaseResponse.class);
 
+      Assert.assertEquals(purchaseResponse1, purchaseResponse1);
       Assert.assertEquals(purchaseResponse1, purchaseResponse2);
+      Assert.assertNotEquals(purchaseResponse1, null);
+      Assert.assertEquals(purchaseResponse1.toString(), purchaseResponse2.toString());
+      Assert.assertEquals(purchaseResponse1.hashCode(), purchaseResponse2.hashCode());
       Assert.assertEquals(JsonUtil.serialize(purchaseResponse1), JsonUtil.serialize(purchaseResponse2));
    }
 
@@ -121,6 +155,7 @@ public class ModelsTest {
             JsonUtil.deserialize(JsonUtil.serialize(purchaseConfirmation1), PurchaseConfirmation.class);
 
       Assert.assertEquals(purchaseConfirmation1, purchaseConfirmation2);
+      Assert.assertEquals(purchaseConfirmation1.toString(), purchaseConfirmation2.toString());
       Assert.assertEquals(JsonUtil.serialize(purchaseConfirmation1), JsonUtil.serialize(purchaseConfirmation2));
    }
 
@@ -132,6 +167,7 @@ public class ModelsTest {
             JsonUtil.deserialize(JsonUtil.serialize(purchaseReversal1), PurchaseReversal.class);
 
       Assert.assertEquals(purchaseReversal1, purchaseReversal2);
+      Assert.assertEquals(purchaseReversal1.toString(), purchaseReversal2.toString());
       Assert.assertEquals(JsonUtil.serialize(purchaseReversal1), JsonUtil.serialize(purchaseReversal2));
    }
 
@@ -151,6 +187,7 @@ public class ModelsTest {
       VoucherRequest voucherRequest2 = JsonUtil.deserialize(JsonUtil.serialize(voucherRequest1), VoucherRequest.class);
 
       Assert.assertEquals(voucherRequest1, voucherRequest2);
+      Assert.assertEquals(voucherRequest1.toString(), voucherRequest2.toString());
       Assert.assertEquals(JsonUtil.serialize(voucherRequest1), JsonUtil.serialize(voucherRequest2));
    }
 
@@ -162,6 +199,7 @@ public class ModelsTest {
             JsonUtil.deserialize(JsonUtil.serialize(voucherResponse1), VoucherResponse.class);
 
       Assert.assertEquals(voucherResponse1, voucherResponse2);
+      Assert.assertEquals(voucherResponse1.toString(), voucherResponse2.toString());
       Assert.assertEquals(JsonUtil.serialize(voucherResponse1), JsonUtil.serialize(voucherResponse2));
    }
 
@@ -174,6 +212,7 @@ public class ModelsTest {
             JsonUtil.deserialize(JsonUtil.serialize(voucherConfirmation1), VoucherConfirmation.class);
 
       Assert.assertEquals(voucherConfirmation1, voucherConfirmation2);
+      Assert.assertEquals(voucherConfirmation1.toString(), voucherConfirmation2.toString());
       Assert.assertEquals(JsonUtil.serialize(voucherConfirmation1), JsonUtil.serialize(voucherConfirmation2));
    }
 
