@@ -47,6 +47,33 @@ public abstract class MsisdnResource {
       }
    }
 
+   /**
+    * Deprecated to perform lookupMsisdn method with extra QueryParameter productType.
+    * 
+    * @deprecated use {@link #lookupMsisdn} instead
+    */
+   @Deprecated
+   public final void lookupMsisdn(
+         String msisdn,
+         String operator,
+         @Context SecurityContext securityContext,
+         @Context Request request,
+         @Suspended AsyncResponse asyncResponse,
+         @Context HttpHeaders httpHeaders,
+         @Context UriInfo uriInfo,
+         @Context HttpServletRequest httpServletRequest) {
+      getResourceImplementation().lookupMsisdn(
+            msisdn,
+            operator,
+            null,
+            securityContext,
+            request,
+            httpHeaders,
+            asyncResponse,
+            uriInfo,
+            httpServletRequest);
+   }
+
    @GET
    @Path(LookupMsisdn.RELATIVE_PATH)
    @Produces({ "application/json" })
@@ -62,7 +89,7 @@ public abstract class MsisdnResource {
    public final void lookupMsisdn(
          @ApiParam(value = "The Msisdn. This must conform to the ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).", required = true) @QueryParam(LookupMsisdn.QueryParameters.MSISDN) @Pattern(regexp = "^\\+?[1-9]\\d{1,14}") @NotNull String msisdn,
          @ApiParam(value = "The provider who processed the original purchase attempt.") @QueryParam(LookupMsisdn.QueryParameters.OPERATOR) String operator,
-         @ApiParam(value = "Used to filter the products to lookup for a given msisdn") @QueryParam(LookupMsisdn.QueryParameters.PRODUCT_TYPE) String productType,
+         @ApiParam(value = "Used to filter the products to lookup for a given msisdn.") @QueryParam(LookupMsisdn.QueryParameters.PRODUCT_TYPE) String productType,
          @Context SecurityContext securityContext,
          @Context Request request,
          @Suspended AsyncResponse asyncResponse,
@@ -72,6 +99,7 @@ public abstract class MsisdnResource {
       getResourceImplementation().lookupMsisdn(
             msisdn,
             operator,
+            productType,
             securityContext,
             request,
             httpHeaders,

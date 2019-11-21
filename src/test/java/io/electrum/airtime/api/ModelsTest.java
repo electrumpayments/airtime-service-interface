@@ -18,7 +18,6 @@ import io.electrum.airtime.api.model.Voucher;
 import io.electrum.airtime.api.model.VoucherConfirmation;
 import io.electrum.airtime.api.model.VoucherRequest;
 import io.electrum.airtime.api.model.VoucherResponse;
-import io.electrum.airtime.api.utils.AirtimeTestUtils;
 import io.electrum.vas.JsonUtil;
 
 public class ModelsTest {
@@ -34,7 +33,7 @@ public class ModelsTest {
    @Test
    public void errorDetailTest() throws Exception {
       ErrorDetail errorDetail1 =
-            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.ERROR_DETAIL, ErrorDetail.class);
+            JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.ERROR_DETAIL, ErrorDetail.class, true);
       ErrorDetail errorDetail2 = JsonUtil.deserialize(JsonUtil.serialize(errorDetail1), ErrorDetail.class);
 
       // check that the payload did not change
@@ -48,7 +47,7 @@ public class ModelsTest {
 
    @Test
    public void msisdnTest() throws Exception {
-      Msisdn msisdn1 = AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.MSISDN, Msisdn.class);
+      Msisdn msisdn1 = JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.MSISDN, Msisdn.class, true);
       Msisdn msisdn2 = JsonUtil.deserialize(JsonUtil.serialize(msisdn1), Msisdn.class);
 
       Assert.assertEquals(msisdn1, msisdn2);
@@ -59,8 +58,8 @@ public class ModelsTest {
    @Test
    public void msisdnInfoResponseTest() throws Exception {
       MsisdnInfoResponse msisdnInfoResponse1 =
-            AirtimeTestUtils
-                  .deserialiseJsonObjectFromFile(PayloadFileLocations.MSISDN_INFO_RSP, MsisdnInfoResponse.class);
+            JsonUtil
+                  .deserialiseJsonObjectFromFile(PayloadFileLocations.MSISDN_INFO_RSP, MsisdnInfoResponse.class, true);
       MsisdnInfoResponse msisdnInfoResponse2 =
             JsonUtil.deserialize(JsonUtil.serialize(msisdnInfoResponse1), MsisdnInfoResponse.class);
 
@@ -81,8 +80,8 @@ public class ModelsTest {
    @Test
    public void msisdnInfoResponseTestDifferentAvailProducts() throws Exception {
       MsisdnInfoResponse msisdnInfoResponse1 =
-            AirtimeTestUtils
-                  .deserialiseJsonObjectFromFile(PayloadFileLocations.MSISDN_INFO_RSP, MsisdnInfoResponse.class);
+            JsonUtil
+                  .deserialiseJsonObjectFromFile(PayloadFileLocations.MSISDN_INFO_RSP, MsisdnInfoResponse.class, true);
       MsisdnInfoResponse msisdnInfoResponse2 =
             JsonUtil.deserialize(JsonUtil.serialize(msisdnInfoResponse1), MsisdnInfoResponse.class);
    }
@@ -90,14 +89,14 @@ public class ModelsTest {
    @Test
    public void productTest() throws Exception {
       Product productDirect1 =
-            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PRODUCT_DIRECT, Product.class);
+            JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.PRODUCT_DIRECT, Product.class, true);
       Product productDirect2 = JsonUtil.deserialize(JsonUtil.serialize(productDirect1), Product.class);
 
       Assert.assertEquals(productDirect1, productDirect2);
       Assert.assertEquals(JsonUtil.serialize(productDirect1), JsonUtil.serialize(productDirect2));
 
       Product productNotDirect1 =
-            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PRODUCT_NOT_DIRECT, Product.class);
+            JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.PRODUCT_NOT_DIRECT, Product.class, true);
       Product productNotDirect2 = JsonUtil.deserialize(JsonUtil.serialize(productNotDirect1), Product.class);
 
       Assert.assertEquals(productNotDirect1, productNotDirect2);
@@ -110,7 +109,7 @@ public class ModelsTest {
    @Test
    public void promotionTest() throws Exception {
       Promotion promotion1 =
-            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PROMOTION, Promotion.class);
+            JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.PROMOTION, Promotion.class, true);
       Promotion promotion2 = JsonUtil.deserialize(JsonUtil.serialize(promotion1), Promotion.class);
 
       Assert.assertEquals(promotion1, promotion2);
@@ -122,7 +121,7 @@ public class ModelsTest {
    @Test
    public void purchaseRequestTest() throws Exception {
       PurchaseRequest purchaseRequest1 =
-            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PURCHASE_REQ, PurchaseRequest.class);
+            JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.PURCHASE_REQ, PurchaseRequest.class, true);
       PurchaseRequest purchaseRequest2 =
             JsonUtil.deserialize(JsonUtil.serialize(purchaseRequest1), PurchaseRequest.class);
 
@@ -134,7 +133,7 @@ public class ModelsTest {
    @Test
    public void purchaseResponseTest() throws Exception {
       PurchaseResponse purchaseResponse1 =
-            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PURCHASE_RSP, PurchaseResponse.class);
+            JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.PURCHASE_RSP, PurchaseResponse.class, true);
       PurchaseResponse purchaseResponse2 =
             JsonUtil.deserialize(JsonUtil.serialize(purchaseResponse1), PurchaseResponse.class);
 
@@ -149,8 +148,8 @@ public class ModelsTest {
    @Test
    public void purchaseConfirmationTest() throws Exception {
       PurchaseConfirmation purchaseConfirmation1 =
-            AirtimeTestUtils
-                  .deserialiseJsonObjectFromFile(PayloadFileLocations.PURCHASE_CONF, PurchaseConfirmation.class);
+            JsonUtil
+                  .deserialiseJsonObjectFromFile(PayloadFileLocations.PURCHASE_CONF, PurchaseConfirmation.class, true);
       PurchaseConfirmation purchaseConfirmation2 =
             JsonUtil.deserialize(JsonUtil.serialize(purchaseConfirmation1), PurchaseConfirmation.class);
 
@@ -162,7 +161,7 @@ public class ModelsTest {
    @Test
    public void purchaseReversalTest() throws Exception {
       PurchaseReversal purchaseReversal1 =
-            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.PURCHASE_REV, PurchaseReversal.class);
+            JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.PURCHASE_REV, PurchaseReversal.class, true);
       PurchaseReversal purchaseReversal2 =
             JsonUtil.deserialize(JsonUtil.serialize(purchaseReversal1), PurchaseReversal.class);
 
@@ -173,7 +172,7 @@ public class ModelsTest {
 
    @Test
    public void voucherTest() throws Exception {
-      Voucher voucher1 = AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.VOUCHER, Voucher.class);
+      Voucher voucher1 = JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.VOUCHER, Voucher.class, true);
       Voucher voucher2 = JsonUtil.deserialize(JsonUtil.serialize(voucher1), Voucher.class);
 
       Assert.assertEquals(voucher1, voucher2);
@@ -183,7 +182,7 @@ public class ModelsTest {
    @Test
    public void voucherRequestTest() throws Exception {
       VoucherRequest voucherRequest1 =
-            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.VOUCHER_REQ, VoucherRequest.class);
+            JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.VOUCHER_REQ, VoucherRequest.class, true);
       VoucherRequest voucherRequest2 = JsonUtil.deserialize(JsonUtil.serialize(voucherRequest1), VoucherRequest.class);
 
       Assert.assertEquals(voucherRequest1, voucherRequest2);
@@ -194,7 +193,7 @@ public class ModelsTest {
    @Test
    public void voucherResponseTest() throws Exception {
       VoucherResponse voucherResponse1 =
-            AirtimeTestUtils.deserialiseJsonObjectFromFile(PayloadFileLocations.VOUCHER_RSP, VoucherResponse.class);
+            JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.VOUCHER_RSP, VoucherResponse.class, true);
       VoucherResponse voucherResponse2 =
             JsonUtil.deserialize(JsonUtil.serialize(voucherResponse1), VoucherResponse.class);
 
@@ -206,8 +205,7 @@ public class ModelsTest {
    @Test
    public void voucherConfirmationTest() throws Exception {
       VoucherConfirmation voucherConfirmation1 =
-            AirtimeTestUtils
-                  .deserialiseJsonObjectFromFile(PayloadFileLocations.VOUCHER_CONF, VoucherConfirmation.class);
+            JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.VOUCHER_CONF, VoucherConfirmation.class, true);
       VoucherConfirmation voucherConfirmation2 =
             JsonUtil.deserialize(JsonUtil.serialize(voucherConfirmation1), VoucherConfirmation.class);
 

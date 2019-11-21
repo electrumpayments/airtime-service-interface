@@ -34,7 +34,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <service-interface-base-version>3.19.0</service-interface-base-version>
+    <service-interface-base-version>3.23.0</service-interface-base-version>
     <joda-time-version>2.9.4</joda-time-version>
     <swagger-version>1.5.16</swagger-version>
     <jetty-version>9.3.24.v20180605</jetty-version>
@@ -45,12 +45,12 @@
     <logback-version>1.0.13</logback-version>
     <major-version>5</major-version>
     <minor-version>13</minor-version>
-    <patch-version>0-RC3</patch-version>
-    <jackson.version>2.10.0</jackson.version>
+    <patch-version>0</patch-version>
     <jacoco.skip>true</jacoco.skip> <!-- skip code coverage unless maven is run with -Djacoco.skip=false -->
     <sonar.coverage.jacoco.xmlReportPaths>
       ${project.reporting.outputDirectory}/jacoco-merged-test-coverage-report/jacoco.xml
     </sonar.coverage.jacoco.xmlReportPaths>
+    <jackson.version>2.10.0</jackson.version>
   </properties>
 
   <dependencies>
@@ -121,29 +121,34 @@
       <version>${el-version}</version>
     </dependency>
     <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>javax.xml.bind</groupId>
       <artifactId>jaxb-api</artifactId>
       <version>2.2.11</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-core</artifactId>
       <version>2.2.11</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-impl</artifactId>
       <version>2.2.11</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>javax.activation</groupId>
       <artifactId>activation</artifactId>
       <version>1.1.1</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-      <version>${jackson.version}</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.testng</groupId>

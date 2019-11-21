@@ -28,10 +28,10 @@ public class Product {
       AIRTIME_VARIABLE("AIRTIME_VARIABLE"),
       SMS_BUNDLE("SMS_BUNDLE"),
       DATA("DATA"),
-      DATA_FIXED("DATA_FIXED"),
-      DATA_VARIABLE("DATA_VARIABLE"),
       APP_RELATED("APP_RELATED"),
-      COMBO("COMBO");
+      COMBO("COMBO"),
+      DATA_FIXED("DATA_FIXED"),
+      DATA_VARIABLE("DATA_VARIABLE");
 
       private String value;
 
