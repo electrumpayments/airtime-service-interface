@@ -3,15 +3,14 @@ This page describes changes to the Airtime Service Interface implemented across 
 ## v5.13.0
 Released 25 November 2019
 - Update base service interface version to v3.23.0
-- Move to Java 11
-- Added basic tests for models
-- Added new ProductTypes:
+    - Added utility for serialising and deserialing JSON objects from a file, option to preserve whitespace
+- The Java implementation of the Airtime Service Interface is now build against OpenJDK 11 (with source compatibility for Java 8).
+- Added new `ProductType` enumerations in the `Product` model.
     - `DATA_FIXED`
     - `DATA_VARIABLE`
-- Added new Boolean property `Product.isDirectTopUp`
-- Added new `productType` Query Parameter to MsisdnResource
-- Overrode `MsisdnResource.lookupMsisdn()` to include to `productType` parameter 
-    - deprecated old `MsisdnResource.lookupMsisdn()` operation
+- Added new Boolean field `isDirectTopUp` to `Product`
+- A new optional field, `productType` was added to the `lookupMsisdn` operation.
+- The old lookupMsisdn operation is equivalent to calling the new operation without providing a productType value.
 
 ## v5.12.0
 

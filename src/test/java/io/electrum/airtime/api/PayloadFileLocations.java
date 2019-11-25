@@ -7,8 +7,8 @@ public class PayloadFileLocations {
    public static final String MSISDN = "Msisdn.json";
    public static final String MSISDN_INFO_RSP = "MsisdnInfoResponse.json";
 
-   public static final String PRODUCT_DIRECT = "Product_isDirectTopup.json";
-   public static final String PRODUCT_NOT_DIRECT = "Product_notDirectTopup.json";
+   public static final String PRODUCT_DIRECT = "ProductIsDirectTopup.json";
+   public static final String PRODUCT_NOT_DIRECT = "ProductIsNotDirectTopup.json";
    public static final String PROMOTION = "Promotion.json";
 
    public static final String PURCHASE_REQ = "PurchaseRequest.json";
