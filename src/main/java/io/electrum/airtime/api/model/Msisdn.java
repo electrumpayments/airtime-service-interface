@@ -110,10 +110,10 @@ public class Msisdn {
       StringBuilder sb = new StringBuilder();
       sb.append("class Msisdn {\n");
 
-      sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append("\n");
-      sb.append("    country: ").append(Utils.toIndentedString(country)).append("\n");
-      sb.append("    operator: ").append(Utils.toIndentedString(operator)).append("\n");
-      sb.append("}");
+      sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append('\n');
+      sb.append("    country: ").append(Utils.toIndentedString(country)).append('\n');
+      sb.append("    operator: ").append(Utils.toIndentedString(operator)).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

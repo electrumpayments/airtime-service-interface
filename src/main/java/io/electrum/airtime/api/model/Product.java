@@ -1,5 +1,6 @@
 package io.electrum.airtime.api.model;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -28,7 +29,10 @@ public class Product {
       SMS_BUNDLE("SMS_BUNDLE"),
       DATA("DATA"),
       APP_RELATED("APP_RELATED"),
-      COMBO("COMBO");
+      COMBO("COMBO"),
+      DATA_FIXED("DATA_FIXED"),
+      DATA_VARIABLE("DATA_VARIABLE");
+
       private String value;
 
       ProductType(String value) {
@@ -42,6 +46,7 @@ public class Product {
       }
    }
 
+   private Boolean isDirectTopup = null;
    private String productId = null;
    private String barcode = null;
    private String name = null;
@@ -49,6 +54,31 @@ public class Product {
    private LedgerAmount wholesalePrice = null;
    private LedgerAmount recipientAmount = null;
    private LedgerAmount[] productValues = null;
+
+   /**
+    * Describes whether or not the product directly recharges the recipients account (true), or a voucher number is
+    * required (false) to redeem the product.
+    **/
+   public Product isDirectTopup(Boolean isDirectTopup) {
+      this.isDirectTopup = isDirectTopup;
+      return this;
+   }
+
+   /**
+    * Describes whether or not the product directly recharges the recipients account (true), or a voucher number is
+    * required (false) to redeem the product.
+    *
+    * @return isDirectTopup
+    **/
+   @ApiModelProperty(value = "Describes whether or not the product directly recharges the recipients account (true), or a voucher number is required (false) to redeem the product.")
+   @JsonProperty("isDirectTopup")
+   public Boolean getIsDirectTopup() {
+      return isDirectTopup;
+   }
+
+   public void setIsDirectTopup(Boolean isDirectTopup) {
+      this.isDirectTopup = isDirectTopup;
+   }
 
    /**
     * A vendor determined code identifying the product the voucher should pertain to.
@@ -205,7 +235,8 @@ public class Product {
          return false;
       }
       Product product = (Product) o;
-      return Objects.equals(this.productId, product.productId) && Objects.equals(this.barcode, product.barcode)
+      return Objects.equals(this.isDirectTopup, product.isDirectTopup)
+            && Objects.equals(this.productId, product.productId) && Objects.equals(this.barcode, product.barcode)
             && Objects.equals(this.name, product.name) && Objects.equals(this.type, product.type)
             && Objects.equals(this.wholesalePrice, product.wholesalePrice)
             && Objects.equals(this.recipientAmount, product.recipientAmount);
@@ -213,7 +244,7 @@ public class Product {
 
    @Override
    public int hashCode() {
-      return Objects.hash(productId, barcode, name, type, wholesalePrice, recipientAmount);
+      return Objects.hash(isDirectTopup, productId, barcode, name, type, wholesalePrice, recipientAmount);
    }
 
    @Override
@@ -221,14 +252,15 @@ public class Product {
       StringBuilder sb = new StringBuilder();
       sb.append("class Product {\n");
 
-      sb.append("    productId: ").append(Utils.toIndentedString(productId)).append("\n");
-      sb.append("    barcode: ").append(Utils.toIndentedString(barcode)).append("\n");
-      sb.append("    name: ").append(Utils.toIndentedString(name)).append("\n");
-      sb.append("    type: ").append(Utils.toIndentedString(type)).append("\n");
-      sb.append("    wholesalePrice: ").append(Utils.toIndentedString(wholesalePrice)).append("\n");
-      sb.append("    recipientAmount: ").append(Utils.toIndentedString(recipientAmount)).append("\n");
-      sb.append("    productValues: ").append(Utils.toIndentedString(productValues)).append("\n");
-      sb.append("}");
+      sb.append("    isDirectTopup: ").append(Utils.toIndentedString(isDirectTopup)).append('\n');
+      sb.append("    productId: ").append(Utils.toIndentedString(productId)).append('\n');
+      sb.append("    barcode: ").append(Utils.toIndentedString(barcode)).append('\n');
+      sb.append("    name: ").append(Utils.toIndentedString(name)).append('\n');
+      sb.append("    type: ").append(Utils.toIndentedString(type)).append('\n');
+      sb.append("    wholesalePrice: ").append(Utils.toIndentedString(wholesalePrice)).append('\n');
+      sb.append("    recipientAmount: ").append(Utils.toIndentedString(recipientAmount)).append('\n');
+      sb.append("    productValues: ").append(Utils.toIndentedString(Arrays.toString(productValues))).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

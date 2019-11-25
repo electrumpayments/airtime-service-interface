@@ -105,10 +105,10 @@ public class Promotion {
       StringBuilder sb = new StringBuilder();
       sb.append("class Promotion {\n");
 
-      sb.append("    promotion: ").append(Utils.toIndentedString(promotion)).append("\n");
-      sb.append("    startDate: ").append(Utils.toIndentedString(startDate)).append("\n");
-      sb.append("    endDate: ").append(Utils.toIndentedString(endDate)).append("\n");
-      sb.append("}");
+      sb.append("    promotion: ").append(Utils.toIndentedString(promotion)).append('\n');
+      sb.append("    startDate: ").append(Utils.toIndentedString(startDate)).append('\n');
+      sb.append("    endDate: ").append(Utils.toIndentedString(endDate)).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

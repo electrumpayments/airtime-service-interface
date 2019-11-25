@@ -1,9 +1,5 @@
 package io.electrum.airtime.api.model;
 
-import io.electrum.vas.Utils;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +10,10 @@ import javax.validation.constraints.Pattern;
 import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.electrum.vas.Utils;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Specifically describes the voucher provisioned by the vendor.
@@ -151,12 +151,12 @@ public class Voucher {
       StringBuilder sb = new StringBuilder();
       sb.append("class Voucher {\n");
 
-      sb.append("    pin: ").append(Utils.toIndentedString(pin)).append("\n");
-      sb.append("    expiryDate: ").append(Utils.toIndentedString(expiryDate)).append("\n");
-      sb.append("    serialNumber: ").append(Utils.toIndentedString(serialNumber)).append("\n");
-      sb.append("    batchNumber: ").append(Utils.toIndentedString(batchNumber)).append("\n");
-      sb.append("    redeemInstructions: ").append(Utils.toIndentedString(redeemInstructions)).append("\n");
-      sb.append("}");
+      sb.append("    pin: ").append(Utils.toIndentedString(pin)).append('\n');
+      sb.append("    expiryDate: ").append(Utils.toIndentedString(expiryDate)).append('\n');
+      sb.append("    serialNumber: ").append(Utils.toIndentedString(serialNumber)).append('\n');
+      sb.append("    batchNumber: ").append(Utils.toIndentedString(batchNumber)).append('\n');
+      sb.append("    redeemInstructions: ").append(Utils.toIndentedString(redeemInstructions)).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

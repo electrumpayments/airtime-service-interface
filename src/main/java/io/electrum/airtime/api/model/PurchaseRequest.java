@@ -150,20 +150,20 @@ public class PurchaseRequest extends Transaction {
       StringBuilder sb = new StringBuilder();
       sb.append("class PurchaseRequest {\n");
 
-      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
-      sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
-      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append("\n");
-      sb.append("    client: ").append(Utils.toIndentedString(client)).append("\n");
-      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
-      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
-      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
-      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append("\n");
-      sb.append("    product: ").append(Utils.toIndentedString(product)).append("\n");
-      sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
-      sb.append("    paymentMethods: ").append(Utils.toIndentedString(paymentMethods)).append("\n");
-      sb.append("    recipientMsisdn: ").append(Utils.toIndentedString(recipientMsisdn)).append("\n");
-      sb.append("    senderMsisdn: ").append(Utils.toIndentedString(senderMsisdn)).append("\n");
-      sb.append("}");
+      sb.append("    id: ").append(Utils.toIndentedString(id)).append('\n');
+      sb.append("    time: ").append(Utils.toIndentedString(time)).append('\n');
+      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append('\n');
+      sb.append("    client: ").append(Utils.toIndentedString(client)).append('\n');
+      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append('\n');
+      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append('\n');
+      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append('\n');
+      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append('\n');
+      sb.append("    product: ").append(Utils.toIndentedString(product)).append('\n');
+      sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append('\n');
+      sb.append("    paymentMethods: ").append(Utils.toIndentedString(paymentMethods)).append('\n');
+      sb.append("    recipientMsisdn: ").append(Utils.toIndentedString(recipientMsisdn)).append('\n');
+      sb.append("    senderMsisdn: ").append(Utils.toIndentedString(senderMsisdn)).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

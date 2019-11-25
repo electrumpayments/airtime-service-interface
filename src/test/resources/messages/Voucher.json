@@ -1,0 +1,10 @@
+{
+  "pin": "0000000000000001",
+  "expiryDate": "2022-09-25T09:00:44.622Z",
+  "serialNumber": "0000000000000001A",
+  "redeemInstructions": [
+    "Redeem instructions line 1",
+    "Redeem instructions line 2",
+    "Redeem instructions line 3"
+  ]
+}

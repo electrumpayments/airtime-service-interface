@@ -1,0 +1,97 @@
+{
+  "msisdn": {
+    "msisdn": "27000000000",
+    "country": "ZA",
+    "operator": {
+      "id": "000000",
+      "name": "GENERIC OPERATOR NAME"
+    }
+  },
+  "amounts": {
+    "requestAmount": {
+      "amount": 2000,
+      "currency": "ZAR",
+      "ledgerIndicator": null
+    },
+    "approvedAmount": {
+      "amount": 2000,
+      "currency": "ZAR",
+      "ledgerIndicator": null
+    }
+  },
+  "availableProducts": [
+    {
+      "productId": "p123",
+      "barcode": "123456789012",
+      "name": "product 123 ",
+      "type": "AIRTIME_FIXED",
+      "isDirectTopup": false,
+      "wholesalePrice": {
+        "amount": 999,
+        "currency": "ZAR",
+        "ledgerIndicator": null
+      },
+      "recipientAmount": {
+        "amount": 1000,
+        "currency": "ZAR",
+        "ledgerIndicator": null
+      },
+      "productValues": [
+        {
+          "amount": 1000,
+          "currency": "ZAR",
+          "ledgerIndicator": null
+        },
+        {
+          "amount": 5,
+          "currency": "USD",
+          "ledgerIndicator": null
+        },
+        {
+          "amount": 6,
+          "currency": "JPY",
+          "ledgerIndicator": null
+        }
+      ]
+    },
+    {
+      "productId": "p231",
+      "barcode": "223456789012",
+      "name": "product 231 ",
+      "type": "AIRTIME_FIXED",
+      "isDirectTopup": false,
+      "wholesalePrice": {
+        "amount": 1999,
+        "currency": "ZAR",
+        "ledgerIndicator": null
+      },
+      "recipientAmount": {
+        "amount": 2000,
+        "currency": "ZAR",
+        "ledgerIndicator": null
+      },
+      "productValues": [
+        {
+          "amount": 2000,
+          "currency": "ZAR",
+          "ledgerIndicator": null
+        },
+        {
+          "amount": 10,
+          "currency": "USD",
+          "ledgerIndicator": null
+        },
+        {
+          "amount": 12,
+          "currency": "JPY",
+          "ledgerIndicator": null
+        }
+      ]
+    }
+  ],
+  "promotion": {
+    "promotion": "Promo XYZ",
+    "startDate": "2019-09-25T09:50:33.000Z",
+    "endDate": "2019-10-25T09:50:33.000Z"
+  }
+}

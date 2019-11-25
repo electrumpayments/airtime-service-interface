@@ -1,0 +1,8 @@
+{
+  "msisdn": "27000000000",
+  "country": "ZA",
+  "operator": {
+    "id": "000000",
+    "name": "GENERIC OPERATOR NAME"
+  }
+}

@@ -8,9 +8,21 @@ import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
 public interface IMsisdnResource {
+   @Deprecated
    void lookupMsisdn(
          String msisdn,
          String operator,
+         SecurityContext securityContext,
+         Request request,
+         HttpHeaders httpHeaders,
+         AsyncResponse asyncResponse,
+         UriInfo uriInfo,
+         HttpServletRequest httpServletRequest);
+
+   void lookupMsisdn(
+         String msisdn,
+         String operator,
+         String productType,
          SecurityContext securityContext,
          Request request,
          HttpHeaders httpHeaders,
