@@ -1,8 +1,8 @@
 {
-  "msisdn": "27821234567",
+  "msisdn": "27000000000",
   "country": "ZA",
   "operator": {
     "id": "000000",
-    "name": "MTN OPERATOR NAME"
+    "name": "GENERIC OPERATOR NAME"
   }
 }

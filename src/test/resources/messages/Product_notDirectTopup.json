@@ -1,7 +1,7 @@
 {
-  "productId": "hb10",
+  "productId": "p321",
   "barcode": "123456789012",
-  "name": "HollyTopUp hb10 ",
+  "name": "product 321",
   "type": "DATA_VARIABLE",
   "isDirectTopup": true,
   "wholesalePrice": {

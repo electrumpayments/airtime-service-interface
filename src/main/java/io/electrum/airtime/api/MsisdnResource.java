@@ -50,7 +50,9 @@ public abstract class MsisdnResource {
    /**
     * Deprecated to perform lookupMsisdn method with extra QueryParameter productType.
     * 
-    * @deprecated use {@link #lookupMsisdn} instead
+    * @deprecated instead use {@link #lookupMsisdn(String, String, String, SecurityContext, Request, AsyncResponse,
+    * HttpHeaders, UriInfo, HttpServletRequest)
+    * 
     */
    @Deprecated
    public final void lookupMsisdn(

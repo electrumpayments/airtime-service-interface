@@ -1,6 +1,6 @@
 {
   "id": "8d56acbe-70ee-44c9-b6d3-383637ba2e47",
   "errorType": "UPSTREAM_UNAVAILABLE",
-  "errorMessage": "Upstream unavailable or whatever",
+  "errorMessage": "Upstream unavailable.",
   "requestType": "PURCHASE_CONFIRMATION"
 }

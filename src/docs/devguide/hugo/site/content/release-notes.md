@@ -1,5 +1,18 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.13.0
+Released 25 November 2019
+- Update base service interface version to v3.23.0
+- Move to Java 11
+- Added basic tests for models
+- Added new ProductTypes:
+    - `DATA_FIXED`
+    - `DATA_VARIABLE`
+- Added new Boolean property `Product.isDirectTopUp`
+- Added new `productType` Query Parameter to MsisdnResource
+- Overrode `MsisdnResource.lookupMsisdn()` to include to `productType` parameter 
+    - deprecated old `MsisdnResource.lookupMsisdn()` operation
+
 ## v5.12.0
 
 Released 13 March 2019

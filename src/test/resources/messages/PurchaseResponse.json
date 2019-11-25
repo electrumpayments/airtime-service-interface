@@ -3,15 +3,15 @@
   "time": "2019-09-25T09:50:33.000Z",
   "originator": {
     "institution": {
-      "id": "63294111",
-      "name": "Shoprite Money Market"
+      "id": "666666",
+      "name": "Inst 666666"
     },
     "terminalId": "92762011",
     "merchant": {
       "merchantType": "5411",
       "merchantId": "226001007092764",
       "merchantName": {
-        "name": "Shoprite Brackenfell",
+        "name": "Inst 666666",
         "city": "Cape Town",
         "region": "WC",
         "country": "ZA"
@@ -19,30 +19,30 @@
     }
   },
   "client": {
-    "id": "6329411",
-    "name": "Shoprite"
+    "id": "666666",
+    "name": "Inst 666666"
   },
   "receiver": {
-    "id": "632945",
-    "name": "HOLLY TOP UP VOUCHER"
+    "id": "777777",
+    "name": "Receiver 777777"
   },
   "thirdPartyIdentifiers": [
     {
-      "institutionId": "6329411",
+      "institutionId": "666666",
       "transactionIdentifier": "SR76453453"
     }
   ],
   "slipData": {
     "messageLines": [
       {
-        "text": "Voucher Queries: ",
+        "text": "Slip data line 1: ",
         "fontWidthScaleFactor": 1.0,
         "fontHeightScaleFactor": 1.0,
         "line": false,
         "cut": false
       },
       {
-        "text": "Helpline 087 353 7634",
+        "text": "Slip data line 2",
         "fontWidthScaleFactor": 1.0,
         "fontHeightScaleFactor": 1.0,
         "line": false,
@@ -64,19 +64,19 @@
     }
   },
   "product": {
-    "productId": "hb20",
+    "productId": "p123",
     "barcode": null,
-    "name": "HollyTopUp hb20 ",
+    "name": "product 123 ",
     "type": "APP_RELATED"
   },
   "voucher": {
-    "pin": "878694720222337",
+    "pin": "0000000000000001",
     "expiryDate": "2022-09-25T09:00:44.622Z",
-    "serialNumber": "878694720222337",
+    "serialNumber": "0000000000000001A",
     "redeemInstructions": [
-      "To redeem dial *120*HOLLY*5*VoucherPin#",
-      "or visit www.hollywoodbets.mobi",
-      "Helpline Number 087 353 7634"
+      "Redeem instructions line 1",
+      "Redeem instructions line 2",
+      "Redeem instructions line 3"
     ]
   },
   "msisdn": {
@@ -84,7 +84,7 @@
     "country": "ZA",
     "operator": {
       "id": "000000",
-      "name": "MTN OPERATOR NAME"
+      "name": "GENERIC OPERATOR NAME"
     }
   }
 }

@@ -3,15 +3,15 @@
   "time": "2019-09-25T09:50:33.000Z",
   "originator": {
     "institution": {
-      "id": "63294111",
-      "name": "Shoprite Money Market"
+      "id": "666666",
+      "name": "Inst 666666"
     },
     "terminalId": "92762011",
     "merchant": {
       "merchantType": "5411",
       "merchantId": "226001007092764",
       "merchantName": {
-        "name": "Shoprite Brackenfell",
+        "name": "Inst 666666",
         "city": "Cape Town",
         "region": "WC",
         "country": "ZA"
@@ -19,12 +19,12 @@
     }
   },
   "client": {
-    "id": "6329411",
-    "name": "Shoprite"
+    "id": "666666",
+    "name": "Inst 666666"
   },
   "thirdPartyIdentifiers": [
     {
-      "institutionId": "6329411",
+      "institutionId": "666666",
       "transactionIdentifier": "SR76453453"
     }
   ],
@@ -39,9 +39,9 @@
     }
   },
   "product": {
-    "productId": "7701000050822",
+    "productId": "5555555555555",
     "type": "AIRTIME_FIXED",
-    "barcode": "6009709300668"
+    "barcode": "5555555555557"
   },
   "recipientMsisdn": {
     "msisdn": "01821234567",
@@ -56,7 +56,7 @@
     "country": "ZA",
     "operator": {
       "id": "000000",
-      "name": "MTN OPERATOR NAME"
+      "name": "GENERIC OPERATOR NAME"
     }
   }
 }

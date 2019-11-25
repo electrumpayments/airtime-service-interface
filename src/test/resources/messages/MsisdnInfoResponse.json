@@ -1,10 +1,10 @@
 {
   "msisdn": {
-    "msisdn": "27821234567",
+    "msisdn": "27000000000",
     "country": "ZA",
     "operator": {
       "id": "000000",
-      "name": "MTN OPERATOR NAME"
+      "name": "GENERIC OPERATOR NAME"
     }
   },
   "amounts": {
@@ -21,9 +21,9 @@
   },
   "availableProducts": [
     {
-      "productId": "hb10",
+      "productId": "p123",
       "barcode": "123456789012",
-      "name": "HollyTopUp hb10 ",
+      "name": "product 123 ",
       "type": "AIRTIME_FIXED",
       "isDirectTopup": false,
       "wholesalePrice": {
@@ -55,9 +55,9 @@
       ]
     },
     {
-      "productId": "hb20",
+      "productId": "p231",
       "barcode": "223456789012",
-      "name": "HollyTopUp hb20 ",
+      "name": "product 231 ",
       "type": "AIRTIME_FIXED",
       "isDirectTopup": false,
       "wholesalePrice": {
