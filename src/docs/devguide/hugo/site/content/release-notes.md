@@ -1,7 +1,9 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
 ## v5.13.0
+
 Released 25 November 2019
+
 - Update base service interface version to v3.23.0
     - Added utility for serialising and deserialising JSON objects from a file.
 - The Java implementation of the Airtime Service Interface is now built against OpenJDK 11 (with source compatibility for Java 8).
