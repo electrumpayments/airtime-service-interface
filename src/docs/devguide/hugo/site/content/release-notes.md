@@ -1,6 +1,14 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
-## v5.13.1
+## v5.13.2
+
+Released 28 November 2019
+
+- Ensured Java 8 source compatibility
+
+## v5.13.1 (Deprecated)
+
+Deprecated, replaced with v5.13.2. This version was not Java 8 source compatible.
 
 Released 27 November 2019
 
@@ -8,6 +16,8 @@ Released 27 November 2019
 - Re-added hibernate-validator dependency
 
 ## v5.13.0 (Deprecated)
+
+Deprecated, replaced with v5.13.2. This version is contains incorrect dependencies.
 
 Released 25 November 2019
 
@@ -32,7 +42,7 @@ Released 13 March 2019
     - `Pin` was added to `CardPayment`, taking precedence over the existing `encryptedPin` field
 
 ## v5.11.0
-
+ - Use v5.0.3 instead, this version contains broken resources.
 Released 25 February 2019
 
 - The `Product.name` field now allows all characters with only a length limitation. The maximum length limitation has been increased to 40.
