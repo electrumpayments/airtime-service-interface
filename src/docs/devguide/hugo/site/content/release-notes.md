@@ -2,7 +2,7 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ## v5.13.2
 
-Released 27 November 2019
+Released 28 November 2019
 
 - Ensured Java 8 source compatibility
 
