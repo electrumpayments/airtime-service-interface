@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.interfaces.HasAmounts;
 import io.electrum.vas.model.Amounts;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -17,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "Information about the Msisdn.")
-public class MsisdnInfoResponse {
+public class MsisdnInfoResponse implements HasAmounts {
 
    private Msisdn msisdn;
    private Amounts amounts = null;

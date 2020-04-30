@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.interfaces.HasAmounts;
 import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.SlipData;
 import io.electrum.vas.model.Transaction;
@@ -19,7 +20,7 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "A response to a successful request for an airtime product.")
-public class PurchaseResponse extends Transaction {
+public class PurchaseResponse extends Transaction implements HasAmounts {
 
    private Amounts amounts = null;
    private Product product = null;

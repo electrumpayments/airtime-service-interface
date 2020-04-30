@@ -1,5 +1,11 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.14.0
+
+Released 30 April 2020
+
+- Incorporated Interfaces for Amounts & PaymentMethods from ``service-interface-base``. Core API remains unchanged.
+
 ## v5.13.2
 
 Released 28 November 2019

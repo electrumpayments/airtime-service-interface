@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.interfaces.HasAmounts;
 import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.Institution;
 import io.electrum.vas.model.SlipData;
@@ -18,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "Information about the voucher provisioned.")
-public class VoucherResponse extends Transaction {
+public class VoucherResponse extends Transaction implements HasAmounts {
 
    private Amounts amounts = null;
    private Product responseProduct = null;

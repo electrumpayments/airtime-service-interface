@@ -8,6 +8,8 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.interfaces.HasAmounts;
+import io.electrum.vas.interfaces.HasPaymentMethods;
 import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.PaymentMethod;
 import io.electrum.vas.model.Tender;
@@ -20,7 +22,7 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 
 @ApiModel(description = "Information about the voucher provision request.")
-public class VoucherRequest extends Transaction {
+public class VoucherRequest extends Transaction implements HasAmounts, HasPaymentMethods {
 
    private Amounts amounts = null;
    private Product product = null;
