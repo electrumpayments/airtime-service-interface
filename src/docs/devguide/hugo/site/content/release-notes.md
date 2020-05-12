@@ -1,5 +1,14 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.13.3
+
+Released 13 May 2020
+
+- Fixed the `FULL_PATH` constants for `Vouchers` resource operations. The following constants were corrected:
+    - `VouchersResource.ConfirmVoucher.FULL_PATH`
+    - `VouchersResource.ProvisionVoucher.FULL_PATH`
+    - `VouchersResource.ReverseVoucher.FULL_PATH`
+
 ## v5.13.2
 
 Released 28 November 2019
