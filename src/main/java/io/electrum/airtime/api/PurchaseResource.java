@@ -62,6 +62,14 @@ public abstract class PurchaseResource {
       public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
    }
 
+   public class RetryPurchase {
+      public static final String RETRY_PURCHASE = "purchaseRetry";
+      public static final int SUCCESS = 202; //todo is this correct?
+      public static final String PATH = " /purchases/retry";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
+   }
+
    public class GetPurchaseStatus {
       public static final String GET_PURCHASE_STATUS = "purchaseStatus";
       public static final int SUCCESS = 200;
@@ -154,6 +162,29 @@ public abstract class PurchaseResource {
          @Context HttpServletRequest httpServletRequest) {
       getResourceImplementation()
             .reversePurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
+   }
+
+   @POST
+   @Path(RetryPurchase.RELATIVE_PATH)
+   @Consumes({ "application/json" })
+   @Produces({ "application/json" })
+   @ApiOperation(nickname = RetryPurchase.RETRY_PURCHASE, value = "Retry the Purchase of an airtime product.", notes = "Requests an airtime product from the provider.")
+   @ApiResponses(value = {
+           @ApiResponse(code = RetryPurchase.SUCCESS, message = "Accepted", response = PurchaseResponse.class), //todo is Accepted correct?
+           @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
+           @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
+           @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
+           @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+   public final void retryPurchase(
+           @ApiParam(value = "An airtime retry request.", required = true) @NotNull @Valid PurchaseRequest body,
+           @Context SecurityContext securityContext,
+           @Context Request request,
+           @Suspended AsyncResponse asyncResponse,
+           @Context HttpHeaders httpHeaders,
+           @Context UriInfo uriInfo,
+           @Context HttpServletRequest httpServletRequest) {
+      getResourceImplementation()
+              .purchasePurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
    }
 
    @GET

@@ -39,6 +39,16 @@ public interface IPurchaseResource {
          UriInfo uriInfo,
          HttpServletRequest httpServletRequest);
 
+   void retryPurchase(
+     PurchaseRequest body,
+     SecurityContext securityContext,
+     Request request,
+     HttpHeaders httpHeaders,
+     AsyncResponse asyncResponse,
+     UriInfo uriInfo,
+     HttpServletRequest httpServletRequest
+   );
+
    void getPurchaseStatus(
          String provider,
          String purchaseReference,
