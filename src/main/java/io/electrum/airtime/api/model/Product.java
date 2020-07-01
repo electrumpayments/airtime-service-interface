@@ -1,6 +1,9 @@
 package io.electrum.airtime.api.model;
 
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -54,6 +57,8 @@ public class Product {
    private LedgerAmount wholesalePrice = null;
    private LedgerAmount recipientAmount = null;
    private LedgerAmount[] productValues = null;
+   private ValidityPeriod validityPeriod = null;
+   private List<ProductContent> productContents = new ArrayList();
 
    /**
     * Describes whether or not the product directly recharges the recipients account (true), or a voucher number is
@@ -108,7 +113,7 @@ public class Product {
    /**
     * A barcode code identifying the product. This is an alternative identifier for the product but does not supersede
     * the productId.
-    * 
+    *
     * @return barcode
     **/
    @ApiModelProperty(value = "A barcode code identifying the product. This is an alternative identifier for the product but does not supersede the productId.")
@@ -129,7 +134,7 @@ public class Product {
 
    /**
     * The name of the product.
-    * 
+    *
     * @return name
     **/
    @ApiModelProperty(value = "The name of the product.")
@@ -150,7 +155,7 @@ public class Product {
 
    /**
     * An indication of the type of product (.
-    * 
+    *
     * @return type
     **/
    @ApiModelProperty(value = "An indication of the type of the product.")
@@ -170,7 +175,7 @@ public class Product {
 
    /**
     * The wholesale price of the product. The currency is the currency of the merchant's account with the provider.
-    * 
+    *
     * @return wholesalePrice
     **/
    @ApiModelProperty(value = "The wholesale price of the product. The currency is "
@@ -191,7 +196,7 @@ public class Product {
 
    /**
     * The amount received by the recipient. The currency is the currency of the destination country.
-    * 
+    *
     * @return recipientAmount
     **/
    @ApiModelProperty(value = "The amount received by the recipient. The currency is in the currency"
@@ -213,7 +218,7 @@ public class Product {
    /**
     * The value of the product. Multiple values may be returned in varying currencies in the case of products available
     * internationally.
-    * 
+    *
     * @return productValues
     **/
    @ApiModelProperty(value = "The value of the product. Multiple values may be returned in varying currencies in the case of products available internationally.")
@@ -224,6 +229,46 @@ public class Product {
 
    public void setProductValues(LedgerAmount[] productValues) {
       this.productValues = productValues;
+   }
+
+   public Product validityPeriod(ValidityPeriod validityPeriod) {
+      this.validityPeriod = validityPeriod;
+      return this;
+   }
+
+   /**
+    * The validity period of the product.
+    *
+    * @return validityPeriod
+    **/
+   @ApiModelProperty(value = "The validity period of the product.")
+   @JsonProperty("validityPeriod")
+   public ValidityPeriod getValidityPeriod() {
+      return validityPeriod;
+   }
+
+   public void setValidityPeriod(ValidityPeriod validityPeriod) {
+      this.validityPeriod = validityPeriod;
+   }
+
+   public Product productContents(List<ProductContent> productContents) {
+      this.productContents = productContents;
+      return this;
+   }
+
+   /**
+    * A list defining the contents of this airtime product.
+    *
+    * @return productContents
+    **/
+   @ApiModelProperty(value = "A list defining the contents of this airtime product.")
+   @JsonProperty("productContents")
+   public List<ProductContent> getProductContents() {
+      return productContents;
+   }
+
+   public void setProductContents(List<ProductContent> productContents) {
+      this.productContents = productContents;
    }
 
    @Override
@@ -239,12 +284,14 @@ public class Product {
             && Objects.equals(this.productId, product.productId) && Objects.equals(this.barcode, product.barcode)
             && Objects.equals(this.name, product.name) && Objects.equals(this.type, product.type)
             && Objects.equals(this.wholesalePrice, product.wholesalePrice)
-            && Objects.equals(this.recipientAmount, product.recipientAmount);
+            && Objects.equals(this.recipientAmount, product.recipientAmount)
+            && Objects.equals(this.validityPeriod, product.validityPeriod)
+            && Objects.equals(this.productContents, product.productContents);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(isDirectTopup, productId, barcode, name, type, wholesalePrice, recipientAmount);
+      return Objects.hash(isDirectTopup, productId, barcode, name, type, wholesalePrice, recipientAmount, validityPeriod, productContents);
    }
 
    @Override
@@ -260,6 +307,8 @@ public class Product {
       sb.append("    wholesalePrice: ").append(Utils.toIndentedString(wholesalePrice)).append('\n');
       sb.append("    recipientAmount: ").append(Utils.toIndentedString(recipientAmount)).append('\n');
       sb.append("    productValues: ").append(Utils.toIndentedString(Arrays.toString(productValues))).append('\n');
+      sb.append("    validityPeriod: ").append(Utils.toIndentedString(validityPeriod)).append('\n');
+      sb.append("    productContents: ").append(Utils.toIndentedString(productContents)).append('\n');
       sb.append('}');
       return sb.toString();
    }
