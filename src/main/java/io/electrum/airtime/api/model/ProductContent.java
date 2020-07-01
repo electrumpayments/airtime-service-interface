@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -65,7 +64,7 @@ public class ProductContent {
     /**
      * The unit of airtime. Can be KB, MB, GB, Unit or Minutes.
      */
-    public ProductContent amount(AirtimeProductUnit amount) {
+    public ProductContent amount(AirtimeProductUnit unit) {
         this.unit = unit;
         return this;
     }
@@ -77,7 +76,7 @@ public class ProductContent {
         return unit;
     }
 
-    public void setAmount(AirtimeProductUnit unit) {
+    public void setUnit(AirtimeProductUnit unit) {
         this.unit = unit;
     }
 }
