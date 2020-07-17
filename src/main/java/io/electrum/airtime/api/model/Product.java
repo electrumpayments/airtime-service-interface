@@ -1,11 +1,11 @@
 package io.electrum.airtime.api.model;
 
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -244,6 +244,7 @@ public class Product {
     **/
    @ApiModelProperty(value = "The length of time for which a product is valid. Any unused portion of a product (e.g. unused data) will be forfeit at the end of the validity period)")
    @JsonProperty("validityPeriod")
+   @Valid
    public ValidityPeriod getValidityPeriod() {
       return validityPeriod;
    }

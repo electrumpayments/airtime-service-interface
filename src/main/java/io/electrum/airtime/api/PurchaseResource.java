@@ -171,7 +171,7 @@ public abstract class PurchaseResource {
    @ApiOperation(nickname = RetryPurchase.RETRY_PURCHASE, value = "Retry a previously submitted purchase request.",
            notes = "If no response was received to a purchase request due to a timeout or temporary communications failure, PoS may retry the same purchase request by calling this resource. The original purchase request will be resubmitted to the provider. If the provider had received the original request, it will respond by returning any bundles or airtime adjustments that were already issued. If not, then either new bundles or airtime adjustments may be issued as per a normal purchase or the retry will be declined.")
    @ApiResponses(value = {
-           @ApiResponse(code = RetryPurchase.SUCCESS, message = "Accepted", response = PurchaseResponse.class),
+           @ApiResponse(code = RetryPurchase.SUCCESS, message = "Created", response = PurchaseResponse.class),
            @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
            @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
@@ -185,7 +185,7 @@ public abstract class PurchaseResource {
            @Context UriInfo uriInfo,
            @Context HttpServletRequest httpServletRequest) {
       getResourceImplementation()
-              .purchasePurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
+              .retryPurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
    }
 
    @GET
