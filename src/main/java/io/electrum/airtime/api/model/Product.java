@@ -237,11 +237,12 @@ public class Product {
    }
 
    /**
-    * The validity period of the product.
+    * The length of time for which a product is valid. Any unused portion of a product (e.g. unused data) will be
+    * forfeit at the end of the validity period)
     *
     * @return validityPeriod
     **/
-   @ApiModelProperty(value = "The validity period of the product.")
+   @ApiModelProperty(value = "The length of time for which a product is valid. Any unused portion of a product (e.g. unused data) will be forfeit at the end of the validity period)")
    @JsonProperty("validityPeriod")
    public ValidityPeriod getValidityPeriod() {
       return validityPeriod;
@@ -257,11 +258,11 @@ public class Product {
    }
 
    /**
-    * A list defining the contents of this airtime product.
+    * Only used for bundle purchases. It is a list defining the contents of the airtime bundle.
     *
     * @return productContents
     **/
-   @ApiModelProperty(value = "A list defining the contents of this airtime product.")
+   @ApiModelProperty(value = "Only used for bundle purchases. It is a list defining the contents of the airtime bundle.")
    @JsonProperty("productContents")
    public List<ProductContent> getProductContents() {
       return productContents;

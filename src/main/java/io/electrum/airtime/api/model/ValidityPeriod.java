@@ -9,21 +9,21 @@ import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 /**
- * Specifically describes the validity period of an airtime voucher.
+ * Specifically describes the validity period of an airtime purchase.
  **/
 
 @ApiModel(description = "Specifically describes the validity period of an airtime voucher.")
 public class ValidityPeriod {
 
     private long duration;
-    private static ChronoUnit durationUnit;
+    private ChronoUnit durationUnit;
 
     public ValidityPeriod duration(long duration) {
         this.duration = duration;
         return this;
     }
 
-    @ApiModelProperty(value = "A long value describing the number of durationUnits for the validity period.")
+    @ApiModelProperty(required = true, value = "A long value describing the number of durationUnits for the validity period.")
     @JsonProperty("duration")
     public long getDuration() {
         return this.duration;
@@ -38,7 +38,7 @@ public class ValidityPeriod {
         return this;
     }
 
-    @ApiModelProperty(value = "A ChronoUnit value describing the unit of measurement to be applied to the validity period.")
+    @ApiModelProperty(required = true, value = "A ChronoUnit value describing the unit of measurement to be applied to the validity period.")
     @JsonProperty("durationUnit")
     public ChronoUnit getDurationUnit() {
         return durationUnit;
@@ -58,7 +58,7 @@ public class ValidityPeriod {
         }
         ValidityPeriod validityPeriod = (ValidityPeriod) o;
         return Objects.equals(duration, validityPeriod.duration) &&
-                Objects.equals(durationUnit, ValidityPeriod.durationUnit);
+                Objects.equals(durationUnit, validityPeriod.durationUnit);
     }
 
     @Override
@@ -70,9 +70,8 @@ public class ValidityPeriod {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class ValidityPeriod {\n");
-
-        sb.append("    duration: ").append(Utils.toIndentedString(duration)).append('\n');
-        sb.append("    durationUnit: ").append(Utils.toIndentedString(durationUnit)).append('\n');
+        sb.append("    duration: ").append(Utils.toIndentedString(duration)).append(System.lineSeparator());
+        sb.append("    durationUnit: ").append(Utils.toIndentedString(durationUnit)).append(System.lineSeparator());
         sb.append('}');
         return sb.toString();
     }
