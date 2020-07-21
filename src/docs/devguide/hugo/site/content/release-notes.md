@@ -2,7 +2,7 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ## v5.14.0
 
-Released 21 July 2020
+Released 25 July 2020
 
 - Added the `RetryPurchase` ApiOperation to the `PurchaseResource` resource.
 - Added new fields to the `Product` class
