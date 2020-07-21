@@ -1,17 +1,17 @@
 package io.electrum.airtime.api.model;
 
+import io.electrum.vas.Utils;
+import io.electrum.vas.interfaces.HasAmounts;
+import io.electrum.vas.model.Amounts;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Arrays;
 import java.util.Objects;
 
 import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import io.electrum.vas.Utils;
-import io.electrum.vas.interfaces.HasAmounts;
-import io.electrum.vas.model.Amounts;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Information about the Msisdn.

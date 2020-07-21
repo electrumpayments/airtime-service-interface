@@ -2,9 +2,20 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ## v5.14.0
 
-Released 30 April 2020
+Released 21 July 2020
 
 - Incorporated Interfaces for Amounts & PaymentMethods from ``service-interface-base``. Core API remains unchanged.
+
+## v5.13.3
+
+Released 12 May 2020
+
+- Fixed the `FULL_PATH` constants for `Vouchers` resource operations.
+    - Note, this change is a breaking change for the Java implementation of the API provided by Electrum.
+    - The following constants were corrected to no longer reference the `MSISDN` resource, and now reference the `Voucher` resource:
+        - `VouchersResource.ConfirmVoucher.FULL_PATH`
+        - `VouchersResource.ProvisionVoucher.FULL_PATH`
+        - `VouchersResource.ReverseVoucher.FULL_PATH`
 
 ## v5.13.2
 
