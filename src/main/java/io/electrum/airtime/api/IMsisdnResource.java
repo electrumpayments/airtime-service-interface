@@ -1,6 +1,7 @@
 package io.electrum.airtime.api;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.ServerErrorException;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Request;
@@ -19,7 +20,7 @@ public interface IMsisdnResource {
          UriInfo uriInfo,
          HttpServletRequest httpServletRequest);
 
-   void lookupMsisdn(
+   default void lookupMsisdn(
          String msisdn,
          String operator,
          String productType,
@@ -28,5 +29,7 @@ public interface IMsisdnResource {
          HttpHeaders httpHeaders,
          AsyncResponse asyncResponse,
          UriInfo uriInfo,
-         HttpServletRequest httpServletRequest);
+         HttpServletRequest httpServletRequest) {
+      asyncResponse.resume(new ServerErrorException("This operation has not been implemented.", 501));
+   }
 }
