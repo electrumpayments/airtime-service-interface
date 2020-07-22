@@ -62,7 +62,7 @@ public abstract class PurchaseResource {
       public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
    }
 
-   public class RetryPurchase {
+   public static class RetryPurchase {
       public static final String RETRY_PURCHASE = "purchaseRetry";
       public static final int SUCCESS = 201;
       public static final String PATH = " /purchases/retry";
@@ -168,24 +168,31 @@ public abstract class PurchaseResource {
    @Path(RetryPurchase.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
-   @ApiOperation(nickname = RetryPurchase.RETRY_PURCHASE, value = "Retry a previously submitted purchase request.",
-           notes = "If no response was received to a purchase request due to a timeout or temporary communications failure, PoS may retry the same purchase request by calling this resource. The original purchase request will be resubmitted to the provider. If the provider had received the original request, it will respond by returning any bundles or airtime adjustments that were already issued. If not, then either new bundles or airtime adjustments may be issued as per a normal purchase or the retry will be declined.")
+   @ApiOperation(nickname = RetryPurchase.RETRY_PURCHASE, value = "Retry a previously submitted purchase request.", notes = "If no response was received to a purchase request due to a timeout or temporary communications "
+         + "failure, PoS may retry the same purchase request by calling this resource. The original purchase "
+         + "request will be resubmitted to the provider. If the provider had received the original request, "
+         + "it will respond by returning any bundles or airtime adjustments that were already issued. If not, "
+         + "then either new bundles or airtime adjustments may be issued as per a normal purchase or the retry "
+         + "will be declined. This operation is intended primarily for purchases which do not support refunds. "
+         + "For example, direct top-up transactions (a.k.a. PIN-less transactions) often do not support "
+         + "reversals. In such instances, a retry may be used instead of a reversal to guarantee a definite "
+         + "and final outcome.")
    @ApiResponses(value = {
-           @ApiResponse(code = RetryPurchase.SUCCESS, message = "Created", response = PurchaseResponse.class),
-           @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
-           @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
-           @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
-           @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+         @ApiResponse(code = RetryPurchase.SUCCESS, message = "Created", response = PurchaseResponse.class),
+         @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
+         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
+         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
+         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void retryPurchase(
-           @ApiParam(value = "An airtime retry request.", required = true) @NotNull @Valid PurchaseRequest body,
-           @Context SecurityContext securityContext,
-           @Context Request request,
-           @Suspended AsyncResponse asyncResponse,
-           @Context HttpHeaders httpHeaders,
-           @Context UriInfo uriInfo,
-           @Context HttpServletRequest httpServletRequest) {
+         @ApiParam(value = "An airtime retry request.", required = true) @NotNull @Valid PurchaseRequest body,
+         @Context SecurityContext securityContext,
+         @Context Request request,
+         @Suspended AsyncResponse asyncResponse,
+         @Context HttpHeaders httpHeaders,
+         @Context UriInfo uriInfo,
+         @Context HttpServletRequest httpServletRequest) {
       getResourceImplementation()
-              .retryPurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
+            .retryPurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
    }
 
    @GET

@@ -58,7 +58,7 @@ public class Product {
    private LedgerAmount recipientAmount = null;
    private LedgerAmount[] productValues = null;
    private ValidityPeriod validityPeriod = null;
-   private List<ProductContent> productContents = new ArrayList();
+   private List<ProductContent> productContents = new ArrayList<>();
 
    /**
     * Describes whether or not the product directly recharges the recipients account (true), or a voucher number is
@@ -238,7 +238,7 @@ public class Product {
 
    /**
     * The length of time for which a product is valid. Any unused portion of a product (e.g. unused data) will be
-    * forfeit at the end of the validity period)
+    * forfeit at the end of the validity period
     *
     * @return validityPeriod
     **/
@@ -265,6 +265,7 @@ public class Product {
     **/
    @ApiModelProperty(value = "Only used for bundle purchases. It is a list defining the contents of the airtime bundle.")
    @JsonProperty("productContents")
+   @Valid
    public List<ProductContent> getProductContents() {
       return productContents;
    }

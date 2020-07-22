@@ -12,10 +12,12 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotNull;
 
 /**
- * Specifically describes the validity period of an airtime purchase.
+ * Specifically describes the length of time for which a product is valid.
+ * Any unused portion of a product (e.g. unused data) will be forfeit at the end of the validity period.
  **/
 
-@ApiModel(description = "Specifically describes the validity period of an airtime voucher.")
+@ApiModel(description = "Specifically describes the length of time for which a product is valid. " +
+        "Any unused portion of a product (e.g. unused data) will be forfeit at the end of the validity period.")
 public class ValidityPeriod {
 
    private long duration;
@@ -26,6 +28,11 @@ public class ValidityPeriod {
       return this;
    }
 
+   /**
+    * A long value describing the number of durationUnits for the validity period.
+    *
+    * @return duration
+    */
    @ApiModelProperty(required = true, value = "A long value describing the number of durationUnits for the validity period.")
    @JsonProperty("duration")
    @NotNull
@@ -42,7 +49,12 @@ public class ValidityPeriod {
       return this;
    }
 
-   @ApiModelProperty(required = true, value = "A ChronoUnit value describing the unit of measurement to be applied to the validity period.")
+   /**
+    * A value describing the unit of measurement to be applied to the validity period.
+    *
+    * @return durationUnit
+    */
+   @ApiModelProperty(required = true, value = "A value describing the unit of measurement to be applied to the validity period.")
    @JsonProperty("durationUnit")
    @NotNull
    public ChronoUnit getDurationUnit() {

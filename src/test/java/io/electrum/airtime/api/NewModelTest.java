@@ -2,22 +2,16 @@ package io.electrum.airtime.api;
 
 import java.io.IOException;
 import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
+import java.util.Collections;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
 
-import io.electrum.vas.model.Amounts;
-import io.electrum.vas.model.BasicAdvice;
-import io.electrum.vas.model.LedgerAmount;
-import io.electrum.vas.model.ThirdPartyIdentifier;
-import org.hibernate.validator.HibernateValidator;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import io.electrum.airtime.api.model.Product;
 import io.electrum.airtime.api.model.ProductContent;
 import io.electrum.airtime.api.model.ValidityPeriod;
 import io.electrum.vas.JsonUtil;
@@ -93,24 +87,24 @@ public class NewModelTest {
 
    @DataProvider(name = "ordinalDataProvider")
    public Object[][] ordinalDataProvider() {
-      return new Object[][] {
-              {ProductContent.AirtimeProductUnit.MINUTES, 4},
-              {ProductContent.AirtimeProductUnit.KB, 0},
-              {ProductContent.AirtimeProductUnit.MB, 1},
-              {ProductContent.AirtimeProductUnit.GB, 2},
-              {ProductContent.AirtimeProductUnit.UNIT, 3},
-      };
+      return new Object[][] { { ProductContent.AirtimeProductUnit.MINUTES, 4 },
+            { ProductContent.AirtimeProductUnit.KB, 0 }, { ProductContent.AirtimeProductUnit.MB, 1 },
+            { ProductContent.AirtimeProductUnit.GB, 2 }, { ProductContent.AirtimeProductUnit.UNIT, 3 }, };
    }
 
    @DataProvider(name = "recursiveValidationOnSubFieldsDataProvider")
    public Object[][] recursiveValidationOnSubFieldsDataProvider() {
-      //Validation.byProvider(HibernateValidator.class).configure().buildValidatorFactory().getValidator();
       return new Object[][] {
-              {new ProductContent().amount(2950L),
-                      new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES)},
-              {new ValidityPeriod(),
-                      new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)}
-      };
+            { new ProductContent().amount(2950L),
+                  new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES) },
+            { new ValidityPeriod(), new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS) },
+            { new Product().productId("blah")
+                  .productContents(Collections.singletonList(new ProductContent().amount(2950L))),
+                  new Product().productId("blah")
+                        .productContents(
+                              Collections.singletonList(
+                                    new ProductContent().amount(2950L)
+                                          .unit(ProductContent.AirtimeProductUnit.MINUTES))) } };
    }
 
 }

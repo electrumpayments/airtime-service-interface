@@ -20,7 +20,8 @@ import io.swagger.annotations.ApiModelProperty;
 public class ProductContent {
 
    /**
-    * Every airtime product unit must be classified into one of the following unit types
+    * Every airtime product unit must be classified into one of the following unit types:
+    * KB, MB or GB for data; Unit for SMSs; Minutes for airtime
     */
    public enum AirtimeProductUnit {
       KB("KB"), MB("MB"), GB("GB"), UNIT("Unit"), MINUTES("Minutes");
@@ -34,7 +35,7 @@ public class ProductContent {
       @Override
       @JsonValue
       public String toString() {
-         return String.valueOf(value);
+         return value;
       }
    }
 
@@ -49,6 +50,11 @@ public class ProductContent {
       return this;
    }
 
+   /**
+    * The size of the product in KB, MB or GB for data; Unit for SMSs; Minutes for airtime.
+    *
+    * @return amount
+    */
    @ApiModelProperty(required = true, value = "The size of the product in KB, MB or GB for data; Unit for SMSs; Minutes for airtime.")
    @JsonProperty("amount")
    @NotNull
@@ -62,14 +68,19 @@ public class ProductContent {
    }
 
    /**
-    * The unit of airtime. Can be KB, MB or GB for data; Unit for SMSs or Minutes for airtime.
+    * The unit of product. Can be KB, MB or GB for data; Unit for SMSs or Minutes for airtime.
     */
    public ProductContent unit(AirtimeProductUnit unit) {
       this.unit = unit;
       return this;
    }
 
-   @ApiModelProperty(required = true, value = "The unit of airtime. Can be KB, MB or GB for data; Unit for SMSs; Minutes for airtime.")
+   /**
+    *  The unit of product. Can be KB, MB or GB for data; Unit for SMSs; Minutes for airtime.
+    *
+    * @return unit
+    */
+   @ApiModelProperty(required = true, value = "The unit of product. Can be KB, MB or GB for data; Unit for SMSs; Minutes for airtime.")
    @JsonProperty("unit")
    @NotNull
    public AirtimeProductUnit getUnit() {
@@ -78,16 +89,6 @@ public class ProductContent {
 
    public void setUnit(AirtimeProductUnit unit) {
       this.unit = unit;
-   }
-
-   @Override
-   public String toString() {
-      final StringBuilder sb = new StringBuilder();
-      sb.append("class ProductContent {").append(System.lineSeparator());
-      sb.append("    amount:").append(Utils.toIndentedString(amount)).append(System.lineSeparator());
-      sb.append("    unit=").append(Utils.toIndentedString(unit)).append(System.lineSeparator());
-      sb.append('}');
-      return sb.toString();
    }
 
    @Override
@@ -103,5 +104,15 @@ public class ProductContent {
    @Override
    public int hashCode() {
       return Objects.hash(amount, unit);
+   }
+
+   @Override
+   public String toString() {
+      final StringBuilder sb = new StringBuilder();
+      sb.append("class ProductContent {").append(System.lineSeparator());
+      sb.append("    amount:").append(Utils.toIndentedString(amount)).append(System.lineSeparator());
+      sb.append("    unit:").append(Utils.toIndentedString(unit)).append(System.lineSeparator());
+      sb.append('}');
+      return sb.toString();
    }
 }
