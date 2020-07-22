@@ -22,7 +22,7 @@ import io.electrum.airtime.api.model.ProductContent;
 import io.electrum.airtime.api.model.ValidityPeriod;
 import io.electrum.vas.JsonUtil;
 
-public class NewModelTests {
+public class NewModelTest {
 
    @Test(description = "Test we can serialise a model to the expected value.", dataProvider = "serialisedObjectDataProvider")
    public void testSerialisedObject(Object objectToSerialise, String expectedValue) throws IOException {
@@ -104,13 +104,12 @@ public class NewModelTests {
 
    @DataProvider(name = "recursiveValidationOnSubFieldsDataProvider")
    public Object[][] recursiveValidationOnSubFieldsDataProvider() {
-      Validation.byProvider(HibernateValidator.class).configure().buildValidatorFactory().getValidator();
+      //Validation.byProvider(HibernateValidator.class).configure().buildValidatorFactory().getValidator();
       return new Object[][] {
-              {new BasicAdvice().id("123456ID").requestId("requestId").time(DateTime.now().toDateTime(DateTimeZone.UTC))
-                      .transactionIdentifiers(Arrays.asList(new ThirdPartyIdentifier().institutionId("1234InsId").transactionIdentifier("1234transId"))),
-                      new BasicAdvice().id("123456ID").requestId("requestId").time(DateTime.now().toDateTime(DateTimeZone.UTC))
-                              .transactionIdentifiers(Arrays.asList(new ThirdPartyIdentifier().institutionId("1234InsId").transactionIdentifier("1234transId")))}
-
+              {new ProductContent().amount(2950L),
+                      new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES)},
+              {new ValidityPeriod(),
+                      new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)}
       };
    }
 

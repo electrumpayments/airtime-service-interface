@@ -9,6 +9,8 @@ import io.electrum.vas.Utils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Specifically describes the validity period of an airtime purchase.
  **/
@@ -26,6 +28,7 @@ public class ValidityPeriod {
 
    @ApiModelProperty(required = true, value = "A long value describing the number of durationUnits for the validity period.")
    @JsonProperty("duration")
+   @NotNull
    public long getDuration() {
       return this.duration;
    }
@@ -41,6 +44,7 @@ public class ValidityPeriod {
 
    @ApiModelProperty(required = true, value = "A ChronoUnit value describing the unit of measurement to be applied to the validity period.")
    @JsonProperty("durationUnit")
+   @NotNull
    public ChronoUnit getDurationUnit() {
       return durationUnit;
    }
