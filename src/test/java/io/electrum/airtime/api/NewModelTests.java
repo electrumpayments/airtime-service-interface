@@ -2,10 +2,18 @@ package io.electrum.airtime.api;
 
 import java.io.IOException;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import io.electrum.vas.model.Amounts;
+import io.electrum.vas.model.BasicAdvice;
+import io.electrum.vas.model.LedgerAmount;
+import io.electrum.vas.model.ThirdPartyIdentifier;
+import org.hibernate.validator.HibernateValidator;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -86,13 +94,22 @@ public class NewModelTests {
    @DataProvider(name = "ordinalDataProvider")
    public Object[][] ordinalDataProvider() {
       return new Object[][] {
-
+              {ProductContent.AirtimeProductUnit.MINUTES, 4},
+              {ProductContent.AirtimeProductUnit.KB, 0},
+              {ProductContent.AirtimeProductUnit.MB, 1},
+              {ProductContent.AirtimeProductUnit.GB, 2},
+              {ProductContent.AirtimeProductUnit.UNIT, 3},
       };
    }
 
    @DataProvider(name = "recursiveValidationOnSubFieldsDataProvider")
    public Object[][] recursiveValidationOnSubFieldsDataProvider() {
+      Validation.byProvider(HibernateValidator.class).configure().buildValidatorFactory().getValidator();
       return new Object[][] {
+              {new BasicAdvice().id("123456ID").requestId("requestId").time(DateTime.now().toDateTime(DateTimeZone.UTC))
+                      .transactionIdentifiers(Arrays.asList(new ThirdPartyIdentifier().institutionId("1234InsId").transactionIdentifier("1234transId"))),
+                      new BasicAdvice().id("123456ID").requestId("requestId").time(DateTime.now().toDateTime(DateTimeZone.UTC))
+                              .transactionIdentifiers(Arrays.asList(new ThirdPartyIdentifier().institutionId("1234InsId").transactionIdentifier("1234transId")))}
 
       };
    }
