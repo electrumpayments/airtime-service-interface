@@ -259,11 +259,11 @@ public class Product {
    }
 
    /**
-    * Only used for bundle purchases. It is a list defining the contents of the airtime bundle.
+    * A list (can be singleton) defining the contents of the airtime product
     *
     * @return productContents
     **/
-   @ApiModelProperty(value = "Only used for bundle purchases. It is a list defining the contents of the airtime bundle.")
+   @ApiModelProperty(value = "A list (can be singleton) defining the contents of the airtime product")
    @JsonProperty("productContents")
    @Valid
    public List<ProductContent> getProductContents() {

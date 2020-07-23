@@ -7,7 +7,7 @@ Released 25 July 2020
 - Added the `RetryPurchase` ApiOperation to the `PurchaseResource` resource.
 - Added new fields to the `Product` class
     - `validityPeriod`: The length of time for which a product is valid. Any unused portion of a product (e.g. unused data) will be forfeit at the end of the validity period)
-    - `productContents`: Only used for bundle purchases. It is a list defining the contents of the airtime bundle.
+    - `productContents`: A list (can be singleton) defining the contents of the airtime product.
 
 - Added new models
     - `ProductContent` which describes the content of the airtime product.

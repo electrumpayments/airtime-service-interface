@@ -10,9 +10,7 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -20,7 +18,6 @@ import io.electrum.airtime.api.model.PurchaseConfirmation;
 import io.electrum.airtime.api.model.PurchaseRequest;
 import io.electrum.airtime.api.model.PurchaseReversal;
 
-@RunWith(MockitoJUnitRunner.class)
 public class PurchaseResourceInterfaceTest {
 
    private PurchaseResource underTest;
