@@ -58,7 +58,7 @@ public class Product {
    private LedgerAmount recipientAmount = null;
    private LedgerAmount[] productValues = null;
    private ValidityPeriod validityPeriod = null;
-   private List<ProductContent> productContents = new ArrayList<>();
+   private List<ProductContent> productContents = null;
 
    /**
     * Describes whether or not the product directly recharges the recipients account (true), or a voucher number is
