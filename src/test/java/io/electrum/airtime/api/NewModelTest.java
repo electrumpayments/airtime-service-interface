@@ -104,7 +104,10 @@ public class NewModelTest {
                         .productContents(
                               Collections.singletonList(
                                     new ProductContent().amount(2950L)
-                                          .unit(ProductContent.AirtimeProductUnit.MINUTES))) } };
+                                          .unit(ProductContent.AirtimeProductUnit.MINUTES))) },
+            { new Product().productId("blah").validityPeriod(new ValidityPeriod().duration(30L)),
+                  new Product().productId("blah")
+                        .validityPeriod(new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)) } };
    }
 
 }
