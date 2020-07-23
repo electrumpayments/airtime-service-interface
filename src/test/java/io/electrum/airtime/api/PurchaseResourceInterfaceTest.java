@@ -26,7 +26,7 @@ public class PurchaseResourceInterfaceTest {
    @BeforeMethod
    public void setup() {
       underTest = Mockito.mock(PurchaseResource.class);
-      interfaceTest = Mockito.mock(PurchaseResourceImplementation.class);
+      interfaceTest = new PurchaseResourceImplementation();
       when(underTest.getResourceImplementation()).thenReturn(interfaceTest);
    }
 

@@ -106,7 +106,7 @@ public class NewModelTest {
                   .productContents(Collections.singletonList(new ProductContent().amount(2950L)))
                     .recipientAmount(new LedgerAmount().amount(30L).currency("ZAR"))
                     .wholesalePrice(new LedgerAmount().amount(30L).currency("ZAR"))
-                    .isDirectTopup(false),
+                    .isDirectTopup(false).type(Product.ProductType.AIRTIME_VARIABLE),
                     new Product().productId("someid")
                         .productContents(
                               Collections.singletonList(
