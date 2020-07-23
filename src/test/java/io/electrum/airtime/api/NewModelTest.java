@@ -15,6 +15,7 @@ import io.electrum.airtime.api.model.Product;
 import io.electrum.airtime.api.model.ProductContent;
 import io.electrum.airtime.api.model.ValidityPeriod;
 import io.electrum.vas.JsonUtil;
+import io.electrum.vas.model.LedgerAmount;
 
 public class NewModelTest {
 
@@ -98,9 +99,15 @@ public class NewModelTest {
             { new ProductContent().amount(2950L),
                   new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES) },
             { new ValidityPeriod(), new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS) },
-            { new Product().productId("blah")
-                  .productContents(Collections.singletonList(new ProductContent().amount(2950L))),
-                  new Product().productId("blah")
+            { new Product().productId("someid")
+                  .name("some name")
+                  .barcode("some name")
+                  .productValues(new LedgerAmount[] { new LedgerAmount().amount(30L).currency("ZAR") })
+                  .productContents(Collections.singletonList(new ProductContent().amount(2950L)))
+                    .recipientAmount(new LedgerAmount().amount(30L).currency("ZAR"))
+                    .wholesalePrice(new LedgerAmount().amount(30L).currency("ZAR"))
+                    .isDirectTopup(false),
+                    new Product().productId("someid")
                         .productContents(
                               Collections.singletonList(
                                     new ProductContent().amount(2950L)
