@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Specifically describes the length of time for which a product is valid.
  * Any unused portion of a product (e.g. unused data) will be forfeit at the end of the validity period.
+ * @since 5.14.0
  **/
 
 @ApiModel(description = "Specifically describes the length of time for which a product is valid. " +

@@ -164,6 +164,9 @@ public abstract class PurchaseResource {
             .reversePurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
    }
 
+   /**
+    * @since 5.14.0
+    */
    @POST
    @Path(RetryPurchase.RELATIVE_PATH)
    @Consumes({ "application/json" })
