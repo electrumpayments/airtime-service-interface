@@ -135,7 +135,7 @@ public class PurchaseResourceInterfaceTest {
       }
 
       // If you are tempted to add an Override method here, you are introducing a breaking change.
-      // Use the `default` access modifier when adding new methods to the IPurchaseResource class.
+      // Please use the `default` access modifier when adding new methods to the IPurchaseResource class.
    }
 
 }
