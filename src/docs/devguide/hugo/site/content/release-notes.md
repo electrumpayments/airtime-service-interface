@@ -1,8 +1,8 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
-## v5.14.0
+## v5.15.0
 
-Released 21 July 2020
+Released 24 July 2020
 
 - This change affects the Java implementation of the API only and does not change the public definition of the API. The Java implementation has been updated as follows:
   - The following classes now implement the `HasAmounts` interface defined in the base API:
