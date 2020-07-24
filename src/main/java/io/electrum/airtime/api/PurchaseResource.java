@@ -65,7 +65,7 @@ public abstract class PurchaseResource {
    public static class RetryPurchase {
       public static final String RETRY_PURCHASE = "purchaseRetry";
       public static final int SUCCESS = 201;
-      public static final String PATH = " /purchases/retry";
+      public static final String PATH = "/retry";
       public static final String RELATIVE_PATH = PATH;
       public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
    }
