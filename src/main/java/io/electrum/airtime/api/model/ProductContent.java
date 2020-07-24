@@ -56,7 +56,8 @@ public class ProductContent {
     *
     * @return amount
     */
-   @ApiModelProperty(required = true, value = "The size of the product in KB, MB or GB for data; Unit for SMSs; Minutes for airtime.")
+   @ApiModelProperty(required = true, value = "The size of the product in KB, MB or GB for data; " +
+           "Unit for SMSs; Minutes for airtime.")
    @JsonProperty("amount")
    @NotNull
    @Min(0L)
@@ -81,7 +82,8 @@ public class ProductContent {
     *
     * @return unit
     */
-   @ApiModelProperty(required = true, value = "The unit of product. Can be KB, MB or GB for data; Unit for SMSs; Minutes for airtime.")
+   @ApiModelProperty(required = true, value = "The unit of product. Can be KB, MB or GB for data; " +
+           "Unit for SMSs; Minutes for airtime.")
    @JsonProperty("unit")
    @NotNull
    public AirtimeProductUnit getUnit() {
