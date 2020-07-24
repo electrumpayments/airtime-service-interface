@@ -4,7 +4,16 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 Released 21 July 2020
 
-- Incorporated Interfaces for Amounts & PaymentMethods from ``service-interface-base``. Core API remains unchanged.
+- This change affects the Java implementation of the API only and does not change the public definition of the API. The Java implementation has been updated as follows:
+  - The following classes now implement the `HasAmounts` interface defined in the base API:
+    - `MsisdnInfoResponse`
+    - `PurchaseRequest`
+    - `PurchaseResponse`
+    - `VoucherRequest`
+    - `VoucherResponse`
+  - The following classes now implement the `HasPaymentMethods` interface defined in the base API:
+    - `PurchaseRequest`
+    - `VoucherRequest`
 
 ## v5.13.3
 
