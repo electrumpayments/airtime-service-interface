@@ -96,25 +96,29 @@ public class NewModelTest {
    @DataProvider(name = "recursiveValidationOnSubFieldsDataProvider")
    public Object[][] recursiveValidationOnSubFieldsDataProvider() {
       return new Object[][] {
+         //@formatter:off
+              //missing unit
             { new ProductContent().amount(2950L),
-                  new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES) },
-            { new ValidityPeriod(), new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS) },
+              new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES) },
+              //missing duration and durationUnit
+            { new ValidityPeriod(),
+              new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS) },
+              //Product with invalid ProductContent (missing unit) - ensure recursive validation on Product.productContents 
             { new Product().productId("someid")
-                  .name("some name")
-                  .barcode("some name")
-                  .productValues(new LedgerAmount[] { new LedgerAmount().amount(30L).currency("ZAR") })
-                  .productContents(Collections.singletonList(new ProductContent().amount(2950L)))
-                    .recipientAmount(new LedgerAmount().amount(30L).currency("ZAR"))
-                    .wholesalePrice(new LedgerAmount().amount(30L).currency("ZAR"))
-                    .isDirectTopup(false).type(Product.ProductType.AIRTIME_VARIABLE),
-                    new Product().productId("someid")
-                        .productContents(
-                              Collections.singletonList(
-                                    new ProductContent().amount(2950L)
-                                          .unit(ProductContent.AirtimeProductUnit.MINUTES))) },
-            { new Product().productId("blah").validityPeriod(new ValidityPeriod().duration(30L)),
-                  new Product().productId("blah")
-                        .validityPeriod(new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)) } };
+                  .productContents(
+                           Collections.singletonList(
+                                    new ProductContent().amount(2950L))),
+              new Product().productId("someid")
+                  .productContents(
+                        Collections.singletonList(
+                              new ProductContent().amount(2950L)
+                                 .unit(ProductContent.AirtimeProductUnit.MINUTES))) },
+            //Product with invalid ValidityPeriod (missing durationUnit) - ensure recursive validation on Product.validityPeriod 
+            { new Product().productId("blah").validityPeriod(
+                  new ValidityPeriod().duration(30L)),
+              new Product().productId("blah").validityPeriod(
+                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)) } };
+         //@formatter:on
    }
 
 }
