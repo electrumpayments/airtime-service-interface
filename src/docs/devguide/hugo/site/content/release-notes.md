@@ -1,5 +1,17 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.14.0
+
+Released 27 July 2020
+
+- Update `service-interface-base` version from 3.23.0 to v3.27.0.
+    - Added support for hashed PINs (via a new sub-type of `Pin` named `HashedPin`).
+    - Added `amounts` field to the `BasicAdvice` model to support partial reversals and partial confirmations.
+    - Added Account PaymentMethod.
+    - Added Interfaces for HasAmounts & HasPaymentMethods. These can be used for creating shared utilities across API implementations.
+    - Added `RewardPayment` method.
+
+
 ## v5.13.3
 
 Released 12 May 2020
