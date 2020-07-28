@@ -4,12 +4,12 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 Released 25 July 2020
 
-- Added the `RetryPurchase` ApiOperation to the `PurchaseResource` resource.
-- Added new fields to the `Product` class
-    - `validityPeriod`: The length of time for which a product is valid. Any unused portion of a product (e.g. unused data) will be forfeit at the end of the validity period)
-    - `productContents`: A list (can be singleton) defining the contents of the airtime product.
+- Added the `RetryPurchase` operation to the `PurchaseResource` resource.
+- Added new fields to the `Product` class:
+    - `validityPeriod`: The length of time for which a product is valid. Any unused portion of a product (e.g. unused data) will be forfeit at the end of the validity period).
+    - `productContents`: A list defining the contents of the airtime product.
 
-- Added new models
+- Added new models:
     - `ProductContent` which describes the content of the airtime product.
     - `ValidityPeriod` which describes the period before an airtime product expires.
     
