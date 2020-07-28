@@ -97,13 +97,13 @@ public class NewModelTest {
    public Object[][] recursiveValidationOnSubFieldsDataProvider() {
       return new Object[][] {
          //@formatter:off
-              //missing unit
+              // missing unit
             { new ProductContent().amount(2950L),
               new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES) },
               //missing duration and durationUnit
             { new ValidityPeriod(),
               new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS) },
-              //Product with invalid ProductContent (missing unit) - ensure recursive validation on Product.productContents 
+              //Product with invalid ProductContent (missing unit) - ensure recursive validation on Product.productContents
             { new Product().productId("someid")
                   .productContents(
                            Collections.singletonList(
@@ -113,7 +113,7 @@ public class NewModelTest {
                         Collections.singletonList(
                               new ProductContent().amount(2950L)
                                  .unit(ProductContent.AirtimeProductUnit.MINUTES))) },
-            //Product with invalid ValidityPeriod (missing durationUnit) - ensure recursive validation on Product.validityPeriod 
+              //Product with invalid ValidityPeriod (missing durationUnit) - ensure recursive validation on Product.validityPeriod
             { new Product().productId("blah").validityPeriod(
                   new ValidityPeriod().duration(30L)),
               new Product().productId("blah").validityPeriod(

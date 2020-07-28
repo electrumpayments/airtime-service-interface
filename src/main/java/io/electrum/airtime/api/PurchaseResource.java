@@ -173,10 +173,8 @@ public abstract class PurchaseResource {
    @Produces({ "application/json" })
    @ApiOperation(nickname = RetryPurchase.RETRY_PURCHASE, value = "Retry a previously submitted purchase request.", notes = "If no response was received to a purchase request due to a timeout or temporary communications "
          + "failure, PoS may retry the same purchase request by calling this resource. The original purchase "
-         + "request will be resubmitted to the provider. If the provider had received the original request, "
-         + "it will respond by returning any bundles or airtime adjustments that were already issued. If not, "
-         + "then either new bundles or airtime adjustments may be issued as per a normal purchase or the retry "
-         + "will be declined. This operation is intended primarily for purchases which do not support refunds. "
+         + "request will be resubmitted to the provider. "
+         + "This operation is intended primarily for purchases which do not support reversals. "
          + "For example, direct top-up transactions (a.k.a. PIN-less transactions) often do not support "
          + "reversals. In such instances, a retry may be used instead of a reversal to guarantee a definite "
          + "and final outcome.")

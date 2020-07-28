@@ -32,6 +32,7 @@ public class ValidityPeriod {
    /**
     * A long value describing the number of durationUnits for the validity period.
     *
+    * @since 5.14.0
     * @return duration
     */
    @ApiModelProperty(required = true, value = "A long value describing the number of durationUnits for the validity period.")
@@ -53,6 +54,7 @@ public class ValidityPeriod {
    /**
     * A value describing the unit of measurement to be applied to the validity period.
     *
+    * @since 5.14.0
     * @return durationUnit
     */
    @ApiModelProperty(required = true, value = "A value describing the unit of measurement to be applied to the validity period.")
