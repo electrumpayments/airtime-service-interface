@@ -62,10 +62,10 @@ public abstract class PurchaseResource {
       public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
    }
 
-   public static class RetryPurchase {
-      public static final String RETRY_PURCHASE = "purchaseRetry";
+   public static class LookupPurchase {
+      public static final String LOOKUP_PURCHASE = "purchaseLookup";
       public static final int SUCCESS = 201;
-      public static final String PATH = "/retry";
+      public static final String PATH = "/lookup";
       public static final String RELATIVE_PATH = PATH;
       public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
    }
@@ -168,24 +168,19 @@ public abstract class PurchaseResource {
     * @since 5.14.0
     */
    @POST
-   @Path(RetryPurchase.RELATIVE_PATH)
+   @Path(LookupPurchase.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
-   @ApiOperation(nickname = RetryPurchase.RETRY_PURCHASE, value = "Retry a previously submitted purchase request.", notes = "If no response was received to a purchase request due to a timeout or temporary communications "
-         + "failure, PoS may retry the same purchase request by calling this resource. The original purchase "
-         + "request will be resubmitted to the provider. "
-         + "This operation is intended primarily for purchases which do not support reversals. "
-         + "For example, direct top-up transactions (a.k.a. PIN-less transactions) often do not support "
-         + "reversals. In such instances, a retry may be used instead of a reversal to guarantee a definite "
-         + "and final outcome.")
+   @ApiOperation(nickname = LookupPurchase.LOOKUP_PURCHASE, value = "Look up the status of a previously submitted purchase request.", notes = "If no response was received to a purchase request due to a timeout or temporary communications "
+         + "failure, PoS may lookup the same purchase request by calling this resource.")
    @ApiResponses(value = {
-         @ApiResponse(code = RetryPurchase.SUCCESS, message = "Created", response = PurchaseResponse.class),
+         @ApiResponse(code = LookupPurchase.SUCCESS, message = "Created", response = PurchaseResponse.class),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
-   public final void retryPurchase(
-         @ApiParam(value = "An airtime retry request.", required = true) @NotNull @Valid PurchaseRequest body,
+   public final void lookupPurchase(
+         @ApiParam(value = "An airtime lookup purchase request.", required = true) @NotNull @Valid PurchaseRequest body,
          @Context SecurityContext securityContext,
          @Context Request request,
          @Suspended AsyncResponse asyncResponse,
@@ -193,7 +188,7 @@ public abstract class PurchaseResource {
          @Context UriInfo uriInfo,
          @Context HttpServletRequest httpServletRequest) {
       getResourceImplementation()
-            .retryPurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
+            .lookupPurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
    }
 
    @GET

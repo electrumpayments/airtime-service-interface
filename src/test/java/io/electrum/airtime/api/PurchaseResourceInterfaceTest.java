@@ -70,7 +70,7 @@ public class PurchaseResourceInterfaceTest {
             mock(UriInfo.class),
             mock(HttpServletRequest.class));
 
-      underTest.retryPurchase(
+      underTest.lookupPurchase(
             mock(PurchaseRequest.class),
             mock(SecurityContext.class),
             mock(Request.class),

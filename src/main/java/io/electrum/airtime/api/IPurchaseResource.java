@@ -40,7 +40,7 @@ public interface IPurchaseResource {
          UriInfo uriInfo,
          HttpServletRequest httpServletRequest);
 
-   default void retryPurchase(
+   default void lookupPurchase(
      PurchaseRequest body,
      SecurityContext securityContext,
      Request request,
