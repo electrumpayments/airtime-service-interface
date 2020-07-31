@@ -172,7 +172,7 @@ public abstract class PurchaseResource {
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = LookupPurchase.LOOKUP_PURCHASE, value = "Look up the status of a previously submitted purchase request.", notes = "If no response was received to a purchase request due to a timeout or temporary communications "
-         + "failure, PoS may lookup the same purchase request by calling this resource.")
+         + "failure, the client may lookup the same purchase request by calling this resource.")
    @ApiResponses(value = {
          @ApiResponse(code = LookupPurchase.SUCCESS, message = "Created", response = PurchaseResponse.class),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
