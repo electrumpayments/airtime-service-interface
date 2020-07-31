@@ -70,15 +70,6 @@ public class PurchaseResourceInterfaceTest {
             mock(UriInfo.class),
             mock(HttpServletRequest.class));
 
-      underTest.lookupPurchase(
-            mock(PurchaseRequest.class),
-            mock(SecurityContext.class),
-            mock(Request.class),
-            mock(AsyncResponse.class),
-            mock(HttpHeaders.class),
-            mock(UriInfo.class),
-            mock(HttpServletRequest.class));
-
       // If you are tempted to remove one of these method calls then you may have overloaded a
       // method without deprecating the old one.
    }

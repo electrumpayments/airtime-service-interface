@@ -62,14 +62,6 @@ public abstract class PurchaseResource {
       public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
    }
 
-   public static class LookupPurchase {
-      public static final String LOOKUP_PURCHASE = "purchaseLookup";
-      public static final int SUCCESS = 201;
-      public static final String PATH = "/lookup";
-      public static final String RELATIVE_PATH = PATH;
-      public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
-   }
-
    public class GetPurchaseStatus {
       public static final String GET_PURCHASE_STATUS = "purchaseStatus";
       public static final int SUCCESS = 200;
@@ -162,33 +154,6 @@ public abstract class PurchaseResource {
          @Context HttpServletRequest httpServletRequest) {
       getResourceImplementation()
             .reversePurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
-   }
-
-   /**
-    * @since 5.14.0
-    */
-   @POST
-   @Path(LookupPurchase.RELATIVE_PATH)
-   @Consumes({ "application/json" })
-   @Produces({ "application/json" })
-   @ApiOperation(nickname = LookupPurchase.LOOKUP_PURCHASE, value = "Look up the status of a previously submitted purchase request.", notes = "If no response was received to a purchase request due to a timeout or temporary communications "
-         + "failure, PoS may lookup the same purchase request by calling this resource.")
-   @ApiResponses(value = {
-         @ApiResponse(code = LookupPurchase.SUCCESS, message = "Created", response = PurchaseResponse.class),
-         @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
-         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
-         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
-         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
-   public final void lookupPurchase(
-         @ApiParam(value = "An airtime lookup purchase request.", required = true) @NotNull @Valid PurchaseRequest body,
-         @Context SecurityContext securityContext,
-         @Context Request request,
-         @Suspended AsyncResponse asyncResponse,
-         @Context HttpHeaders httpHeaders,
-         @Context UriInfo uriInfo,
-         @Context HttpServletRequest httpServletRequest) {
-      getResourceImplementation()
-            .lookupPurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
    }
 
    @GET

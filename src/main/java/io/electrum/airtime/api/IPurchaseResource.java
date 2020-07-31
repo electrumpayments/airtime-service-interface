@@ -40,18 +40,6 @@ public interface IPurchaseResource {
          UriInfo uriInfo,
          HttpServletRequest httpServletRequest);
 
-   default void lookupPurchase(
-     PurchaseRequest body,
-     SecurityContext securityContext,
-     Request request,
-     HttpHeaders httpHeaders,
-     AsyncResponse asyncResponse,
-     UriInfo uriInfo,
-     HttpServletRequest httpServletRequest
-   ) {
-      asyncResponse.resume(new ServerErrorException("This operation has not been implemented.", 501));
-   }
-
    void getPurchaseStatus(
          String provider,
          String purchaseReference,
