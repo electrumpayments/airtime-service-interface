@@ -19,7 +19,7 @@ public interface IMsisdnResource {
          UriInfo uriInfo,
          HttpServletRequest httpServletRequest);
 
-   void lookupMsisdn(
+   default void lookupMsisdn(
          String msisdn,
          String operator,
          String productType,
@@ -28,5 +28,7 @@ public interface IMsisdnResource {
          HttpHeaders httpHeaders,
          AsyncResponse asyncResponse,
          UriInfo uriInfo,
-         HttpServletRequest httpServletRequest);
+         HttpServletRequest httpServletRequest) {
+      lookupMsisdn(msisdn, operator, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
+   }
 }

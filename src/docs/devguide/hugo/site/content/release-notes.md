@@ -2,14 +2,22 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ## v5.14.0
 
-Released 27 July 2020
+Released 04 August 2020
 
 - Update `service-interface-base` version from 3.23.0 to v3.27.0.
     - Added support for hashed PINs (via a new sub-type of `Pin` named `HashedPin`).
     - Added `amounts` field to the `BasicAdvice` model to support partial reversals and partial confirmations.
     - Added Account PaymentMethod.
-    - Added Interfaces for HasAmounts & HasPaymentMethods. These can be used for creating shared utilities across API implementations.
+    - Added Interfaces for `HasAmounts` & `HasPaymentMethods`. These can be used for creating shared utilities across API implementations.
     - Added `RewardPayment` method.
+- Corrects breaking changes introduced in v5.13.0 of the API.
+    - Summary: newer implementations of the `lookupMsisdn` operation will call the previous implementation of the `lookupMsisdn` operation by default.
+    - These changes (the original breaking changes as well as the corrections) only affect the Java implementation of the API as provided by Electrum. They do not affect the API as defined by the supplied swagger.
+    - v5.13.0 introduced a change to the `lookupMsisdn` operation. By default, this change would return an error response when attempting to call the updated implementation of the `lookupMsisdn` operation.
+    - However, the updated implementation also became the default implementation used when performing the `lookupMsisdn` operation.
+      - This was because the updated implementation assumed ownership of the JAX-RS properties.
+    - Thus, existing implementations of the API would unexpectedly use the newest implementation of the `lookupMsisdn` operation which returns an error response.
+    - The Java implementation has been corrected to use the prior implementation of the `lookupMsisdn` operation as the default behaviour of the newer implementation.
 
 
 ## v5.13.3
