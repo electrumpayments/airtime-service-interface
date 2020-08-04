@@ -117,7 +117,16 @@ public class NewModelTest {
             { new Product().productId("blah").validityPeriod(
                   new ValidityPeriod().duration(30L)),
               new Product().productId("blah").validityPeriod(
-                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)) } };
+                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)) },
+            {new Product().productId("blah").barcode("somecode").validityPeriod(
+                  new ValidityPeriod().duration(30L)),
+              new Product().productId("blah").barcode("somecode").validityPeriod(
+                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS))},
+            {new Product().productId("blah").type(Product.ProductType.AIRTIME_VARIABLE).validityPeriod(
+                  new ValidityPeriod().duration(30L)),
+              new Product().productId("blah").type(Product.ProductType.AIRTIME_VARIABLE).validityPeriod(
+                 new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS))}
+      };
          //@formatter:on
    }
 
