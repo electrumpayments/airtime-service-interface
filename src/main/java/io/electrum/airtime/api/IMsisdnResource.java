@@ -20,6 +20,9 @@ public interface IMsisdnResource {
          UriInfo uriInfo,
          HttpServletRequest httpServletRequest);
 
+   /**
+    * @since 5.14.0
+    */
    default void lookupMsisdn(
          String msisdn,
          String operator,
@@ -30,6 +33,14 @@ public interface IMsisdnResource {
          AsyncResponse asyncResponse,
          UriInfo uriInfo,
          HttpServletRequest httpServletRequest) {
-      asyncResponse.resume(new ServerErrorException("This operation has not been implemented.", 501));
+      lookupMsisdn(
+               msisdn,
+               operator,
+               securityContext,
+               request,
+               httpHeaders,
+               asyncResponse,
+               uriInfo,
+               httpServletRequest);
    }
 }
