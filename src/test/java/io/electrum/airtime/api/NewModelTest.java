@@ -15,7 +15,6 @@ import io.electrum.airtime.api.model.Product;
 import io.electrum.airtime.api.model.ProductContent;
 import io.electrum.airtime.api.model.ValidityPeriod;
 import io.electrum.vas.JsonUtil;
-import io.electrum.vas.model.LedgerAmount;
 
 public class NewModelTest {
 
@@ -117,15 +116,7 @@ public class NewModelTest {
             { new Product().productId("blah").validityPeriod(
                   new ValidityPeriod().duration(30L)),
               new Product().productId("blah").validityPeriod(
-                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)) },
-            {new Product().productId("blah").barcode("somecode").validityPeriod(
-                  new ValidityPeriod().duration(30L)),
-              new Product().productId("blah").barcode("somecode").validityPeriod(
-                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS))},
-            {new Product().productId("blah").type(Product.ProductType.AIRTIME_VARIABLE).validityPeriod(
-                  new ValidityPeriod().duration(30L)),
-              new Product().productId("blah").type(Product.ProductType.AIRTIME_VARIABLE).validityPeriod(
-                 new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS))}
+                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)) }
       };
          //@formatter:on
    }
