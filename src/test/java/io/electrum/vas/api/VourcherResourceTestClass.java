@@ -1,8 +1,7 @@
-package io.electrum.vas.api.interfaceTestClass;
+package io.electrum.vas.api;
 
 import io.electrum.airtime.api.IVouchersResource;
 import io.electrum.airtime.api.VouchersResource;
-import io.electrum.vas.api.interfaceTestImpl.IVouchersResourceTestImpl;
 import org.mockito.Mockito;
 
 public class VourcherResourceTestClass extends VouchersResource {

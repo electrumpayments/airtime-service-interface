@@ -1,8 +1,5 @@
 package io.electrum.vas.api;
 
-import io.electrum.vas.api.interfaceTestImpl.IMsisdnResourceTestImpl;
-import io.electrum.vas.api.interfaceTestImpl.IPurchaseResourceTestImpl;
-import io.electrum.vas.api.interfaceTestImpl.IVouchersResourceTestImpl;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

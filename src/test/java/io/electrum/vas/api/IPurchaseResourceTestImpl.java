@@ -1,4 +1,4 @@
-package io.electrum.vas.api.interfaceTestImpl;
+package io.electrum.vas.api;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.container.AsyncResponse;

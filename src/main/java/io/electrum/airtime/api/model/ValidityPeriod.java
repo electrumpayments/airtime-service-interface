@@ -9,6 +9,7 @@ import io.electrum.vas.Utils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -21,7 +22,7 @@ import javax.validation.constraints.NotNull;
         "Any unused portion of a product (e.g. unused data) will be forfeit at the end of the validity period.")
 public class ValidityPeriod {
 
-   private long duration;
+   private long duration = 0L;
    private ChronoUnit durationUnit;
 
    public ValidityPeriod duration(long duration) {
@@ -37,7 +38,7 @@ public class ValidityPeriod {
     */
    @ApiModelProperty(required = true, value = "A long value describing the number of durationUnits for the validity period.")
    @JsonProperty("duration")
-   @NotNull
+   @Min(0L)
    public long getDuration() {
       return this.duration;
    }

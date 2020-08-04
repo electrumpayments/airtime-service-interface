@@ -23,6 +23,8 @@ public class ProductContent {
    /**
     * Every airtime product unit must be classified into one of the following unit types:
     * KB, MB or GB for data; Unit for SMSs; Minutes for airtime
+    *
+    * @since 5.14.0
     */
    public enum AirtimeProductUnit {
       KB("KB"), MB("MB"), GB("GB"), UNIT("Unit"), MINUTES("Minutes");
@@ -54,12 +56,12 @@ public class ProductContent {
    /**
     * The size of the product in KB, MB or GB for data; Unit for SMSs; Minutes for airtime.
     *
+    * @since 5.14.0
     * @return amount
     */
    @ApiModelProperty(required = true, value = "The size of the product in KB, MB or GB for data; " +
            "Unit for SMSs; Minutes for airtime.")
    @JsonProperty("amount")
-   @NotNull
    @Min(0L)
    public long getAmount() {
       return amount;
@@ -80,6 +82,7 @@ public class ProductContent {
    /**
     *  The unit of product. Can be KB, MB or GB for data; Unit for SMSs; Minutes for airtime.
     *
+    * @since 5.14.0
     * @return unit
     */
    @ApiModelProperty(required = true, value = "The unit of product. Can be KB, MB or GB for data; " +

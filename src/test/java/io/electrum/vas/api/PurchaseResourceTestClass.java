@@ -1,8 +1,7 @@
-package io.electrum.vas.api.interfaceTestClass;
+package io.electrum.vas.api;
 
 import io.electrum.airtime.api.IPurchaseResource;
 import io.electrum.airtime.api.PurchaseResource;
-import io.electrum.vas.api.interfaceTestImpl.IPurchaseResourceTestImpl;
 import org.mockito.Mockito;
 
 public class PurchaseResourceTestClass extends PurchaseResource {

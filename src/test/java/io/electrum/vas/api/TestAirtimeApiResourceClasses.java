@@ -1,12 +1,4 @@
 package io.electrum.vas.api;
-import io.electrum.airtime.api.IVouchersResource;
-import io.electrum.airtime.api.model.Msisdn;
-import io.electrum.vas.api.interfaceTestClass.MsisdnResourceTestClass;
-import io.electrum.vas.api.interfaceTestClass.PurchaseResourceTestClass;
-import io.electrum.vas.api.interfaceTestClass.VourcherResourceTestClass;
-import io.electrum.vas.api.interfaceTestImpl.IMsisdnResourceTestImpl;
-import io.electrum.vas.api.interfaceTestImpl.IPurchaseResourceTestImpl;
-import io.electrum.vas.api.interfaceTestImpl.IVouchersResourceTestImpl;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

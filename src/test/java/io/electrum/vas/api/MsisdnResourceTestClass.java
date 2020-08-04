@@ -1,8 +1,7 @@
-package io.electrum.vas.api.interfaceTestClass;
+package io.electrum.vas.api;
 
 import io.electrum.airtime.api.IMsisdnResource;
 import io.electrum.airtime.api.MsisdnResource;
-import io.electrum.vas.api.interfaceTestImpl.IMsisdnResourceTestImpl;
 import org.mockito.Mockito;
 
 public class MsisdnResourceTestClass extends MsisdnResource {
