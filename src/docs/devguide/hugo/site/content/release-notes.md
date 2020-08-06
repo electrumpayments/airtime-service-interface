@@ -34,7 +34,7 @@ Released 12 May 2020
         - `VouchersResource.ReverseVoucher.FULL_PATH`
 
 ## v5.13.2 (Deprecated)
-Deprecated, replaced with v5.14.0. v5.13.2 contains a breaking change to the Java implementation of the SUV API. The change caused the `lookupMsisdn` operation on the Airtime HTTP Inlet to fail if this plugin was installed without updating the inlet.
+Deprecated, replaced with v5.14.0. This version contains a breaking change to the Java implementation of the Airtime API which causes implemented `lookupMsisdn` operations in existing server implementations to return HTTP 501 -Not Implemented responses instead.
 
 Released 28 November 2019
 
