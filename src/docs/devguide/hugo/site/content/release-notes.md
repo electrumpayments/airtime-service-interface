@@ -22,7 +22,7 @@ Released 06 August 2020
   - Added Interfaces for `HasAmounts` & `HasPaymentMethods`. These can be used for creating shared utilities across API implementations. These interfaces are specific to the Electrum implementation.
 
 ## v5.13.3 (Deprecated)
-Deprecated, replaced with v5.14.0. v5.13.3 contains a breaking change to the Java implementation of the SUV API. The change caused the `lookupMsisdn` operation on the Airtime HTTP Inlet to fail if this plugin was installed without updating the inlet.
+Deprecated, replaced with v5.14.0. This version contains a breaking change to the Java implementation of the Airtime API which causes implemented `lookupMsisdn` operations in existing server implementations to return HTTP 501 -Not Implemented responses instead.
 
 Released 12 May 2020
 
