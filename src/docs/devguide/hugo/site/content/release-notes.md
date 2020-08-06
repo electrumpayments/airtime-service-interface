@@ -2,7 +2,7 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ## v5.14.0
 
-Released 04 August 2020
+Released 06 August 2020
 
 ### Breaking Changes
 - Corrects breaking changes introduced in v5.13.0 of the API.
