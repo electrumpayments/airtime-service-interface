@@ -2,7 +2,7 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ## v5.14.0
 
-Released 05 August 2020
+Released 07 August 2020
 
 - Added new fields to the `Product` class:
     - `validityPeriod`: The length of time for which a product is valid. Any unused portion of a product (e.g. unused data) will be forfeit at the end of the validity period).
