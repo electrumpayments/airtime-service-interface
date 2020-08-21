@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import io.electrum.vas.model.Institution;
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -58,6 +59,7 @@ public class Product {
    private LedgerAmount[] productValues = null;
    private ValidityPeriod validityPeriod = null;
    private List<ProductContent> productContents = null;
+   private Institution operator = null;
 
    /**
     * Describes whether or not the product directly recharges the recipients account (true), or a voucher number is
@@ -273,6 +275,27 @@ public class Product {
       this.productContents = productContents;
    }
 
+   public Product operator(Institution operator) {
+      this.operator = operator;
+      return this;
+   }
+
+   /**
+    * The Mobile Network Operator (MNO) institution that issued the product.
+    *
+    * @return operator
+    **/
+   @ApiModelProperty(value = "The Mobile Network Operator (MNO) institution that issued the product.")
+   @JsonProperty("operator")
+   @Valid
+   public Institution getOperator() {
+      return operator;
+   }
+
+   public void setOperator(Institution operator) {
+      this.operator = operator;
+   }
+
    @Override
    public boolean equals(java.lang.Object o) {
       if (this == o) {
@@ -288,7 +311,8 @@ public class Product {
             && Objects.equals(this.wholesalePrice, product.wholesalePrice)
             && Objects.equals(this.recipientAmount, product.recipientAmount)
             && Objects.equals(this.validityPeriod, product.validityPeriod)
-            && Objects.equals(this.productContents, product.productContents);
+            && Objects.equals(this.productContents, product.productContents)
+            && Objects.equals(this.operator, product.operator);
    }
 
    @Override
@@ -311,6 +335,7 @@ public class Product {
       sb.append("    productValues: ").append(Utils.toIndentedString(Arrays.toString(productValues))).append('\n');
       sb.append("    validityPeriod: ").append(Utils.toIndentedString(validityPeriod)).append('\n');
       sb.append("    productContents: ").append(Utils.toIndentedString(productContents)).append('\n');
+      sb.append("    operator: ").append(Utils.toIndentedString(operator)).append('\n');
       sb.append('}');
       return sb.toString();
    }
