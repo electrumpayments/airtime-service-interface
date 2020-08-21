@@ -20,7 +20,7 @@ import java.util.Objects;
  * Product data relating to a channel.
  **/
 
-@ApiModel(description = "Product related data.")
+@ApiModel(description = "Product data relating to a channel.")
 public class ChannelProductListing {
 
    private String channelName = null;
