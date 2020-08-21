@@ -35,7 +35,7 @@ public abstract class ProductsResource {
    public static final String PATH = AirtimeApi.API_BASE_PATH + RESOURCE_PATH;
 
    public class GetProducts {
-      public static final String GET_PRODUCTS = "getProducts";
+      public static final String LIST_PRODUCTS = "listProducts";
       public static final int SUCCESS = 200;
       public static final String PATH = "/";
       public static final String RELATIVE_PATH = PATH;
@@ -49,7 +49,7 @@ public abstract class ProductsResource {
    @GET
    @Path(GetProducts.RELATIVE_PATH)
    @Produces({ "application/json" })
-   @ApiOperation(nickname = GetProducts.GET_PRODUCTS, value = "Retrieves a list of available products. "
+   @ApiOperation(nickname = GetProducts.LIST_PRODUCTS, value = "Retrieves a list of available products. "
          + "If the products that are available for sale is maintained, this API call returns the list of products. " +
            "If such a list is not maintained, then a 501 Not Implemented status code will be returned.")
    @ApiResponses(value = {

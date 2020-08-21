@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Product related data.
+ * Product data relating to a channel.
  **/
 
 @ApiModel(description = "Product related data.")
