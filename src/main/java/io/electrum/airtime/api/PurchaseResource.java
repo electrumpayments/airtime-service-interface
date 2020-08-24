@@ -171,8 +171,9 @@ public abstract class PurchaseResource {
     *
     * This operation is identical to the `{@code purchase}` operation except that no voucher is returned (for voucher
     * based products) and no product will be applied to the MSISDN (for direct top-ups), and this operation carries no
-    * financial impact. This operation allows the downstream to determine if a MSISDN is applicable for an airtime
-    * product.
+    * financial impact. The purpose of this operation is to determine whether it is worth proceeding to a tender step
+    * i.e. is a subsequent purchase likely to to be successful (in which case the downstream should move to the tender
+    * step) or fail (in which case the downstream should not take tender).
     *
     * @since v5.15.0
     *
