@@ -17,7 +17,7 @@ To include the service interface into your maven project, include the below depe
 <dependency>
       <groupId>io.electrum</groupId>
       <artifactId>service-interface-base</artifactId>
-      <version>3.26.0</version>
+      <version>3.28.0</version>
 </dependency>
 ```
 

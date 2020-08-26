@@ -2,7 +2,7 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ## v5.15.0
 
-Released 24 July 2020
+Released 26 August 2020
 
 - This change affects the Java implementation of the API only and does not change the public definition of the API. The Java implementation has been updated as follows:
   - The following classes now implement the `HasAmounts` interface defined in the base API:
@@ -15,6 +15,18 @@ Released 24 July 2020
     - `PurchaseRequest`
     - `VoucherRequest`
 
+## v5.14.0
+
+Released 07 August 2020
+
+- Added new fields to the `Product` class:
+    - `validityPeriod`: The length of time for which a product is valid. Any unused portion of a product (e.g. unused data) will be forfeit at the end of the validity period).
+    - `productContents`: A list defining the contents of the airtime product.
+
+- Added new models:
+    - `ProductContent` which describes the content of the airtime product.
+    - `ValidityPeriod` which describes the period before an airtime product expires.
+    
 ## v5.13.3
 
 Released 12 May 2020
