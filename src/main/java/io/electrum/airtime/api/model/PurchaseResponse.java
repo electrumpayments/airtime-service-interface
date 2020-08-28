@@ -1,5 +1,13 @@
 package io.electrum.airtime.api.model;
 
+import io.electrum.vas.Utils;
+import io.electrum.vas.interfaces.HasAmounts;
+import io.electrum.vas.model.Amounts;
+import io.electrum.vas.model.SlipData;
+import io.electrum.vas.model.Transaction;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Objects;
 
 import javax.validation.Valid;
@@ -7,19 +15,12 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.electrum.vas.Utils;
-import io.electrum.vas.model.Amounts;
-import io.electrum.vas.model.SlipData;
-import io.electrum.vas.model.Transaction;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 /**
  * A response to a successful purchase of an airtime product.
  **/
 
 @ApiModel(description = "A response to a successful request for an airtime product.")
-public class PurchaseResponse extends Transaction {
+public class PurchaseResponse extends Transaction implements HasAmounts {
 
    private Amounts amounts = null;
    private Product product = null;

@@ -1,11 +1,7 @@
 package io.electrum.airtime.api.model;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import io.electrum.vas.Utils;
+import io.electrum.vas.interfaces.HasAmounts;
 import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.Institution;
 import io.electrum.vas.model.SlipData;
@@ -13,12 +9,17 @@ import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Information about the voucher provisioned.
  **/
 
 @ApiModel(description = "Information about the voucher provisioned.")
-public class VoucherResponse extends Transaction {
+public class VoucherResponse extends Transaction implements HasAmounts {
 
    private Amounts amounts = null;
    private Product responseProduct = null;
