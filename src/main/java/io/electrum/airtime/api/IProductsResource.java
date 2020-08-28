@@ -8,7 +8,16 @@ import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
 public interface IProductsResource {
-   void getProductsImpl(
+   default void getProductsImpl(
+         String channelName,
+         SecurityContext securityContext,
+         Request request,
+         HttpHeaders httpHeaders,
+         AsyncResponse asyncResponse,
+         UriInfo uriInfo,
+         HttpServletRequest httpServletRequest) {
+      asyncResponse.resume(new ServerErrorException("This operation has not been implemented.", 501));
+   }
          String channelName,
          SecurityContext securityContext,
          Request request,
