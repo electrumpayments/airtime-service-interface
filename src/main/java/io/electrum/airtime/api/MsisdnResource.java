@@ -44,14 +44,15 @@ public abstract class MsisdnResource {
          public static final String MSISDN = "msisdn";
          public static final String OPERATOR = "operator";
          public static final String PRODUCT_TYPE = "productType";
+         public static final String CHANNEL_NAME = "channelName";
       }
    }
 
    /**
-    * Deprecated to perform lookupMsisdn method with extra QueryParameter productType.
+    * Deprecated to perform lookupMsisdn method with extra QueryParameters.
     * 
     * @deprecated instead use
-    *             {@link #lookupMsisdn(String, String, String, SecurityContext, Request, AsyncResponse, HttpHeaders, UriInfo, HttpServletRequest)}
+    *             {@link #lookupMsisdn(String, String, String, String, SecurityContext, Request, AsyncResponse, HttpHeaders, UriInfo, HttpServletRequest)}
     * 
     */
    @Deprecated
@@ -76,18 +77,14 @@ public abstract class MsisdnResource {
             httpServletRequest);
    }
 
-   @GET
-   @Path(LookupMsisdn.RELATIVE_PATH)
-   @Produces({ "application/json" })
-   @ApiOperation(nickname = LookupMsisdn.LOOKUP_MSISDN, value = "Looks up information associated with the given Msisdn. "
-         + "This includes such information as available products and promotions, operator information etc.")
-   @ApiResponses(value = {
-         @ApiResponse(code = LookupMsisdn.SUCCESS, message = "Accepted", response = MsisdnInfoResponse.class),
-         @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
-         @ApiResponse(code = 404, message = "Not Found"),
-         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
-         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
-         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+   /**
+    * Deprecated to perform lookupMsisdn method with extra QueryParameters.
+    *
+    * @deprecated instead use
+    *             {@link #lookupMsisdn(String, String, String, String, SecurityContext, Request, AsyncResponse, HttpHeaders, UriInfo, HttpServletRequest)}
+    *
+    */
+   @Deprecated
    public final void lookupMsisdn(
          @ApiParam(value = "The Msisdn. This must conform to the ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).", required = true) @QueryParam(LookupMsisdn.QueryParameters.MSISDN) @Pattern(regexp = "^\\+?[1-9]\\d{1,14}") @NotNull String msisdn,
          @ApiParam(value = "The provider who processed the original purchase attempt.") @QueryParam(LookupMsisdn.QueryParameters.OPERATOR) String operator,
@@ -102,11 +99,48 @@ public abstract class MsisdnResource {
             msisdn,
             operator,
             productType,
+            null,
             securityContext,
             request,
             httpHeaders,
             asyncResponse,
             uriInfo,
             httpServletRequest);
+   }
+
+   @GET
+   @Path(LookupMsisdn.RELATIVE_PATH)
+   @Produces({ "application/json" })
+   @ApiOperation(nickname = LookupMsisdn.LOOKUP_MSISDN, value = "Looks up information associated with the given Msisdn. "
+           + "This includes such information as available products and promotions, operator information etc.")
+   @ApiResponses(value = {
+           @ApiResponse(code = LookupMsisdn.SUCCESS, message = "Accepted", response = MsisdnInfoResponse.class),
+           @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
+           @ApiResponse(code = 404, message = "Not Found"),
+           @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
+           @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
+           @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+   public final void lookupMsisdn(
+           @ApiParam(value = "The Msisdn. This must conform to the ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).", required = true) @QueryParam(LookupMsisdn.QueryParameters.MSISDN) @Pattern(regexp = "^\\+?[1-9]\\d{1,14}") @NotNull String msisdn,
+           @ApiParam(value = "The provider who processed the original purchase attempt.") @QueryParam(LookupMsisdn.QueryParameters.OPERATOR) String operator,
+           @ApiParam(value = "Used to filter the products to lookup for a given msisdn.") @QueryParam(LookupMsisdn.QueryParameters.PRODUCT_TYPE) String productType,
+           @ApiParam(value = "Used to filter the products to lookup for a given channel.") @QueryParam(LookupMsisdn.QueryParameters.CHANNEL_NAME) String channelName,
+           @Context SecurityContext securityContext,
+           @Context Request request,
+           @Suspended AsyncResponse asyncResponse,
+           @Context HttpHeaders httpHeaders,
+           @Context UriInfo uriInfo,
+           @Context HttpServletRequest httpServletRequest) {
+      getResourceImplementation().lookupMsisdn(
+              msisdn,
+              operator,
+              productType,
+              channelName,
+              securityContext,
+              request,
+              httpHeaders,
+              asyncResponse,
+              uriInfo,
+              httpServletRequest);
    }
 }

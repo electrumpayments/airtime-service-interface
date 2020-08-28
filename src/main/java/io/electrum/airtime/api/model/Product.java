@@ -60,6 +60,7 @@ public class Product {
    private ValidityPeriod validityPeriod = null;
    private List<ProductContent> productContents = null;
    private Institution operator = null;
+   private List<ChannelProductListing> channels = null;
 
    /**
     * Describes whether or not the product directly recharges the recipients account (true), or a voucher number is
@@ -296,6 +297,27 @@ public class Product {
       this.operator = operator;
    }
 
+   public Product channels(List<ChannelProductListing> channels) {
+      this.channels = channels;
+      return this;
+   }
+
+   /**
+    * A list of channels the product is available at.
+    *
+    * @return productContents
+    **/
+   @ApiModelProperty(value = "A list of channels the product is available at.")
+   @JsonProperty("channels")
+   @Valid
+   public List<ChannelProductListing> getChannels() {
+      return channels;
+   }
+
+   public void setChannels(List<ChannelProductListing> channels) {
+      this.channels = channels;
+   }
+
    @Override
    public boolean equals(java.lang.Object o) {
       if (this == o) {
@@ -312,7 +334,8 @@ public class Product {
             && Objects.equals(this.recipientAmount, product.recipientAmount)
             && Objects.equals(this.validityPeriod, product.validityPeriod)
             && Objects.equals(this.productContents, product.productContents)
-            && Objects.equals(this.operator, product.operator);
+            && Objects.equals(this.operator, product.operator)
+            && Objects.equals(this.channels, product.channels);
    }
 
    @Override
@@ -336,6 +359,7 @@ public class Product {
       sb.append("    validityPeriod: ").append(Utils.toIndentedString(validityPeriod)).append('\n');
       sb.append("    productContents: ").append(Utils.toIndentedString(productContents)).append('\n');
       sb.append("    operator: ").append(Utils.toIndentedString(operator)).append('\n');
+      sb.append("    channels: ").append(Utils.toIndentedString(channels)).append('\n');
       sb.append('}');
       return sb.toString();
    }

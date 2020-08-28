@@ -1,8 +1,7 @@
 package io.electrum.airtime.api;
 
 import io.electrum.airtime.api.model.ErrorDetail;
-import io.electrum.airtime.api.model.MsisdnInfoResponse;
-import io.electrum.airtime.api.model.ProductListingResponse;
+import io.electrum.airtime.api.model.Product;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -12,7 +11,6 @@ import io.swagger.annotations.Authorization;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -53,7 +51,7 @@ public abstract class ProductsResource {
          + "If the products that are available for sale is maintained, this API call returns the list of products. " +
            "If such a list is not maintained, then a 501 Not Implemented status code will be returned.")
    @ApiResponses(value = {
-         @ApiResponse(code = GetProducts.SUCCESS, message = "Success", response = ProductListingResponse.class),
+         @ApiResponse(code = GetProducts.SUCCESS, message = "Success", response = Product.class, responseContainer = "List"),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not Found"),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),

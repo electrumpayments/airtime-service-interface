@@ -23,6 +23,7 @@ public interface IMsisdnResource {
    /**
     * @since 5.14.0
     */
+   @Deprecated
    default void lookupMsisdn(
          String msisdn,
          String operator,
@@ -34,13 +35,38 @@ public interface IMsisdnResource {
          UriInfo uriInfo,
          HttpServletRequest httpServletRequest) {
       lookupMsisdn(
-               msisdn,
-               operator,
-               securityContext,
-               request,
-               httpHeaders,
-               asyncResponse,
-               uriInfo,
-               httpServletRequest);
+              msisdn,
+              operator,
+              securityContext,
+              request,
+              httpHeaders,
+              asyncResponse,
+              uriInfo,
+              httpServletRequest);
+   }
+
+   /**
+    * @since 5.15.0
+    */
+   default void lookupMsisdn(
+           String msisdn,
+           String operator,
+           String productType,
+           String channelName,
+           SecurityContext securityContext,
+           Request request,
+           HttpHeaders httpHeaders,
+           AsyncResponse asyncResponse,
+           UriInfo uriInfo,
+           HttpServletRequest httpServletRequest) {
+      lookupMsisdn(
+              msisdn,
+              operator,
+              securityContext,
+              request,
+              httpHeaders,
+              asyncResponse,
+              uriInfo,
+              httpServletRequest);
    }
 }

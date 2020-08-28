@@ -1,32 +1,26 @@
 package io.electrum.airtime.api.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.electrum.vas.Utils;
-import io.electrum.vas.model.Institution;
-import io.electrum.vas.model.LedgerAmount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.Length;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
- * Product data relating to a channel.
+ * Product data is it relates to a channel.
  **/
 
-@ApiModel(description = "Product data relating to a channel.")
+@ApiModel(description = "Product data is it relates to a channel.")
 public class ChannelProductListing {
 
    private String channelName = null;
    private String productDisplayName = null;
    private String productDisplayCategory = null;
-   private Integer productDisplaySortOrder = null;
+   private Double productDisplaySortOrder = null;
 
    /**
     * The name of the channel.
@@ -41,8 +35,8 @@ public class ChannelProductListing {
     *
     * @return channelName
     **/
-   @ApiModelProperty(value = "The name of the channel.")
-   @JsonProperty(value = "channelName", required = true)
+   @ApiModelProperty(value = "The name of the channel.", required = true)
+   @JsonProperty(value = "channelName")
    @NotNull
    public String getChannelName() {
       return channelName;
@@ -99,25 +93,25 @@ public class ChannelProductListing {
    }
 
    /**
-    * A sort order that is meaningful for display purposes.
+    * A menu sort order that is meaningful for display purposes.
     **/
-   public ChannelProductListing productDisplaySortOrder(Integer productDisplaySortOrder) {
+   public ChannelProductListing productDisplaySortOrder(Double productDisplaySortOrder) {
       this.productDisplaySortOrder = productDisplaySortOrder;
       return this;
    }
 
    /**
-    * A sort order that is meaningful for display purposes.
+    * A menu sort order that is meaningful for display purposes.
     *
     * @return channelName
     **/
-   @ApiModelProperty(value = "A sort order that is meaningful for display purposes.")
+   @ApiModelProperty(value = "A menu sort order that is meaningful for display purposes.")
    @JsonProperty(value = "productDisplaySortOrder")
-   public Integer getProductDisplaySortOrder() {
+   public Double getProductDisplaySortOrder() {
       return productDisplaySortOrder;
    }
 
-   public void setProductDisplaySortOrder(Integer productDisplaySortOrder) {
+   public void setProductDisplaySortOrder(Double productDisplaySortOrder) {
       this.productDisplaySortOrder = productDisplaySortOrder;
    }
 
