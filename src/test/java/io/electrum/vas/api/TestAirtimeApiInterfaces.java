@@ -24,6 +24,8 @@ public class TestAirtimeApiInterfaces {
            {IPurchaseResourceTestImpl.class,"reversePurchase"},
            {IPurchaseResourceTestImpl.class,"getPurchaseStatus"},
            {IMsisdnResourceTestImpl.class,"lookupMsisdn"},
+           {IMsisdnResourceTestImpl.class,"lookupMsisdn"},
+           {IProductsResourceTestImpl.class,"getProductsImpl"},
            //@formatter:on
       };
    }

@@ -23,6 +23,7 @@ public class TestAirtimeApiResourceClasses {
         return new Object[][] {
                 //@formatter:off
                 {MsisdnResourceTestClass.class, "lookupMsisdn", IMsisdnResourceTestImpl.class, "lookupMsisdn"},
+                {ProductsResourceTestClass.class, "getProductsImpl", IProductsResourceTestImpl.class, "getProductsImpl"},
                 {PurchaseResourceTestClass.class, "confirmPurchase", IPurchaseResourceTestImpl.class, "confirmPurchase"},
                 {PurchaseResourceTestClass.class, "purchasePurchase", IPurchaseResourceTestImpl.class, "purchasePurchase"},
                 {PurchaseResourceTestClass.class, "reversePurchase", IPurchaseResourceTestImpl.class, "reversePurchase"},

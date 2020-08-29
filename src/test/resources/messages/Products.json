@@ -1,0 +1,100 @@
+[
+  {
+    "productId": "167",
+    "name": "600MB 5-Day R50.00",
+    "type": "DATA",
+    "recipientAmount": {
+      "amount": "5000",
+      "currency": "710"
+    },
+    "validityPeriod": {
+      "duration": "5",
+      "durationUnit": "DAYS"
+    },
+    "productContents": [
+      {
+        "amount": "600",
+        "unit": "MB"
+      }
+    ],
+    "operator": {
+      "id": "12345",
+      "name": "CELL C"
+    },
+    "channels": [
+      {
+        "channelName": "USSD",
+        "productDisplayName": "600MB R50.00",
+        "productCategory": "DAYS_5",
+        "sortOrder": 6
+      },
+      {
+        "channelName": "APP+IBank",
+        "productDisplayName": "600MB 5-Day",
+        "sortOrder": 6
+      }
+    ]
+  },
+  {
+    "productId": "2344",
+    "name": "2GB Monthly R189.00",
+    "type": "DATA",
+    "recipientAmount": {
+      "amount": "18900",
+      "currency": "710"
+    },
+    "validityPeriod": {
+      "duration": "1",
+      "durationUnit": "MONTHS"
+    },
+    "productContents": [
+      {
+        "amount": "2",
+        "unit": "GB"
+      }
+    ],
+    "operator": {
+      "id": "67890",
+      "name": "MTN"
+    },
+    "channels": [
+      {
+        "channelName": "APP+IBank",
+        "productDisplayName": "2GB Monthly ????",
+        "sortOrder": 24
+      }
+    ]
+  },
+  {
+    "productId": "148",
+    "name": "All-in-One 999 R999.00",
+    "type": "DATA",
+    "recipientAmount": {
+      "amount": "99900",
+      "currency": "710"
+    },
+    "productContents": [
+      {
+        "amount": "999",
+        "unit": "Unit"
+      }
+    ],
+    "operator": {
+      "id": "12345",
+      "name": "CELL C"
+    },
+    "channel": [
+      {
+        "channelName": "USSD",
+        "productDisplayName": "All-in-One 999 R999.00",
+        "productCategory": "ALL_IN_ONE",
+        "sortOrder": 29
+      },
+      {
+        "channelName": "APP+IBank",
+        "productDisplayName": "All-in-One 999 R999.00",
+        "sortOrder": 29
+      }
+    ]
+  }
+]

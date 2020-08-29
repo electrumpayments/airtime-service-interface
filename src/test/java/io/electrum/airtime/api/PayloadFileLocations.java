@@ -21,4 +21,5 @@ public class PayloadFileLocations {
    public static final String VOUCHER_RSP = "VoucherResponse.json";
    public static final String VOUCHER_CONF = "VoucherConfirmation.json";
 
+   public static final String PRODUCTS = "Products.json";
 }

@@ -1,5 +1,11 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.16.0
+
+Released 1 September 2020
+
+- A new `products` resource has been added with a single GET operation. This new operation retrieves a list of products that are available for sale by client's channels. Unless a product catalogue is maintained, this operation will simply return a 501 HTTP status code.
+
 ## v5.15.0
 
 Released 26 August 2020
