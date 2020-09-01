@@ -1,13 +1,8 @@
 package io.electrum.airtime.api.model;
 
-import java.util.List;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import io.electrum.vas.Utils;
+import io.electrum.vas.interfaces.HasAmounts;
+import io.electrum.vas.interfaces.HasPaymentMethods;
 import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.PaymentMethod;
 import io.electrum.vas.model.Tender;
@@ -15,13 +10,20 @@ import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * A request to purchase an airtime product. This may be for airtime, data or SMS products or a combination. Purchase
  * requests may be for PIN based or PIN-less products.
  **/
 
 @ApiModel(description = "A request for an airtime product. This may be for airtime, data or SMS products or a combination. Airtime requests may be for PIN based or PIN-less products.")
-public class PurchaseRequest extends Transaction {
+public class PurchaseRequest extends Transaction implements HasAmounts, HasPaymentMethods {
 
    private Amounts amounts = null;
    private Product product = null;
