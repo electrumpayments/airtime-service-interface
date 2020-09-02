@@ -63,7 +63,7 @@ public abstract class PurchaseResource {
    }
 
    /**
-    * @since v5.15.0
+    * @since v5.16.0
     */
    public static class TrialPurchase {
       public static final String TRIAL_PURCHASE = "purchaseTrial";
