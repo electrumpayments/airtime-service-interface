@@ -1,5 +1,13 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.16.0
+
+Released 02 September 2020
+
+- Added a new operation, `trialPurchase`, which mimics a conventional `purchase` operation with the following exceptions:
+    - No voucher is returned and no product is applied to MSISDN.
+    - Has no financial impact.
+
 ## v5.15.0
 
 Released 26 August 2020
