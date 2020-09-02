@@ -38,6 +38,11 @@ public class TestAirtimeApiInterfaces {
       };
    }
 
+   /**
+    * This test ensures that the {@link io.electrum.airtime.api.IPurchaseResource#trialPurchase} method is not removed
+    * from the {@link io.electrum.airtime.api.IPurchaseResource} interface and that the default implementation provides
+    * an appropriate response for the operation.
+    */
    @Test
    public void ensureTrialPurchaseExists() {
       // Setup

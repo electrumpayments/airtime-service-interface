@@ -175,7 +175,7 @@ public abstract class PurchaseResource {
     * i.e. is a subsequent purchase likely to to be successful (in which case the downstream should move to the tender
     * step) or fail (in which case the downstream should not take tender).
     *
-    * @since v5.15.0
+    * @since v5.16.0
     *
     * @param body
     * @param securityContext

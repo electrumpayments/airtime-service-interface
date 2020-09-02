@@ -42,6 +42,11 @@ public class TestAirtimeApiResourceClasses {
       };
    }
 
+   /**
+    * This test ensures that the {@link io.electrum.airtime.api.PurchaseResource#trialPurchase} operation is not removed
+    * from the {@link io.electrum.airtime.api.PurchaseResource} class and that the method appropriately calls the
+    * resource implementation.
+    */
    @Test
    public void ensureTrialPurchaseExists() {
       // Setup
