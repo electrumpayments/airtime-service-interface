@@ -58,7 +58,7 @@ public abstract class ProductsResource {
          @ApiResponse(code = 501, message = "Not implemented"),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
-   public final void lookupMsisdn(
+   public final void getProducts(
          @ApiParam(value = "The name of the channel to retrieve products for. If set only products matching this " +
                  "channel name will be returned. If not set, all products will be returned.")
          @QueryParam(GetProducts.QueryParameters.CHANNEL_NAME) @NotNull String channelName,
