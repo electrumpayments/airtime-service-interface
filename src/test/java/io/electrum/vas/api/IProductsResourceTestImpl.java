@@ -26,15 +26,4 @@ import javax.ws.rs.core.UriInfo;
  */
 public class IProductsResourceTestImpl implements IProductsResource {
 
-   @Override
-   public void getProductsImpl(
-         String channelName,
-         SecurityContext securityContext,
-         Request request,
-         HttpHeaders httpHeaders,
-         AsyncResponse asyncResponse,
-         UriInfo uriInfo,
-         HttpServletRequest httpServletRequest) {
-
-   }
 }

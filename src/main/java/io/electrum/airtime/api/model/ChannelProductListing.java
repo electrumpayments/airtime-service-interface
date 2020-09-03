@@ -9,6 +9,7 @@ import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Product data is it relates to a channel.
@@ -38,6 +39,7 @@ public class ChannelProductListing {
    @ApiModelProperty(value = "The name of the channel.", required = true)
    @JsonProperty(value = "channelName")
    @NotNull
+   @Length(max = 50)
    public String getChannelName() {
       return channelName;
    }
@@ -61,6 +63,7 @@ public class ChannelProductListing {
     **/
    @ApiModelProperty(value = "The name of the product for display purposes.")
    @JsonProperty(value = "productDisplayName")
+   @Length(max = 50)
    public String getProductDisplayName() {
       return productDisplayName;
    }
@@ -84,6 +87,7 @@ public class ChannelProductListing {
     **/
    @ApiModelProperty(value = "A category that is meaningful for display purposes.")
    @JsonProperty(value = "productDisplayCategory")
+   @Length(max = 50)
    public String getProductDisplayCategory() {
       return productDisplayCategory;
    }

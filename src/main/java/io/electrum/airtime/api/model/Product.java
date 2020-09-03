@@ -334,13 +334,23 @@ public class Product {
             && Objects.equals(this.recipientAmount, product.recipientAmount)
             && Objects.equals(this.validityPeriod, product.validityPeriod)
             && Objects.equals(this.productContents, product.productContents)
-            && Objects.equals(this.operator, product.operator)
-            && Objects.equals(this.channels, product.channels);
+            && Objects.equals(this.operator, product.operator) && Objects.equals(this.channels, product.channels);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(isDirectTopup, productId, barcode, name, type, wholesalePrice, recipientAmount, validityPeriod, productContents);
+      return Objects.hash(
+            isDirectTopup,
+            productId,
+            barcode,
+            name,
+            type,
+            wholesalePrice,
+            recipientAmount,
+            validityPeriod,
+            productContents,
+            operator,
+            channels);
    }
 
    @Override
