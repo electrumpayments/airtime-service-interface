@@ -11,6 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import io.electrum.airtime.api.model.ErrorDetail;
 import io.electrum.airtime.api.model.Product;
 import io.electrum.airtime.api.model.ProductContent;
 import io.electrum.airtime.api.model.ValidityPeriod;
@@ -87,9 +88,15 @@ public class NewModelTest {
 
    @DataProvider(name = "ordinalDataProvider")
    public Object[][] ordinalDataProvider() {
-      return new Object[][] { { ProductContent.AirtimeProductUnit.MINUTES, 4 },
-            { ProductContent.AirtimeProductUnit.KB, 0 }, { ProductContent.AirtimeProductUnit.MB, 1 },
-            { ProductContent.AirtimeProductUnit.GB, 2 }, { ProductContent.AirtimeProductUnit.UNIT, 3 }, };
+      //@formatter:off
+      return new Object[][] {
+              { ProductContent.AirtimeProductUnit.MINUTES, 4 },
+              { ProductContent.AirtimeProductUnit.KB, 0 },
+              { ProductContent.AirtimeProductUnit.MB, 1 },
+              { ProductContent.AirtimeProductUnit.GB, 2 },
+              { ProductContent.AirtimeProductUnit.UNIT, 3 },
+              { ErrorDetail.RequestType.TRIAL_PURCHASE_REQUEST, 9 } };
+      //@formatter:on
    }
 
    @DataProvider(name = "recursiveValidationOnSubFieldsDataProvider")

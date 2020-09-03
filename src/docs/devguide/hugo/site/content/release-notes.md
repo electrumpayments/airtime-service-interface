@@ -1,10 +1,18 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
-## v5.16.0
+## v5.17.0
 
-Released 1 September 2020
+Released 03 September 2020
 
 - A new `products` resource has been added with a single GET operation. This new operation retrieves a list of products that are available for sale by client's channels. Unless a product catalogue is maintained, this operation will simply return a 501 HTTP status code.
+
+## v5.16.0
+
+Released 02 September 2020
+
+- Added a new operation, `trialPurchase`, which mimics a conventional `purchase` operation with the following exceptions:
+    - No voucher is returned and no product is applied to MSISDN.
+    - Has no financial impact.
 
 ## v5.15.0
 

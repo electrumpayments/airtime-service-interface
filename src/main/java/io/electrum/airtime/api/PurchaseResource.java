@@ -62,6 +62,17 @@ public abstract class PurchaseResource {
       public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
    }
 
+   /**
+    * @since v5.16.0
+    */
+   public static class TrialPurchase {
+      public static final String TRIAL_PURCHASE = "purchaseTrial";
+      public static final int SUCCESS = 200;
+      public static final String PATH = "/trials";
+      public static final String RELATIVE_PATH = PATH;
+      public static final String FULL_PATH = PurchaseResource.PATH + RELATIVE_PATH;
+   }
+
    public class GetPurchaseStatus {
       public static final String GET_PURCHASE_STATUS = "purchaseStatus";
       public static final int SUCCESS = 200;
@@ -154,6 +165,49 @@ public abstract class PurchaseResource {
          @Context HttpServletRequest httpServletRequest) {
       getResourceImplementation()
             .reversePurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
+   }
+
+   /**
+    *
+    * This operation is identical to the `{@code purchase}` operation except that no voucher is returned (for voucher
+    * based products) and no product will be applied to the MSISDN (for direct top-ups), and this operation carries no
+    * financial impact. The purpose of this operation is to determine whether it is worth proceeding to a tender step,
+    * i.e. is a subsequent purchase likely to to be successful (in which case the downstream should move to the tender
+    * step) or fail (in which case the downstream should not take tender).
+    *
+    * @since v5.16.0
+    *
+    * @param body
+    * @param securityContext
+    * @param request
+    * @param asyncResponse
+    * @param httpHeaders
+    * @param uriInfo
+    * @param httpServletRequest
+    */
+   @POST
+   @Path(TrialPurchase.RELATIVE_PATH)
+   @Consumes({ "application/json" })
+   @Produces({ "application/json" })
+   @ApiOperation(nickname = TrialPurchase.TRIAL_PURCHASE, value = "Trial purchase for an airtime product.", notes = "This operation is identical to the "
+         + Purchase.PURCHASE
+         + " operation except that no voucher is returned (for voucher based products) and no product will be applied to the MSISDN (for direct top-ups), and this operation carries no financial impact. The purpose of this operation is to determine whether it is worth proceeding to a tender step, i.e. is a subsequent purchase likely to to be successful (in which case the downstream should move to the tender step) or fail (in which case the downstream should not take tender).")
+   @ApiResponses(value = {
+         @ApiResponse(code = TrialPurchase.SUCCESS, message = "OK", response = PurchaseResponse.class),
+         @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
+         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
+         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
+         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+   public final void trialPurchase(
+         @ApiParam(value = "An airtime request.", required = true) @NotNull @Valid PurchaseRequest body,
+         @Context SecurityContext securityContext,
+         @Context Request request,
+         @Suspended AsyncResponse asyncResponse,
+         @Context HttpHeaders httpHeaders,
+         @Context UriInfo uriInfo,
+         @Context HttpServletRequest httpServletRequest) {
+      getResourceImplementation()
+            .trialPurchase(body, securityContext, request, httpHeaders, asyncResponse, uriInfo, httpServletRequest);
    }
 
    @GET

@@ -1,5 +1,15 @@
 package io.electrum.vas.api;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
+import javax.ws.rs.ServerErrorException;
+import javax.ws.rs.container.AsyncResponse;
+
+import org.mockito.ArgumentCaptor;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -13,9 +23,9 @@ public class TestAirtimeApiInterfaces {
    @DataProvider(name = "existingBaseImplementationMethodsDatProvider")
    public Object[][] existingBaseImplementationMethodsDatProvider() {
       return new Object[][] {
-           // the following methods all have implementations which must be used by default when overloading these
-           // methods
-           //@formatter:off
+            // the following methods all have implementations which must be used by default when overloading these
+            // methods
+            //@formatter:off
            {IVouchersResourceTestImpl.class,"confirmVoucherImpl"},
            {IVouchersResourceTestImpl.class,"provisionVoucherImpl"},
            {IVouchersResourceTestImpl.class,"reverseVoucherImpl"},
@@ -28,5 +38,26 @@ public class TestAirtimeApiInterfaces {
            {IProductsResourceTestImpl.class,"getProductsImpl"},
            //@formatter:on
       };
+   }
+
+   /**
+    * This test ensures that the {@link io.electrum.airtime.api.IPurchaseResource#trialPurchase} method is not removed
+    * from the {@link io.electrum.airtime.api.IPurchaseResource} interface and that the default implementation provides
+    * an appropriate response for the operation.
+    */
+   @Test
+   public void ensureTrialPurchaseExists() {
+      // Setup
+      AsyncResponse asyncResponse = mock(AsyncResponse.class);
+
+      // Test
+      new IPurchaseResourceTestImpl().trialPurchase(null, null, null, null, asyncResponse, null, null);
+
+      // Assert
+      ArgumentCaptor<Throwable> captor = ArgumentCaptor.forClass(Throwable.class);
+      verify(asyncResponse, times(1)).resume(captor.capture());
+      Throwable throwable = captor.getValue();
+      assertTrue(throwable instanceof ServerErrorException);
+      assertEquals(((ServerErrorException) throwable).getResponse().getStatus(), 501);
    }
 }
