@@ -1,10 +1,5 @@
 package io.electrum.airtime.api;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 import io.electrum.airtime.api.model.ErrorDetail;
 import io.electrum.airtime.api.model.Msisdn;
 import io.electrum.airtime.api.model.MsisdnInfoResponse;
@@ -19,6 +14,18 @@ import io.electrum.airtime.api.model.VoucherConfirmation;
 import io.electrum.airtime.api.model.VoucherRequest;
 import io.electrum.airtime.api.model.VoucherResponse;
 import io.electrum.vas.JsonUtil;
+
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import java.util.Arrays;
+import java.util.Set;
 
 public class ModelsTest {
 
@@ -214,4 +221,21 @@ public class ModelsTest {
       Assert.assertEquals(JsonUtil.serialize(voucherConfirmation1), JsonUtil.serialize(voucherConfirmation2));
    }
 
+   @Test
+   public void productListTest() throws Exception {
+      Product[] products1 =
+            JsonUtil.deserialiseJsonObjectFromFile(PayloadFileLocations.PRODUCTS, Product[].class, true);
+      Product[] products2 = JsonUtil.deserialize(JsonUtil.serialize(products1), Product[].class);
+
+      Assert.assertEquals(products1, products2);
+      Assert.assertEquals(Arrays.toString(products1), Arrays.toString(products2));
+      Assert.assertEquals(JsonUtil.serialize(products1), JsonUtil.serialize(products2));
+
+      ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+      Validator validator = factory.getValidator();
+      Set<ConstraintViolation<Object>> violations = validator.validate(products1);
+      if (violations != null && !violations.isEmpty()) {
+         Assert.fail(violations.toString());
+      }
+   }
 }

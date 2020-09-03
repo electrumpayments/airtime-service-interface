@@ -34,6 +34,7 @@ public class TestAirtimeApiInterfaces {
            {IPurchaseResourceTestImpl.class,"reversePurchase"},
            {IPurchaseResourceTestImpl.class,"getPurchaseStatus"},
            {IMsisdnResourceTestImpl.class,"lookupMsisdn"},
+           {IMsisdnResourceTestImpl.class,"lookupMsisdn"},
            //@formatter:on
       };
    }
@@ -50,6 +51,27 @@ public class TestAirtimeApiInterfaces {
 
       // Test
       new IPurchaseResourceTestImpl().trialPurchase(null, null, null, null, asyncResponse, null, null);
+
+      // Assert
+      ArgumentCaptor<Throwable> captor = ArgumentCaptor.forClass(Throwable.class);
+      verify(asyncResponse, times(1)).resume(captor.capture());
+      Throwable throwable = captor.getValue();
+      assertTrue(throwable instanceof ServerErrorException);
+      assertEquals(((ServerErrorException) throwable).getResponse().getStatus(), 501);
+   }
+
+   /**
+    * This test ensures that the {@link io.electrum.airtime.api.IProductsResource#getProductsImpl} method is not removed
+    * from the {@link io.electrum.airtime.api.IProductsResource} interface and that the default implementation provides
+    * an appropriate response for the operation.
+    */
+   @Test
+   public void ensureProductsGetProductsExists() {
+      // Setup
+      AsyncResponse asyncResponse = mock(AsyncResponse.class);
+
+      // Test
+      new IProductsResourceTestImpl().getProductsImpl(null, null, null, null, asyncResponse, null, null);
 
       // Assert
       ArgumentCaptor<Throwable> captor = ArgumentCaptor.forClass(Throwable.class);
