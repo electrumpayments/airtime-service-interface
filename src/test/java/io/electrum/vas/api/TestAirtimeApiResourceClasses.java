@@ -5,6 +5,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import io.electrum.airtime.api.IProductsResource;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -31,7 +32,6 @@ public class TestAirtimeApiResourceClasses {
       return new Object[][] {
             //@formatter:off
                 {MsisdnResourceTestClass.class, "lookupMsisdn", IMsisdnResourceTestImpl.class, "lookupMsisdn"},
-                {ProductsResourceTestClass.class, "getProductsImpl", IProductsResourceTestImpl.class, "getProductsImpl"},
                 {PurchaseResourceTestClass.class, "confirmPurchase", IPurchaseResourceTestImpl.class, "confirmPurchase"},
                 {PurchaseResourceTestClass.class, "purchasePurchase", IPurchaseResourceTestImpl.class, "purchasePurchase"},
                 {PurchaseResourceTestClass.class, "reversePurchase", IPurchaseResourceTestImpl.class, "reversePurchase"},
@@ -60,5 +60,24 @@ public class TestAirtimeApiResourceClasses {
 
       // Assert
       verify(iPurchaseResource, times(1)).trialPurchase(any(), any(), any(), any(), any(), any(), any());
+   }
+
+   /**
+    * This test ensures that the {@link io.electrum.airtime.api.ProductsResource#getProducts} operation is not removed
+    * from the {@link io.electrum.airtime.api.ProductsResource} class and that the method appropriately calls the
+    * resource implementation.
+    */
+   @Test
+   public void ensureProductGetProductsExists() {
+      // Setup
+      ProductsResourceTestClass resource = new ProductsResourceTestClass();
+      IProductsResource resourceImpl = resource.getResourceImplementation();
+      doNothing().when(resourceImpl).getProductsImpl(any(), any(), any(), any(), any(), any(), any());
+
+      // Test
+      resource.getProducts(null, null, null, null, null, null, null);
+
+      // Assert
+      verify(resourceImpl, times(1)).getProductsImpl(any(), any(), any(), any(), any(), any(), any());
    }
 }
