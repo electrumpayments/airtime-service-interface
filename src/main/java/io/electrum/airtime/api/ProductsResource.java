@@ -32,14 +32,14 @@ public abstract class ProductsResource {
    public static final String RESOURCE_PATH = "/products";
    public static final String PATH = AirtimeApi.API_BASE_PATH + RESOURCE_PATH;
 
-   public class GetProducts {
+   public static class GetProducts {
       public static final String LIST_PRODUCTS = "listProducts";
       public static final int SUCCESS = 200;
       public static final String PATH = "/";
       public static final String RELATIVE_PATH = PATH;
       public static final String FULL_PATH = ProductsResource.PATH + RELATIVE_PATH;
 
-      public class QueryParameters {
+      public static class QueryParameters {
          public static final String CHANNEL_NAME = "channelName";
       }
    }
