@@ -23,6 +23,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
+import io.swagger.annotations.ResponseHeader;
 
 @Path(MsisdnResource.RESOURCE_PATH)
 @Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
@@ -50,10 +51,10 @@ public abstract class MsisdnResource {
 
    /**
     * Deprecated to perform lookupMsisdn method with extra QueryParameters.
-    * 
+    *
     * @deprecated instead use
     *             {@link #lookupMsisdn(String, String, String, String, SecurityContext, Request, AsyncResponse, HttpHeaders, UriInfo, HttpServletRequest)}
-    * 
+    *
     */
    @Deprecated
    public final void lookupMsisdn(
@@ -114,7 +115,8 @@ public abstract class MsisdnResource {
    @ApiOperation(nickname = LookupMsisdn.LOOKUP_MSISDN, value = "Looks up information associated with the given Msisdn. "
            + "This includes such information as available products and promotions, operator information etc.")
    @ApiResponses(value = {
-           @ApiResponse(code = LookupMsisdn.SUCCESS, message = "Accepted", response = MsisdnInfoResponse.class),
+           @ApiResponse(code = LookupMsisdn.SUCCESS, message = "Accepted", response = MsisdnInfoResponse.class, responseHeaders = {
+                   @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
            @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
            @ApiResponse(code = 404, message = "Not Found"),
            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),

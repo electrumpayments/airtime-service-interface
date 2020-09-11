@@ -56,7 +56,7 @@ public class TestAirtimeApiResourceClasses {
       doNothing().when(iPurchaseResource).trialPurchase(any(), any(), any(), any(), any(), any(), any());
 
       // Test
-      purchaseResource.trialPurchase(null, null, null, null, null, null, null);
+      purchaseResource.trialPurchase(null,null, null, null, null, null, null, null);
 
       // Assert
       verify(iPurchaseResource, times(1)).trialPurchase(any(), any(), any(), any(), any(), any(), any());

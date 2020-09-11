@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -28,6 +29,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
+import io.swagger.annotations.ResponseHeader;
 
 @Path(PurchaseResource.RESOURCE_PATH)
 @Api(description = "the Airtime Service Interface API", authorizations = { @Authorization("httpBasic") })
@@ -96,13 +98,15 @@ public abstract class PurchaseResource {
          + "completed successfully at the POS. confirmPurchase must be repeated until a final HTTP status code is"
          + "received (i.e. not 500 or 504). confirmPurchase may be called repeatedly without negative effect.")
    @ApiResponses(value = {
-         @ApiResponse(code = ConfirmPurchase.SUCCESS, message = "Accepted", response = PurchaseConfirmation.class),
+         @ApiResponse(code = ConfirmPurchase.SUCCESS, message = "Accepted", response = PurchaseConfirmation.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not Found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void confirmPurchase(
+         @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "A purchase confirmation.", required = true) @NotNull @Valid PurchaseConfirmation body,
          @Context SecurityContext securityContext,
          @Context Request request,
@@ -120,12 +124,14 @@ public abstract class PurchaseResource {
    @Produces({ "application/json" })
    @ApiOperation(nickname = Purchase.PURCHASE, value = "Purchase an airtime product.", notes = "Requests an airtime product from the provider.")
    @ApiResponses(value = {
-         @ApiResponse(code = Purchase.SUCCESS, message = "Created", response = PurchaseResponse.class),
+         @ApiResponse(code = Purchase.SUCCESS, message = "Created", response = PurchaseResponse.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void purchase(
+         @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "An airtime request.", required = true) @NotNull @Valid PurchaseRequest body,
          @Context SecurityContext securityContext,
          @Context Request request,
@@ -149,13 +155,15 @@ public abstract class PurchaseResource {
          + "purchaseReversal may be called repeatedly on the same airtime purchase resource without negative effect. "
          + "If the airtime provider does not support the reversal operation, please refer to the purchaseStatus operation.")
    @ApiResponses(value = {
-         @ApiResponse(code = ReversePurchase.SUCCESS, message = "Accepted", response = PurchaseReversal.class),
+         @ApiResponse(code = ReversePurchase.SUCCESS, message = "Accepted", response = PurchaseReversal.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not Found"),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void reversePurchase(
+         @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "An airtime purchase reversal.", required = true) @NotNull @Valid PurchaseReversal body,
          @Context SecurityContext securityContext,
          @Context Request request,
@@ -193,12 +201,14 @@ public abstract class PurchaseResource {
          + Purchase.PURCHASE
          + " operation except that no voucher is returned (for voucher based products) and no product will be applied to the MSISDN (for direct top-ups), and this operation carries no financial impact. The purpose of this operation is to determine whether it is worth proceeding to a tender step, i.e. is a subsequent purchase likely to to be successful (in which case the downstream should move to the tender step) or fail (in which case the downstream should not take tender).")
    @ApiResponses(value = {
-         @ApiResponse(code = TrialPurchase.SUCCESS, message = "OK", response = PurchaseResponse.class),
+         @ApiResponse(code = TrialPurchase.SUCCESS, message = "OK", response = PurchaseResponse.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void trialPurchase(
+         @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "An airtime request.", required = true) @NotNull @Valid PurchaseRequest body,
          @Context SecurityContext securityContext,
          @Context Request request,
@@ -218,13 +228,15 @@ public abstract class PurchaseResource {
          + "determine the outcome of a prior purchase. This operation will, as far as possbile, return the same "
          + "PurchaseResponse or ErrorDetail as would have been returned had the original purchase completed normally.")
    @ApiResponses(value = {
-         @ApiResponse(code = GetPurchaseStatus.SUCCESS, message = "Accepted", response = PurchaseResponse.class),
+         @ApiResponse(code = GetPurchaseStatus.SUCCESS, message = "Accepted", response = PurchaseResponse.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
          @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not Found"),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public final void getPurchaseStatus(
+         @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "The provider who processed the original purchase attempt. Conditionally required if purchaseRef is supplied.") @QueryParam(GetPurchaseStatus.QueryParameters.PROVIDER) String provider,
          @ApiParam(value = "The reference returned in the original purchase attempt. Conditionally required if the originalMsgId is not supplied.") @QueryParam(GetPurchaseStatus.QueryParameters.PURCHASE_REF) String purchaseReference,
          @ApiParam(value = "The message ID of the original PurchaseRequest which failed. Conditionally required if the purchaseRef is not supplied.") @QueryParam(GetPurchaseStatus.QueryParameters.ORIGINAL_MSG_ID) String originalMsgId,
