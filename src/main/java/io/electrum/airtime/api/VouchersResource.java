@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -91,12 +92,18 @@ public abstract class VouchersResource {
          + "a final HTTP status code is received (i.e. not 500 or 504). confirmVoucher may be called "
          + "repeatedly on the same voucher resource without negative effect.")
    @ApiResponses(value = {
-         @ApiResponse(code = ConfirmVoucher.SUCCESS, message = "Accepted", response = BasicAdvice.class),
-         @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
-         @ApiResponse(code = 404, message = "Not Found", response = ErrorDetail.class),
-         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
-         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
-         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+         @ApiResponse(code = ConfirmVoucher.SUCCESS, message = "Accepted", response = BasicAdvice.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 404, message = "Not Found", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }) })
    /**
     * This operation has been deprecated. Use
     * {@link PurchaseResource#confirmPurchase(PurchaseConfirmation, SecurityContext, Request, AsyncResponse, HttpHeaders, UriInfo, HttpServletRequest)}
@@ -113,6 +120,7 @@ public abstract class VouchersResource {
     * @param httpServletRequest
     */
    public final void confirmVoucher(
+         @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @NotNull @PathParam(ConfirmVoucher.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(ConfirmVoucher.PathParameters.CONFIRMATION_ID) String confirmationId,
          @ApiParam(value = "A voucher provision confirmation.", required = true) @NotNull @Valid VoucherConfirmation body,
@@ -141,11 +149,16 @@ public abstract class VouchersResource {
    @ApiOperation(nickname = ProvisionVoucher.PROVISION_VOUCHER, value = "Request a voucher be provisioned.", notes = "Requests a voucher from the voucher vendor.")
    @ApiResponses(value = {
          @ApiResponse(code = ProvisionVoucher.SUCCESS, message = "Created", response = VoucherResponse.class, responseHeaders = {
-               @ResponseHeader(name = "Location", description = "The location of the created voucher resource", response = String.class) }),
-         @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
-         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
-         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
-         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+               @ResponseHeader(name = "Location", description = "The location of the created voucher resource", response = String.class),
+               @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class, responseHeaders = {
+               @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class, responseHeaders = {
+               @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class, responseHeaders = {
+               @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class, responseHeaders = {
+               @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }) })
 
    /**
     * This operation has been deprecated. Use {@link PurchaseResource#purchase(PurchaseRequest, SecurityContext,
@@ -162,6 +175,7 @@ public abstract class VouchersResource {
     * @param httpServletRequest
     */
    public final void provisionVoucher(
+         @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @NotNull @PathParam(ProvisionVoucher.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "A voucher request.", required = true) @NotNull @Valid VoucherRequest body,
          @Context SecurityContext securityContext,
@@ -192,12 +206,17 @@ public abstract class VouchersResource {
          + "until a final HTTP status code is received (i.e. not 500 or 504). reverseVoucher may be "
          + "called repeatedly on the same voucher resource without negative effect.")
    @ApiResponses(value = {
-         @ApiResponse(code = ReverseVoucher.SUCCESS, message = "Accepted", response = BasicAdvice.class),
-         @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
+         @ApiResponse(code = ReverseVoucher.SUCCESS, message = "Accepted", response = BasicAdvice.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
          @ApiResponse(code = 404, message = "Not Found"),
-         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
-         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
-         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }) })
    /**
     * This operation has been deprecated. Use {@link PurchaseResource#reversePurchase(PurchaseReversal, SecurityContext,
     * Request, AsyncResponse, HttpHeaders, UriInfo, HttpServletRequest)(PurchaseRequest, SecurityContext, Request,
@@ -214,6 +233,7 @@ public abstract class VouchersResource {
     * @param httpServletRequest
     */
    public final void reverseVoucher(
+         @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "The UUID generated for the original voucher provision request.", required = true) @PathParam(ReverseVoucher.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(ReverseVoucher.PathParameters.REVERSAL_ID) String reversalId,
          @ApiParam(value = "A voucher provision reversal.", required = true) @NotNull @Valid BasicReversal body,

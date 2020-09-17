@@ -117,11 +117,15 @@ public abstract class MsisdnResource {
    @ApiResponses(value = {
            @ApiResponse(code = LookupMsisdn.SUCCESS, message = "Accepted", response = MsisdnInfoResponse.class, responseHeaders = {
                    @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
-           @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class),
+           @ApiResponse(code = 400, message = "Bad Request", response = ErrorDetail.class, responseHeaders = {
+                   @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
            @ApiResponse(code = 404, message = "Not Found"),
-           @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
-           @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
-           @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+           @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class, responseHeaders = {
+                   @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+           @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class, responseHeaders = {
+                   @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+           @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class, responseHeaders = {
+                   @ResponseHeader(name = AirtimeApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }) })
    public final void lookupMsisdn(
            @ApiParam(value = "The Msisdn. This must conform to the ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).", required = true) @QueryParam(LookupMsisdn.QueryParameters.MSISDN) @Pattern(regexp = "^\\+?[1-9]\\d{1,14}") @NotNull String msisdn,
            @ApiParam(value = "The provider who processed the original purchase attempt.") @QueryParam(LookupMsisdn.QueryParameters.OPERATOR) String operator,

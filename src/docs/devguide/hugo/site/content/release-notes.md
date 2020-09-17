@@ -2,7 +2,7 @@ This page describes changes to the Airtime Service Interface implemented across 
 
 ## v5.18.0
 
-Released 14 September 2020
+Released 17 September 2020
 
 - Support has been added for including the `x-jws-signature` header in requests and responses with payloads. JWS message integrity checking is only performed when enabled by both parties.
 
