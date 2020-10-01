@@ -1,5 +1,11 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.18.0
+
+Released TBD
+
+- Added support for `LIST_PRODUCTS_REQUEST` as a request type in `ErrorDetail`.
+
 ## v5.17.0
 
 Released 03 September 2020
