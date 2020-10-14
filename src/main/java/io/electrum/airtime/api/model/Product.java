@@ -34,7 +34,8 @@ public class Product {
       APP_RELATED("APP_RELATED"),
       COMBO("COMBO"),
       DATA_FIXED("DATA_FIXED"),
-      DATA_VARIABLE("DATA_VARIABLE");
+      DATA_VARIABLE("DATA_VARIABLE"),
+      VOICE_BUNDLE("VOICE_BUNDLE");
 
       private String value;
 
