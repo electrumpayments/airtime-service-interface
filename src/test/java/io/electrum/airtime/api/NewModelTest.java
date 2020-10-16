@@ -95,7 +95,9 @@ public class NewModelTest {
               { ProductContent.AirtimeProductUnit.MB, 1 },
               { ProductContent.AirtimeProductUnit.GB, 2 },
               { ProductContent.AirtimeProductUnit.UNIT, 3 },
-              { ErrorDetail.RequestType.TRIAL_PURCHASE_REQUEST, 9 } };
+              { ErrorDetail.RequestType.TRIAL_PURCHASE_REQUEST, 9 },
+              {Product.ProductType.VOICE_BUNDLE, 8},
+              {ErrorDetail.ErrorType.OUTCOME_UNKNOWN, 23}};
       //@formatter:on
    }
 

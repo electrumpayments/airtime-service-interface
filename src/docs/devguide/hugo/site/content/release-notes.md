@@ -1,8 +1,14 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.19.0
+Released 16 October 2020
+
+- Added a new `ProductType` called `VOICE_BUNDLE`.
+- Added a new `ErrorType` called `OUTCOME_UNKNOWN`.
+
 ## v5.18.0
 
-Released TBD
+Released 02 October 2020
 
 - Added support for `LIST_PRODUCTS_REQUEST` as a request type in `ErrorDetail`.
 
