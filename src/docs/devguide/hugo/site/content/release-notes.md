@@ -1,5 +1,11 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.20.0
+Released 18 November 2020
+
+- Added a new `ErrorType` called `SYSTEM_MALFUNCTION`.
+- Added a new `ErrorType` called `LIMIT_EXCEEDED`.
+
 ## v5.19.0
 Released 16 October 2020
 
