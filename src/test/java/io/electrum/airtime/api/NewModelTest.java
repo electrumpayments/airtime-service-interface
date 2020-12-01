@@ -1,8 +1,19 @@
 package io.electrum.airtime.api;
 
+import io.electrum.airtime.api.model.ErrorDetail;
+import io.electrum.airtime.api.model.Product;
+import io.electrum.airtime.api.model.ProductContent;
+import io.electrum.airtime.api.model.ValidityPeriod;
+import io.electrum.vas.JsonUtil;
+
 import java.io.IOException;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -10,12 +21,6 @@ import javax.validation.Validator;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import io.electrum.airtime.api.model.ErrorDetail;
-import io.electrum.airtime.api.model.Product;
-import io.electrum.airtime.api.model.ProductContent;
-import io.electrum.airtime.api.model.ValidityPeriod;
-import io.electrum.vas.JsonUtil;
 
 public class NewModelTest {
 
@@ -75,9 +80,21 @@ public class NewModelTest {
    }
 
    @DataProvider(name = "serialiseDeserialiseObjectDataProvider")
-   public Object[][] serialiseDeserialiseObjectDataProvider() {
-      return new Object[][] { { new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES) },
-            { new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS) } };
+   public Iterator<Object[]> serialiseDeserialiseObjectDataProvider() {
+      List<Object> objectsToCheck = new ArrayList<>();
+
+      // Add ErrorDetails
+      Arrays.stream(ErrorDetail.RequestType.values()).forEach(r -> {
+         Arrays.stream(ErrorDetail.ErrorType.values()).forEach(e -> {
+            objectsToCheck.add(new ErrorDetail().requestType(r).errorType(e).id(UUID.randomUUID().toString()));
+         });
+      });
+
+      // Add miscellaneous objects
+      objectsToCheck.add(new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES));
+      objectsToCheck.add(new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS));
+
+      return objectsToCheck.stream().map(o -> new Object[] { o }).iterator();
    }
 
    @DataProvider(name = "deserialiseSerialiseObjectDataProvider")
@@ -95,9 +112,44 @@ public class NewModelTest {
               { ProductContent.AirtimeProductUnit.MB, 1 },
               { ProductContent.AirtimeProductUnit.GB, 2 },
               { ProductContent.AirtimeProductUnit.UNIT, 3 },
+              { ErrorDetail.RequestType.VOUCHER_REQUEST, 0 },
+              { ErrorDetail.RequestType.VOUCHER_REVERSAL, 1 },
+              { ErrorDetail.RequestType.VOUCHER_CONFIRMATION, 2 },
+              { ErrorDetail.RequestType.VOUCHER_VOID, 3 },
+              { ErrorDetail.RequestType.MSISDN_INFO_REQUEST, 4 },
+              { ErrorDetail.RequestType.PURCHASE_REQUEST, 5 },
+              { ErrorDetail.RequestType.PURCHASE_CONFIRMATION, 6 },
+              { ErrorDetail.RequestType.PURCHASE_STATUS_REQUEST, 7 },
+              { ErrorDetail.RequestType.PURCHASE_REVERSAL, 8 },
               { ErrorDetail.RequestType.TRIAL_PURCHASE_REQUEST, 9 },
-              {Product.ProductType.VOICE_BUNDLE, 8},
-              {ErrorDetail.ErrorType.OUTCOME_UNKNOWN, 23}};
+              { ErrorDetail.RequestType.LIST_PRODUCTS_REQUEST, 10 },
+              { Product.ProductType.VOICE_BUNDLE, 8 },
+              { ErrorDetail.ErrorType.DUPLICATE_RECORD, 0 },
+              { ErrorDetail.ErrorType.FORMAT_ERROR, 1 },
+              { ErrorDetail.ErrorType.FUNCTION_NOT_SUPPORTED, 2 },
+              { ErrorDetail.ErrorType.GENERAL_ERROR, 3 },
+              { ErrorDetail.ErrorType.INVALID_AMOUNT, 4 },
+              { ErrorDetail.ErrorType.ROUTING_ERROR, 5 },
+              { ErrorDetail.ErrorType.TRANSACTION_NOT_SUPPORTED, 6 },
+              { ErrorDetail.ErrorType.UNABLE_TO_LOCATE_RECORD, 7 },
+              { ErrorDetail.ErrorType.UPSTREAM_UNAVAILABLE, 8 },
+              { ErrorDetail.ErrorType.INVALID_PRODUCT, 9 },
+              { ErrorDetail.ErrorType.ACCOUNT_ALREADY_SETTLED, 10 },
+              { ErrorDetail.ErrorType.INVALID_MERCHANT, 11 },
+              { ErrorDetail.ErrorType.OUT_OF_STOCK, 12 },
+              { ErrorDetail.ErrorType.INVALID_AN32_TOKEN, 13 },
+              { ErrorDetail.ErrorType.DO_NOT_HONOR, 14 },
+              { ErrorDetail.ErrorType.DECLINED_BY_MNO, 15 },
+              { ErrorDetail.ErrorType.INVALID_MSISDN, 16 },
+              { ErrorDetail.ErrorType.INVALID_LOYALTY_CARD, 17 },
+              { ErrorDetail.ErrorType.INSUFFICIENT_FUNDS, 18 },
+              { ErrorDetail.ErrorType.INVALID_CARD_NUMBER, 19 },
+              { ErrorDetail.ErrorType.CARD_EXPIRED, 20 },
+              { ErrorDetail.ErrorType.INCORRECT_PIN, 21 },
+              { ErrorDetail.ErrorType.PIN_ATTEMPTS_EXCEEDED, 22 },
+              { ErrorDetail.ErrorType.OUTCOME_UNKNOWN, 23 },
+              { ErrorDetail.ErrorType.SYSTEM_MALFUNCTION, 24 },
+              { ErrorDetail.ErrorType.LIMIT_EXCEEDED, 25 }};
       //@formatter:on
    }
 
