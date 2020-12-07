@@ -157,9 +157,9 @@ public abstract class MsisdnResource {
    public final void lookupMsisdn(
          @ApiParam(value = "The Msisdn. This must conform to the ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).", required = true) @QueryParam(LookupMsisdn.QueryParameters.MSISDN) @Pattern(regexp = "^\\+?[1-9]\\d{1,14}") @NotNull String msisdn,
          @ApiParam(value = "The provider who processed the original purchase attempt.") @QueryParam(LookupMsisdn.QueryParameters.OPERATOR) String operator,
-         @ApiParam(value = "Used to filter the products to lookup for a given msisdn.") @QueryParam(LookupMsisdn.QueryParameters.PRODUCT_TYPE) String productType,
+         @ApiParam(value = "Used to filter the products to lookup for a given msisdn. This should be a value appropriate for the `Product.type` field.") @QueryParam(LookupMsisdn.QueryParameters.PRODUCT_TYPE) String productType,
          @ApiParam(value = "Used to filter the products to lookup for a given channel.") @QueryParam(LookupMsisdn.QueryParameters.CHANNEL_NAME) String channelName,
-         @ApiParam(value = "Used to filter the products to lookup within a specific category.") @QueryParam(LookupMsisdn.QueryParameters.PRODUCT_CATEGORY) String productCategory,
+         @ApiParam(value = "Used to filter the products to lookup within a specific category. The `productType` field should be used preferentially if applicable. An example of a relevant `productCategory` would be the name of a promotion if only products within a specific promotion should be retrieved.") @QueryParam(LookupMsisdn.QueryParameters.PRODUCT_CATEGORY) String productCategory,
          @Context SecurityContext securityContext,
          @Context Request request,
          @Suspended AsyncResponse asyncResponse,
