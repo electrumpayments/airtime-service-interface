@@ -1,15 +1,16 @@
 package io.electrum.airtime.api.model;
 
-import io.electrum.vas.Utils;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.electrum.vas.Utils;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Product data is it relates to a channel.
@@ -22,6 +23,7 @@ public class ChannelProductListing {
    private String productDisplayName = null;
    private String productDisplayCategory = null;
    private Double productDisplaySortOrder = null;
+   private String channelProductIdentifier = null;
 
    /**
     * The name of the channel.
@@ -119,6 +121,30 @@ public class ChannelProductListing {
       this.productDisplaySortOrder = productDisplaySortOrder;
    }
 
+   /**
+    * A product identifier which is meaningful for the channel.
+    **/
+   public ChannelProductListing channelProductIdentifier(String channelProductIdentifier) {
+      this.channelProductIdentifier = channelProductIdentifier;
+      return this;
+   }
+
+   /**
+    * A product identifier which is meaningful for the channel.
+    *
+    * @return channelProductIdentifier
+    **/
+   @ApiModelProperty(value = "A product identifier which is meaningful for the channel.")
+   @JsonProperty(value = "channelProductId")
+   @Length(max = 50)
+   public String getChannelProductIdentifier() {
+      return channelProductIdentifier;
+   }
+
+   public void setChannelProductIdentifier(String channelProductIdentifier) {
+      this.channelProductIdentifier = channelProductIdentifier;
+   }
+
    @Override
    public boolean equals(Object o) {
       if (this == o) {
@@ -131,12 +157,18 @@ public class ChannelProductListing {
       return Objects.equals(this.channelName, channelProductListing.channelName)
             && Objects.equals(this.productDisplayName, channelProductListing.productDisplayName)
             && Objects.equals(this.productDisplayCategory, channelProductListing.productDisplayCategory)
-            && Objects.equals(this.productDisplaySortOrder, channelProductListing.productDisplaySortOrder);
+            && Objects.equals(this.productDisplaySortOrder, channelProductListing.productDisplaySortOrder)
+            && Objects.equals(this.channelProductIdentifier, channelProductListing.channelProductIdentifier);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(channelName, productDisplayName, productDisplayCategory, productDisplaySortOrder);
+      return Objects.hash(
+            channelName,
+            productDisplayName,
+            productDisplayCategory,
+            productDisplaySortOrder,
+            channelProductIdentifier);
    }
 
    @Override
@@ -148,6 +180,7 @@ public class ChannelProductListing {
       sb.append("    productDisplayName: ").append(Utils.toIndentedString(productDisplayName)).append('\n');
       sb.append("    productDisplayCategory: ").append(Utils.toIndentedString(productDisplayCategory)).append('\n');
       sb.append("    productDisplaySortOrder: ").append(Utils.toIndentedString(productDisplaySortOrder)).append('\n');
+      sb.append("    channelProductIdentifier: ").append(Utils.toIndentedString(channelProductIdentifier)).append('\n');
       sb.append('}');
       return sb.toString();
    }
