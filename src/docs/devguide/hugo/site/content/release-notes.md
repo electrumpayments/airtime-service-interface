@@ -1,10 +1,11 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
 ## v5.21.0
-Released TBD 2020
+Released 08 December 2020
 
 - Added support to filter by a `productCategory` in the `MsisdnLookup` operation.
 - Extended the `ChannelProductListing` class to include a `channelProductIdentifier` which can be used to provide an identifier which is meaningful to the channel.
+- Clarified expected values for `productType` field in the `MsisdnLookup` operation.
 
 ## v5.20.0
 Released 18 November 2020
