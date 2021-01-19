@@ -1,11 +1,5 @@
 package io.electrum.airtime.api;
 
-import io.electrum.airtime.api.model.ErrorDetail;
-import io.electrum.airtime.api.model.Product;
-import io.electrum.airtime.api.model.ProductContent;
-import io.electrum.airtime.api.model.ValidityPeriod;
-import io.electrum.vas.JsonUtil;
-
 import java.io.IOException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -21,6 +15,13 @@ import javax.validation.Validator;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import io.electrum.airtime.api.model.DescriptionAttribute;
+import io.electrum.airtime.api.model.ErrorDetail;
+import io.electrum.airtime.api.model.Product;
+import io.electrum.airtime.api.model.ProductContent;
+import io.electrum.airtime.api.model.ValidityPeriod;
+import io.electrum.vas.JsonUtil;
 
 public class NewModelTest {
 
@@ -67,7 +68,9 @@ public class NewModelTest {
             { new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES),
                   "{\"amount\":2950,\"unit\":\"Minutes\"}" },
             { new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS),
-                  "{\"duration\":30,\"durationUnit\":\"DAYS\"}" } };
+                  "{\"duration\":30,\"durationUnit\":\"DAYS\"}" },
+            { new DescriptionAttribute().name("Description").description("This product is very good."),
+                  "{\"name\":\"Description\",\"description\":\"This product is very good.\"}" } };
    }
 
    @DataProvider(name = "deserialisedObjectDataProvider")
@@ -76,7 +79,9 @@ public class NewModelTest {
             { "{\"amount\":2950,\"unit\":\"Minutes\"}",
                   new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES) },
             { "{\"duration\":30,\"durationUnit\":\"DAYS\"}",
-                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS) } };
+                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS) },
+            { "{\"name\":\"Description\",\"description\":\"This product is very good.\"}",
+                  new DescriptionAttribute().name("Description").description("This product is very good.") } };
    }
 
    @DataProvider(name = "serialiseDeserialiseObjectDataProvider")
@@ -93,6 +98,7 @@ public class NewModelTest {
       // Add miscellaneous objects
       objectsToCheck.add(new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES));
       objectsToCheck.add(new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS));
+      objectsToCheck.add(new DescriptionAttribute().name("Description").description("This product is very good."));
 
       return objectsToCheck.stream().map(o -> new Object[] { o }).iterator();
    }
@@ -100,7 +106,9 @@ public class NewModelTest {
    @DataProvider(name = "deserialiseSerialiseObjectDataProvider")
    public Object[][] deserialiseSerialiseObjectDataProvider() {
       return new Object[][] { { "{\"amount\":2950,\"unit\":\"Minutes\"}", ProductContent.class },
-            { "{\"duration\":30,\"durationUnit\":\"DAYS\"}", ValidityPeriod.class } };
+            { "{\"duration\":30,\"durationUnit\":\"DAYS\"}", ValidityPeriod.class },
+            { "{\"name\":\"Description\",\"description\":\"This product is very good.\"}",
+                  DescriptionAttribute.class } };
    }
 
    @DataProvider(name = "ordinalDataProvider")
@@ -177,7 +185,10 @@ public class NewModelTest {
             { new Product().productId("blah").validityPeriod(
                   new ValidityPeriod().duration(30L)),
               new Product().productId("blah").validityPeriod(
-                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)) }
+                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)) },
+              //DescriptionAttribute with missing fields
+              { new DescriptionAttribute(),
+                new DescriptionAttribute().name("Description").description("This product is very good.")}
       };
          //@formatter:on
    }

@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * A description for a product which can either entirely or in part describe the product.
  * 
@@ -31,6 +33,7 @@ public class DescriptionAttribute {
     */
    @ApiModelProperty(required = true, value = "The name of the description attribute.")
    @JsonProperty("name")
+   @NotNull
    public String getName() {
       return name;
    }
@@ -52,6 +55,7 @@ public class DescriptionAttribute {
     */
    @ApiModelProperty(required = true, value = "The description, either full or partial, for the product.")
    @JsonProperty("description")
+   @NotNull
    public String getDescription() {
       return description;
    }
