@@ -1,7 +1,16 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
-## v5.21.0
+## v5.22.0
+Released 05 February 2021
+
+- Fixed `JsonProperty` for `ChannelProductListing.channelProductIdentifier`.
+- Remove length restriction on `ChannelProductListing.channelProductIdentifier`.
+- Added new `DescriptionAttribute` which is used in the `Product` to allow for descriptions for the product.
+
+## v5.21.0 (Deprecated)
 Released 08 December 2020
+
+Deprecated, replaced with v5.22.0. This used the incorrect `JsonProperty` for the `ChannelProductListing.channelProductIdentifier`.
 
 - Added support to filter by a `productCategory` in the `MsisdnLookup` operation.
 - Extended the `ChannelProductListing` class to include a `channelProductIdentifier` which can be used to provide an identifier which is meaningful to the channel.
