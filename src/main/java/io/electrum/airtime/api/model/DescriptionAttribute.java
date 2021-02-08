@@ -2,12 +2,12 @@ package io.electrum.airtime.api.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * A description for a product which can either entirely or in part describe the product.
@@ -17,29 +17,29 @@ import javax.validation.constraints.NotNull;
 @ApiModel(description = "A description for a product which can either entirely or in part describe the product.")
 public class DescriptionAttribute {
 
-   private String name;
+   private String type;
    private String description;
 
-   public DescriptionAttribute name(String name) {
-      this.name = name;
+   public DescriptionAttribute type(String type) {
+      this.type = type;
       return this;
    }
 
    /**
-    * The name of the description attribute.
+    * The type of the description attribute.
     *
     * @since 5.22.0
-    * @return the name of the description attribute
+    * @return the type of the description attribute
     */
-   @ApiModelProperty(required = true, value = "The name of the description attribute.")
-   @JsonProperty("name")
+   @ApiModelProperty(required = true, value = "The type of the description attribute.")
+   @JsonProperty("type")
    @NotNull
-   public String getName() {
-      return name;
+   public String getType() {
+      return type;
    }
 
-   public void setName(String name) {
-      this.name = name;
+   public void setType(String type) {
+      this.type = type;
    }
 
    public DescriptionAttribute description(String description) {
@@ -71,18 +71,18 @@ public class DescriptionAttribute {
       if (o == null || getClass() != o.getClass())
          return false;
       DescriptionAttribute that = (DescriptionAttribute) o;
-      return Objects.equals(name, that.name) && Objects.equals(description, that.description);
+      return Objects.equals(type, that.type) && Objects.equals(description, that.description);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(name, description);
+      return Objects.hash(type, description);
    }
 
    @Override
    public String toString() {
       final StringBuilder sb = new StringBuilder("DescriptionAttribute{");
-      sb.append("name='").append(name).append('\'');
+      sb.append("type='").append(type).append('\'');
       sb.append(", description='").append(description).append('\'');
       sb.append('}');
       return sb.toString();
