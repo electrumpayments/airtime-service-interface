@@ -54,7 +54,7 @@ public class Product {
    private String productId = null;
    private String barcode = null;
    private String name = null;
-   private List<DescriptionAttribute> descriptionAttributes = null;
+   private Description description = null;
    private ProductType type = null;
    private LedgerAmount wholesalePrice = null;
    private LedgerAmount recipientAmount = null;
@@ -152,8 +152,8 @@ public class Product {
       this.name = name;
    }
 
-   public Product type(List<DescriptionAttribute> descriptionAttributes) {
-      this.descriptionAttributes = descriptionAttributes;
+   public Product description(Description description) {
+      this.description = description;
       return this;
    }
 
@@ -161,16 +161,16 @@ public class Product {
     * The description of the product.
     *
     * @since 5.22.0
-    * @return the list of descriptions for the product
+    * @return The description of the product
     */
    @ApiModelProperty(value = "The description of the product.")
-   @JsonProperty("descriptionAttributes")
-   public List<DescriptionAttribute> getDescriptionAttributes() {
-      return descriptionAttributes;
+   @JsonProperty("description")
+   public Description getDescription() {
+      return description;
    }
 
-   public void setDescriptionAttributes(List<DescriptionAttribute> descriptionAttributes) {
-      this.descriptionAttributes = descriptionAttributes;
+   public void setDescription(Description description) {
+      this.description = description;
    }
 
    public Product type(ProductType type) {
@@ -350,7 +350,7 @@ public class Product {
       Product product = (Product) o;
       return Objects.equals(isDirectTopup, product.isDirectTopup) && Objects.equals(productId, product.productId)
             && Objects.equals(barcode, product.barcode) && Objects.equals(name, product.name)
-            && Objects.equals(descriptionAttributes, product.descriptionAttributes) && type == product.type
+            && Objects.equals(description, product.description) && type == product.type
             && Objects.equals(wholesalePrice, product.wholesalePrice)
             && Objects.equals(recipientAmount, product.recipientAmount)
             && Arrays.equals(productValues, product.productValues)
@@ -367,7 +367,7 @@ public class Product {
                   productId,
                   barcode,
                   name,
-                  descriptionAttributes,
+                  description,
                   type,
                   wholesalePrice,
                   recipientAmount,
@@ -388,7 +388,7 @@ public class Product {
       sb.append("    productId: ").append(Utils.toIndentedString(productId)).append('\n');
       sb.append("    barcode: ").append(Utils.toIndentedString(barcode)).append('\n');
       sb.append("    name: ").append(Utils.toIndentedString(name)).append('\n');
-      sb.append("    descriptionAttributes: ").append(Utils.toIndentedString(descriptionAttributes)).append('\n');
+      sb.append("    description: ").append(Utils.toIndentedString(description)).append('\n');
       sb.append("    type: ").append(Utils.toIndentedString(type)).append('\n');
       sb.append("    wholesalePrice: ").append(Utils.toIndentedString(wholesalePrice)).append('\n');
       sb.append("    recipientAmount: ").append(Utils.toIndentedString(recipientAmount)).append('\n');

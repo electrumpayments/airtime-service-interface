@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -17,7 +18,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import io.electrum.airtime.api.model.ChannelProductListing;
-import io.electrum.airtime.api.model.DescriptionAttribute;
+import io.electrum.airtime.api.model.Description;
 import io.electrum.airtime.api.model.ErrorDetail;
 import io.electrum.airtime.api.model.Product;
 import io.electrum.airtime.api.model.ProductContent;
@@ -76,8 +77,14 @@ public class NewModelTest {
                   "{\"amount\":2950,\"unit\":\"Minutes\"}" },
             { new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS),
                   "{\"duration\":30,\"durationUnit\":\"DAYS\"}" },
-            { new DescriptionAttribute().type("Description").description("This product is very good."),
-                  "{\"type\":\"Description\",\"description\":\"This product is very good.\"}" } };
+            { new Description().primaryDescription("Description")
+                  .shortDescription("This product is very good.")
+                  .additionalDescriptions(new HashMap<String, String>() {
+                     {
+                        put("key", "value");
+                     }
+                  }),
+                  "{\"additionalDescriptions\":{\"key\":\"value\"},\"primaryDescription\":\"Description\",\"shortDescription\":\"This product is very good.\"}" } };
 
    }
 
@@ -94,8 +101,14 @@ public class NewModelTest {
                   new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES) },
             { "{\"duration\":30,\"durationUnit\":\"DAYS\"}",
                   new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS) },
-            { "{\"type\":\"Description\",\"description\":\"This product is very good.\"}",
-                  new DescriptionAttribute().type("Description").description("This product is very good.") } };
+            { "{\"additionalDescriptions\":{\"key\":\"value\"},\"primaryDescription\":\"Description\",\"shortDescription\":\"This product is very good.\"}",
+                  new Description().primaryDescription("Description")
+                        .shortDescription("This product is very good.")
+                        .additionalDescriptions(new HashMap<String, String>() {
+                           {
+                              put("key", "value");
+                           }
+                        }) } };
    }
 
    @DataProvider(name = "serialiseDeserialiseObjectDataProvider")
@@ -118,7 +131,14 @@ public class NewModelTest {
                   .channelProductIdentifier("ID"));
       objectsToCheck.add(new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES));
       objectsToCheck.add(new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS));
-      objectsToCheck.add(new DescriptionAttribute().type("Description").description("This product is very good."));
+      objectsToCheck.add(
+            new Description().primaryDescription("Description")
+                  .shortDescription("This product is very good.")
+                  .additionalDescriptions(new HashMap<String, String>() {
+                     {
+                        put("key", "value");
+                     }
+                  }));
 
       return objectsToCheck.stream().map(o -> new Object[] { o }).iterator();
    }
@@ -131,8 +151,7 @@ public class NewModelTest {
             ChannelProductListing.class }, 
             { "{\"amount\":2950,\"unit\":\"Minutes\"}", ProductContent.class },
             { "{\"duration\":30,\"durationUnit\":\"DAYS\"}", ValidityPeriod.class },
-            { "{\"type\":\"Description\",\"description\":\"This product is very good.\"}",
-                  DescriptionAttribute.class } };
+            {"{\"additionalDescriptions\":{\"key\":\"value\"},\"primaryDescription\":\"Description\",\"shortDescription\":\"This product is very good.\"}", Description.class}};
             //@formatter:on
    }
 
@@ -213,10 +232,7 @@ public class NewModelTest {
             { new Product().productId("blah").validityPeriod(
                   new ValidityPeriod().duration(30L)),
               new Product().productId("blah").validityPeriod(
-                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)) },
-              //DescriptionAttribute with missing fields
-              { new DescriptionAttribute(),
-                new DescriptionAttribute().type("Description").description("This product is very good.")}
+                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS)) }
       };
          //@formatter:on
    }
