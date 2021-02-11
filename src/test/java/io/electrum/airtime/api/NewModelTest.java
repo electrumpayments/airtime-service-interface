@@ -1,16 +1,11 @@
 package io.electrum.airtime.api;
 
-import io.electrum.airtime.api.model.ErrorDetail;
-import io.electrum.airtime.api.model.Product;
-import io.electrum.airtime.api.model.ProductContent;
-import io.electrum.airtime.api.model.ValidityPeriod;
-import io.electrum.vas.JsonUtil;
-
 import java.io.IOException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -21,6 +16,14 @@ import javax.validation.Validator;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import io.electrum.airtime.api.model.ChannelProductListing;
+import io.electrum.airtime.api.model.Description;
+import io.electrum.airtime.api.model.ErrorDetail;
+import io.electrum.airtime.api.model.Product;
+import io.electrum.airtime.api.model.ProductContent;
+import io.electrum.airtime.api.model.ValidityPeriod;
+import io.electrum.vas.JsonUtil;
 
 public class NewModelTest {
 
@@ -63,20 +66,49 @@ public class NewModelTest {
 
    @DataProvider(name = "serialisedObjectDataProvider")
    public Object[][] serialisedObjectDataProvider() {
-      return new Object[][] {
+      return new Object[][] { {
+            new ChannelProductListing().channelName("Channel")
+                  .productDisplayName("Name")
+                  .productDisplayCategory("Category")
+                  .productDisplaySortOrder(1D)
+                  .channelProductIdentifier("ID"),
+            "{\"channelName\":\"Channel\",\"productDisplayName\":\"Name\",\"productDisplayCategory\":\"Category\",\"productDisplaySortOrder\":1.0,\"channelProductIdentifier\":\"ID\"}" },
             { new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES),
                   "{\"amount\":2950,\"unit\":\"Minutes\"}" },
             { new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS),
-                  "{\"duration\":30,\"durationUnit\":\"DAYS\"}" } };
+                  "{\"duration\":30,\"durationUnit\":\"DAYS\"}" },
+            { new Description().primaryDescription("Description")
+                  .shortDescription("This product is very good.")
+                  .additionalDescriptions(new HashMap<String, String>() {
+                     {
+                        put("key", "value");
+                     }
+                  }),
+                  "{\"additionalDescriptions\":{\"key\":\"value\"},\"primaryDescription\":\"Description\",\"shortDescription\":\"This product is very good.\"}" } };
+
    }
 
    @DataProvider(name = "deserialisedObjectDataProvider")
    public Object[][] deserialisedObjectDataProvider() {
-      return new Object[][] {
+      return new Object[][] { {
+            "{\"channelName\":\"Channel\",\"productDisplayName\":\"Name\",\"productDisplayCategory\":\"Category\",\"productDisplaySortOrder\":1.0,\"channelProductIdentifier\":\"ID\"}",
+            new ChannelProductListing().channelName("Channel")
+                  .productDisplayName("Name")
+                  .productDisplayCategory("Category")
+                  .productDisplaySortOrder(1D)
+                  .channelProductIdentifier("ID") },
             { "{\"amount\":2950,\"unit\":\"Minutes\"}",
                   new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES) },
             { "{\"duration\":30,\"durationUnit\":\"DAYS\"}",
-                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS) } };
+                  new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS) },
+            { "{\"additionalDescriptions\":{\"key\":\"value\"},\"primaryDescription\":\"Description\",\"shortDescription\":\"This product is very good.\"}",
+                  new Description().primaryDescription("Description")
+                        .shortDescription("This product is very good.")
+                        .additionalDescriptions(new HashMap<String, String>() {
+                           {
+                              put("key", "value");
+                           }
+                        }) } };
    }
 
    @DataProvider(name = "serialiseDeserialiseObjectDataProvider")
@@ -91,16 +123,36 @@ public class NewModelTest {
       });
 
       // Add miscellaneous objects
+      objectsToCheck.add(
+            new ChannelProductListing().channelName("Channel")
+                  .productDisplayName("Name")
+                  .productDisplayCategory("Category")
+                  .productDisplaySortOrder(1D)
+                  .channelProductIdentifier("ID"));
       objectsToCheck.add(new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES));
       objectsToCheck.add(new ValidityPeriod().duration(30L).durationUnit(ChronoUnit.DAYS));
+      objectsToCheck.add(
+            new Description().primaryDescription("Description")
+                  .shortDescription("This product is very good.")
+                  .additionalDescriptions(new HashMap<String, String>() {
+                     {
+                        put("key", "value");
+                     }
+                  }));
 
       return objectsToCheck.stream().map(o -> new Object[] { o }).iterator();
    }
 
    @DataProvider(name = "deserialiseSerialiseObjectDataProvider")
    public Object[][] deserialiseSerialiseObjectDataProvider() {
-      return new Object[][] { { "{\"amount\":2950,\"unit\":\"Minutes\"}", ProductContent.class },
-            { "{\"duration\":30,\"durationUnit\":\"DAYS\"}", ValidityPeriod.class } };
+      return new Object[][] {
+            //@formatter:off
+            {"{\"channelName\":\"Channel\",\"productDisplayName\":\"Name\",\"productDisplayCategory\":\"Category\",\"productDisplaySortOrder\":1.0,\"channelProductIdentifier\":\"ID\"}",
+            ChannelProductListing.class }, 
+            { "{\"amount\":2950,\"unit\":\"Minutes\"}", ProductContent.class },
+            { "{\"duration\":30,\"durationUnit\":\"DAYS\"}", ValidityPeriod.class },
+            {"{\"additionalDescriptions\":{\"key\":\"value\"},\"primaryDescription\":\"Description\",\"shortDescription\":\"This product is very good.\"}", Description.class}};
+            //@formatter:on
    }
 
    @DataProvider(name = "ordinalDataProvider")
@@ -157,6 +209,9 @@ public class NewModelTest {
    public Object[][] recursiveValidationOnSubFieldsDataProvider() {
       return new Object[][] {
          //@formatter:off
+              // missing channelName
+            { new ChannelProductListing(),
+              new ChannelProductListing().channelName("Name") },
               // missing unit
             { new ProductContent().amount(2950L),
               new ProductContent().amount(2950L).unit(ProductContent.AirtimeProductUnit.MINUTES) },

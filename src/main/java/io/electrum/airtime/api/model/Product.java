@@ -8,13 +8,13 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import io.electrum.vas.model.Institution;
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.model.Institution;
 import io.electrum.vas.model.LedgerAmount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -54,6 +54,7 @@ public class Product {
    private String productId = null;
    private String barcode = null;
    private String name = null;
+   private Description description = null;
    private ProductType type = null;
    private LedgerAmount wholesalePrice = null;
    private LedgerAmount recipientAmount = null;
@@ -149,6 +150,27 @@ public class Product {
 
    public void setName(String name) {
       this.name = name;
+   }
+
+   public Product description(Description description) {
+      this.description = description;
+      return this;
+   }
+
+   /**
+    * The description of the product.
+    *
+    * @since 5.22.0
+    * @return The description of the product
+    */
+   @ApiModelProperty(value = "The description of the product.")
+   @JsonProperty("description")
+   public Description getDescription() {
+      return description;
+   }
+
+   public void setDescription(Description description) {
+      this.description = description;
    }
 
    public Product type(ProductType type) {
@@ -320,38 +342,41 @@ public class Product {
    }
 
    @Override
-   public boolean equals(java.lang.Object o) {
-      if (this == o) {
+   public boolean equals(Object o) {
+      if (this == o)
          return true;
-      }
-      if (o == null || getClass() != o.getClass()) {
+      if (o == null || getClass() != o.getClass())
          return false;
-      }
       Product product = (Product) o;
-      return Objects.equals(this.isDirectTopup, product.isDirectTopup)
-            && Objects.equals(this.productId, product.productId) && Objects.equals(this.barcode, product.barcode)
-            && Objects.equals(this.name, product.name) && Objects.equals(this.type, product.type)
-            && Objects.equals(this.wholesalePrice, product.wholesalePrice)
-            && Objects.equals(this.recipientAmount, product.recipientAmount)
-            && Objects.equals(this.validityPeriod, product.validityPeriod)
-            && Objects.equals(this.productContents, product.productContents)
-            && Objects.equals(this.operator, product.operator) && Objects.equals(this.channels, product.channels);
+      return Objects.equals(isDirectTopup, product.isDirectTopup) && Objects.equals(productId, product.productId)
+            && Objects.equals(barcode, product.barcode) && Objects.equals(name, product.name)
+            && Objects.equals(description, product.description) && type == product.type
+            && Objects.equals(wholesalePrice, product.wholesalePrice)
+            && Objects.equals(recipientAmount, product.recipientAmount)
+            && Arrays.equals(productValues, product.productValues)
+            && Objects.equals(validityPeriod, product.validityPeriod)
+            && Objects.equals(productContents, product.productContents) && Objects.equals(operator, product.operator)
+            && Objects.equals(channels, product.channels);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(
-            isDirectTopup,
-            productId,
-            barcode,
-            name,
-            type,
-            wholesalePrice,
-            recipientAmount,
-            validityPeriod,
-            productContents,
-            operator,
-            channels);
+      int result =
+            Objects.hash(
+                  isDirectTopup,
+                  productId,
+                  barcode,
+                  name,
+                  description,
+                  type,
+                  wholesalePrice,
+                  recipientAmount,
+                  validityPeriod,
+                  productContents,
+                  operator,
+                  channels);
+      result = 31 * result + Arrays.hashCode(productValues);
+      return result;
    }
 
    @Override
@@ -363,6 +388,7 @@ public class Product {
       sb.append("    productId: ").append(Utils.toIndentedString(productId)).append('\n');
       sb.append("    barcode: ").append(Utils.toIndentedString(barcode)).append('\n');
       sb.append("    name: ").append(Utils.toIndentedString(name)).append('\n');
+      sb.append("    description: ").append(Utils.toIndentedString(description)).append('\n');
       sb.append("    type: ").append(Utils.toIndentedString(type)).append('\n');
       sb.append("    wholesalePrice: ").append(Utils.toIndentedString(wholesalePrice)).append('\n');
       sb.append("    recipientAmount: ").append(Utils.toIndentedString(recipientAmount)).append('\n');

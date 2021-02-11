@@ -135,8 +135,7 @@ public class ChannelProductListing {
     * @return channelProductIdentifier
     **/
    @ApiModelProperty(value = "A product identifier which is meaningful for the channel.")
-   @JsonProperty(value = "channelProductId")
-   @Length(max = 50)
+   @JsonProperty(value = "channelProductIdentifier")
    public String getChannelProductIdentifier() {
       return channelProductIdentifier;
    }
