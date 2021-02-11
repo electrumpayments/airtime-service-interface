@@ -1,7 +1,7 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
 ## v5.22.0
-Released 05 February 2021
+Released 11 February 2021
 
 - Fixed `JsonProperty` for `ChannelProductListing.channelProductIdentifier`.
 - Remove length restriction on `ChannelProductListing.channelProductIdentifier`.
