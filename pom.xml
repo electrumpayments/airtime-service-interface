@@ -232,6 +232,11 @@
             <artifactId>jaxb-impl</artifactId>
             <version>2.2.11</version>
           </dependency>
+          <dependency>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>${nexus-staging-maven-plugin-version}</version>
+          </dependency>
         </dependencies>
         <executions>
           <execution>
@@ -419,7 +424,7 @@
       <plugin>
         <groupId>org.sonatype.plugins</groupId>
         <artifactId>nexus-staging-maven-plugin</artifactId>
-<!--        <version>${nexus-staging-maven-plugin-version}</version>-->
+        <version>${nexus-staging-maven-plugin-version}</version>
         <extensions>true</extensions>
         <configuration>
           <serverId>ossrh</serverId>
