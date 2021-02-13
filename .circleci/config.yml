@@ -2,7 +2,7 @@ version: 2
 jobs:
   build-and-release:
     docker:
-      - image: ${ARTIFACTORY_DOCKER_URL}/circleci-openjdk:11.0.4-SNAPSHOT
+      - image: ${ARTIFACTORY_DOCKER_URL}/circleci-openjdk
         auth:
           username: $ARTIFACTORY_READER_USERNAME
           password: $ARTIFACTORY_READER_PASSWORD
