@@ -133,7 +133,9 @@ workflows:
   commit:
     jobs:
       - build-and-release:
-          context: java
+          context:
+            - java
+            - oss
       - code-coverage-report:
           context: java
           requires:

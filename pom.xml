@@ -26,6 +26,7 @@
       <organizationUrl>http://electrum.io</organizationUrl>
     </developer>
   </developers>
+
   <scm>
     <connection>scm:git:git@github.com:electrumpayments/airtime-service-interface.git</connection>
     <developerConnection>scm:git:git@github.com:electrumpayments/airtime-service-interface.git</developerConnection>
@@ -277,8 +278,11 @@
             </goals>
             <configuration>
               <publisher>
+                <!--suppress UnresolvedMavenProperty -->
                 <contextUrl>${artifactory-url}/</contextUrl>
+                <!--suppress UnresolvedMavenProperty -->
                 <username>${artifactory-username}</username>
+                <!--suppress UnresolvedMavenProperty -->
                 <password>${artifactory-password}</password>
                 <repoKey>oss-local</repoKey>
               </publisher>
@@ -396,39 +400,54 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>${maven-gpg-plugin-version}</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-            <configuration>
-              <gpgArguments>
-                <arg>--pinentry-mode</arg>
-                <arg>loopback</arg>
-              </gpgArguments>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>${nexus-staging-maven-plugin-version}</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>ossrh</serverId>
-          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>false</autoReleaseAfterClose>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>ossrh</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${maven-gpg-plugin-version}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                  </gpgArguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>${nexus-staging-maven-plugin-version}</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>false</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <!--suppress UnresolvedMavenProperty -->
+        <keyname>${gpgKeyName}</keyname>
+        <!--suppress UnresolvedMavenProperty -->
+        <passphraseServerId>${gpgKeyName}</passphraseServerId>
+      </properties>
+    </profile>
+  </profiles>
   <distributionManagement>
     <snapshotRepository>
       <id>ossrh</id>
