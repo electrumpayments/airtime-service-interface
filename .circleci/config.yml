@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Configure GPG private key for signing project artifacts in OSS Sonatype
           command: >
-           echo $SECRING_GPG_ASC_BASE64 | gpg --batch --armour --no-tty --import --yes
+           echo $SECRING_GPG_ASC | gpg --batch --armour --no-tty --import --yes
       - run:
           name: Compile, Test, and Release
           command: /electrum/bin/simpleTestAndReleaseJava.sh
