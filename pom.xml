@@ -414,7 +414,7 @@
       </build>
     </profile>
     <profile>
-      <id>ossDeploy</id>
+      <id>deployOss</id>
       <activation>
         <activeByDefault>false</activeByDefault>
       </activation>
