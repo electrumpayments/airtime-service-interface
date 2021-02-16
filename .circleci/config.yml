@@ -27,15 +27,14 @@ jobs:
           name: Validate release type
           command: /electrum/bin/validateReleaseType.sh
       - run:
-          name: Configure GPG private key for signing project artifacts in OSS Sonatype
-          command: >
-           echo "$SECRING_GPG_ASC" | gpg --batch --armour --no-tty --import --yes
-      - run:
           name: Compile, Test, and Release
           command: /electrum/bin/simpleTestAndReleaseJava.sh
       - run:
           name: Deploy docs to Github Pages
           command: /electrum/bin/deployGithubPages.sh ~/project/target/devguide/site
+      - run:
+          name: Deploy to Sonatype OSSRH
+          command: /electrum/bin/deployOss.sh
       - run:
           name: Release failed! Revert any release steps that might have been taken
           command: /electrum/bin/revertReleaseJava.sh
