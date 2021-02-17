@@ -1,5 +1,11 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.23.0
+Release 16 February 2021
+
+- Artefacts are now deployed directly to Soatype OSSRH as opposed to JCenter. The artefacts
+  are signed with Electrum Payments' GPG key.
+
 ## v5.22.0
 Released 11 February 2021
 
