@@ -31,7 +31,7 @@ jobs:
           command: /electrum/bin/importGpgSecret.sh
       - run:
           name: Compile, Test, and Release
-          command: /electrum/bin/simpleTestAndReleaseJava.sh
+          command: /electrum/bin/simpleTestAndReleaseJava.sh -Possrh
       - run:
           name: Release to Sonatype OSSRH
           command: /electrum/bin/releaseToOssrh.sh

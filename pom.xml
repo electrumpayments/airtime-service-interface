@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.electrum</groupId>
   <artifactId>airtime-service-interface</artifactId>
-  <version>${major-version}.${minor-version}.${patch-version}-RC1</version>
+  <version>${major-version}.${minor-version}.${patch-version}-RC2</version>
   <packaging>jar</packaging>
 
   <name>Airtime Service Interface</name>
@@ -413,9 +413,9 @@
       </build>
     </profile>
     <profile>
-      <id>deployOss</id>
+      <id>ossrh</id>
       <activation>
-        <activeByDefault>true</activeByDefault>
+        <activeByDefault>false</activeByDefault>
       </activation>
       <build>
         <plugins>
