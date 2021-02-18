@@ -451,6 +451,7 @@
             <configuration>
               <serverId>ossrh</serverId>
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <skipRemoteStaging>true</skipRemoteStaging>
               <skipStagingRepositoryClose>true</skipStagingRepositoryClose>
               <autoReleaseAfterClose>false</autoReleaseAfterClose>
             </configuration>
@@ -459,4 +460,10 @@
       </build>
     </profile>
   </profiles>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
