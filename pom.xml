@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.electrum</groupId>
   <artifactId>airtime-service-interface</artifactId>
-  <version>${major-version}.${minor-version}.${patch-version}-RC3</version>
+  <version>${major-version}.${minor-version}.${patch-version}-RC4</version>
   <packaging>jar</packaging>
 
   <name>Airtime Service Interface</name>
@@ -265,6 +265,28 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.jfrog.buildinfo</groupId>
+        <artifactId>artifactory-maven-plugin</artifactId>
+        <version>2.6.1</version>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <id>build-info</id>
+            <goals>
+              <goal>publish</goal>
+            </goals>
+            <configuration>
+              <publisher>
+                <contextUrl>${artifactory-url}/</contextUrl>
+                <username>${artifactory-username}</username>
+                <password>${artifactory-password}</password>
+                <repoKey>oss-local</repoKey>
+              </publisher>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
@@ -378,41 +400,6 @@
   </build>
   <profiles>
     <profile>
-      <id>publishArtifacts</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.jfrog.buildinfo</groupId>
-            <artifactId>artifactory-maven-plugin</artifactId>
-            <version>2.6.1</version>
-            <inherited>false</inherited>
-            <executions>
-              <execution>
-                <id>build-info</id>
-                <goals>
-                  <goal>publish</goal>
-                </goals>
-                <configuration>
-                  <publisher>
-                    <!--suppress UnresolvedMavenProperty -->
-                    <contextUrl>${artifactory-url}/</contextUrl>
-                    <!--suppress UnresolvedMavenProperty -->
-                    <username>${artifactory-username}</username>
-                    <!--suppress UnresolvedMavenProperty -->
-                    <password>${artifactory-password}</password>
-                    <repoKey>oss-local</repoKey>
-                  </publisher>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>ossrh</id>
       <activation>
         <activeByDefault>false</activeByDefault>
@@ -460,10 +447,4 @@
       </build>
     </profile>
   </profiles>
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
 </project>

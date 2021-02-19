@@ -33,13 +33,16 @@ jobs:
           name: Compile, Test, and Release
           command: /electrum/bin/simpleTestAndReleaseJava.sh -Possrh
       - run:
-          name: Release to Sonatype OSSRH
-          command: /electrum/bin/releaseToOssrh.sh
-      - run:
           name: Deploy docs to Github Pages
           command: /electrum/bin/deployGithubPages.sh ~/project/target/devguide/site
       - run:
-          name: Release failed! Revert OSSRH release steps that might have been taken
+          name: Deploy release to Sonatype OSSRH
+          command: /electrum/bin/releaseToOssrh.sh
+      - run:
+          name: Release from Sonatype OSSRH to Maven Central
+          command: /electrum/bin/releaseToMavenCentral.sh
+      - run:
+          name: Release failed! Revert OSSRH release steps that might have been taken.
           command: /electrum/bin/revertReleaseOssrh.sh
           when: on_fail
       - run:
