@@ -27,11 +27,24 @@ jobs:
           name: Validate release type
           command: /electrum/bin/validateReleaseType.sh
       - run:
+          name: Import PGP secret keyring
+          command: /electrum/bin/importGpgSecret.sh
+      - run:
           name: Compile, Test, and Release
-          command: /electrum/bin/simpleTestAndReleaseJava.sh
+          command: /electrum/bin/simpleTestAndReleaseJava.sh -Possrh
       - run:
           name: Deploy docs to Github Pages
           command: /electrum/bin/deployGithubPages.sh ~/project/target/devguide/site
+      - run:
+          name: Deploy release to Sonatype OSSRH
+          command: /electrum/bin/releaseToOssrh.sh
+      - run:
+          name: Release from Sonatype OSSRH to Maven Central
+          command: /electrum/bin/releaseToMavenCentral.sh
+      - run:
+          name: Release failed! Revert OSSRH release steps that might have been taken.
+          command: /electrum/bin/revertReleaseOssrh.sh
+          when: on_fail
       - run:
           name: Release failed! Revert any release steps that might have been taken
           command: /electrum/bin/revertReleaseJava.sh
@@ -133,7 +146,9 @@ workflows:
   commit:
     jobs:
       - build-and-release:
-          context: java
+          context:
+            - java
+            - oss
       - code-coverage-report:
           context: java
           requires:
