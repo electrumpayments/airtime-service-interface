@@ -143,7 +143,7 @@ public class Product {
     **/
    @ApiModelProperty(value = "The name of the product.")
    @JsonProperty("name")
-   @Length(min = 1, max = 40)
+   @Length(min = 1)
    public String getName() {
       return name;
    }
