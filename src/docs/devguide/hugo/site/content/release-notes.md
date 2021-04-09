@@ -1,5 +1,10 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.24.0
+Release 09 April 2021
+
+- Removed length restriction on `Product.name` field.
+
 ## v5.23.0
 Release 22 February 2021
 
