@@ -3,7 +3,7 @@ This page describes changes to the Airtime Service Interface implemented across 
 ## v5.24.0
 Release 09 April 2021
 
-- Removed length restriction on `Product.name` field.
+- Increase length restriction on `Product.name` field from 40 characters to 80.
 
 ## v5.23.0
 Release 22 February 2021
