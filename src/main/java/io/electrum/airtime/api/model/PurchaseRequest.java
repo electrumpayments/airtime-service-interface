@@ -3,6 +3,7 @@ package io.electrum.airtime.api.model;
 import io.electrum.vas.Utils;
 import io.electrum.vas.interfaces.HasAmounts;
 import io.electrum.vas.interfaces.HasPaymentMethods;
+import io.electrum.vas.interfaces.HasTenders;
 import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.PaymentMethod;
 import io.electrum.vas.model.Tender;
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  **/
 
 @ApiModel(description = "A request for an airtime product. This may be for airtime, data or SMS products or a combination. Airtime requests may be for PIN based or PIN-less products.")
-public class PurchaseRequest extends Transaction implements HasAmounts, HasPaymentMethods {
+public class PurchaseRequest extends Transaction implements HasAmounts, HasPaymentMethods, HasTenders {
 
    private Amounts amounts = null;
    private Product product = null;

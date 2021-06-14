@@ -1,5 +1,14 @@
 This page describes changes to the Airtime Service Interface implemented across different releases of the interface.
 
+## v5.25.0
+Release __ June 2021
+
+- Incorporated a new interface from ``service-interface-base``. This change affects the Java implementation of the API
+  only and does not further change the public definition of the API. The Java implementation has been updated as follows:
+  - The following classes now implement the `HasTenders` interface defined in the base API:
+    - `PurchaseRequest`
+    - `VoucherRequest`
+
 ## v5.24.0
 Release 28 April 2021
 

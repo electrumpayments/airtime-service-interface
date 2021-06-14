@@ -3,6 +3,7 @@ package io.electrum.airtime.api.model;
 import io.electrum.vas.Utils;
 import io.electrum.vas.interfaces.HasAmounts;
 import io.electrum.vas.interfaces.HasPaymentMethods;
+import io.electrum.vas.interfaces.HasTenders;
 import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.PaymentMethod;
 import io.electrum.vas.model.Tender;
@@ -22,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  **/
 
 @ApiModel(description = "Information about the voucher provision request.")
-public class VoucherRequest extends Transaction implements HasAmounts, HasPaymentMethods {
+public class VoucherRequest extends Transaction implements HasAmounts, HasPaymentMethods, HasTenders {
 
    private Amounts amounts = null;
    private Product product = null;
